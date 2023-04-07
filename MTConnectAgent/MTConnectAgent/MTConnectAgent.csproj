@@ -46,14 +46,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="FormAjoutMachine.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormAjoutMachine.Designer.cs">
+      <DependentUpon>FormAjoutMachine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAjoutClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAjoutClient.Designer.cs">
+      <DependentUpon>FormAjoutClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModifieClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModifieClient.Designer.cs">
+      <DependentUpon>FormModifieClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModifieMachine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModifieMachine.Designer.cs">
+      <DependentUpon>FormModifieMachine.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAjoutMachine.resx">
+      <DependentUpon>FormAjoutMachine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAjoutClient.resx">
+      <DependentUpon>FormAjoutClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModifieClient.resx">
+      <DependentUpon>FormModifieClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModifieMachine.resx">
+      <DependentUpon>FormModifieMachine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +114,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MTConnectAgent.Model\MTConnectAgent.Model.csproj">
+      <Project>{5aabebc7-621d-4b23-9148-b1d90af4fc06}</Project>
+      <Name>MTConnectAgent.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
