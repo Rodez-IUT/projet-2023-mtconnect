@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5AABEBC7-621D-4B23-9148-B1D90AF4FC06}</ProjectGuid>
+    <ProjectGuid>{181C9DCC-AE4D-4B0D-B763-E3C0FB87F84F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MTConnectAgent.Model</RootNamespace>
-    <AssemblyName>MTConnectAgent.Model</AssemblyName>
+    <RootNamespace>MTConnectAgent.BLL</RootNamespace>
+    <AssemblyName>MTConnectAgent.BLL</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,11 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
-    <Compile Include="ITag.cs" />
-    <Compile Include="Machine.cs" />
+    <Compile Include="MTConnectClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tag.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MTConnectAgent.Model\MTConnectAgent.Model.csproj">
+      <Project>{5AABEBC7-621D-4B23-9148-B1D90AF4FC06}</Project>
+      <Name>MTConnectAgent.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
