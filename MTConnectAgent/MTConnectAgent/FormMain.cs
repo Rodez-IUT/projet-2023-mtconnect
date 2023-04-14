@@ -38,9 +38,11 @@ namespace MTConnectAgent
 
                     ToolStripMenuItem modifyMachineLabel = new ToolStripMenuItem("Modifier", null, modifyMachineLabel_Click);
                     ToolStripMenuItem deleteMachineLabel = new ToolStripMenuItem("Supprimer", null, deleteMachineLabel_Click);
-                    List<object> tags = new List<object>(2);
-                    tags.Add(machine);
-                    tags.Add(i);
+                    List<object> tags = new List<object>(2)
+                    {
+                        machine,
+                        i
+                    };
                     modifyMachineLabel.Tag = tags;
                     deleteMachineLabel.Tag = tags;
 

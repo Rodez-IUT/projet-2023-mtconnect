@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="IClient.cs" />
+    <Compile Include="IMachine.cs" />
     <Compile Include="ITag.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

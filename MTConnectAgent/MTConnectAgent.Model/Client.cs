@@ -1,65 +1,82 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MTConnectAgent.Model
 {
     [Serializable()]
-    public class Client : ISerializable
+    public class Client : IClient
     {
-        private string _name;
-        private List<Machine> _machines;
+        /// <summary>
+        /// Accesseur du nom du client
+        /// </summary>
+        public string Name { get; set; }
 
-        public Client(String name)
+        /// <summary>
+        /// Accesseur de la liste des Machine
+        /// </summary>
+        public IList<IMachine> Machines { get; }
+
+        /// <summary></summary>
+        /// <param name="name">Nom du client</param>
+        public Client(string name)
         {
-            this._name = name.Trim();
-            this._machines = new List<Machine>();
+            this.Name = name.Trim();
+            this.Machines = new List<IMachine>();
         }
 
-        public Client(String name, List<Machine> machines)
+        /// <summary></summary>
+        /// <param name="name">Nom du client</param>
+        /// <param name="machines">Liste des machines du clients</param>
+        public Client(string name, List<IMachine> machines)
         {
-            this._name = name.Trim();
-            this._machines = machines;
+            this.Name = name.Trim();
+            this.Machines = machines;
         }
-
-        public string Name { get { return this._name; } set { this._name = value; } }
-
-        public List<Machine> Machines { get { return this._machines; } }
-
-        public Client AddMachine(Machine newMachine)
-        {
-            this._machines.Add(newMachine);
-            return this;
-        }
-
+        
         //Deserialization constructor.
         public Client(SerializationInfo info, StreamingContext ctxt)
         {
-            this._name = (String)info.GetValue("clientName", typeof(string));
-            this._machines = (List<Machine>)info.GetValue("clientMachines", typeof(List<Machine>));
+            this.Name = (string)info.GetValue("clientName", typeof(string));
+            this.Machines = (List<IMachine>)info.GetValue("clientMachines", typeof(List<Machine>));
         }
 
-        //Serialization function.
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        /// <summary>
+        /// Serialise l'objet Client
+        /// </summary>
+        /// <param name="info">Donné de sérialisation</param>
+        /// <param name="ctx">Contexte de destination de la serialisation</param>
+        public void GetObjectData(SerializationInfo info, StreamingContext ctx)
         {
-            info.AddValue("clientName", this._name);
-            info.AddValue("clientMachines", this._machines);
+            info.AddValue("clientName", this.Name);
+            info.AddValue("clientMachines", this.Machines);
         }
 
-        // Deep clone
-        public Client DeepClone()
+        /// <summary>
+        /// Ajoute une machine au client
+        /// </summary>
+        /// <param name="newMachine">Machine a ajouter</param>
+        /// <returns>Le client lui même (this)</returns>
+        public IClient AddMachine(IMachine newMachine)
+        {
+            this.Machines.Add(newMachine);
+            return this;
+        }
+
+        /// <summary>
+        /// Fait un copie profonde de l'objet
+        /// </summary>
+        /// <returns>L'objet copié</returns>
+        public IClient DeepClone()
         {
             using (MemoryStream stream = new MemoryStream())
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(stream, this);
                 stream.Position = 0;
-                return (Client)formatter.Deserialize(stream);
+                return (IClient)formatter.Deserialize(stream);
             }
         }
     }

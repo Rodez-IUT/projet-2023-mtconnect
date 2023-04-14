@@ -9,41 +9,24 @@ using System.Threading.Tasks;
 namespace MTConnectAgent.Model
 {
     [Serializable()]
-    public class Machine : ISerializable
+    public class Machine : IMachine
     {
-        private string _name;
-        private string _url;
 
-        /// <summary>test</summary>
-        /// <exception cref="FormatException">Lorsque l'url passé n'est pas bien formé</exception>
-        public Machine(string name, string url)
-        {
-            this._name = name;
-            url = url.Trim();
+        /// <summary>
+        /// Accesseur du nom de la machine
+        /// </summary>
+        public string Name { get; set; }
 
-            if (IsValidURL(url))
-            {
-                this._url = url;
-            }
-            else
-            {
-                throw new FormatException("La valeur passé n'est pas un URL");
-            }
-        }
-
-        /// <summary> </summary>
-        public string Name { get { return this._name; } set { this._name = value; } }
-
+        /// <summary>
+        /// Accesseur de l'url de la machine
+        /// </summary>
         public string Url
         {
-            get { return this._url; }
-
-            /// <summary>Change la valeur de l'url</summary>
-            /// <exception>FormatException lorsque l'url passé n'est pas bien formé</exception>
+            get { return this.Url; }
             set
             {
                 string url = value.Trim();
-                if (IsValidURL(url)) { this._url = url; }
+                if (IsValidURL(url)) { this.Url = url; }
                 else { throw new FormatException("La valeur passé n'est pas un URL"); }
             }
         }
@@ -58,14 +41,36 @@ namespace MTConnectAgent.Model
         }
 
         //Deserialization constructor.
-        public Machine(SerializationInfo info, StreamingContext ctxt)
+        public Machine(SerializationInfo info, StreamingContext ctx)
         {
-            this._name = (String)info.GetValue("machineName", typeof(string));
-            this._url = (String)info.GetValue("machineUrl", typeof(string));
+            this.Name = (String)info.GetValue("machineName", typeof(string));
+            this.Url = (String)info.GetValue("machineUrl", typeof(string));
         }
 
-        //Serialization function.
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        /// <summary></summary>
+        /// <exception cref="FormatException">Lorsque l'url passé n'est pas bien formé</exception>
+        public Machine(string name, string url)
+        {
+            this.Name = name;
+            url = url.Trim();
+
+            if (IsValidURL(url))
+            {
+                this.Url = url;
+            }
+            else
+            {
+                throw new FormatException("La valeur passé n'est pas un URL");
+            }
+        }
+
+
+        /// <summary>
+        /// Serialise l'objet Machine
+        /// </summary>
+        /// <param name="info">Donné de sérialisation</param>
+        /// <param name="ctx">Contexte de destination de la serialisation</param>
+        public void GetObjectData(SerializationInfo info, StreamingContext ctx)
         {
             info.AddValue("machineName", this._name);
             info.AddValue("machineUrl", this._url);
