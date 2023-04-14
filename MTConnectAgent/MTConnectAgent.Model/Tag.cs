@@ -6,14 +6,42 @@ using System.Threading.Tasks;
 
 namespace MTConnectAgent.Model
 {
+    /// <summary>
+    /// Représente un noeud XML MTConnect
+    /// </summary>
     public class Tag : ITag
-    {
+    { 
+        /// <summary>
+        /// Nom du noeud xml
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Attribut id du noeud xml
+        /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// liste des attributs qui ne sont pas l'id du noeud xml
+        /// </summary>
         public IDictionary<string, string> Attributs { get;}
+
+        /// <summary>
+        /// Liste des noeuds enfant du noeud actuel
+        /// </summary>
         public IList<ITag> Child { get; }
+
+        /// <summary>
+        /// Valeur du noeud xml
+        /// </summary>
         public string Value { get; set; }
 
+
+        /// <summary>
+        /// Initialise un Tag avec son nom et son id
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
         public Tag(string name, string id)
         {
             Name = name; 
@@ -22,6 +50,10 @@ namespace MTConnectAgent.Model
             this.Child = new List<ITag>();
         }
 
+        /// <summary>
+        /// Initialise un Tag avec son nom
+        /// </summary>
+        /// <param name="name"></param>
         public Tag(string name)
         {
             Name = name;
@@ -30,23 +62,42 @@ namespace MTConnectAgent.Model
             this.Child = new List<ITag>();
         }
 
+        /// <summary>
+        /// Ajoute un attribut à la liste des attributs du Tag actuel
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns>L'élément courant</returns>
         public ITag AddAttribut(string key, string value)
         {
             this.Attributs.Add(key, value);
             return this;
         }
-
+        
+        /// <summary>
+        /// Ajoute un Tag à la liste des enfants du Tag actuel
+        /// </summary>
+        /// <param name="childTag"></param>
+        /// <returns>L'élément courant</returns>
         public ITag AddChild(ITag childTag)
         {
             this.Child.Add(childTag);
             return this;
         }
 
+        /// <summary>
+        /// Verifie si le Tag actuel a un ou plusieurs attribut(s)
+        /// </summary>
+        /// <returns>True si il en possède, false sinon</returns>
         public bool HasAttributs()
         {
             return this.Attributs.Count() == 0;
         }
 
+        /// <summary>
+        /// Vérifie si le Tag actuel a un ou plusieurs Tag enfants
+        /// </summary>
+        /// <returns>True si il en possède, false sinon</returns>
         public bool HasChild()
         {
             return this.Child.Count == 0;
