@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,6 +60,10 @@
     <ProjectReference Include="..\MTConnectAgent.BLL\MTConnectAgent.BLL.csproj">
       <Project>{181C9DCC-AE4D-4B0D-B763-E3C0FB87F84F}</Project>
       <Name>MTConnectAgent.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MTConnectAgent.Model\MTConnectAgent.Model.csproj">
+      <Project>{5AABEBC7-621D-4B23-9148-B1D90AF4FC06}</Project>
+      <Name>MTConnectAgent.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

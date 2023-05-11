@@ -1,15 +1,23 @@
 ﻿using MTConnectAgent.Model;
+using System;
 using System.Linq;
 using System.Net.Http;
-
+using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace MTConnectAgent.BLL
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class MTConnectClient
     {      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public ITag ParseXMLRecursif(XElement element)
         {
             ITag tag = new Tag(element.Name.ToString().Split('}')[1]);
@@ -44,6 +52,11 @@ namespace MTConnectAgent.BLL
             return tag;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public async Task<XDocument> getProbeAsync(string url)
         {
             HttpClient httpClient = new HttpClient();
@@ -58,6 +71,11 @@ namespace MTConnectAgent.BLL
             return document;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public async Task<XDocument> getCurrentAsync(string url)
         {
             HttpClient httpClient = new HttpClient();
@@ -73,6 +91,49 @@ namespace MTConnectAgent.BLL
 
         }
 
+        /// <summary>
+        /// Initialise la génération du path récursive
+        /// </summary>
+        /// <param name="tag">Noeud racine depuis lequel nous allons générer le path</param>
+        /// <returns>Le path généré</returns>
+        public string GenererPath(ITag tag)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append("https://smstestbed.nist.gov/vds/current?path=");
+            stringBuilder = GenererPath(tag, stringBuilder);
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Génére un path de façon récursive
+        /// Si le tag contient une id non vide, alors elle est ajoutée en paramètre au path
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="stringBuilder"></param>
+        /// <returns></returns>
+        public StringBuilder GenererPath(ITag tag, StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("//");
+            stringBuilder.Append(tag.Name);
+            if (!tag.Id.Equals(""))
+            {
+                stringBuilder.Append("[@id=\"");
+                stringBuilder.Append(tag.Id);
+                stringBuilder.Append("\"]");
+            }
+            if (tag.HasChild())
+            {
+                stringBuilder = GenererPath(tag.Child[0], stringBuilder);
+            }
+            return stringBuilder;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public async Task<XDocument> getAssetsAsync(string url)
         {
             HttpClient httpClient = new HttpClient();
@@ -87,6 +148,11 @@ namespace MTConnectAgent.BLL
             return document;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public async Task<XDocument> getSampleAsync(string url)
         {
             HttpClient httpClient = new HttpClient();

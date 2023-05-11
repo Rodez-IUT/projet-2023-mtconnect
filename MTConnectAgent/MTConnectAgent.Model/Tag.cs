@@ -100,7 +100,7 @@ namespace MTConnectAgent.Model
         /// <returns>True si il en possède, false sinon</returns>
         public bool HasChild()
         {
-            return this.Child.Count == 0;
+            return this.Child.Count > 0;
         }
     }
 }

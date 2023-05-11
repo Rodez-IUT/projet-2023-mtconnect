@@ -72,8 +72,8 @@ namespace MTConnectAgent.Model
         /// <param name="ctx">Contexte de destination de la serialisation</param>
         public void GetObjectData(SerializationInfo info, StreamingContext ctx)
         {
-            info.AddValue("machineName", this._name);
-            info.AddValue("machineUrl", this._url);
+            info.AddValue("machineName", this.Name);
+            info.AddValue("machineUrl", this.Url);
         }
     }
 }
