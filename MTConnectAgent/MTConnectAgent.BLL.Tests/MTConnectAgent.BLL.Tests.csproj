@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="MTConnectClientTests.cs" />
+    <Compile Include="MTConnectClientTestsIntegration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

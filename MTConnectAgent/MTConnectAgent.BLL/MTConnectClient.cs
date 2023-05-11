@@ -99,6 +99,10 @@ namespace MTConnectAgent.BLL
         /// <returns>Le path généré</returns>
         public string GenererPath(ITag tag)
         {
+            if (tag == null)
+            {
+                return "Impossible de générer le path";
+            }
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append("https://smstestbed.nist.gov/vds/current?path=");
             stringBuilder = GenererPath(tag, stringBuilder);
@@ -112,7 +116,7 @@ namespace MTConnectAgent.BLL
         /// <param name="tag"></param>
         /// <param name="stringBuilder"></param>
         /// <returns></returns>
-        public StringBuilder GenererPath(ITag tag, StringBuilder stringBuilder)
+        private StringBuilder GenererPath(ITag tag, StringBuilder stringBuilder)
         {
             stringBuilder.Append("//");
             stringBuilder.Append(tag.Name);
@@ -170,6 +174,10 @@ namespace MTConnectAgent.BLL
 
         public ITag CreateSpecifiqueTag(ITag root, Queue<string> idTagQueue, Queue<string> nomTagQueue)
         {
+            if (root == null)
+            {
+                return null;
+            }
             if (idTagQueue.Count > 0 && nomTagQueue.Count > 0)
             {
                 if (!idTagQueue.Peek().Equals("") && root.Id.Equals(idTagQueue.Peek()))
@@ -194,6 +202,7 @@ namespace MTConnectAgent.BLL
                 {
                     idTagQueue.Dequeue();
                     nomTagQueue.Dequeue();
+                    root.Id = "";
                     foreach (ITag tagChild in root.Child)
                     {
                         var result = CreateSpecifiqueTag(tagChild, idTagQueue, nomTagQueue);
@@ -220,7 +229,6 @@ namespace MTConnectAgent.BLL
                     }
                 }
             }
-
             return null;
         }
 
@@ -259,7 +267,7 @@ namespace MTConnectAgent.BLL
             {
                 foreach (Tag tagChild in tag.Child)
                 {
-                    result = FindTagByName(tagChild, id);
+                    result = FindTagById(tagChild, id);
                     if (result != null)
                     {
                         return result;

@@ -111,19 +111,5 @@ namespace MTConnectAgent.BLL.Tests
             //Assert
             Assert.AreEqual(resultatAttendu, resultatObtenu);
         }
-
-
-        [TestMethod]
-        public void SiTagSansNomALorsErreur()
-        {
-            //Arrange
-            ITag tag = new Tag("");
-
-            //Act
-            string resultatObtenu = mtConnectClient.GenererPath(tag);
-
-            //Assert
-           // Assert.ThrowsException<ArgumentOutOfRangeException>();
-        }
     }
 }
