@@ -1,5 +1,6 @@
 ﻿using MTConnectAgent.Model;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -165,6 +166,108 @@ namespace MTConnectAgent.BLL
             XDocument document = XDocument.Load(stream);
 
             return document;
+        }
+
+        public ITag CreateSpecifiqueTag(ITag root, Queue<string> idTagQueue, Queue<string> nomTagQueue)
+        {
+            if (idTagQueue.Count > 0 && nomTagQueue.Count > 0)
+            {
+                if (!idTagQueue.Peek().Equals("") && root.Id.Equals(idTagQueue.Peek()))
+                {
+                    idTagQueue.Dequeue();
+                    nomTagQueue.Dequeue();
+                    foreach (ITag tagChild in root.Child)
+                    {
+                        var result = CreateSpecifiqueTag(tagChild, idTagQueue, nomTagQueue);
+                        if (result != null)
+                        {
+                            root.ClearChild();
+                            root.AddChild(result);
+                            return root;
+                        }
+                    }
+
+                    root.ClearChild();
+                    return root;
+                }
+                else if (!nomTagQueue.Peek().Equals("") && root.Name.Equals(nomTagQueue.Peek()))
+                {
+                    idTagQueue.Dequeue();
+                    nomTagQueue.Dequeue();
+                    foreach (ITag tagChild in root.Child)
+                    {
+                        var result = CreateSpecifiqueTag(tagChild, idTagQueue, nomTagQueue);
+                        if (result != null)
+                        {
+                            root.ClearChild();
+                            root.AddChild(result);
+                            return root;
+                        }
+                    }
+
+                    root.ClearChild();
+                    return root;
+                }
+
+                foreach (ITag tagChild in root.Child)
+                {
+                    var result = CreateSpecifiqueTag(tagChild, idTagQueue, nomTagQueue);
+                    if (result != null)
+                    {
+                        root.ClearChild();
+                        root.AddChild(result);
+                        return root;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public ITag FindTagByName(ITag tag, string name)
+        {
+            ITag result = null;
+            if (tag.Name.Equals(name))
+            {
+                return tag;
+            }
+
+            if (tag.Child.Count > 0)
+            {
+                foreach (Tag tagChild in tag.Child)
+                {
+                    result = FindTagByName(tagChild, name);
+                    if (result != null)
+                    {
+                        return result;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public ITag FindTagById(ITag tag, string id)
+        {
+            ITag result = null;
+            if (tag.Id.Equals(id))
+            {
+                return tag;
+            }
+
+            if (tag.Child.Count > 0)
+            {
+                foreach (Tag tagChild in tag.Child)
+                {
+                    result = FindTagByName(tagChild, id);
+                    if (result != null)
+                    {
+                        return result;
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }
