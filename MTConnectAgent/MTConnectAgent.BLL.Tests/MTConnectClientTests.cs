@@ -13,7 +13,7 @@ namespace MTConnectAgent.BLL.Tests
     /// <summary>
     /// Test des méthodes de la classe MTConnectClient
     /// </summary>
-    [TestClass()]
+    [TestClass]
     public class MTConnectClientTests
     {
         private MTConnectClient mtConnectClient;
@@ -171,11 +171,12 @@ namespace MTConnectAgent.BLL.Tests
         public void SiDeviceAvecIdMazak03DemandeAlorsPathDonneDeviceAvecIdMazak03()
         {
             //Arrange
-            string resultatAttendu = "https://smstestbed.nist.gov/vds/current?path=//Device[@id=\"Mazak03\"]";
+            string url = "https://smstestbed.nist.gov/vds";
+            string resultatAttendu = url + "/current?path=//Device[@id=\"Mazak03\"]";
             ITag device = new Tag("Device", "Mazak03");
 
             //Act
-            string resultatObtenu = mtConnectClient.GenererPath(device);
+            string resultatObtenu = mtConnectClient.GenererPath(device,url);
 
             //Assert
             Assert.AreEqual(resultatAttendu, resultatObtenu);
@@ -186,7 +187,8 @@ namespace MTConnectAgent.BLL.Tests
         public void SiDataItemDemandeAlorsCheminCompletDataItemRendu()
         {
             //Arrange
-            string resultatAttendu = "https://smstestbed.nist.gov/vds/current?path=//Device[@id=\"Mazak03\"]//Components//Axes//DataItems//DataItem[@id=\"Mazak03-S_6\"]";
+            string url = "https://smstestbed.nist.gov/vds";
+            string resultatAttendu = url + "/current?path=//Device[@id=\"Mazak03\"]//Components//Axes//DataItems//DataItem[@id=\"Mazak03-S_6\"]";
             ITag dataItem = new Tag("DataItem", "Mazak03-S_6");
             ITag dataItems = new Tag("DataItems");
             dataItems.AddChild(dataItem);
@@ -198,7 +200,7 @@ namespace MTConnectAgent.BLL.Tests
             device.AddChild(components);
 
             //Act
-            string resultatObtenu = mtConnectClient.GenererPath(device);
+            string resultatObtenu = mtConnectClient.GenererPath(device, url);
 
             //Assert
             Assert.AreEqual(resultatAttendu, resultatObtenu);
