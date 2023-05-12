@@ -171,6 +171,13 @@ namespace MTConnectAgent.BLL
             return document;
         }
 
+        /// <summary>
+        /// Création d'un tag qui posède une forme spécifique pour la génération des path
+        /// </summary>
+        /// <param name="root">Tag racine qui est le point de départ du path (Souvent un Device)</param>
+        /// <param name="idTagQueue">File d'id de tag, id peut avoir la valeur "" pour représenter l'absence d'id pour un tag</param>
+        /// <param name="nomTagQueue">File de nom de tag, le nom peut avoir la valeur "" pour représenter l'absence de nom pour un tag</param>
+        /// <returns></returns>
         public ITag CreateSpecifiqueTag(ITag root, Queue<string> idTagQueue, Queue<string> nomTagQueue)
         {
             if (root == null)
@@ -231,6 +238,12 @@ namespace MTConnectAgent.BLL
             return null;
         }
 
+        /// <summary>
+        /// Recherche d'un tag spécifique dans tout les tag enfant de celui passer en paramètre
+        /// </summary>
+        /// <param name="tag">Tag dans lequel vas être effectué la recherche</param>
+        /// <param name="name">Nom du tag recherché</param>
+        /// <returns>Renvoi le tag qui correspond au critère de recherche sinon null</returns>
         public ITag FindTagByName(ITag tag, string name)
         {
             ITag result = null;
@@ -254,6 +267,12 @@ namespace MTConnectAgent.BLL
             return null;
         }
 
+        /// <summary>
+        /// Recherche d'un tag spécifique dans tout les tag enfant de celui passer en paramètre
+        /// </summary>
+        /// <param name="tag">Tag dans lequel vas être effectué la recherche</param>
+        /// <param name="id">Id du tag recherché</param>
+        /// <returns>Renvoi le tag qui correspond au critère de recherche sinon null</returns>
         public ITag FindTagById(ITag tag, string id)
         {
             ITag result = null;
