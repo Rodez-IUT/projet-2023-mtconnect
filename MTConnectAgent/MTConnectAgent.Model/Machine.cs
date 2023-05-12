@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace MTConnectAgent.Model
 {
     [Serializable()]
-    public class Machine : IMachine
+    public class Machine
     {
 
         /// <summary>
@@ -20,15 +15,12 @@ namespace MTConnectAgent.Model
         /// <summary>
         /// Accesseur de l'url de la machine
         /// </summary>
-        public string Url
+        public string Url { get; private set; }
+
+        public void setUrl(string url)
         {
-            get { return this.Url; }
-            set
-            {
-                string url = value.Trim();
-                if (IsValidURL(url)) { this.Url = url; }
-                else { throw new FormatException("La valeur passé n'est pas un URL"); }
-            }
+            if (IsValidURL(url)) { this.Url = url; }
+            else { throw new FormatException("La valeur passé n'est pas un URL"); }
         }
 
         /// <summary>Valide la cohérence de l'url</summary>
@@ -36,15 +28,17 @@ namespace MTConnectAgent.Model
         /// <returns>True si l'url est valide False sinon</returns>
         public static bool IsValidURL(string url)
         {
-            Regex validateDateRegex = new Regex("^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$");
-            return !string.IsNullOrWhiteSpace(url) && validateDateRegex.IsMatch(url);
+            return Uri.IsWellFormedUriString(url, UriKind.Absolute);
         }
 
         //Deserialization constructor.
         public Machine(SerializationInfo info, StreamingContext ctx)
         {
             this.Name = (String)info.GetValue("machineName", typeof(string));
-            this.Url = (String)info.GetValue("machineUrl", typeof(string));
+            string url = (String)info.GetValue("machineUrl", typeof(string));
+
+            if (IsValidURL(url)) { this.Url = url; }
+            else { throw new FormatException("La valeur passé n'est pas un URL"); }
         }
 
         /// <summary></summary>
@@ -52,16 +46,8 @@ namespace MTConnectAgent.Model
         public Machine(string name, string url)
         {
             this.Name = name;
-            url = url.Trim();
-
-            if (IsValidURL(url))
-            {
-                this.Url = url;
-            }
-            else
-            {
-                throw new FormatException("La valeur passé n'est pas un URL");
-            }
+            if (IsValidURL(url.Trim())) { this.Url = url.Trim(); }
+            else { throw new FormatException("La valeur passé n'est pas un URL"); }
         }
 
 
@@ -72,8 +58,8 @@ namespace MTConnectAgent.Model
         /// <param name="ctx">Contexte de destination de la serialisation</param>
         public void GetObjectData(SerializationInfo info, StreamingContext ctx)
         {
-            info.AddValue("machineName", this._name);
-            info.AddValue("machineUrl", this._url);
+            info.AddValue("machineName", this.Name);
+            info.AddValue("machineUrl", this.Url);
         }
     }
 }

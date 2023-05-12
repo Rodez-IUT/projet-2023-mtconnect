@@ -54,22 +54,11 @@ namespace MTConnectAgent
 
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
-            Client selectedClient = (Client)comboClients.SelectedItem;
-            string machineName = textMachineName.Text.Trim();
-            string machineUrl = textMachineUrl.Text.Trim();
-            if (!Machine.IsValidURL(machineUrl))
-            {
-                MessageBox.Show("L'url spécifié n'est pas valide", "Création d'une Machine", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            selectedClient.AddMachine(new Machine(machineName, machineUrl));
-            this.updated = true;
-            this.Close();
+            ajouter();
         }
 
         private void buttonAjouterClient_Click(object sender, EventArgs e)
         {
-
             FormAjoutClient addingClient = new FormAjoutClient();
             addingClient.ShowDialog();
 
@@ -107,6 +96,29 @@ namespace MTConnectAgent
         private void textMachineUrl_TextChanged(object sender, EventArgs e)
         {
             toogleButtonAjout();
+        }
+
+        private void AjoutMachine_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (buttonAjouter.Enabled && e.KeyChar == (char)Keys.Return)
+            {
+                ajouter();
+            }
+        }
+
+        private void ajouter()
+        {
+            Client selectedClient = (Client)comboClients.SelectedItem;
+            string machineName = textMachineName.Text.Trim();
+            string machineUrl = textMachineUrl.Text.Trim();
+            if (!Machine.IsValidURL(machineUrl))
+            {
+                MessageBox.Show("L'url spécifié n'est pas valide", "Création d'une Machine", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            selectedClient.AddMachine(new Machine(machineName, machineUrl));
+            this.updated = true;
+            this.Close();
         }
     }
 }

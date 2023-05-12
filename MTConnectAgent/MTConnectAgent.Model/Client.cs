@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace MTConnectAgent.Model
 {
     [Serializable()]
-    public class Client : IClient
+    public class Client
     {
         /// <summary>
         /// Accesseur du nom du client
@@ -17,20 +17,20 @@ namespace MTConnectAgent.Model
         /// <summary>
         /// Accesseur de la liste des Machine
         /// </summary>
-        public IList<IMachine> Machines { get; }
+        public List<Machine> Machines { get; }
 
         /// <summary></summary>
         /// <param name="name">Nom du client</param>
         public Client(string name)
         {
             this.Name = name.Trim();
-            this.Machines = new List<IMachine>();
+            this.Machines = new List<Machine>();
         }
 
         /// <summary></summary>
         /// <param name="name">Nom du client</param>
         /// <param name="machines">Liste des machines du clients</param>
-        public Client(string name, List<IMachine> machines)
+        public Client(string name, List<Machine> machines)
         {
             this.Name = name.Trim();
             this.Machines = machines;
@@ -40,7 +40,7 @@ namespace MTConnectAgent.Model
         public Client(SerializationInfo info, StreamingContext ctxt)
         {
             this.Name = (string)info.GetValue("clientName", typeof(string));
-            this.Machines = (List<IMachine>)info.GetValue("clientMachines", typeof(List<Machine>));
+            this.Machines = (List<Machine>) info.GetValue("clientMachines", typeof(List<Machine>));
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace MTConnectAgent.Model
         /// </summary>
         /// <param name="newMachine">Machine a ajouter</param>
         /// <returns>Le client lui même (this)</returns>
-        public IClient AddMachine(IMachine newMachine)
+        public Client AddMachine(Machine newMachine)
         {
             this.Machines.Add(newMachine);
             return this;
@@ -69,14 +69,14 @@ namespace MTConnectAgent.Model
         /// Fait un copie profonde de l'objet
         /// </summary>
         /// <returns>L'objet copié</returns>
-        public IClient DeepClone()
+        public Client DeepClone()
         {
             using (MemoryStream stream = new MemoryStream())
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(stream, this);
                 stream.Position = 0;
-                return (IClient)formatter.Deserialize(stream);
+                return (Client)formatter.Deserialize(stream);
             }
         }
     }

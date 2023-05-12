@@ -27,14 +27,7 @@ namespace MTConnectAgent
 
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
-            string name = textClientName.Text.Trim();
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                MessageBox.Show("Le nom du client ne peut être vide", "Création d'un Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            newClient = new Client(name);
-            this.Close();
+            ajouter();
         }
 
         private bool IsTextBoxNotEmpty()
@@ -57,6 +50,26 @@ namespace MTConnectAgent
         private void textClientName_TextChanged(object sender, EventArgs e)
         {
             toogleButtonAjout();
+        }
+
+        private void AjoutClient_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (buttonAjouter.Enabled && e.KeyChar == (char)Keys.Return)
+            {
+                ajouter();
+            }
+        }
+
+        private void ajouter()
+        {
+            string name = textClientName.Text.Trim();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("Le nom du client ne peut être vide", "Création d'un Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            newClient = new Client(name);
+            this.Close();
         }
     }
 }

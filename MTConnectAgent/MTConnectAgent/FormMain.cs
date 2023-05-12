@@ -24,12 +24,12 @@ namespace MTConnectAgent
         // Populates a TreeView control with example nodes. 
         private void InitializeTreeView()
         {
-            treeView1.BeginUpdate();
-            treeView1.Nodes.Clear();
+            treeViewClientMachine.BeginUpdate();
+            treeViewClientMachine.Nodes.Clear();
 
             for (int i = 0; i < clients.Count; i++)
             {
-                treeView1.Nodes.Add(clients[i].Name);
+                treeViewClientMachine.Nodes.Add(clients[i].Name);
                 foreach (Machine machine in clients[i].Machines)
                 {
 
@@ -53,7 +53,7 @@ namespace MTConnectAgent
                     treeViewMachineContext.Items.AddRange(new ToolStripMenuItem[] { modifyMachineLabel, deleteMachineLabel });
                     noeudMachine.ContextMenuStrip = treeViewMachineContext;
 
-                    treeView1.Nodes[i].Nodes.Add(noeudMachine);
+                    treeViewClientMachine.Nodes[i].Nodes.Add(noeudMachine);
                 }
 
 
@@ -65,12 +65,13 @@ namespace MTConnectAgent
                 deleteClientLabel.Tag = clients[i];
 
                 treeViewClientContext.Items.AddRange(new ToolStripMenuItem[] { modifyClientLabel, deleteClientLabel });
-                treeView1.Nodes[i].ContextMenuStrip = treeViewClientContext;
+                treeViewClientMachine.Nodes[i].ContextMenuStrip = treeViewClientContext;
             }
 
-            treeView1.EndUpdate();
+            treeViewClientMachine.EndUpdate();
 
-            this.Controls.Add(treeView1);
+            this.Controls.Add(treeViewClientMachine);
+            WriteToBinaryFile<List<Client>>(".\\clients", clients);
         }
 
         private void buttonAjouterClient_Click(object sender, EventArgs e)

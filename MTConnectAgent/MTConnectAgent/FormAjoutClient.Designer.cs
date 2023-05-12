@@ -41,6 +41,7 @@
             this.textClientName.Size = new System.Drawing.Size(238, 20);
             this.textClientName.TabIndex = 0;
             this.textClientName.TextChanged += new System.EventHandler(this.textClientName_TextChanged);
+            this.textClientName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AjoutClient_KeyPress);
             // 
             // labelName
             // 

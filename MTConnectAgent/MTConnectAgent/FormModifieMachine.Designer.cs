@@ -61,6 +61,7 @@
             this.textMachineUrl.Size = new System.Drawing.Size(260, 20);
             this.textMachineUrl.TabIndex = 20;
             this.textMachineUrl.TextChanged += new System.EventHandler(this.textMachineUrl_TextChanged);
+            this.textMachineUrl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AjoutClient_KeyPress);
             // 
             // labelMachineUrl
             // 
@@ -78,6 +79,7 @@
             this.textMachineName.Size = new System.Drawing.Size(260, 20);
             this.textMachineName.TabIndex = 18;
             this.textMachineName.TextChanged += new System.EventHandler(this.textMachineName_TextChanged);
+            this.textMachineName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AjoutClient_KeyPress);
             // 
             // labelMachineName
             // 
@@ -130,6 +132,7 @@
             this.comboClients.Size = new System.Drawing.Size(260, 21);
             this.comboClients.TabIndex = 13;
             this.comboClients.Text = "Aucun client n\'est présent (il faut d\'abord le créer)";
+            this.comboClients.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AjoutClient_KeyPress);
             // 
             // FormModifieMachine
             // 

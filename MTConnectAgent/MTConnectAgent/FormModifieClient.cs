@@ -30,8 +30,7 @@ namespace MTConnectAgent
 
         private void buttonModifier_Click(object sender, EventArgs e)
         {
-            modifiedClient.Name = textClientName.Text.Trim();
-            this.Close();
+            modifier();
         }
 
 
@@ -55,6 +54,20 @@ namespace MTConnectAgent
         private void textClientName_TextChanged(object sender, EventArgs e)
         {
             toogleButtonModifier();
+        }
+
+        private void AjoutClient_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (buttonModifier.Enabled && e.KeyChar == (char)Keys.Return)
+            {
+                modifier();
+            }
+        }
+
+        private void modifier()
+        {
+            modifiedClient.Name = textClientName.Text.Trim();
+            this.Close();
         }
     }
 }

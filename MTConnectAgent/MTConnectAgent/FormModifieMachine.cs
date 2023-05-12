@@ -72,17 +72,7 @@ namespace MTConnectAgent
 
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
-            Client selectedClient = (Client)comboClients.SelectedItem;
-            this.modifiedMachine.Name = textMachineName.Text.Trim();
-            string machineUrl = textMachineUrl.Text.Trim();
-            if (!Machine.IsValidURL(machineUrl))
-            {
-                MessageBox.Show("L'url spécifié n'est pas valide", "Création d'une Machine", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            this.modifiedMachine.Url = machineUrl;
-            this.indexClient = comboClients.SelectedIndex;
-            this.Close();
+            modifier();
         }
 
 
@@ -111,6 +101,29 @@ namespace MTConnectAgent
         private void textMachineUrl_TextChanged(object sender, EventArgs e)
         {
             toogleButtonAjout();
+        }
+        
+        private void AjoutClient_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (buttonAjouter.Enabled && e.KeyChar == (char)Keys.Return)
+            {
+                modifier();
+            }
+        }
+
+        private void modifier()
+        {
+            Client selectedClient = (Client)comboClients.SelectedItem;
+            this.modifiedMachine.Name = textMachineName.Text.Trim();
+            string machineUrl = textMachineUrl.Text.Trim();
+            if (!Machine.IsValidURL(machineUrl))
+            {
+                MessageBox.Show("L'url spécifié n'est pas valide", "Création d'une Machine", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            this.modifiedMachine.setUrl(machineUrl);
+            this.indexClient = comboClients.SelectedIndex;
+            this.Close();
         }
     }
 }
