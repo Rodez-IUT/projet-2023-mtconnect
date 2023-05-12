@@ -62,5 +62,6 @@ namespace MTConnectAgent.Model
         /// </summary>
         /// <returns>True si il en possède, false sinon</returns>
         bool HasChild();
+        void ClearChild();
     }
 }

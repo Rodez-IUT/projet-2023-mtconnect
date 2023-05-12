@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MTConnectAgent.BLL;
+using MTConnectAgent.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,43 @@ namespace MTConnectAgent.BLL.Tests
 
             // Assert
             Assert.IsNotNull(document);
+        }
+
+        [TestMethod]
+        public void SiDeviceAvecIdMazak03DemandeAlorsPathDonneDeviceAvecIdMazak03()
+        {
+            //Arrange
+            string resultatAttendu = "https://smstestbed.nist.gov/vds/current?path=//Device[@id=\"Mazak03\"]";
+            ITag device = new Tag("Device", "Mazak03");
+
+            //Act
+            string resultatObtenu = mtConnectClient.GenererPath(device);
+
+            //Assert
+            Assert.AreEqual(resultatAttendu, resultatObtenu);
+
+        }
+
+        [TestMethod]
+        public void SiDataItemDemandeAlorsCheminCompletDataItemRendu()
+        {
+            //Arrange
+            string resultatAttendu = "https://smstestbed.nist.gov/vds/current?path=//Device[@id=\"Mazak03\"]//Components//Axes//DataItems//DataItem[@id=\"Mazak03-S_6\"]";
+            ITag dataItem = new Tag("DataItem", "Mazak03-S_6");
+            ITag dataItems = new Tag("DataItems");
+            dataItems.AddChild(dataItem);
+            ITag axes = new Tag("Axes");
+            axes.AddChild(dataItems);
+            ITag components = new Tag("Components");
+            components.AddChild(axes);
+            ITag device = new Tag("Device", "Mazak03");
+            device.AddChild(components);
+
+            //Act
+            string resultatObtenu = mtConnectClient.GenererPath(device);
+
+            //Assert
+            Assert.AreEqual(resultatAttendu, resultatObtenu);
         }
     }
 }

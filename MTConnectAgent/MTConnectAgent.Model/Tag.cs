@@ -29,7 +29,7 @@ namespace MTConnectAgent.Model
         /// <summary>
         /// Liste des noeuds enfant du noeud actuel
         /// </summary>
-        public IList<ITag> Child { get; }
+        public IList<ITag> Child { get; private set; }
 
         /// <summary>
         /// Valeur du noeud xml
@@ -100,7 +100,12 @@ namespace MTConnectAgent.Model
         /// <returns>True si il en possède, false sinon</returns>
         public bool HasChild()
         {
-            return this.Child.Count == 0;
+            return this.Child.Count > 0;
+        }
+
+        public void ClearChild()
+        {
+            this.Child = new List<ITag>();
         }
     }
 }
