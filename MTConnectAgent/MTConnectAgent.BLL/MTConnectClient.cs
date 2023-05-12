@@ -1,5 +1,4 @@
 ﻿using MTConnectAgent.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -115,7 +114,7 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="tag"></param>
         /// <param name="stringBuilder"></param>
-        /// <returns></returns>
+        /// <returns> Le stringBuilder d'entrée auquel on à concaténé le path</returns>
         private StringBuilder GenererPath(ITag tag, StringBuilder stringBuilder)
         {
             stringBuilder.Append("//");

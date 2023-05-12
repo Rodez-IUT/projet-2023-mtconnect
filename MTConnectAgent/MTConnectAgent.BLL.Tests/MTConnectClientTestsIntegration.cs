@@ -62,7 +62,7 @@ namespace MTConnectAgent.BLL.Tests
             ITag tagDeRecherche, tagDepart;
             Queue<string> idTagQueue = new Queue<string>();
             Queue<string> nomTagQueue = new Queue<string>();
-            string id = "ngolo";
+            string id = "idDeTest";
             idTagQueue.Enqueue(id);
             nomTagQueue.Enqueue("Device");
 
