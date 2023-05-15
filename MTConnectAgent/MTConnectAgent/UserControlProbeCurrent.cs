@@ -135,13 +135,13 @@ namespace MTConnectAgent
                     c.Add(tag.Child[0]);
                     container.Height += generate(c, container);
 
-                    Label textValue = new Label();
-                    textValue.AutoSize = true;
-                    textValue.Location = new Point(10, 10);
-                    textValue.Name = "textValue";
-                    textValue.TabIndex = 0;
-                    textValue.Text = "textValue";
-                    container.Controls.Add(textValue);
+                    //Label textValue = new Label();
+                    //textValue.AutoSize = true;
+                    //textValue.Location = new Point(10, 10);
+                    //textValue.Name = "textValue";
+                    //textValue.TabIndex = 0;
+                    //textValue.Text = "textValue";
+                    //container.Controls.Add(textValue);
                 }
 
                 totalHeight += container.Height;
