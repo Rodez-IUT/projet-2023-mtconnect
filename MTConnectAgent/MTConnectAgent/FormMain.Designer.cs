@@ -34,9 +34,7 @@
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabProbe = new System.Windows.Forms.TabPage();
             this.tabCurrent = new System.Windows.Forms.TabPage();
-            this.userControlProbe1 = new MTConnectAgent.UserControlProbe();
             this.tabs.SuspendLayout();
-            this.tabProbe.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeViewClientMachine
@@ -47,6 +45,7 @@
             this.treeViewClientMachine.Name = "treeViewClientMachine";
             this.treeViewClientMachine.Size = new System.Drawing.Size(149, 363);
             this.treeViewClientMachine.TabIndex = 0;
+            this.treeViewClientMachine.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewClientMachine_AfterSelect);
             // 
             // buttonAjouterClient
             // 
@@ -83,7 +82,6 @@
             // 
             // tabProbe
             // 
-            this.tabProbe.Controls.Add(this.userControlProbe1);
             this.tabProbe.Location = new System.Drawing.Point(4, 22);
             this.tabProbe.Name = "tabProbe";
             this.tabProbe.Padding = new System.Windows.Forms.Padding(3);
@@ -102,16 +100,6 @@
             this.tabCurrent.Text = "Current";
             this.tabCurrent.UseVisualStyleBackColor = true;
             // 
-            // userControlProbe1
-            // 
-            this.userControlProbe1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.userControlProbe1.Location = new System.Drawing.Point(0, 0);
-            this.userControlProbe1.Name = "userControlProbe1";
-            this.userControlProbe1.Size = new System.Drawing.Size(613, 399);
-            this.userControlProbe1.TabIndex = 0;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,7 +115,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Shown += new System.EventHandler(this.FormMain_Shown);
             this.tabs.ResumeLayout(false);
-            this.tabProbe.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -140,7 +127,7 @@
         private System.Windows.Forms.TabControl tabs;
         private System.Windows.Forms.TabPage tabProbe;
         private System.Windows.Forms.TabPage tabCurrent;
-        private UserControlProbe userControlProbe1;
+        private UserControlProbeCurrent userControlProbe1;
     }
 }
 

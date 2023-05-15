@@ -1,6 +1,6 @@
 ﻿namespace MTConnectAgent
 {
-    partial class UserControlProbe
+    partial class UserControlProbeCurrent
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.

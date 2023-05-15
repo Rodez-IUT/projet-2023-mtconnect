@@ -14,19 +14,44 @@ using System.Threading;
 
 namespace MTConnectAgent
 {
-    public partial class UserControlProbe : UserControl
+    public partial class UserControlProbeCurrent : UserControl
     {
         private ITag tagMachine;
-
-        public UserControlProbe()
+        private string url;
+        private functions fx;
+        public enum functions
         {
+            probe,
+            current
+        }
+
+        public UserControlProbeCurrent(string url, functions fx)
+        {
+            this.url = url;
+            this.fx = fx;
+
+            this.Anchor = AllSideAnchor;
+            this.Location = new Point(0, 0);
+            this.Name = "userControl"+fx;
+            this.Size = new Size(613, 399);
+            this.TabIndex = 0;
             InitializeComponent();
             updateView();
         }
 
         public void updateView()
         {
-            Thread threadCalcul = new Thread(() => { this.tagMachine = ThreadParse(); });
+            Thread threadCalcul;
+            switch (this.fx)
+            {
+                case functions.probe:
+                    threadCalcul = new Thread(() => { this.tagMachine = ThreadParseProbe(this.url); });
+                    break;
+                case functions.current:
+                default:
+                    threadCalcul = new Thread(() => { this.tagMachine = ThreadParseCurrent(this.url); });
+                    break;
+            }
             threadCalcul.Start();
             threadCalcul.Join();
             generate(tagMachine.Child);
@@ -109,6 +134,14 @@ namespace MTConnectAgent
                     List<ITag> c = new List<ITag>();
                     c.Add(tag.Child[0]);
                     container.Height += generate(c, container);
+
+                    Label textValue = new Label();
+                    textValue.AutoSize = true;
+                    textValue.Location = new Point(10, 10);
+                    textValue.Name = "textValue";
+                    textValue.TabIndex = 0;
+                    textValue.Text = "textValue";
+                    container.Controls.Add(textValue);
                 }
 
                 totalHeight += container.Height;
@@ -117,11 +150,19 @@ namespace MTConnectAgent
             return totalHeight;
         }
 
-        private static ITag ThreadParse()
+        private static ITag ThreadParseProbe(string url)
         {
             MTConnectClient mtConnectClient = new MTConnectClient();
-            XDocument t = mtConnectClient.getProbeAsync("https://smstestbed.nist.gov/vds/").Result;
+            XDocument t = mtConnectClient.getProbeAsync(url).Result;
             return mtConnectClient.ParseXMLRecursif(t.Root);
         }
+
+        private static ITag ThreadParseCurrent(string url)
+        {
+            MTConnectClient mtConnectClient = new MTConnectClient();
+            XDocument t = mtConnectClient.getCurrentAsync(url).Result;
+            return mtConnectClient.ParseXMLRecursif(t.Root);
+        }
+
     }
 }
