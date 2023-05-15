@@ -14,10 +14,10 @@ namespace MTConnectAgent.BLL
     public class MTConnectClient
     {      
         /// <summary>
-        /// 
+        /// Transformation d'un object de type <see cref="XElement"/> en objet <see cref="ITag"/> de manière récursive 
         /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
+        /// <param name="element">element à parser</param>
+        /// <returns>un <see cref="ITag"/> qui represent un fichier Xml</returns>
         public ITag ParseXMLRecursif(XElement element)
         {
             ITag tag = new Tag(element.Name.ToString().Split('}')[1]);
@@ -103,7 +103,7 @@ namespace MTConnectAgent.BLL
                 return "Impossible de générer le path";
             }
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("https://smstestbed.nist.gov/vds/current?path=");
+            stringBuilder.Append("http://mtconnect.mazakcorp.com:5701/current?path=");
             stringBuilder = GenererPath(tag, stringBuilder);
             return stringBuilder.ToString();
         }
