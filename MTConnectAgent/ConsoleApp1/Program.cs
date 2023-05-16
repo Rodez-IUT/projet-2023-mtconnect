@@ -29,7 +29,7 @@ namespace ConsoleApp1
 
             ITag tag = mTConnectClient.CreateSpecifiqueTag(root, idTagQueue, nomTagQueue);
 
-            string path = mTConnectClient.GenererPath(tag);
+            string path = mTConnectClient.GenererPath(tag,agentUrl);
 
             Console.WriteLine(path);
             

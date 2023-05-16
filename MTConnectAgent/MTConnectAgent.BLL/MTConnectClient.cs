@@ -1,4 +1,5 @@
 ﻿using MTConnectAgent.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,10 +15,10 @@ namespace MTConnectAgent.BLL
     public class MTConnectClient
     {      
         /// <summary>
-        /// Transformation d'un object de type <see cref="XElement"/> en objet <see cref="ITag"/> de manière récursive 
+        /// 
         /// </summary>
-        /// <param name="element">element à parser</param>
-        /// <returns>un <see cref="ITag"/> qui represent un fichier Xml</returns>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public ITag ParseXMLRecursif(XElement element)
         {
             ITag tag = new Tag(element.Name.ToString().Split('}')[1]);
@@ -59,16 +60,22 @@ namespace MTConnectAgent.BLL
         /// <returns></returns>
         public async Task<XDocument> getProbeAsync(string url)
         {
-            HttpClient httpClient = new HttpClient();
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                HttpResponseMessage response = await httpClient.GetAsync(url + "probe");
+                response.EnsureSuccessStatusCode();
 
-            HttpResponseMessage response = await httpClient.GetAsync(url + "probe");
-            response.EnsureSuccessStatusCode();
+                var stream = response.Content.ReadAsStreamAsync().Result;
 
-            var stream = response.Content.ReadAsStreamAsync().Result;
+                XDocument document = XDocument.Load(stream);
 
-            XDocument document = XDocument.Load(stream);
-
-            return document;
+                return document;
+            }
+            catch (AggregateException ex)
+            {
+                throw new ArgumentException("L'uri donnée n'est pas valide", ex);
+            }
         }
 
         /// <summary>
@@ -78,16 +85,23 @@ namespace MTConnectAgent.BLL
         /// <returns></returns>
         public async Task<XDocument> getCurrentAsync(string url)
         {
-            HttpClient httpClient = new HttpClient();
+            try
+            {
+                HttpClient httpClient = new HttpClient();
 
-            HttpResponseMessage response = await httpClient.GetAsync(url + "current");
-            response.EnsureSuccessStatusCode();
+                HttpResponseMessage response = await httpClient.GetAsync(url + "current");
+                response.EnsureSuccessStatusCode();
 
-            var stream = response.Content.ReadAsStreamAsync().Result;
+                var stream = response.Content.ReadAsStreamAsync().Result;
 
-            XDocument document = XDocument.Load(stream);
+                XDocument document = XDocument.Load(stream);
 
-            return document;
+                return document;
+            }
+            catch (AggregateException ex)
+            {
+                throw new ArgumentException("L'uri donnée n'est pas valide", ex);
+            }
 
         }
 
@@ -96,14 +110,14 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="tag">Noeud racine depuis lequel nous allons générer le path</param>
         /// <returns>Le path généré</returns>
-        public string GenererPath(ITag tag)
+        public string GenererPath(ITag tag, string urlMachine)
         {
             if (tag == null)
             {
                 return "Impossible de générer le path";
             }
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("http://mtconnect.mazakcorp.com:5701/current?path=");
+            stringBuilder.Append(urlMachine + "/current?path=");
             stringBuilder = GenererPath(tag, stringBuilder);
             return stringBuilder.ToString();
         }
@@ -140,16 +154,23 @@ namespace MTConnectAgent.BLL
         /// <returns></returns>
         public async Task<XDocument> getAssetsAsync(string url)
         {
-            HttpClient httpClient = new HttpClient();
+            try
+            {
+                HttpClient httpClient = new HttpClient();
 
-            HttpResponseMessage response = await httpClient.GetAsync(url + "assets");
-            response.EnsureSuccessStatusCode();
+                HttpResponseMessage response = await httpClient.GetAsync(url + "assets");
+                response.EnsureSuccessStatusCode();
 
-            var stream = response.Content.ReadAsStreamAsync().Result;
+                var stream = response.Content.ReadAsStreamAsync().Result;
 
-            XDocument document = XDocument.Load(stream);
+                XDocument document = XDocument.Load(stream);
 
-            return document;
+                return document;
+            }
+            catch (AggregateException ex)
+            {
+                throw new ArgumentException("L'uri donnée n'est pas valide", ex);
+            }
         }
 
         /// <summary>
@@ -159,16 +180,23 @@ namespace MTConnectAgent.BLL
         /// <returns></returns>
         public async Task<XDocument> getSampleAsync(string url)
         {
-            HttpClient httpClient = new HttpClient();
+            try
+            {
+                HttpClient httpClient = new HttpClient();
 
-            HttpResponseMessage response = await httpClient.GetAsync(url + "sample");
-            response.EnsureSuccessStatusCode();
+                HttpResponseMessage response = await httpClient.GetAsync(url + "sample");
+                response.EnsureSuccessStatusCode();
 
-            var stream = response.Content.ReadAsStreamAsync().Result;
+                var stream = response.Content.ReadAsStreamAsync().Result;
 
-            XDocument document = XDocument.Load(stream);
+                XDocument document = XDocument.Load(stream);
 
-            return document;
+                return document;
+            }
+            catch (AggregateException ex)
+            {
+                throw new ArgumentException("L'uri donnée n'est pas valide", ex);
+            }
         }
 
         /// <summary>

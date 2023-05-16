@@ -1,5 +1,5 @@
-﻿using MTConnectAgent.Model;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MTConnectAgent.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +35,8 @@ namespace MTConnectAgent.BLL.Tests
         public void RechercheDeviceAvecIdValide()
         {
             //Arrange
-            string resultatAttendu = "https://smstestbed.nist.gov/vds/current?path=//Device[@id=\"d1\"]";
+            string url = "https://smstestbed.nist.gov/vds";
+            string resultatAttendu = url + "/current?path=//Device[@id=\"d1\"]";
             string resultatObtenu;
             ITag tagDeRecherche, tagDepart;
             Queue<string> idTagQueue = new Queue<string>();
@@ -47,7 +48,7 @@ namespace MTConnectAgent.BLL.Tests
             //Act
             tagDepart = MTConnectClient.FindTagById(Root,id);
             tagDeRecherche = MTConnectClient.CreateSpecifiqueTag(tagDepart, idTagQueue, nomTagQueue);
-            resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche);
+            resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche, url);
 
             //Assert
             Assert.AreEqual(resultatAttendu, resultatObtenu);
@@ -57,6 +58,7 @@ namespace MTConnectAgent.BLL.Tests
         public void RechercheDeviceAvecIdInvalide()
         {
             //Arrange
+            string url = "https://smstestbed.nist.gov/vds";
             string resultatAttendu = "Impossible de générer le path";
             string resultatObtenu;
             ITag tagDeRecherche, tagDepart;
@@ -69,7 +71,7 @@ namespace MTConnectAgent.BLL.Tests
             //Act
             tagDepart = MTConnectClient.FindTagById(Root,id);
             tagDeRecherche = MTConnectClient.CreateSpecifiqueTag(tagDepart, idTagQueue, nomTagQueue);
-            resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche);
+            resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche, url);
 
             //Assert
             Assert.AreEqual(resultatAttendu, resultatObtenu);
@@ -79,7 +81,8 @@ namespace MTConnectAgent.BLL.Tests
         public void RechercheDeviceSansId()
         {
             //Arrange
-            string resultatAttendu = "https://smstestbed.nist.gov/vds/current?path=//Device";
+            string url = "https://smstestbed.nist.gov/vds";
+            string resultatAttendu = url + "/current?path=//Device";
             string resultatObtenu;
             ITag tagDeRecherche, tagDepart;
             Queue<string> idTagQueue = new Queue<string>();
@@ -92,7 +95,7 @@ namespace MTConnectAgent.BLL.Tests
             //Act
             tagDepart = MTConnectClient.FindTagByName(Root,name);
             tagDeRecherche = MTConnectClient.CreateSpecifiqueTag(tagDepart, idTagQueue, nomTagQueue);
-            resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche);
+            resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche,url);
 
             //Assert
             Assert.AreEqual(resultatAttendu, resultatObtenu);
