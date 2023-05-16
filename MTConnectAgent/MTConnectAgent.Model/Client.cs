@@ -48,7 +48,7 @@ namespace MTConnectAgent.Model
         /// </summary>
         /// <param name="info">Donné de sérialisation</param>
         /// <param name="ctx">Contexte de destination de la serialisation</param>
-        public void GetObjectData(SerializationInfo info, StreamingContext ctx)
+        public void SetObjectData(SerializationInfo info, StreamingContext ctx)
         {
             info.AddValue("clientName", this.Name);
             info.AddValue("clientMachines", this.Machines);
