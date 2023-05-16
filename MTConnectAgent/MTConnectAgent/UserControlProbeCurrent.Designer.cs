@@ -44,12 +44,12 @@
             this.flowContent.TabIndex = 1;
             this.flowContent.WrapContents = false;
             // 
-            // UserControlProbe
+            // UserControlProbeCurrent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.flowContent);
-            this.Name = "UserControlProbe";
+            this.Name = "UserControlProbeCurrent";
             this.Size = new System.Drawing.Size(613, 399);
             this.ResumeLayout(false);
 

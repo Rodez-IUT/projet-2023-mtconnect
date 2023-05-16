@@ -54,40 +54,60 @@ namespace MTConnectAgent
             }
             threadCalcul.Start();
             threadCalcul.Join();
-            generate(tagMachine.Child);
+
+            generate(tagMachine.Child, this.flowContent);
         }
 
         private readonly AnchorStyles TopLeftAnchor = ((AnchorStyles)(AnchorStyles.Top | AnchorStyles.Left));
         private readonly AnchorStyles AllSideAnchor = ((AnchorStyles)(AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right));
 
-        private int generate(IList<ITag> tags, GroupBox root = null)
+        private int generate(IList<ITag> tags, Control root)
         {
             int totalHeight = 0;
             foreach (ITag tag in tags)
             {
+
+                //ListBox listBox = new ListBox();
+                //root.Controls.Add(listBox);
+
+                //// 
+                //// listBox1
+                //// 
+                //listBox.BorderStyle = BorderStyle.None;
+                //listBox.FormattingEnabled = true;
+                //listBox.Location = new Point(3, 3);
+                //listBox.Name = "listBox1";
+                //listBox.Size = new Size(530, 91);
+                //listBox.TabIndex = 0;
+
                 GroupBox container = new GroupBox();
                 container.Anchor = TopLeftAnchor;
                 container.Location = new Point(10, 20);
-                container.Name = "container" + tag.Name;
-                container.Size = new Size(500, 0);
+                string compositeName = tag.Name + tag.GetHashCode();
+                container.Name = "container" + compositeName;
+                container.Size = new Size(500, 40);
                 container.Text = tag.Name;
-                if (root == null)
-                {
-                    this.flowContent.Controls.Add(container);
-                }
-                else
-                {
-                    root.Controls.Add(container);
-                }
+                root.Controls.Add(container);
 
                 FlowLayoutPanel containerFlow = new FlowLayoutPanel();
                 containerFlow.Anchor = AllSideAnchor;
                 containerFlow.FlowDirection = FlowDirection.TopDown;
                 containerFlow.Location = new Point(10, 20);
-                containerFlow.Name = "containerFlow" + tag.Name;
+                containerFlow.Name = "containerFlow" + compositeName;
                 containerFlow.AutoSize = true;
                 containerFlow.Width = container.Width;
                 container.Controls.Add(containerFlow);
+
+                if (tag.Value != null)
+                {
+                    Label textValue = new Label();
+                    textValue.AutoSize = true;
+                    textValue.Location = new Point(10, 10);
+                    textValue.Name = "value" + compositeName;
+                    textValue.TabIndex = 0;
+                    textValue.Text = tag.Value;
+                    containerFlow.Controls.Add(textValue);
+                }
 
                 if (tag.HasAttributs())
                 {
@@ -97,7 +117,7 @@ namespace MTConnectAgent
                     attributTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
                     attributTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
                     attributTable.Location = new Point(0, 0);
-                    attributTable.Name = "attributTable" + tag.Name;
+                    attributTable.Name = "attributTable" + compositeName;
                     attributTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
                     attributTable.AutoSize = true;
                     attributTable.Width = containerFlow.Width - 40;
@@ -109,31 +129,30 @@ namespace MTConnectAgent
                         attributTable.RowCount += 1;
                         attributTable.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
 
-                        Label textKey = new Label();
-                        textKey.AutoSize = true;
-                        textKey.Name = "textKey" + attribut.Key;
-                        textKey.TabIndex = 0;
-                        textKey.Text = attribut.Key;
-                        attributTable.Controls.Add(textKey, 0, currentRow);
+                        Label attributKey = new Label();
+                        attributKey.AutoSize = true;
+                        attributKey.Name = "attributKey" + compositeName + attribut.Key;
+                        attributKey.TabIndex = 0;
+                        attributKey.Text = attribut.Key;
+                        attributTable.Controls.Add(attributKey, 0, currentRow);
 
 
-                        Label textValue = new Label();
-                        textValue.AutoSize = true;
-                        textValue.Name = "textValue" + attribut.Value;
-                        textValue.TabIndex = 0;
-                        textValue.Text = attribut.Value;
-                        attributTable.Controls.Add(textValue, 1, currentRow);
+                        Label attributValue = new Label();
+                        attributValue.AutoSize = true;
+                        attributValue.Name = "attributValue" + compositeName + attribut.Value;
+                        attributValue.TabIndex = 0;
+                        attributValue.Text = attribut.Value;
+                        attributTable.Controls.Add(attributValue, 1, currentRow);
                     }
 
-                    container.Height += 40 + attributTable.Height;
+                    container.Height += attributTable.Height;
                 }
 
                 if (tag.HasChild())
                 {
-                    container.Height += 40;
                     List<ITag> c = new List<ITag>();
                     c.Add(tag.Child[0]);
-                    container.Height += generate(c, container);
+                    container.Height += generate(tag.Child, containerFlow);
 
                     //Label textValue = new Label();
                     //textValue.AutoSize = true;
@@ -162,6 +181,11 @@ namespace MTConnectAgent
             MTConnectClient mtConnectClient = new MTConnectClient();
             XDocument t = mtConnectClient.getCurrentAsync(url).Result;
             return mtConnectClient.ParseXMLRecursif(t.Root);
+        }
+
+        private static void ThreadAffichage()
+        {
+
         }
 
     }
