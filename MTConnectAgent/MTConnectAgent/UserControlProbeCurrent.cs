@@ -66,47 +66,29 @@ namespace MTConnectAgent
             int totalHeight = 0;
             foreach (ITag tag in tags)
             {
-
-                //ListBox listBox = new ListBox();
-                //root.Controls.Add(listBox);
-
-                //// 
-                //// listBox1
-                //// 
-                //listBox.BorderStyle = BorderStyle.None;
-                //listBox.FormattingEnabled = true;
-                //listBox.Location = new Point(3, 3);
-                //listBox.Name = "listBox1";
-                //listBox.Size = new Size(530, 91);
-                //listBox.TabIndex = 0;
-
                 GroupBox container = new GroupBox();
                 container.Anchor = TopLeftAnchor;
-                container.Location = new Point(10, 20);
+                container.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                container.Location = new Point(0, 0);
                 string compositeName = tag.Name + tag.GetHashCode();
                 container.Name = "container" + compositeName;
-                container.Size = new Size(500, 40);
+                container.Size = new Size(500, 30);
                 container.Text = tag.Name;
                 root.Controls.Add(container);
 
                 FlowLayoutPanel containerFlow = new FlowLayoutPanel();
+                containerFlow.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
                 containerFlow.Anchor = AllSideAnchor;
                 containerFlow.FlowDirection = FlowDirection.TopDown;
-                containerFlow.Location = new Point(10, 20);
+                containerFlow.Location = new Point(0, 15);
                 containerFlow.Name = "containerFlow" + compositeName;
                 containerFlow.AutoSize = true;
                 containerFlow.Width = container.Width;
                 container.Controls.Add(containerFlow);
 
-                if (tag.Value != null)
+                if (tag.Value != null && tag.Value.Trim() != "")
                 {
-                    Label textValue = new Label();
-                    textValue.AutoSize = true;
-                    textValue.Location = new Point(10, 10);
-                    textValue.Name = "value" + compositeName;
-                    textValue.TabIndex = 0;
-                    textValue.Text = tag.Value;
-                    containerFlow.Controls.Add(textValue);
+                    container.Text += " : " + tag.Value;
                 }
 
                 if (tag.HasAttributs())
@@ -150,17 +132,7 @@ namespace MTConnectAgent
 
                 if (tag.HasChild())
                 {
-                    List<ITag> c = new List<ITag>();
-                    c.Add(tag.Child[0]);
                     container.Height += generate(tag.Child, containerFlow);
-
-                    //Label textValue = new Label();
-                    //textValue.AutoSize = true;
-                    //textValue.Location = new Point(10, 10);
-                    //textValue.Name = "textValue";
-                    //textValue.TabIndex = 0;
-                    //textValue.Text = "textValue";
-                    //container.Controls.Add(textValue);
                 }
 
                 totalHeight += container.Height;
