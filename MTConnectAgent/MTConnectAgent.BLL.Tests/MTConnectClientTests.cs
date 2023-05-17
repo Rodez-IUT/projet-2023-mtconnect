@@ -212,16 +212,14 @@ namespace MTConnectAgent.BLL.Tests
             //Arrange
             string url = "https://smstestbed.nist.gov/vds";
             string resultatAttendu = "https://smstestbed.nist.gov/vds/current?path=" +
-                "//Device[@id=\"GFAgie01\"]//Description//DataItems//DataItem[@id=\"GFAgie01 - dtop_1\" or @id=\"GFAgie01 - dtop_2\"]";
-            ITag dataItem1 = new Tag("DataItem", "GFAgie01 - dtop_1");
-            ITag dataItem2 = new Tag("DataItem", "GFAgie01 - dtop_2");
+                "//Device[@id=\"GFAgie01\"]//DataItems//DataItem[@id=\"GFAgie01-dtop_1\" or @id=\"GFAgie01-dtop_2\"]";
+            ITag dataItem1 = new Tag("DataItem", "GFAgie01-dtop_1");
+            ITag dataItem2 = new Tag("DataItem", "GFAgie01-dtop_2");
             ITag dataItems = new Tag("DataItems");
             dataItems.AddChild(dataItem1);
             dataItems.AddChild(dataItem2);
-            ITag description = new Tag("Description");
-            description.AddChild(dataItems);
             ITag device = new Tag("Device", "GFAgie01");
-            device.AddChild(description);
+            device.AddChild(dataItems);
 
             //Act
             string resultatObtenu = mtConnectClient.GenererPath(device, url, true);
