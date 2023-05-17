@@ -66,76 +66,97 @@ namespace MTConnectAgent
             int totalHeight = 0;
             foreach (ITag tag in tags)
             {
-                GroupBox container = new GroupBox();
-                container.Anchor = TopLeftAnchor;
-                container.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-                container.Location = new Point(0, 0);
                 string compositeName = tag.Name + tag.GetHashCode();
-                container.Name = "container" + compositeName;
-                container.Size = new Size(500, 30);
-                container.Text = tag.Name;
-                root.Controls.Add(container);
-
-                FlowLayoutPanel containerFlow = new FlowLayoutPanel();
-                containerFlow.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-                containerFlow.Anchor = AllSideAnchor;
-                containerFlow.FlowDirection = FlowDirection.TopDown;
-                containerFlow.Location = new Point(0, 15);
-                containerFlow.Name = "containerFlow" + compositeName;
-                containerFlow.AutoSize = true;
-                containerFlow.Width = container.Width;
-                container.Controls.Add(containerFlow);
-
-                if (tag.Value != null && tag.Value.Trim() != "")
+                if (!tag.HasAttributs() && !tag.HasChild() && tag.Value != null && tag.Value.Trim() != "")
                 {
-                    container.Text += " : " + tag.Value;
-                }
+                    Label nameValue = new Label();
+                    nameValue.AutoSize = true;
+                    nameValue.Name = "nameValue" + compositeName + tag.Value;
+                    nameValue.TabIndex = 0;
+                    nameValue.Text = tag.Name + " : " + tag.Value;
+                    root.Controls.Add(nameValue);
 
-                if (tag.HasAttributs())
+                    totalHeight += nameValue.Height;
+                } else
                 {
-                    TableLayoutPanel attributTable = new TableLayoutPanel();
-                    attributTable.Anchor = AllSideAnchor;
-                    attributTable.ColumnCount = 2;
-                    attributTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-                    attributTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-                    attributTable.Location = new Point(0, 0);
-                    attributTable.Name = "attributTable" + compositeName;
-                    attributTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-                    attributTable.AutoSize = true;
-                    attributTable.Width = containerFlow.Width - 40;
-                    containerFlow.Controls.Add(attributTable);
+                    int coord = 20;
+                    Panel container = new Panel();
+                    container.Anchor = TopLeftAnchor;
+                    container.Location = new Point(0, 0);
+                    container.Name = "container" + compositeName;
+                    container.Height = 10;
+                    container.Text = tag.Name;
+                    container.Width = root.Width - coord * 2;
+                    //container.BorderStyle = BorderStyle.FixedSingle;
+                    root.Controls.Add(container);
 
-                    foreach (KeyValuePair<string, string> attribut in tag.Attributs)
+
+                    FlowLayoutPanel containerFlow = new FlowLayoutPanel();
+                    containerFlow.Anchor = TopLeftAnchor;
+                    containerFlow.FlowDirection = FlowDirection.TopDown;
+                    containerFlow.Location = new Point(coord, 0);
+                    containerFlow.Name = "containerFlow" + compositeName;
+                    containerFlow.AutoSize = true;
+                    containerFlow.Width = container.Width;
+                    container.Controls.Add(containerFlow);
+
+                    Label name = new Label();
+                    name.AutoSize = true;
+                    name.Name = "name" + compositeName;
+                    name.Text = tag.Name;
+                    name.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    //name.BorderStyle = BorderStyle.FixedSingle;
+                    containerFlow.Controls.Add(name);
+
+                    container.Height += name.Height;
+
+                    if (tag.Value != null && tag.Value.Trim() != "")
                     {
-                        int currentRow = attributTable.RowCount;
-                        attributTable.RowCount += 1;
-                        attributTable.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-
-                        Label attributKey = new Label();
-                        attributKey.AutoSize = true;
-                        attributKey.Name = "attributKey" + compositeName + attribut.Key;
-                        attributKey.TabIndex = 0;
-                        attributKey.Text = attribut.Key;
-                        attributTable.Controls.Add(attributKey, 0, currentRow);
-
-
-                        Label attributValue = new Label();
-                        attributValue.AutoSize = true;
-                        attributValue.Name = "attributValue" + compositeName + attribut.Value;
-                        attributValue.TabIndex = 0;
-                        attributValue.Text = attribut.Value;
-                        attributTable.Controls.Add(attributValue, 1, currentRow);
+                        name.Text += " : " + tag.Value;
                     }
 
-                    container.Height += attributTable.Height;
-                }
+                    if (tag.HasAttributs())
+                    {
+                        TableLayoutPanel attributTable = new TableLayoutPanel();
+                        attributTable.ColumnCount = 2;
+                        attributTable.Location = new Point(0, 0);
+                        attributTable.Name = "attributTable" + compositeName;
+                        attributTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+                        attributTable.AutoSize = true;
+                        containerFlow.Controls.Add(attributTable);
 
-                if (tag.HasChild())
-                {
-                    container.Height += generate(tag.Child, containerFlow);
-                }
+                        foreach (KeyValuePair<string, string> attribut in tag.Attributs)
+                        {
+                            int currentRow = attributTable.RowCount;
+                            attributTable.RowCount += 1;
 
-                totalHeight += container.Height;
+                            Label attributKey = new Label();
+                            attributKey.AutoSize = true;
+                            attributKey.Name = "attributKey" + compositeName + attribut.Key;
+                            attributKey.TabIndex = 0;
+                            attributKey.Text = attribut.Key;
+                            attributTable.Controls.Add(attributKey, 0, currentRow);
+
+
+                            Label attributValue = new Label();
+                            attributValue.AutoSize = true;
+                            attributValue.Name = "attributValue" + compositeName + attribut.Value;
+                            attributValue.TabIndex = 0;
+                            attributValue.Text = attribut.Value;
+                            attributTable.Controls.Add(attributValue, 1, currentRow);
+                        }
+
+                        container.Height += attributTable.Height;
+                    }
+
+                    if (tag.HasChild())
+                    {
+                        container.Height += generate(tag.Child, containerFlow) + 10;
+                    }
+
+                    containerFlow.Height = container.Height;
+                    totalHeight += container.Height;
+                }
             }
 
             return totalHeight;
@@ -154,11 +175,5 @@ namespace MTConnectAgent
             XDocument t = mtConnectClient.getCurrentAsync(url).Result;
             return mtConnectClient.ParseXMLRecursif(t.Root);
         }
-
-        private static void ThreadAffichage()
-        {
-
-        }
-
     }
 }
