@@ -22,20 +22,32 @@ namespace ConsoleApp1
             ITag root = mTConnectClient.ParseXMLRecursif(x.Root);
 
             Queue<string> idTagQueue = new Queue<string>();
-            Queue<string> nomTagQueue = new Queue<string>();
 
+            idTagQueue.Enqueue("d1");
             idTagQueue.Enqueue("avail");
-            nomTagQueue.Enqueue("");
+            idTagQueue.Enqueue("functionalmode");
 
-            ITag tag = mTConnectClient.CreateSpecifiqueTag(root, idTagQueue, nomTagQueue);
+            ITag tag = mTConnectClient.CreateSpecifiqueTagOR(root, idTagQueue);
 
-            string path = mTConnectClient.GenererPath(tag,agentUrl);
+            Program.AfficherTag(root, "");
 
-            Console.WriteLine(path);
+            //string path = mTConnectClient.GenererPath(tag,agentUrl);
+
+            //Console.WriteLine(path);
             
             while (true)
             {
 
+            }
+        }
+
+        public static void AfficherTag(ITag tag,string marge)
+        {
+            Console.WriteLine(marge + tag.Name + " : " + tag.Id);
+
+            foreach(ITag child in tag.Child)
+            {
+                AfficherTag(child, marge +"     ");
             }
         }
     }
