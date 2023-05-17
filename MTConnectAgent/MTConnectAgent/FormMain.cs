@@ -52,6 +52,7 @@ namespace MTConnectAgent
 
                     treeViewMachineContext.Items.AddRange(new ToolStripMenuItem[] { modifyMachineLabel, deleteMachineLabel });
                     noeudMachine.ContextMenuStrip = treeViewMachineContext;
+                    noeudMachine.Tag = machine;
 
                     treeViewClientMachine.Nodes[i].Nodes.Add(noeudMachine);
                 }
@@ -204,6 +205,22 @@ namespace MTConnectAgent
             int indexMachine = clients[indexClient].Machines.IndexOf(machine);
             clients[indexClient].Machines.RemoveAt(indexMachine);
             InitializeTreeView();
+        }
+
+        private void treeViewClientMachine_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Parent != null)
+            {
+                Machine selectedMachine = (Machine)e.Node.Tag;
+
+                UserControlProbeCurrent userCtrlProbe = new UserControlProbeCurrent(selectedMachine.Url, UserControlProbeCurrent.functions.probe);
+                this.tabProbe.Controls.Clear();
+                this.tabProbe.Controls.Add(userCtrlProbe);
+
+                UserControlProbeCurrent userCtrlCurrent = new UserControlProbeCurrent(selectedMachine.Url, UserControlProbeCurrent.functions.current);
+                this.tabCurrent.Controls.Clear();
+                this.tabCurrent.Controls.Add(userCtrlCurrent);
+            }
         }
     }
 }

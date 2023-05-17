@@ -91,7 +91,7 @@ namespace MTConnectAgent.Model
         /// <returns>True si il en possède, false sinon</returns>
         public bool HasAttributs()
         {
-            return this.Attributs.Count() == 0;
+            return this.Attributs.Count() > 0;
         }
 
         /// <summary>
