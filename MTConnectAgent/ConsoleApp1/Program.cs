@@ -29,7 +29,9 @@ namespace ConsoleApp1
 
             ITag tag = mTConnectClient.CreateSpecifiqueTagOR(root, idTagQueue);
 
-            Program.AfficherTag(root, "");
+            Console.WriteLine(mTConnectClient.GenererPath(tag, "http://mtconnect.mazakcorp.com:5701", true));
+
+            //Program.AfficherTag(root, "");
 
             //string path = mTConnectClient.GenererPath(tag,agentUrl);
 
