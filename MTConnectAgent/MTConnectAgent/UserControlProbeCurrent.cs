@@ -36,10 +36,10 @@ namespace MTConnectAgent
             this.Size = new Size(613, 399);
             this.TabIndex = 0;
             InitializeComponent();
-            updateView();
+            UpdateView();
         }
 
-        public void updateView()
+        public void UpdateView()
         {
             Thread threadCalcul;
             switch (this.fx)
@@ -55,13 +55,13 @@ namespace MTConnectAgent
             threadCalcul.Start();
             threadCalcul.Join();
 
-            generate(tagMachine.Child, this.flowContent);
+            Generate(tagMachine.Child, this.flowContent);
         }
 
         private readonly AnchorStyles TopLeftAnchor = ((AnchorStyles)(AnchorStyles.Top | AnchorStyles.Left));
         private readonly AnchorStyles AllSideAnchor = ((AnchorStyles)(AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right));
 
-        private int generate(IList<ITag> tags, Control root)
+        private int Generate(IList<ITag> tags, Control root)
         {
             int totalHeight = 0;
             foreach (ITag tag in tags)
@@ -124,7 +124,7 @@ namespace MTConnectAgent
                         attributTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
                         attributTable.AutoSize = true;
                         containerFlow.Controls.Add(attributTable);
-
+                        
                         foreach (KeyValuePair<string, string> attribut in tag.Attributs)
                         {
                             int currentRow = attributTable.RowCount;
@@ -151,7 +151,7 @@ namespace MTConnectAgent
 
                     if (tag.HasChild())
                     {
-                        container.Height += generate(tag.Child, containerFlow) + 10;
+                        container.Height += Generate(tag.Child, containerFlow) + 10;
                     }
 
                     containerFlow.Height = container.Height;
