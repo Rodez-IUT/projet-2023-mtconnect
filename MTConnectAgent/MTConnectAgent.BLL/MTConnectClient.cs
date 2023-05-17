@@ -116,6 +116,9 @@ namespace MTConnectAgent.BLL
             {
                 return "Impossible de générer le path";
             }
+            while (urlMachine.EndsWith("/")) {
+                urlMachine.Remove(urlMachine.Length - 1);
+            }
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(urlMachine + "/current?path=");
             stringBuilder = GenererPath(tag, stringBuilder, isOrActivated);
