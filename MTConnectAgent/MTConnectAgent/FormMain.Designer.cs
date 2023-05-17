@@ -45,6 +45,7 @@
             this.treeViewClientMachine.Name = "treeViewClientMachine";
             this.treeViewClientMachine.Size = new System.Drawing.Size(149, 363);
             this.treeViewClientMachine.TabIndex = 0;
+            this.treeViewClientMachine.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewClientMachine_AfterSelect);
             // 
             // buttonAjouterClient
             // 
@@ -126,6 +127,7 @@
         private System.Windows.Forms.TabControl tabs;
         private System.Windows.Forms.TabPage tabProbe;
         private System.Windows.Forms.TabPage tabCurrent;
+        private UserControlProbeCurrent userControlProbe1;
     }
 }
 
