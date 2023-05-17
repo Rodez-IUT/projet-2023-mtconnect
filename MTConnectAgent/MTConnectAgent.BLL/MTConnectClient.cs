@@ -1,4 +1,5 @@
 ﻿using MTConnectAgent.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -59,16 +60,22 @@ namespace MTConnectAgent.BLL
         /// <returns></returns>
         public async Task<XDocument> getProbeAsync(string url)
         {
-            HttpClient httpClient = new HttpClient();
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                HttpResponseMessage response = await httpClient.GetAsync(url + "probe");
+                response.EnsureSuccessStatusCode();
 
-            HttpResponseMessage response = await httpClient.GetAsync(url + "probe");
-            response.EnsureSuccessStatusCode();
+                var stream = response.Content.ReadAsStreamAsync().Result;
 
-            var stream = response.Content.ReadAsStreamAsync().Result;
+                XDocument document = XDocument.Load(stream);
 
-            XDocument document = XDocument.Load(stream);
-
-            return document;
+                return document;
+            }
+            catch (AggregateException ex)
+            {
+                throw new ArgumentException("L'uri donnée n'est pas valide", ex);
+            }
         }
 
         /// <summary>
@@ -78,16 +85,23 @@ namespace MTConnectAgent.BLL
         /// <returns></returns>
         public async Task<XDocument> getCurrentAsync(string url)
         {
-            HttpClient httpClient = new HttpClient();
+            try
+            {
+                HttpClient httpClient = new HttpClient();
 
-            HttpResponseMessage response = await httpClient.GetAsync(url + "current");
-            response.EnsureSuccessStatusCode();
+                HttpResponseMessage response = await httpClient.GetAsync(url + "current");
+                response.EnsureSuccessStatusCode();
 
-            var stream = response.Content.ReadAsStreamAsync().Result;
+                var stream = response.Content.ReadAsStreamAsync().Result;
 
-            XDocument document = XDocument.Load(stream);
+                XDocument document = XDocument.Load(stream);
 
-            return document;
+                return document;
+            }
+            catch (AggregateException ex)
+            {
+                throw new ArgumentException("L'uri donnée n'est pas valide", ex);
+            }
 
         }
 
@@ -96,14 +110,14 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="tag">Noeud racine depuis lequel nous allons générer le path</param>
         /// <returns>Le path généré</returns>
-        public string GenererPath(ITag tag)
+        public string GenererPath(ITag tag, string urlMachine)
         {
             if (tag == null)
             {
                 return "Impossible de générer le path";
             }
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("https://smstestbed.nist.gov/vds/current?path=");
+            stringBuilder.Append(urlMachine + "/current?path=");
             stringBuilder = GenererPath(tag, stringBuilder);
             return stringBuilder.ToString();
         }
@@ -140,16 +154,23 @@ namespace MTConnectAgent.BLL
         /// <returns></returns>
         public async Task<XDocument> getAssetsAsync(string url)
         {
-            HttpClient httpClient = new HttpClient();
+            try
+            {
+                HttpClient httpClient = new HttpClient();
 
-            HttpResponseMessage response = await httpClient.GetAsync(url + "assets");
-            response.EnsureSuccessStatusCode();
+                HttpResponseMessage response = await httpClient.GetAsync(url + "assets");
+                response.EnsureSuccessStatusCode();
 
-            var stream = response.Content.ReadAsStreamAsync().Result;
+                var stream = response.Content.ReadAsStreamAsync().Result;
 
-            XDocument document = XDocument.Load(stream);
+                XDocument document = XDocument.Load(stream);
 
-            return document;
+                return document;
+            }
+            catch (AggregateException ex)
+            {
+                throw new ArgumentException("L'uri donnée n'est pas valide", ex);
+            }
         }
 
         /// <summary>
@@ -159,18 +180,32 @@ namespace MTConnectAgent.BLL
         /// <returns></returns>
         public async Task<XDocument> getSampleAsync(string url)
         {
-            HttpClient httpClient = new HttpClient();
+            try
+            {
+                HttpClient httpClient = new HttpClient();
 
-            HttpResponseMessage response = await httpClient.GetAsync(url + "sample");
-            response.EnsureSuccessStatusCode();
+                HttpResponseMessage response = await httpClient.GetAsync(url + "sample");
+                response.EnsureSuccessStatusCode();
 
-            var stream = response.Content.ReadAsStreamAsync().Result;
+                var stream = response.Content.ReadAsStreamAsync().Result;
 
-            XDocument document = XDocument.Load(stream);
+                XDocument document = XDocument.Load(stream);
 
-            return document;
+                return document;
+            }
+            catch (AggregateException ex)
+            {
+                throw new ArgumentException("L'uri donnée n'est pas valide", ex);
+            }
         }
 
+        /// <summary>
+        /// Création d'un tag qui posède une forme spécifique pour la génération des path
+        /// </summary>
+        /// <param name="root">Tag racine qui est le point de départ du path (Souvent un Device)</param>
+        /// <param name="idTagQueue">File d'id de tag, id peut avoir la valeur "" pour représenter l'absence d'id pour un tag</param>
+        /// <param name="nomTagQueue">File de nom de tag, le nom peut avoir la valeur "" pour représenter l'absence de nom pour un tag</param>
+        /// <returns></returns>
         public ITag CreateSpecifiqueTag(ITag root, Queue<string> idTagQueue, Queue<string> nomTagQueue)
         {
             if (root == null)
@@ -231,6 +266,12 @@ namespace MTConnectAgent.BLL
             return null;
         }
 
+        /// <summary>
+        /// Recherche d'un tag spécifique dans tout les tag enfant de celui passer en paramètre
+        /// </summary>
+        /// <param name="tag">Tag dans lequel vas être effectué la recherche</param>
+        /// <param name="name">Nom du tag recherché</param>
+        /// <returns>Renvoi le tag qui correspond au critère de recherche sinon null</returns>
         public ITag FindTagByName(ITag tag, string name)
         {
             ITag result = null;
@@ -254,6 +295,12 @@ namespace MTConnectAgent.BLL
             return null;
         }
 
+        /// <summary>
+        /// Recherche d'un tag spécifique dans tout les tag enfant de celui passer en paramètre
+        /// </summary>
+        /// <param name="tag">Tag dans lequel vas être effectué la recherche</param>
+        /// <param name="id">Id du tag recherché</param>
+        /// <returns>Renvoi le tag qui correspond au critère de recherche sinon null</returns>
         public ITag FindTagById(ITag tag, string id)
         {
             ITag result = null;

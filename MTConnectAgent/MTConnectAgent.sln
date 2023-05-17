@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTConnectAgent.BLL", "MTCon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTConnectAgent.BLL.Tests", "MTConnectAgent.BLL.Tests\MTConnectAgent.BLL.Tests.csproj", "{E3F489DA-6EEC-402F-A9DE-E9125E888399}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{6446905A-95B8-4BA0-A9BF-7BDA916042C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E3F489DA-6EEC-402F-A9DE-E9125E888399}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3F489DA-6EEC-402F-A9DE-E9125E888399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3F489DA-6EEC-402F-A9DE-E9125E888399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6446905A-95B8-4BA0-A9BF-7BDA916042C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6446905A-95B8-4BA0-A9BF-7BDA916042C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6446905A-95B8-4BA0-A9BF-7BDA916042C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6446905A-95B8-4BA0-A9BF-7BDA916042C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

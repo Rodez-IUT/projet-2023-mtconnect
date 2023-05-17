@@ -13,7 +13,7 @@ namespace MTConnectAgent.BLL.Tests
     /// <summary>
     /// Test des méthodes de la classe MTConnectClient
     /// </summary>
-    [TestClass()]
+    [TestClass]
     public class MTConnectClientTests
     {
         private MTConnectClient mtConnectClient;
@@ -32,7 +32,14 @@ namespace MTConnectAgent.BLL.Tests
         [TestMethod()]
         public void ParseXMLRecursifTest()
         {
-            
+            // Arrange
+            XDocument document = mtConnectClient.getProbeAsync(agentUrl2).Result;
+
+            // Act
+            ITag root = mtConnectClient.ParseXMLRecursif(document.Root);
+
+            // Assert
+            Assert.IsNotNull(root);
         }
 
         [TestMethod()]
@@ -76,14 +83,100 @@ namespace MTConnectAgent.BLL.Tests
         }
 
         [TestMethod]
+        public void CreateSpecifiqueTagTest()
+        {
+            // Arrange 
+            ITag dataItem = new Tag("DataItem", "Mazak03-S_6");
+            ITag dataItems = new Tag("DataItems");
+            dataItems.AddChild(dataItem);
+            ITag axes = new Tag("Axes");
+            axes.AddChild(dataItems);
+            ITag components = new Tag("Components");
+            components.AddChild(axes);
+            ITag device = new Tag("Device", "Mazak03");
+            device.AddChild(components);
+
+            Queue<string> idTagQueue = new Queue<string>();
+            Queue<string> nomTagQueue = new Queue<string>();
+            string id = "Mazak03";
+            idTagQueue.Enqueue(id);
+            nomTagQueue.Enqueue("Device");
+            idTagQueue.Enqueue("");
+            idTagQueue.Enqueue("");
+            idTagQueue.Enqueue("");
+            idTagQueue.Enqueue("Mazak03-S_6");
+
+            nomTagQueue.Enqueue("Components");
+            nomTagQueue.Enqueue("Axes");
+            nomTagQueue.Enqueue("DataItems");
+            nomTagQueue.Enqueue("DataItem");
+
+
+            // Act
+            ITag tagSpecifique = mtConnectClient.CreateSpecifiqueTag(device, idTagQueue, nomTagQueue);
+
+            // Assert
+            Assert.IsNotNull(tagSpecifique);
+            Assert.AreEqual(device.Id, tagSpecifique.Id);
+            Assert.AreEqual("Mazak03-S_6", device.Child[0].Child[0].Child[0].Child[0].Id);
+        }
+
+        [TestMethod]
+        public void FindTagByIdTest()
+        {
+            // Arrange
+            ITag dataItem = new Tag("DataItem", "Mazak03-S_6");
+            ITag dataItems = new Tag("DataItems");
+            dataItems.AddChild(dataItem);
+            ITag axes = new Tag("Axes");
+            axes.AddChild(dataItems);
+            ITag components = new Tag("Components");
+            components.AddChild(axes);
+            ITag device = new Tag("Device", "Mazak03");
+            device.AddChild(components);
+
+            // Act
+            ITag tagSpecifique = mtConnectClient.FindTagById(device, "Mazak03-S_6");
+
+            // Assert
+            Assert.IsNotNull(tagSpecifique);
+            Assert.AreEqual("Mazak03-S_6", tagSpecifique.Id);
+            Assert.AreEqual("DataItem", tagSpecifique.Name);
+        }
+
+        [TestMethod]
+        public void FindTagByNameTest()
+        {
+            // Arrange
+            ITag dataItem = new Tag("DataItem", "Mazak03-S_6");
+            ITag dataItems = new Tag("DataItems");
+            dataItems.AddChild(dataItem);
+            ITag axes = new Tag("Axes");
+            axes.AddChild(dataItems);
+            ITag components = new Tag("Components");
+            components.AddChild(axes);
+            ITag device = new Tag("Device", "Mazak03");
+            device.AddChild(components);
+
+            // Act
+            ITag tagSpecifique = mtConnectClient.FindTagByName(device, "DataItem");
+
+            // Assert
+            Assert.IsNotNull(tagSpecifique);
+            Assert.AreEqual("Mazak03-S_6", tagSpecifique.Id);
+            Assert.AreEqual("DataItem", tagSpecifique.Name);
+        }
+
+        [TestMethod]
         public void SiDeviceAvecIdMazak03DemandeAlorsPathDonneDeviceAvecIdMazak03()
         {
             //Arrange
-            string resultatAttendu = "https://smstestbed.nist.gov/vds/current?path=//Device[@id=\"Mazak03\"]";
+            string url = "https://smstestbed.nist.gov/vds";
+            string resultatAttendu = url + "/current?path=//Device[@id=\"Mazak03\"]";
             ITag device = new Tag("Device", "Mazak03");
 
             //Act
-            string resultatObtenu = mtConnectClient.GenererPath(device);
+            string resultatObtenu = mtConnectClient.GenererPath(device,url);
 
             //Assert
             Assert.AreEqual(resultatAttendu, resultatObtenu);
@@ -94,7 +187,8 @@ namespace MTConnectAgent.BLL.Tests
         public void SiDataItemDemandeAlorsCheminCompletDataItemRendu()
         {
             //Arrange
-            string resultatAttendu = "https://smstestbed.nist.gov/vds/current?path=//Device[@id=\"Mazak03\"]//Components//Axes//DataItems//DataItem[@id=\"Mazak03-S_6\"]";
+            string url = "https://smstestbed.nist.gov/vds";
+            string resultatAttendu = url + "/current?path=//Device[@id=\"Mazak03\"]//Components//Axes//DataItems//DataItem[@id=\"Mazak03-S_6\"]";
             ITag dataItem = new Tag("DataItem", "Mazak03-S_6");
             ITag dataItems = new Tag("DataItems");
             dataItems.AddChild(dataItem);
@@ -106,7 +200,7 @@ namespace MTConnectAgent.BLL.Tests
             device.AddChild(components);
 
             //Act
-            string resultatObtenu = mtConnectClient.GenererPath(device);
+            string resultatObtenu = mtConnectClient.GenererPath(device, url);
 
             //Assert
             Assert.AreEqual(resultatAttendu, resultatObtenu);
