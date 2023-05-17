@@ -107,5 +107,10 @@ namespace MTConnectAgent.Model
         {
             this.Child = new List<ITag>();
         }
+
+        public void SetChild(List<ITag> child)
+        {
+            this.Child = child;
+        }
     }
 }
