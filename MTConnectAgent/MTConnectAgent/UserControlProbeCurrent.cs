@@ -36,10 +36,10 @@ namespace MTConnectAgent
             this.Size = new Size(613, 399);
             this.TabIndex = 0;
             InitializeComponent();
-            updateView();
+            UpdateView();
         }
 
-        public void updateView()
+        public void UpdateView()
         {
             Thread threadCalcul;
             switch (this.fx)
@@ -55,13 +55,13 @@ namespace MTConnectAgent
             threadCalcul.Start();
             threadCalcul.Join();
 
-            generate(tagMachine.Child, this.flowContent);
+            Generate(tagMachine.Child, this.flowContent);
         }
 
         private readonly AnchorStyles TopLeftAnchor = ((AnchorStyles)(AnchorStyles.Top | AnchorStyles.Left));
         private readonly AnchorStyles AllSideAnchor = ((AnchorStyles)(AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right));
 
-        private int generate(IList<ITag> tags, Control root)
+        private int Generate(IList<ITag> tags, Control root)
         {
             int totalHeight = 0;
             foreach (ITag tag in tags)
@@ -132,7 +132,7 @@ namespace MTConnectAgent
 
                 if (tag.HasChild())
                 {
-                    container.Height += generate(tag.Child, containerFlow);
+                    container.Height += Generate(tag.Child, containerFlow);
                 }
 
                 totalHeight += container.Height;
@@ -154,11 +154,5 @@ namespace MTConnectAgent
             XDocument t = mtConnectClient.getCurrentAsync(url).Result;
             return mtConnectClient.ParseXMLRecursif(t.Root);
         }
-
-        private static void ThreadAffichage()
-        {
-
-        }
-
     }
 }
