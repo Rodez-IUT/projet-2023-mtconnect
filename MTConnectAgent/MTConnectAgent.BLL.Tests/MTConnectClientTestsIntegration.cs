@@ -48,7 +48,7 @@ namespace MTConnectAgent.BLL.Tests
             //Act
             tagDepart = MTConnectClient.FindTagById(Root,id);
             tagDeRecherche = MTConnectClient.CreateSpecifiqueTag(tagDepart, idTagQueue, nomTagQueue);
-            resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche, url);
+            resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche, url, false);
 
             //Assert
             Assert.AreEqual(resultatAttendu, resultatObtenu);
@@ -71,7 +71,7 @@ namespace MTConnectAgent.BLL.Tests
             //Act
             tagDepart = MTConnectClient.FindTagById(Root,id);
             tagDeRecherche = MTConnectClient.CreateSpecifiqueTag(tagDepart, idTagQueue, nomTagQueue);
-            resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche, url);
+            resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche, url, false);
 
             //Assert
             Assert.AreEqual(resultatAttendu, resultatObtenu);
@@ -95,7 +95,7 @@ namespace MTConnectAgent.BLL.Tests
             //Act
             tagDepart = MTConnectClient.FindTagByName(Root,name);
             tagDeRecherche = MTConnectClient.CreateSpecifiqueTag(tagDepart, idTagQueue, nomTagQueue);
-            resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche,url);
+            resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche,url, false);
 
             //Assert
             Assert.AreEqual(resultatAttendu, resultatObtenu);
