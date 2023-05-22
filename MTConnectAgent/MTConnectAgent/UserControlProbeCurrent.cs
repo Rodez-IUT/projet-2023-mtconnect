@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MTConnectAgent.Model;
 using MTConnectAgent.BLL;
 using System.Xml.Linq;
 using System.Threading;
+using System;
 
 namespace MTConnectAgent
 {
@@ -22,8 +17,18 @@ namespace MTConnectAgent
         public enum functions
         {
             probe,
-            current
+            current,
+            path
         }
+
+        private CheckBox or = new CheckBox();
+
+        private List<string> paths = new List<string>();
+
+        private ListView resultats = new ListView();
+        //private TextBox resultats = new TextBox();
+
+        private Dictionary<CheckBox, ITag> interfaceTags = new Dictionary<CheckBox, ITag>();
 
         public UserControlProbeCurrent(string url, functions fx)
         {
@@ -45,41 +50,176 @@ namespace MTConnectAgent
             switch (this.fx)
             {
                 case functions.probe:
+                
                     threadCalcul = new Thread(() => { this.tagMachine = ThreadParseProbe(this.url); });
                     break;
-                case functions.current:
-                default:
+                case functions.path:
+                    threadCalcul = new Thread(() => { this.tagMachine = ThreadParseProbe(this.url); });
+                    break;
+                default: // Default => functions.current
                     threadCalcul = new Thread(() => { this.tagMachine = ThreadParseCurrent(this.url); });
                     break;
             }
             threadCalcul.Start();
             threadCalcul.Join();
 
+            // Génération de l'affichage des requêtes
             Generate(tagMachine.Child, this.flowContent);
+
+            // Si la fenêtre PATH est sélectionnée, on génère également l'interface de résultat des paths
+            if (this.fx.Equals(functions.path))
+            {
+                GeneratePathResults(this.flowContent);
+            }
         }
 
-        private readonly AnchorStyles TopLeftAnchor = ((AnchorStyles)(AnchorStyles.Top | AnchorStyles.Left));
-        private readonly AnchorStyles AllSideAnchor = ((AnchorStyles)(AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right));
+        private readonly AnchorStyles TopLeftAnchor = AnchorStyles.Top | AnchorStyles.Left;
+        private readonly AnchorStyles AllSideAnchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 
-        private int Generate(IList<ITag> tags, Control root)
+        // Fenêtre de génération et obtention des PATHS
+        private void GeneratePathResults(Control root)
         {
+            GroupBox container = new GroupBox();
+            container.Anchor = TopLeftAnchor;
+            container.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+            container.Location = new Point(0, 0);
+            container.Name = "containerPath";
+            container.Size = new Size(500, 200);
+            container.Text = "Résultat des paths";
+            root.Controls.Add(container);
+
+            FlowLayoutPanel containerFlow = new FlowLayoutPanel();
+            containerFlow.Anchor = TopLeftAnchor;
+            containerFlow.FlowDirection = FlowDirection.LeftToRight;
+            containerFlow.Location = new Point(10, 20);
+            containerFlow.Name = "containerFlow";
+            containerFlow.Size = new Size(10, 10);
+            containerFlow.AutoSize = true;
+            container.Controls.Add(containerFlow);
+
+            // Utilisation de l'option OR ou non
+            or.AutoSize = true;
+            or.Name = "checkboxOr";
+            or.Text = "Avec option OR";
+            or.Anchor = AnchorStyles.None;
+            containerFlow.Controls.Add(or);
+
+            // Lancement de la génération du ou des PATH(S)
+            Button generer = new Button();
+            generer.Name = "btnGenererPath";
+            generer.Text = "Générer";
+            generer.Anchor = AnchorStyles.None;
+            generer.Click += new EventHandler(this.GenererPaths);
+            containerFlow.Controls.Add(generer);
+
+            // Affichage du ou des PATH(S)
+            resultats.Name = "listResultatsPath";
+            resultats.Location = new Point(10, 70);
+            resultats.Size = new Size(480, 120);
+            resultats.View = View.List;
+
+            container.Controls.Add(resultats);
+            
+        }
+
+        // Récupère la liste des tags sélectionnés pour générer le(s) PATH(S)
+        private List<ITag> GetTagsList(Dictionary<CheckBox, ITag> interfaceTags)
+        {
+            List<ITag> tags = new List<ITag>();
+            
+            foreach(CheckBox checkBox in interfaceTags.Keys)
+            {
+                if (checkBox.Checked)
+                {
+                    tags.Add(interfaceTags[checkBox]);
+                }
+            }
+            return tags;
+        }
+
+        private void GenererPaths(object sender, EventArgs e)
+        {
+            // Récupération de la liste de tags à utiliser pour générer le(s) PATH(S)
+            List<ITag> tags = GetTagsList(interfaceTags);
+
+            List<string> urls = new List<string>();
+            
+            if (or.Checked)
+            {
+                // Génération d'un seul PATH
+                // utiliser genererPath pour OR
+
+            }
+            else
+            {
+                foreach (ITag tag in tags)
+                {
+                    // Génération de plusieurs PATHS
+                    var instance = new MTConnectClient();
+
+                    // Affichage des urls 
+                    //resultats.AppendText(instance.GenererPath(tag, url) + "\r\n"); // => avec le textbox
+                    resultats.Items.Add(instance.GenererPath(tag, url) + "\r\n");
+                }
+            }
+        }
+
+        // Affichage du résultat de la requête Probe ou Current
+        private int Generate(IList<ITag> tags, Control root)
+        {            
             int totalHeight = 0;
             foreach (ITag tag in tags)
             {
                 string compositeName = tag.Name + tag.GetHashCode();
                 if (!tag.HasAttributs() && !tag.HasChild() && tag.Value != null && tag.Value.Trim() != "")
                 {
-                    Label nameValue = new Label();
-                    nameValue.AutoSize = true;
-                    nameValue.Name = "nameValue" + compositeName + tag.Value;
-                    nameValue.TabIndex = 0;
-                    nameValue.Text = tag.Name + " : " + tag.Value;
-                    root.Controls.Add(nameValue);
+                    CheckBox checkBox = new CheckBox();
+                    checkBox.AutoSize = true;
+                    checkBox.Name = "nameValue" + compositeName + tag.Value;
+                    checkBox.TabIndex = 0;
+                    checkBox.Text = tag.Name + " : " + tag.Value;
+                    root.Controls.Add(checkBox);
 
-                    totalHeight += nameValue.Height;
+                    totalHeight += checkBox.Height;
                 } else
                 {
                     int coord = 20;
+                    
+                    // Affichage pour la fenêtre PATH : checkboxs pour préparer la génération du ou des PATH(S)
+                    if (this.fx == functions.path)
+                    {
+                        CheckBox checkBox = new CheckBox();
+                        checkBox.Name = "name" + compositeName;
+                        checkBox.AutoSize = true;
+                        checkBox.Height = 10;
+                        checkBox.Text = tag.Name;
+                        checkBox.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                        checkBox.Width = root.Width - coord * 2;
+                        root.Controls.Add(checkBox);
+
+                        // Ajout à la liste de toutes les checkboxs pour la génération du ou des PATH(S)
+                        interfaceTags.Add(checkBox, tag);
+
+                        if (tag.Value != null && tag.Value.Trim() != "")
+                        {
+                            checkBox.Text += " : " + tag.Value;
+                        }
+                    }
+                    else
+                    {
+                        // Affichage pour les fenêtres Probe et Current
+                        Label name = new Label();
+                        name.AutoSize = true;
+                        name.Name = "name" + compositeName;
+                        name.Text = tag.Name;
+                        name.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+
+                        if (tag.Value != null && tag.Value.Trim() != "")
+                        {
+                            name.Text += " : " + tag.Value;
+                        }
+                    }
+
                     Panel container = new Panel();
                     container.Anchor = TopLeftAnchor;
                     container.Location = new Point(0, 0);
@@ -87,10 +227,8 @@ namespace MTConnectAgent
                     container.Height = 10;
                     container.Text = tag.Name;
                     container.Width = root.Width - coord * 2;
-                    //container.BorderStyle = BorderStyle.FixedSingle;
                     root.Controls.Add(container);
-
-
+                    
                     FlowLayoutPanel containerFlow = new FlowLayoutPanel();
                     containerFlow.Anchor = TopLeftAnchor;
                     containerFlow.FlowDirection = FlowDirection.TopDown;
@@ -99,22 +237,7 @@ namespace MTConnectAgent
                     containerFlow.AutoSize = true;
                     containerFlow.Width = container.Width;
                     container.Controls.Add(containerFlow);
-
-                    Label name = new Label();
-                    name.AutoSize = true;
-                    name.Name = "name" + compositeName;
-                    name.Text = tag.Name;
-                    name.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-                    //name.BorderStyle = BorderStyle.FixedSingle;
-                    containerFlow.Controls.Add(name);
-
-                    container.Height += name.Height;
-
-                    if (tag.Value != null && tag.Value.Trim() != "")
-                    {
-                        name.Text += " : " + tag.Value;
-                    }
-
+                    
                     if (tag.HasAttributs())
                     {
                         TableLayoutPanel attributTable = new TableLayoutPanel();
@@ -136,7 +259,6 @@ namespace MTConnectAgent
                             attributKey.TabIndex = 0;
                             attributKey.Text = attribut.Key;
                             attributTable.Controls.Add(attributKey, 0, currentRow);
-
 
                             Label attributValue = new Label();
                             attributValue.AutoSize = true;
