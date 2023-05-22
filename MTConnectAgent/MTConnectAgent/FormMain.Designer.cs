@@ -34,6 +34,7 @@
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabProbe = new System.Windows.Forms.TabPage();
             this.tabCurrent = new System.Windows.Forms.TabPage();
+            this.tabPath = new System.Windows.Forms.TabPage();
             this.tabs.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +75,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabs.Controls.Add(this.tabProbe);
             this.tabs.Controls.Add(this.tabCurrent);
+            this.tabs.Controls.Add(this.tabPath);
             this.tabs.Location = new System.Drawing.Point(167, 13);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
@@ -100,6 +102,15 @@
             this.tabCurrent.Text = "Current";
             this.tabCurrent.UseVisualStyleBackColor = true;
             // 
+            // tabPath
+            // 
+            this.tabPath.Location = new System.Drawing.Point(4, 22);
+            this.tabPath.Name = "tabPath";
+            this.tabPath.Size = new System.Drawing.Size(613, 399);
+            this.tabPath.TabIndex = 2;
+            this.tabPath.Text = "Path";
+            this.tabPath.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -124,10 +135,11 @@
         private System.Windows.Forms.TreeView treeViewClientMachine;
         private System.Windows.Forms.Button buttonAjouterClient;
         private System.Windows.Forms.Button buttonAjouterMachine;
-        private System.Windows.Forms.TabControl tabs;
         private System.Windows.Forms.TabPage tabProbe;
         private System.Windows.Forms.TabPage tabCurrent;
         private UserControlProbeCurrent userControlProbe1;
+        private System.Windows.Forms.TabControl tabs;
+        private System.Windows.Forms.TabPage tabPath;
     }
 }
 
