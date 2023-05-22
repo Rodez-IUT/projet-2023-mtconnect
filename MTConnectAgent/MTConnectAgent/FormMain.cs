@@ -220,6 +220,10 @@ namespace MTConnectAgent
                 UserControlProbeCurrent userCtrlCurrent = new UserControlProbeCurrent(selectedMachine.Url, UserControlProbeCurrent.functions.current);
                 this.tabCurrent.Controls.Clear();
                 this.tabCurrent.Controls.Add(userCtrlCurrent);
+
+                UserControlProbeCurrent userCtrlPath = new UserControlProbeCurrent(selectedMachine.Url, UserControlProbeCurrent.functions.path);
+                this.tabPath.Controls.Clear();
+                this.tabPath.Controls.Add(userCtrlPath);
             }
         }
     }
