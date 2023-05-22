@@ -6,7 +6,6 @@ using MTConnectAgent.BLL;
 using System.Xml.Linq;
 using System.Threading;
 using System;
-using static System.Windows.Forms.ListView;
 
 namespace MTConnectAgent
 {
@@ -50,6 +49,7 @@ namespace MTConnectAgent
             switch (this.fx)
             {
                 case functions.probe:
+                
                     threadCalcul = new Thread(() => { this.tagMachine = ThreadParseProbe(this.url); });
                     break;
                 case functions.path:
