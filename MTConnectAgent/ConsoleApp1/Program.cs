@@ -25,11 +25,11 @@ namespace ConsoleApp1
 
             idTagQueue.Enqueue("d1");
             idTagQueue.Enqueue("avail");
-            idTagQueue.Enqueue("functionalmode");
+            //idTagQueue.Enqueue("functionalmode");
 
-            ITag tag = mTConnectClient.CreateSpecifiqueTagOR(root, idTagQueue);
+            ITag tag = mTConnectClient.CreateSpecifiqueTag(root, idTagQueue);
 
-            Console.WriteLine(mTConnectClient.GenererPath(tag, "http://mtconnect.mazakcorp.com:5701", true));
+            Console.WriteLine(mTConnectClient.GenererPath(tag, "http://mtconnect.mazakcorp.com:5701", false));
 
             //Program.AfficherTag(root, "");
 

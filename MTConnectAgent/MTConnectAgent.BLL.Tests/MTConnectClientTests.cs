@@ -96,24 +96,19 @@ namespace MTConnectAgent.BLL.Tests
             ITag device = new Tag("Device", "Mazak03");
             device.AddChild(components);
 
-            Queue<string> idTagQueue = new Queue<string>();
-            Queue<string> nomTagQueue = new Queue<string>();
+            Queue<string> identifiantQueue = new Queue<string>();
             string id = "Mazak03";
-            idTagQueue.Enqueue(id);
-            nomTagQueue.Enqueue("Device");
-            idTagQueue.Enqueue("");
-            idTagQueue.Enqueue("");
-            idTagQueue.Enqueue("");
-            idTagQueue.Enqueue("Mazak03-S_6");
+            identifiantQueue.Enqueue(id);
 
-            nomTagQueue.Enqueue("Components");
-            nomTagQueue.Enqueue("Axes");
-            nomTagQueue.Enqueue("DataItems");
-            nomTagQueue.Enqueue("DataItem");
+            identifiantQueue.Enqueue("Components");
+            identifiantQueue.Enqueue("Axes");
+            identifiantQueue.Enqueue("DataItems");
+            identifiantQueue.Enqueue("Mazak03-S_6");
+
 
 
             // Act
-            ITag tagSpecifique = mtConnectClient.CreateSpecifiqueTag(device, idTagQueue, nomTagQueue);
+            ITag tagSpecifique = mtConnectClient.CreateSpecifiqueTag(device, identifiantQueue);
 
             // Assert
             Assert.IsNotNull(tagSpecifique);

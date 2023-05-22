@@ -39,15 +39,13 @@ namespace MTConnectAgent.BLL.Tests
             string resultatAttendu = url + "/current?path=//Device[@id=\"d1\"]";
             string resultatObtenu;
             ITag tagDeRecherche, tagDepart;
-            Queue<string> idTagQueue = new Queue<string>();
-            Queue<string> nomTagQueue = new Queue<string>();
+            Queue<string> identifiantTagQueue = new Queue<string>();
             string id = "d1";
-            idTagQueue.Enqueue(id);
-            nomTagQueue.Enqueue("Device");
+            identifiantTagQueue.Enqueue(id);
 
             //Act
             tagDepart = MTConnectClient.FindTagById(Root,id);
-            tagDeRecherche = MTConnectClient.CreateSpecifiqueTag(tagDepart, idTagQueue, nomTagQueue);
+            tagDeRecherche = MTConnectClient.CreateSpecifiqueTag(tagDepart, identifiantTagQueue);
             resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche, url, false);
 
             //Assert
@@ -62,15 +60,13 @@ namespace MTConnectAgent.BLL.Tests
             string resultatAttendu = "Impossible de générer le path";
             string resultatObtenu;
             ITag tagDeRecherche, tagDepart;
-            Queue<string> idTagQueue = new Queue<string>();
-            Queue<string> nomTagQueue = new Queue<string>();
+            Queue<string> identifiantTagQueue = new Queue<string>();
             string id = "idDeTest";
-            idTagQueue.Enqueue(id);
-            nomTagQueue.Enqueue("Device");
+            identifiantTagQueue.Enqueue(id);
 
             //Act
             tagDepart = MTConnectClient.FindTagById(Root,id);
-            tagDeRecherche = MTConnectClient.CreateSpecifiqueTag(tagDepart, idTagQueue, nomTagQueue);
+            tagDeRecherche = MTConnectClient.CreateSpecifiqueTag(tagDepart, identifiantTagQueue);
             resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche, url, false);
 
             //Assert
@@ -82,19 +78,16 @@ namespace MTConnectAgent.BLL.Tests
         {
             //Arrange
             string url = "https://smstestbed.nist.gov/vds";
-            string resultatAttendu = url + "/current?path=//Device";
+            string resultatAttendu = url + "/current?path=//Device[@id=\"d1\"]";
             string resultatObtenu;
             ITag tagDeRecherche, tagDepart;
-            Queue<string> idTagQueue = new Queue<string>();
-            Queue<string> nomTagQueue = new Queue<string>();
-            string id = "";
+            Queue<string> identifiantTagQueue = new Queue<string>();
             string name = "Device";
-            idTagQueue.Enqueue(id);
-            nomTagQueue.Enqueue(name);
+            identifiantTagQueue.Enqueue(name);
 
             //Act
             tagDepart = MTConnectClient.FindTagByName(Root,name);
-            tagDeRecherche = MTConnectClient.CreateSpecifiqueTag(tagDepart, idTagQueue, nomTagQueue);
+            tagDeRecherche = MTConnectClient.CreateSpecifiqueTag(tagDepart, identifiantTagQueue);
             resultatObtenu = MTConnectClient.GenererPath(tagDeRecherche,url, false);
 
             //Assert
