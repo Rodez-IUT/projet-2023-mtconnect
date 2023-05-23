@@ -163,64 +163,69 @@ namespace MTConnectAgent.BLL.Tests
         }
 
         [TestMethod]
-        public void SiDeviceAvecIdMazak03DemandeAlorsPathDonneDeviceAvecIdMazak03()
+        public void SiOrInactifAlorsPathRetourne()
         {
             //Arrange
             string url = "https://smstestbed.nist.gov/vds";
-            string resultatAttendu = url + "/current?path=//Device[@id=\"Mazak03\"]";
-            ITag device = new Tag("Device", "Mazak03");
-
-            //Act
-            string resultatObtenu = mtConnectClient.GenererPath(device,url, false);
-
-            //Assert
-            Assert.AreEqual(resultatAttendu, resultatObtenu);
-
-        }
-
-        [TestMethod]
-        public void SiDataItemDemandeAlorsCheminCompletDataItemRendu()
-        {
-            //Arrange
-            string url = "https://smstestbed.nist.gov/vds";
-            string resultatAttendu = url + "/current?path=//Device[@id=\"Mazak03\"]//Components//Axes//DataItems//DataItem[@id=\"Mazak03-S_6\"]";
-            ITag dataItem = new Tag("DataItem", "Mazak03-S_6");
+            List<string> resultatAttendu = new List<string>()
+            {
+                "https://smstestbed.nist.gov/vds/current?path=//Devices//Device[@id=\"GFAgie01\"]",
+                "https://smstestbed.nist.gov/vds/current?path=//Devices//Device[@id=\"Mazak01\"]//DataItems//DataItem[@id=\"Mazak01-dtop_1\"]"
+            };
+            ITag devices = new Tag("Devices");
+            ITag device1 = new Tag("Device", "GFAgie01");
+            ITag device2 = new Tag("Device", "Mazak01");
             ITag dataItems = new Tag("DataItems");
+            ITag dataItem = new Tag("DataItem", "Mazak01-dtop_1");
             dataItems.AddChild(dataItem);
-            ITag axes = new Tag("Axes");
-            axes.AddChild(dataItems);
-            ITag components = new Tag("Components");
-            components.AddChild(axes);
-            ITag device = new Tag("Device", "Mazak03");
-            device.AddChild(components);
+            device2.AddChild(dataItems);
+            devices.AddChild(device1);
+            devices.AddChild(device2);
 
             //Act
-            string resultatObtenu = mtConnectClient.GenererPath(device, url, false);
+            List<string> resultatObtenu = mtConnectClient.GenererPath(devices, url, false);
 
             //Assert
-            Assert.AreEqual(resultatAttendu, resultatObtenu);
+            for (int i = 0; i <= resultatAttendu.Count; i++)
+            {
+                Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
+            }
         }
 
         [TestMethod]
-        public void SiCheminDemandeAvecOrAlorsCheminRetourneAvecOr()
+        public void SiOrActiveEtOrImpossibleAlorsListeStringRetourne()
         {
             //Arrange
             string url = "https://smstestbed.nist.gov/vds";
-            string resultatAttendu = "https://smstestbed.nist.gov/vds/current?path=" +
-                "//Device[@id=\"GFAgie01\"]//DataItems//DataItem[@id=\"GFAgie01-dtop_1\" or @id=\"GFAgie01-dtop_2\"]";
+            List<string> resultatAttendu = new List<string>()
+            {
+                "//Device[@id=\"GFAgie01\"]//DataItems//DataItem[@id=\"GFAgie01-dtop_1\" or @id=\"GFAgie01-dtop_2\"]",
+                "//Device[@id=\"Mazak01\"]//DataItems//DataItem[@id=\"Mazak01-dtop_1\"]"
+            };
             ITag dataItem1 = new Tag("DataItem", "GFAgie01-dtop_1");
             ITag dataItem2 = new Tag("DataItem", "GFAgie01-dtop_2");
-            ITag dataItems = new Tag("DataItems");
-            dataItems.AddChild(dataItem1);
-            dataItems.AddChild(dataItem2);
-            ITag device = new Tag("Device", "GFAgie01");
-            device.AddChild(dataItems);
+            ITag dataItem3 = new Tag("DataItem", "Mazak01-dtop_1");
+            ITag dataItems1 = new Tag("DataItems");
+            ITag dataItems2 = new Tag("DataItems");
+            ITag device1 = new Tag("Device", "GFAgie01");
+            ITag device2 = new Tag("Device", "Mazak01");
+            ITag devices = new Tag("Devices");
+            dataItems1.AddChild(dataItem1);
+            dataItems1.AddChild(dataItem2);
+            dataItems2.AddChild(dataItem3);
+            device1.AddChild(dataItems1);
+            device2.AddChild(dataItems2);
+            devices.AddChild(device1);
+            devices.AddChild(device2);
 
             //Act
-            string resultatObtenu = mtConnectClient.GenererPath(device, url, true);
+            List<string> resultatObtenu = mtConnectClient.GenererPath(devices, url, true);
 
             //Assert
-            Assert.AreEqual(resultatAttendu, resultatObtenu);
+            for(int i = 0; i <= resultatAttendu.Count; i++)
+            {
+                Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
+            }
         }
     }
 }

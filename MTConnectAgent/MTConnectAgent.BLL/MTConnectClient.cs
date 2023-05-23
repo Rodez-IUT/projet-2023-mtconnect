@@ -333,49 +333,56 @@ namespace MTConnectAgent.BLL
                 urlMachine = urlMachine.Remove(urlMachine.Length - 1);
             }
             StringBuilder urlParente = new StringBuilder();
+            urlParente.Append(urlMachine);
+            urlParente.Append("/current?path=");
             paths = new List<string>();
             if (isOrActivated)
             {
-                GenererPathAvecOr(tag, urlParente);
+                GenererPathAvecOr(tag, urlParente.ToString());
             }
             else
             {
-                GenererPathSansOr(tag, urlParente);
+                GenererPathSansOr(tag, urlParente.ToString());
             }
             return paths;
         }
-        private void GenererPathSansOr(ITag tag, StringBuilder urlParent)
+
+        private void GenererPathSansOr(ITag tag, string urlParente)
         {
-            urlParent.Append("//");
-            urlParent.Append(tag.Name);
+            StringBuilder urlCourante = new StringBuilder();
+            urlCourante.Append(urlParente);
+            urlCourante.Append("//");
+            urlCourante.Append(tag.Name);
             if (!tag.Id.Equals(""))
             {
-                urlParent.Append("[@id=\"");
-                urlParent.Append(tag.Id);
-                urlParent.Append("\"]");
+                urlCourante.Append("[@id=\"");
+                urlCourante.Append(tag.Id);
+                urlCourante.Append("\"]");
             }
             if (!tag.HasChild())
             {
-                paths.Add(urlParent.ToString());
+                paths.Add(urlCourante.ToString());
             }
             else
             {
                 foreach (ITag tagEnfant in tag.Child)
                 {
-                    GenererPathSansOr(tagEnfant, urlParent);
+                    GenererPathSansOr(tagEnfant, urlCourante.ToString());
                 }
             }
             
         }
 
-        private void GenererPathAvecOr(ITag tag, StringBuilder urlParent)
+        private void GenererPathAvecOr(ITag tag, string urlParente)
         {
-            urlParent.Append("//");
-            urlParent.Append(tag.Name);
+            StringBuilder urlCourante = new StringBuilder();
+            urlCourante.Append(urlParente.ToString());
+            urlCourante.Append("//");
+            urlCourante.Append(tag.Name);
             bool orPossible = true;
             if (!tag.HasChild())
             {
-                paths.Add(urlParent.ToString());
+                paths.Add(urlCourante.ToString());
             }
             else
             {
@@ -388,27 +395,27 @@ namespace MTConnectAgent.BLL
                 }
                 if (orPossible)
                 {
-                    urlParent.Append("[@id=");
+                    urlCourante.Append("[@id=");
                     bool isFirst = true;
                     foreach (ITag tagEnfant in tag.Child)
                     {
                         if (!isFirst)
                         {
-                            urlParent.Append(" or ");
+                            urlCourante.Append(" or ");
                         }
-                        urlParent.Append("\"");
-                        urlParent.Append(tagEnfant.Id);
-                        urlParent.Append("\"");
+                        urlCourante.Append("\"");
+                        urlCourante.Append(tagEnfant.Id);
+                        urlCourante.Append("\"");
                         isFirst = false;
                     }
-                    urlParent.Append("]");
-                    paths.Add(urlParent.ToString());
+                    urlCourante.Append("]");
+                    paths.Add(urlCourante.ToString());
                 }
                 else
                 {
                     foreach (ITag tagEnfant in tag.Child)
                     {
-                        GenererPathAvecOr(tagEnfant, urlParent);
+                        GenererPathAvecOr(tagEnfant, urlCourante.ToString());
                     }
                 }
             }
