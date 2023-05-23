@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.flowContent = new System.Windows.Forms.FlowLayoutPanel();
+            this.copyNotification = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // flowContent
@@ -44,6 +46,13 @@
             this.flowContent.TabIndex = 1;
             this.flowContent.WrapContents = false;
             // 
+            // copyNotification
+            // 
+            this.copyNotification.BalloonTipText = "test";
+            this.copyNotification.BalloonTipTitle = "MTConnect";
+            this.copyNotification.Text = "notifyIcon1";
+            this.copyNotification.Visible = true;
+            // 
             // UserControlProbeCurrent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -58,5 +67,6 @@
         #endregion
 
         private System.Windows.Forms.FlowLayoutPanel flowContent;
+        private System.Windows.Forms.NotifyIcon copyNotification;
     }
 }
