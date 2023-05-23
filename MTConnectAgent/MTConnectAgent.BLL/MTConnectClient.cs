@@ -163,7 +163,7 @@ namespace MTConnectAgent.BLL
         }
 
         /// <summary>
-        /// Création d'un tag qui posède une forme spécifique pour la génération des path
+        /// Création d'un tag qui possède une forme spécifique pour la génération des path
         /// </summary>
         /// <param name="root">Tag racine qui est le point de départ du path (Souvent un Device)</param>
         /// <param name="identifiantTagQueue">File d'id et de nom de tag</param>

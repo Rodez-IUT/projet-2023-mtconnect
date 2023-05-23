@@ -109,7 +109,7 @@ namespace MTConnectAgent
             generer.Name = "btnGenererPath";
             generer.Text = "Générer";
             generer.Anchor = AnchorStyles.None;
-            generer.Click += new EventHandler(this.GenererPaths);
+            generer.Click += new EventHandler(this.GeneratePaths);
             containerFlow.Controls.Add(generer);
 
             // Affichage du ou des PATH(S)
@@ -117,7 +117,7 @@ namespace MTConnectAgent
             resultats.Location = new Point(10, 70);
             resultats.Size = new Size(480, 120);
             resultats.View = View.List;
-
+            resultats.MouseDoubleClick += new MouseEventHandler(CopyUrl);
             container.Controls.Add(resultats);
             
         }
@@ -137,13 +137,14 @@ namespace MTConnectAgent
             return tags;
         }
 
-        private void GenererPaths(object sender, EventArgs e)
+        private void GeneratePaths(object sender, EventArgs e)
         {
             // Récupération de la liste de tags à utiliser pour générer le(s) PATH(S)
             List<ITag> tags = GetTagsList(interfaceTags);
 
             List<string> urls = new List<string>();
-            
+
+            resultats.Clear();
             if (or.Checked)
             {
                 // Génération d'un seul PATH
@@ -296,6 +297,13 @@ namespace MTConnectAgent
             MTConnectClient mtConnectClient = new MTConnectClient();
             XDocument t = mtConnectClient.getCurrentAsync(url).Result;
             return mtConnectClient.ParseXMLRecursif(t.Root);
+        }
+        
+        private void CopyUrl(object o, MouseEventArgs e)
+        {
+            ListView listView = (ListView)o;
+            Clipboard.SetText(listView.FocusedItem.Text);
+            copyNotification.ShowBalloonTip(1000, "MTConnect", "Le path a été copié dans le presse-papier.", ToolTipIcon.Info);
         }
     }
 }
