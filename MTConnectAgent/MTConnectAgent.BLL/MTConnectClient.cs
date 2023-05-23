@@ -13,7 +13,10 @@ namespace MTConnectAgent.BLL
     /// 
     /// </summary>
     public class MTConnectClient
-    {      
+    {
+
+        private List<string> paths;
+
         /// <summary>
         /// 
         /// </summary>
@@ -105,79 +108,7 @@ namespace MTConnectAgent.BLL
 
         }
 
-        /// <summary>
-        /// Initialise la génération du path récursive
-        /// </summary>
-        /// <param name="tag">Noeud racine depuis lequel nous allons générer le path</param>
-        /// <returns>Le path généré</returns>
-        public string GenererPath(ITag tag, string urlMachine, bool isOrActivated)
-        {
-            if (tag == null)
-            {
-                return "Impossible de générer le path";
-            }
-            while (urlMachine.EndsWith("/")) {
-                urlMachine.Remove(urlMachine.Length - 1);
-            }
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(urlMachine + "/current?path=");
-            stringBuilder = GenererPath(tag, stringBuilder, isOrActivated);
-            return stringBuilder.ToString();
-        }
-
-        /// <summary>
-        /// Génére un path de façon récursive
-        /// Si le tag contient une id non vide, alors elle est ajoutée en paramètre au path
-        /// </summary>
-        /// <param name="tag"></param>
-        /// <param name="stringBuilder"></param>
-        /// <returns> Le stringBuilder d'entrée auquel on à concaténé le path</returns>
-        private StringBuilder GenererPath(ITag tag, StringBuilder stringBuilder, bool isOrActivated)
-        {
-            stringBuilder.Append("//");
-            stringBuilder.Append(tag.Name);
-            if (!tag.Id.Equals(""))
-            {
-                stringBuilder.Append("[@id=\"");
-                stringBuilder.Append(tag.Id);
-                stringBuilder.Append("\"]");
-            }
-            if (tag.HasChild())
-            {
-                if (tag.Child.Count >= 2 && isOrActivated)
-                {
-                    stringBuilder = GenererPathWithOr(tag.Child[0], stringBuilder, true);
-                    for (int i = 1; i < tag.Child.Count; i++)
-                    {
-                        stringBuilder = GenererPathWithOr(tag.Child[i], stringBuilder, false);
-                    }
-                    stringBuilder.Append("]");
-                } else
-                { 
-                    stringBuilder = GenererPath(tag.Child[0], stringBuilder,isOrActivated);
-                }
-            }
-            return stringBuilder;
-        }
-
-        private StringBuilder GenererPathWithOr(ITag tag, StringBuilder stringBuilder, bool isFirst)
-        {
-            if (isFirst)
-            {
-                stringBuilder.Append("//");
-                stringBuilder.Append(tag.Name);
-                stringBuilder.Append("[");
-            }
-            else
-            {
-                stringBuilder.Append(" or ");
-            }
-            stringBuilder.Append("@id=\"");
-            stringBuilder.Append(tag.Id);
-            stringBuilder.Append("\"");
-            return stringBuilder;
-        }
-
+        
 
         /// <summary>
         /// 
@@ -317,7 +248,7 @@ namespace MTConnectAgent.BLL
                         childList.Add(result);
                     }
                 }
-                if(childList.Count >0 )
+                if (childList.Count > 0)
                 {
                     root.SetChild(childList);
                     return root;
@@ -383,6 +314,104 @@ namespace MTConnectAgent.BLL
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Initialise la génération du path récursive
+        /// </summary>
+        /// <param name="tag">Noeud racine depuis lequel nous allons générer le path</param>
+        /// <returns>Le path généré</returns>
+        public List<string> GenererPath(ITag tag, string urlMachine, bool isOrActivated)
+        {
+            if (tag == null)
+            {
+                // todo
+                //return "Impossible de générer le path";
+            }
+            while (urlMachine.EndsWith("/"))
+            {
+                urlMachine = urlMachine.Remove(urlMachine.Length - 1);
+            }
+            StringBuilder urlParente = new StringBuilder();
+            paths = new List<string>();
+            if (isOrActivated)
+            {
+                GenererPathAvecOr(tag, urlParente);
+            }
+            else
+            {
+                GenererPathSansOr(tag, urlParente);
+            }
+            return paths;
+        }
+        private void GenererPathSansOr(ITag tag, StringBuilder urlParent)
+        {
+            urlParent.Append("//");
+            urlParent.Append(tag.Name);
+            if (!tag.Id.Equals(""))
+            {
+                urlParent.Append("[@id=\"");
+                urlParent.Append(tag.Id);
+                urlParent.Append("\"]");
+            }
+            if (!tag.HasChild())
+            {
+                paths.Add(urlParent.ToString());
+            }
+            else
+            {
+                foreach (ITag tagEnfant in tag.Child)
+                {
+                    GenererPathSansOr(tagEnfant, urlParent);
+                }
+            }
+            
+        }
+
+        private void GenererPathAvecOr(ITag tag, StringBuilder urlParent)
+        {
+            urlParent.Append("//");
+            urlParent.Append(tag.Name);
+            bool orPossible = true;
+            if (!tag.HasChild())
+            {
+                paths.Add(urlParent.ToString());
+            }
+            else
+            {
+                foreach (ITag tagEnfant in tag.Child)
+                {
+                    if (tagEnfant.HasChild())
+                    {
+                        orPossible = false;
+                    }
+                }
+                if (orPossible)
+                {
+                    urlParent.Append("[@id="),
+                    bool isFirst = true;
+                    foreach (ITag tagEnfant in tag.Child)
+                    {
+                        if (!isFirst)
+                        {
+                            urlParent.Append(" or ");
+                        }
+                        urlParent.Append("\"");
+                        urlParent.Append(tagEnfant.Id);
+                        urlParent.Append("\"");
+                        isFirst = false;
+                    }
+                    urlParent.Append("]");
+                    paths.Add(urlParent.ToString());
+                }
+                else
+                {
+                    foreach (ITag tagEnfant in tag.Child)
+                    {
+                        GenererPathAvecOr(tagEnfant, urlParent);
+                    }
+                }
+            }
         }
     }
 }
