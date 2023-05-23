@@ -388,7 +388,7 @@ namespace MTConnectAgent.BLL
                 }
                 if (orPossible)
                 {
-                    urlParent.Append("[@id="),
+                    urlParent.Append("[@id=");
                     bool isFirst = true;
                     foreach (ITag tagEnfant in tag.Child)
                     {
