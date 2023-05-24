@@ -78,11 +78,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControlProbeCurrent.cs">
+    <Compile Include="UserControlDisplayTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlProbeCurrent.Designer.cs">
-      <DependentUpon>UserControlProbeCurrent.cs</DependentUpon>
+    <Compile Include="UserControlDisplayTab.Designer.cs">
+      <DependentUpon>UserControlDisplayTab.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FormAjoutMachine.resx">
       <DependentUpon>FormAjoutMachine.cs</DependentUpon>
@@ -108,8 +108,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UserControlProbeCurrent.resx">
-      <DependentUpon>UserControlProbeCurrent.cs</DependentUpon>
+    <EmbeddedResource Include="UserControlDisplayTab.resx">
+      <DependentUpon>UserControlDisplayTab.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
