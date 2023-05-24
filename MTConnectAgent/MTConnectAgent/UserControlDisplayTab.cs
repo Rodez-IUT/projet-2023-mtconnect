@@ -22,14 +22,7 @@ namespace MTConnectAgent
             path
         }
 
-        // Utilisation de l'option OR ou non
-        private CheckBox or = new CheckBox();
-
-        // Affichage des paths
-        private ListView resultats = new ListView();
-
-        // Checkboxs des items
-        private IList<CheckBox> interfaceTags = new List<CheckBox>();
+        private IList<ITag> specificTags = new List<ITag>(); 
 
         public UserControlDisplayTab(string url, functions fx)
         {
@@ -37,9 +30,7 @@ namespace MTConnectAgent
             this.fx = fx;
 
             this.Anchor = AllSideAnchor;
-            this.Location = new Point(0, 0);
             this.Name = "userControl"+fx;
-            this.Size = new Size(613, 399);
             this.TabIndex = 0;
             InitializeComponent();
             UpdateView();
@@ -50,10 +41,10 @@ namespace MTConnectAgent
             Thread threadCalcul;
             switch (this.fx)
             {
-                case functions.probe:
+                case functions.probe: // Probe
                     threadCalcul = new Thread(() => { this.tagMachine = ThreadParseProbe(this.url); });
                     break;
-                case functions.path:
+                case functions.path: // Path
                     threadCalcul = new Thread(() => { this.tagMachine = ThreadParseProbe(this.url); });
                     break;
                 default: // Default => functions.current
@@ -62,29 +53,109 @@ namespace MTConnectAgent
             }
             threadCalcul.Start();
             threadCalcul.Join();
-
-            // Génération de l'affichage des requêtes
-            Generate(tagMachine.Child, this.flowContent);
-
-            // Si la fenêtre PATH est sélectionnée, on génère également l'interface de résultat des paths
+           
             if (this.fx.Equals(functions.path))
             {
-                GeneratePathResults(this.flowContent);
+                treeAffichage.Height = this.Height - 200;
+                treeAffichage.CheckBoxes = true;
+                GeneratePathResults(this);
+            }
+            foreach (ITag tag in tagMachine.Child)
+            {
+                string compositeName = tag.Name + tag.GetHashCode();
+                TreeNode node = new TreeNode();
+                node.Name = "node" + compositeName;
+                node.Text = tag.Name;
+                node.NodeFont = boldFont;
+                node.Tag = new SimpleTag(tag.Name, tag.Id);
+
+                treeAffichage.Nodes.Add(node);
+
+                if (tag.HasChild())
+                {
+                    genV2(tag.Child, node);
+                }
             }
         }
 
         private readonly AnchorStyles TopLeftAnchor = AnchorStyles.Top | AnchorStyles.Left;
+        private readonly AnchorStyles BottomLeftAnchor = AnchorStyles.Bottom | AnchorStyles.Left;
         private readonly AnchorStyles AllSideAnchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        private readonly Font boldFont = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+
+        private void genV2(IList<ITag> tags,TreeNode root)
+        {
+            foreach (ITag tag in tags)
+            {
+                string compositeName = tag.Name + tag.GetHashCode();
+                TreeNode node = new TreeNode();
+                node.Name = "node" + compositeName;
+                node.NodeFont = boldFont;
+                node.Tag = new SimpleTag(tag.Name, tag.Id);
+
+                /* 
+                 * Prefixe de la ligne
+                 * si la balise contient l'attribut type met l'attribut type en tant que prefixe
+                 * sinon met le nom de la balise (<Devices>,...)
+                 */
+                if (!tag.Attributs.TryGetValue("type", out string prefixe))
+                {
+                    prefixe = tag.Name;
+                }
+
+                /*
+                 * Corps de la ligne
+                 * si la balise content une valeur (un contenu), l'insert dans le corps
+                 * sinon si la balise contient l'attribut name met l'attribut name dans le corps
+                 * sinon laisse la variable vide
+                 */
+                if (!tag.Attributs.TryGetValue("name", out string corps))
+                {
+                    corps = "";
+                } else
+                {
+                    // ajoute les : avant le corps pour rendre l'affiche plus user friendly
+                    corps = " : " + corps;
+                }
+                if (tag.Value != null && !tag.Value.Equals(""))
+                {
+                    corps = " : " + tag.Value;
+                }
+
+                /*
+                 * Suffixe de la ligne
+                 * si la balise possède l'attribut id, met l'attribut id dans le suffixe
+                 * sinon laisse le suffixe vide
+                 */
+                string suffixe = "";
+                if (tag.Id != null && !tag.Id.Equals(""))
+                {
+                    suffixe = " ( " + tag.Id + " ) ";
+                }
+
+                node.Text = prefixe + corps + suffixe;
+
+                root.Nodes.Add(node);
+
+                if (tag.HasChild())
+                {
+                    genV2(tag.Child, node);
+                }
+            }
+        }
 
         // Fenêtre de génération et obtention des PATHS
         private void GeneratePathResults(Control root)
         {
             GroupBox container = new GroupBox();
-            container.Anchor = TopLeftAnchor;
+            container.Anchor = BottomLeftAnchor;
+            container.Dock = DockStyle.Bottom;
             container.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-            container.Location = new Point(0, 0);
+            container.Location = new Point(0, root.Height-200);
             container.Name = "containerPath";
-            container.Size = new Size(500, 200);
+            //container.Size = new Size(500, 200);
+            container.Height = 200;
+            container.Width = root.Width;
             container.Text = "Résultat des paths";
             root.Controls.Add(container);
 
@@ -97,6 +168,7 @@ namespace MTConnectAgent
             containerFlow.AutoSize = true;
             container.Controls.Add(containerFlow);
 
+            CheckBox or = new CheckBox();
             // Utilisation de l'option OR ou non
             or.AutoSize = true;
             or.Name = "checkboxOr";
@@ -104,6 +176,7 @@ namespace MTConnectAgent
             or.Anchor = AnchorStyles.None;
             containerFlow.Controls.Add(or);
 
+            ListView resultats = new ListView();
             // Affichage du ou des PATH(S) à chaque checkbox cochée
             resultats.Name = "listResultatsPath";
             resultats.Location = new Point(10, 70);
@@ -113,166 +186,26 @@ namespace MTConnectAgent
             container.Controls.Add(resultats);
         }
 
-        // Récupère la liste des tags sélectionnés pour générer le(s) PATH(S)
-        private IList<ITag> GetTagsList(IList<CheckBox> interfaceTags)
-        {
-            IList<ITag> tags = new List<ITag>();
-            
-            foreach(CheckBox checkBox in interfaceTags)
-            {
-                if (checkBox.Checked)
-                {
-                    tags.Add((SimpleTag)checkBox.Tag);
-                }
-            }
-            return tags;
-        }
-
         // Génère le ou les PATHS 
         private void GeneratePaths(object sender, EventArgs e)
         {
             // Récupération de la liste de tags à utiliser pour générer le(s) PATH(S)
-            IList<ITag> tags = GetTagsList(interfaceTags);
+            //IList<ITag> tags = GetTagsList(interfaceTags);
 
-            resultats.Clear();
+            //resultats.Clear();
                 
-            // Génération de plusieurs PATHS
-            var instance = new MTConnectClient();
+            //// Génération de plusieurs PATHS
+            //var instance = new MTConnectClient();
 
-            foreach (ITag tag in tags)
-            {
-                string pathUrl = "";
-                Thread thread = new Thread(() => { pathUrl = ThreadGeneratePath(tag, tagMachine, url, or.Checked, instance); });
-                thread.Start();
-                thread.Join();
-                // Recherche et affichage des urls
-                resultats.Items.Add(pathUrl + "\r\n");
-            }
-        }
-
-        // Affichage du résultat de la requête Probe ou Current
-        private int Generate(IList<ITag> tags, Control root)
-        {            
-            int totalHeight = 0;
-            foreach (ITag tag in tags)
-            {
-                string compositeName = tag.Name + tag.GetHashCode();
-                if (!tag.HasAttributs() && !tag.HasChild() && tag.Value != null && tag.Value.Trim() != "")
-                {
-                    CheckBox checkBox = new CheckBox();
-                    checkBox.AutoSize = true;
-                    checkBox.Name = "nameValue" + compositeName + tag.Value;
-                    checkBox.TabIndex = 0;
-                    checkBox.Tag = new SimpleTag(tag.Name, tag.Id);
-                    checkBox.Text = tag.Name + " : " + tag.Value;
-                    root.Controls.Add(checkBox);
-
-                    interfaceTags.Add(checkBox);
-
-                    totalHeight += checkBox.Height;
-                } else
-                {
-                    int coord = 20;
-                    
-                    // Affichage pour la fenêtre PATH : checkboxs pour préparer la génération du ou des PATH(S)
-                    if (this.fx == functions.path)
-                    {
-                        CheckBox checkBox = new CheckBox();
-                        checkBox.Name = "name" + compositeName;
-                        checkBox.AutoSize = true;
-                        checkBox.Height = 10;
-                        checkBox.Text = tag.Name;
-                        checkBox.Tag = new SimpleTag(tag.Name, tag.Id);
-                        checkBox.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-                        checkBox.Width = root.Width - coord * 2;
-                        checkBox.CheckedChanged += new EventHandler(this.GeneratePaths);
-                        root.Controls.Add(checkBox);
-
-                        // Ajout à la liste de toutes les checkboxs pour la génération du ou des PATH(S)
-                        interfaceTags.Add(checkBox);
-
-                        if (tag.Value != null && tag.Value.Trim() != "")
-                        {
-                            checkBox.Text += " : " + tag.Value;
-                        }
-                    }
-                    else
-                    {
-                        // Affichage pour les fenêtres Probe et Current
-                        Label name = new Label();
-                        name.AutoSize = true;
-                        name.Name = "name" + compositeName;
-                        name.Text = tag.Name;
-                        name.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-
-                        if (tag.Value != null && tag.Value.Trim() != "")
-                        {
-                            name.Text += " : " + tag.Value;
-                        }
-                    }
-
-                    Panel container = new Panel();
-                    container.Anchor = TopLeftAnchor;
-                    container.Location = new Point(0, 0);
-                    container.Name = "container" + compositeName;
-                    container.Height = 10;
-                    container.Text = tag.Name;
-                    container.Width = root.Width - coord * 2;
-                    root.Controls.Add(container);
-                    
-                    FlowLayoutPanel containerFlow = new FlowLayoutPanel();
-                    containerFlow.Anchor = TopLeftAnchor;
-                    containerFlow.FlowDirection = FlowDirection.TopDown;
-                    containerFlow.Location = new Point(coord, 0);
-                    containerFlow.Name = "containerFlow" + compositeName;
-                    containerFlow.AutoSize = true;
-                    containerFlow.Width = container.Width;
-                    container.Controls.Add(containerFlow);
-                    
-                    if (tag.HasAttributs())
-                    {
-                        TableLayoutPanel attributTable = new TableLayoutPanel();
-                        attributTable.ColumnCount = 2;
-                        attributTable.Location = new Point(0, 0);
-                        attributTable.Name = "attributTable" + compositeName;
-                        attributTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-                        attributTable.AutoSize = true;
-                        containerFlow.Controls.Add(attributTable);
-                        
-                        foreach (KeyValuePair<string, string> attribut in tag.Attributs)
-                        {
-                            int currentRow = attributTable.RowCount;
-                            attributTable.RowCount += 1;
-
-                            Label attributKey = new Label();
-                            attributKey.AutoSize = true;
-                            attributKey.Name = "attributKey" + compositeName + attribut.Key;
-                            attributKey.TabIndex = 0;
-                            attributKey.Text = attribut.Key;
-                            attributTable.Controls.Add(attributKey, 0, currentRow);
-
-                            Label attributValue = new Label();
-                            attributValue.AutoSize = true;
-                            attributValue.Name = "attributValue" + compositeName + attribut.Value;
-                            attributValue.TabIndex = 0;
-                            attributValue.Text = attribut.Value;
-                            attributTable.Controls.Add(attributValue, 1, currentRow);
-                        }
-
-                        container.Height += attributTable.Height;
-                    }
-
-                    if (tag.HasChild())
-                    {
-                        container.Height += Generate(tag.Child, containerFlow) + 10;
-                    }
-
-                    containerFlow.Height = container.Height;
-                    totalHeight += container.Height;
-                }
-            }
-
-            return totalHeight;
+            //foreach (ITag tag in tags)
+            //{
+            //    string pathUrl = "";
+            //    Thread thread = new Thread(() => { pathUrl = ThreadGeneratePath(tag, tagMachine, url, or.Checked, instance); });
+            //    thread.Start();
+            //    thread.Join();
+            //    // Recherche et affichage des urls
+            //    resultats.Items.Add(pathUrl + "\r\n");
+            //}
         }
 
         private static ITag ThreadParseProbe(string url)
@@ -312,6 +245,46 @@ namespace MTConnectAgent
             ListView listView = (ListView)o;
             Clipboard.SetText(listView.FocusedItem.Text);
             copyNotification.ShowBalloonTip(1000, "MTConnect", "Le path a été copié dans le presse-papier.", ToolTipIcon.Info);
+        }
+
+        private ITag ParseFullPath(string path)
+        {
+            string[] splitPath = path.Split('\\');
+            IList<string> returnedList = new List<string>();
+            Queue<string> queue = new Queue<string>();
+
+            foreach (string todoRenommer in splitPath)
+            {
+                string todoRenommer2 = todoRenommer.Trim();
+                if (todoRenommer.Contains(":"))
+                {
+                    string[] todoRenommer3 = todoRenommer.Trim().Split(':');
+                    todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
+                    todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
+                }
+
+                if (todoRenommer.Trim().EndsWith(")"))
+                {
+                    string[] todoRenommer3 = todoRenommer.Trim().Split('(');
+                    todoRenommer2 = todoRenommer3[todoRenommer3.Length-1];
+                    todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
+                }
+
+                returnedList.Add(todoRenommer2);
+                queue.Enqueue(todoRenommer2);
+            }
+
+            MTConnectClient instance = new MTConnectClient();
+
+            return instance.CreateSpecifiqueTag(tagMachine, queue);
+        }
+
+        private void treeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            //MTConnectClient instance = new MTConnectClient();
+
+            specificTags.Add(ParseFullPath(e.Node.FullPath));
+            //instance.GenererPath(aRechercher, url, or);
         }
     }
 }
