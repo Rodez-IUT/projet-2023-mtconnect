@@ -27,13 +27,18 @@ namespace ConsoleApp1
             idTagQueue.Enqueue("avail");
             idTagQueue.Enqueue("functionalmode");
 
-            ITag tag = mTConnectClient.CreateSpecifiqueTagOR(root, idTagQueue);
+            ITag tag = mTConnectClient.CreateSpecifiqueTag(root, idTagQueue);
 
             Program.AfficherTag(tag, "");
 
             Console.WriteLine("----------------------------------------");
 
-            Console.WriteLine(mTConnectClient.GenererPath(tag, "http://mtconnect.mazakcorp.com:5701", true));
+            List<string> paths = mTConnectClient.GenererPath(tag, "http://mtconnect.mazakcorp.com:5701", true);
+
+            foreach (string path in paths)
+            {
+                Console.WriteLine(path);
+            }
 
             Console.WriteLine("----------------------------------------\n");
 
@@ -48,9 +53,12 @@ namespace ConsoleApp1
 
             Console.WriteLine("----------------------------------------");
 
-            string path = mTConnectClient.GenererPath(tag, "http://mtconnect.mazakcorp.com:5701", false);
+            paths = mTConnectClient.GenererPath(tag, "http://mtconnect.mazakcorp.com:5701", false);
 
-            Console.WriteLine(path);
+            foreach (string path in paths)
+            {
+                Console.WriteLine(path);
+            }
 
             while (true)
             {
