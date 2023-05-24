@@ -166,52 +166,6 @@ namespace MTConnectAgent.BLL
         /// Création d'un tag qui posède une forme spécifique pour la génération des path
         /// </summary>
         /// <param name="root">Tag racine qui est le point de départ du path (Souvent un Device)</param>
-        /// <param name="identifiantTagQueue">File d'id et de name de tag, id peut avoir la valeur "" pour représenter l'absence d'id pour un tag</param>
-        /// <returns></returns>
-        //public ITag CreateSpecifiqueTag(ITag root, Queue<string> identifiantTagQueue)
-        //{
-        //    if (root == null)
-        //    {
-        //        return null;
-        //    }
-        //    if (identifiantTagQueue.Count > 0)
-        //    {
-        //        if (!identifiantTagQueue.Peek().Equals("") && (root.Id.Equals(identifiantTagQueue.Peek()) || root.Name.Equals(identifiantTagQueue.Peek())))
-        //        {
-        //            identifiantTagQueue.Dequeue();
-        //            foreach (ITag tagChild in root.Child)
-        //            {
-        //                var result = CreateSpecifiqueTag(tagChild, identifiantTagQueue);
-        //                if (result != null)
-        //                {
-        //                    root.ClearChild();
-        //                    root.AddChild(result);
-        //                    return root;
-        //                }
-        //            }
-
-        //            root.ClearChild();
-        //            return root;
-        //        }
-
-        //        foreach (ITag tagChild in root.Child)
-        //        {
-        //            var result = CreateSpecifiqueTag(tagChild, identifiantTagQueue);
-        //            if (result != null)
-        //            {
-        //                root.ClearChild();
-        //                root.AddChild(result);
-        //                return root;
-        //            }
-        //        }
-        //    }
-        //    return null;
-        //}
-
-        /// <summary>
-        /// Création d'un tag qui posède une forme spécifique pour la génération des path
-        /// </summary>
-        /// <param name="root">Tag racine qui est le point de départ du path (Souvent un Device)</param>
         /// <param name="identifiantTagQueue">File d'id et de nom de tag</param>
         /// <returns></returns>
         public ITag CreateSpecifiqueTag(ITag root, Queue<string> identifiantTagQueue)
