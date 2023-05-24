@@ -317,16 +317,15 @@ namespace MTConnectAgent.BLL
         }
 
         /// <summary>
-        /// Initialise la génération du path récursive
+        /// Initialise et lance la génération des paths
         /// </summary>
-        /// <param name="tag">Noeud racine depuis lequel nous allons générer le path</param>
-        /// <returns>Le path généré</returns>
+        /// <param name="tag">Noeud racine depuis lequel nous allons générer le path, doit venir de la méthode CreateSpecifiqueTag</param>
+        /// <returns>La liste des paths générés</returns>
         public List<string> GenererPath(ITag tag, string urlMachine, bool isOrActivated)
         {
             if (tag == null)
             {
-                // todo
-                //return "Impossible de générer le path";
+                throw new ArgumentNullException("tag", "Le tag ne peut pas être null");
             }
             while (urlMachine.EndsWith("/"))
             {
@@ -347,18 +346,26 @@ namespace MTConnectAgent.BLL
             return paths;
         }
 
+        /// <summary>
+        /// Génére les paths de façon récursive si l'option or est désactivée
+        /// </summary>
+        /// <param name="tag">Le tag courant de la génération du path courant</param>
+        /// <param name="urlParente">Url courante de la génération du path courant</param>
         private void GenererPathSansOr(ITag tag, string urlParente)
         {
             StringBuilder urlCourante = new StringBuilder();
+            // Ajout du nom du tag au path courant
             urlCourante.Append(urlParente);
             urlCourante.Append("//");
             urlCourante.Append(tag.Name);
+            // Ajout de l'id s'il existe
             if (!tag.Id.Equals(""))
             {
                 urlCourante.Append("[@id=\"");
                 urlCourante.Append(tag.Id);
                 urlCourante.Append("\"]");
             }
+            // Si il n'y a pas d'enfant on ajoute la path courant à la liste des paths
             if (!tag.HasChild())
             {
                 paths.Add(urlCourante.ToString());
@@ -373,34 +380,44 @@ namespace MTConnectAgent.BLL
             
         }
 
+        /// <summary>
+        /// Génére les paths de façon récursive si l'option or est activée
+        /// </summary>
+        /// <param name="tag">Le tag courant de la génération du path courant</param>
+        /// <param name="urlParente">Url courante de la génération du path courant</param>
         private void GenererPathAvecOr(ITag tag, string urlParente)
         {
             StringBuilder urlCourante = new StringBuilder();
+            // Ajout du nom du tag au path courant
             urlCourante.Append(urlParente.ToString());
             urlCourante.Append("//");
             urlCourante.Append(tag.Name);
             bool orPossible = true;
+            // Ajout de l'id s'il existe
             if (!tag.Id.Equals(""))
             {
                 urlCourante.Append("[@id=\"");
                 urlCourante.Append(tag.Id);
                 urlCourante.Append("\"]");
             }
+            // Si il n'y a pas d'enfant, on ajout le path
             if (!tag.HasChild())
             {
                 paths.Add(urlCourante.ToString());
             }
             else
             {
+                // On vérifie si l'utilisation du or est possible
                 foreach (ITag tagEnfant in tag.Child)
                 {
-                    if (tagEnfant.HasChild())
+                    if (tagEnfant.HasChild() || tagEnfant.Id.Equals(""))
                     {
                         orPossible = false;
                     }
                 }
                 if (orPossible)
                 {
+                    // On ajoute toute les id au même path
                     urlCourante.Append("//");
                     urlCourante.Append(tag.Child[0].Name);
                     urlCourante.Append("[@id=");
@@ -420,7 +437,7 @@ namespace MTConnectAgent.BLL
                     paths.Add(urlCourante.ToString());
                 }
                 else
-                {
+                { 
                     foreach (ITag tagEnfant in tag.Child)
                     {
                         GenererPathAvecOr(tagEnfant, urlCourante.ToString());
