@@ -186,7 +186,7 @@ namespace MTConnectAgent.BLL.Tests
             List<string> resultatObtenu = mtConnectClient.GenererPath(devices, url, false);
 
             //Assert
-            for (int i = 0; i <= resultatAttendu.Count; i++)
+            for (int i = 0; i < resultatAttendu.Count; i++)
             {
                 Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
             }
@@ -199,8 +199,8 @@ namespace MTConnectAgent.BLL.Tests
             string url = "https://smstestbed.nist.gov/vds";
             List<string> resultatAttendu = new List<string>()
             {
-                "//Device[@id=\"GFAgie01\"]//DataItems//DataItem[@id=\"GFAgie01-dtop_1\" or @id=\"GFAgie01-dtop_2\"]",
-                "//Device[@id=\"Mazak01\"]//DataItems//DataItem[@id=\"Mazak01-dtop_1\"]"
+                "https://smstestbed.nist.gov/vds/current?path=//Devices//Device[@id=\"GFAgie01\"]//DataItems//DataItem[@id=\"GFAgie01-dtop_1\" or @id=\"GFAgie01-dtop_2\"]",
+                "https://smstestbed.nist.gov/vds/current?path=//Devices//Device[@id=\"Mazak01\"]//DataItems//DataItem[@id=\"Mazak01-dtop_1\"]"
             };
             ITag dataItem1 = new Tag("DataItem", "GFAgie01-dtop_1");
             ITag dataItem2 = new Tag("DataItem", "GFAgie01-dtop_2");
@@ -222,7 +222,28 @@ namespace MTConnectAgent.BLL.Tests
             List<string> resultatObtenu = mtConnectClient.GenererPath(devices, url, true);
 
             //Assert
-            for(int i = 0; i <= resultatAttendu.Count; i++)
+            for(int i = 0; i < resultatAttendu.Count; i++)
+            {
+                Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
+            }
+        }
+
+        [TestMethod]
+        public void SiPremierTagDemandeAlorsListeStringRetourne()
+        {
+            //Arrange
+            string url = "https://smstestbed.nist.gov/vds";
+            List<string> resultatAttendu = new List<string>()
+            {
+                "https://smstestbed.nist.gov/vds/current?path=//Device[@id=\"GFAgie01\"]"
+            };
+            ITag device = new Tag("Device", "GFAgie01");
+
+            //Act
+            List<string> resultatObtenu = mtConnectClient.GenererPath(device, url, true);
+
+            //Assert
+            for (int i = 0; i < resultatAttendu.Count; i++)
             {
                 Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
             }
