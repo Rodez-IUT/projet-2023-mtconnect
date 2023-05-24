@@ -22,12 +22,13 @@ namespace MTConnectAgent
             path
         }
 
+        // Utilisation de l'option OR ou non
         private CheckBox or = new CheckBox();
 
-        private IList<string> paths = new List<string>();
-
+        // Affichage des paths
         private ListView resultats = new ListView();
 
+        // Checkboxs des items
         private IList<CheckBox> interfaceTags = new List<CheckBox>();
 
         public UserControlProbeCurrent(string url, functions fx)
@@ -103,14 +104,6 @@ namespace MTConnectAgent
             or.Anchor = AnchorStyles.None;
             containerFlow.Controls.Add(or);
 
-            // Lancement de la génération du ou des PATH(S)
-            //Button generer = new Button();
-            //generer.Name = "btnGenererPath";
-            //generer.Text = "Générer";
-            //generer.Anchor = AnchorStyles.None;
-            //generer.Click += new EventHandler(this.GeneratePaths);
-            //containerFlow.Controls.Add(generer);
-
             // Affichage du ou des PATH(S) à chaque checkbox cochée
             resultats.Name = "listResultatsPath";
             resultats.Location = new Point(10, 70);
@@ -118,7 +111,6 @@ namespace MTConnectAgent
             resultats.View = View.List;
             resultats.MouseDoubleClick += new MouseEventHandler(CopyUrl);
             container.Controls.Add(resultats);
-            
         }
 
         // Récupère la liste des tags sélectionnés pour générer le(s) PATH(S)
