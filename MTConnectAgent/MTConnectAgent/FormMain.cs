@@ -16,6 +16,10 @@ namespace MTConnectAgent
     {
         private List<Client> clients;
 
+        private int tabIndex = 0;
+
+        private Machine selectedMachine;
+
         public FormMain()
         {
             InitializeComponent();
@@ -211,19 +215,47 @@ namespace MTConnectAgent
         {
             if (e.Node.Parent != null)
             {
-                Machine selectedMachine = (Machine)e.Node.Tag;
+                selectedMachine = (Machine)e.Node.Tag;
 
-                UserControlProbeCurrent userCtrlProbe = new UserControlProbeCurrent(selectedMachine.Url, UserControlProbeCurrent.functions.probe);
-                this.tabProbe.Controls.Clear();
-                this.tabProbe.Controls.Add(userCtrlProbe);
+                displayTab();
+            }
+        }
 
-                UserControlProbeCurrent userCtrlCurrent = new UserControlProbeCurrent(selectedMachine.Url, UserControlProbeCurrent.functions.current);
-                this.tabCurrent.Controls.Clear();
-                this.tabCurrent.Controls.Add(userCtrlCurrent);
+        private void tabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tabIndex = ((TabControl)sender).SelectedIndex;
 
-                UserControlProbeCurrent userCtrlPath = new UserControlProbeCurrent(selectedMachine.Url, UserControlProbeCurrent.functions.path);
-                this.tabPath.Controls.Clear();
-                this.tabPath.Controls.Add(userCtrlPath);
+            displayTab();
+        }
+
+        private void displayTab()
+        {
+            if (selectedMachine == null)
+            {
+                return;  // early return pour bloquer l'affichage si aucune machine sélectionnée
+            }
+
+            this.tabCurrent.Controls.Clear();
+            this.tabProbe.Controls.Clear();
+            this.tabPath.Controls.Clear();
+
+            switch (tabIndex)
+            {
+                case 1: // Current tab
+                    UserControlDisplayTab userCtrlCurrent = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.functions.current);
+                    this.tabCurrent.Controls.Add(userCtrlCurrent);
+                    break;
+
+                case 2: // Path tab
+                    UserControlDisplayTab userCtrlPath = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.functions.path);
+                    this.tabPath.Controls.Add(userCtrlPath);
+                    break;
+                   
+                case 0: // Probe tab
+                default:
+                    UserControlDisplayTab userCtrlProbe = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.functions.probe);
+                    this.tabProbe.Controls.Add(userCtrlProbe);
+                    break;
             }
         }
     }
