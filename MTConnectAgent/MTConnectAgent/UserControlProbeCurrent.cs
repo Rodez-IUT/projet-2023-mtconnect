@@ -6,6 +6,7 @@ using MTConnectAgent.BLL;
 using System.Xml.Linq;
 using System.Threading;
 using System;
+using static System.Windows.Forms.ListView;
 
 namespace MTConnectAgent
 {
@@ -23,12 +24,11 @@ namespace MTConnectAgent
 
         private CheckBox or = new CheckBox();
 
-        private List<string> paths = new List<string>();
+        private IList<string> paths = new List<string>();
 
         private ListView resultats = new ListView();
-        //private TextBox resultats = new TextBox();
 
-        private Dictionary<CheckBox, ITag> interfaceTags = new Dictionary<CheckBox, ITag>();
+        private IList<CheckBox> interfaceTags = new List<CheckBox>();
 
         public UserControlProbeCurrent(string url, functions fx)
         {
@@ -50,7 +50,6 @@ namespace MTConnectAgent
             switch (this.fx)
             {
                 case functions.probe:
-                
                     threadCalcul = new Thread(() => { this.tagMachine = ThreadParseProbe(this.url); });
                     break;
                 case functions.path:
@@ -105,14 +104,14 @@ namespace MTConnectAgent
             containerFlow.Controls.Add(or);
 
             // Lancement de la génération du ou des PATH(S)
-            Button generer = new Button();
-            generer.Name = "btnGenererPath";
-            generer.Text = "Générer";
-            generer.Anchor = AnchorStyles.None;
-            generer.Click += new EventHandler(this.GeneratePaths);
-            containerFlow.Controls.Add(generer);
+            //Button generer = new Button();
+            //generer.Name = "btnGenererPath";
+            //generer.Text = "Générer";
+            //generer.Anchor = AnchorStyles.None;
+            //generer.Click += new EventHandler(this.GeneratePaths);
+            //containerFlow.Controls.Add(generer);
 
-            // Affichage du ou des PATH(S)
+            // Affichage du ou des PATH(S) à chaque checkbox cochée
             resultats.Name = "listResultatsPath";
             resultats.Location = new Point(10, 70);
             resultats.Size = new Size(480, 120);
@@ -123,45 +122,39 @@ namespace MTConnectAgent
         }
 
         // Récupère la liste des tags sélectionnés pour générer le(s) PATH(S)
-        private List<ITag> GetTagsList(Dictionary<CheckBox, ITag> interfaceTags)
+        private IList<ITag> GetTagsList(IList<CheckBox> interfaceTags)
         {
-            List<ITag> tags = new List<ITag>();
+            IList<ITag> tags = new List<ITag>();
             
-            foreach(CheckBox checkBox in interfaceTags.Keys)
+            foreach(CheckBox checkBox in interfaceTags)
             {
                 if (checkBox.Checked)
                 {
-                    tags.Add(interfaceTags[checkBox]);
+                    tags.Add((SimpleTag)checkBox.Tag);
                 }
             }
             return tags;
         }
 
+        // Génère le ou les PATHS 
         private void GeneratePaths(object sender, EventArgs e)
         {
             // Récupération de la liste de tags à utiliser pour générer le(s) PATH(S)
-            List<ITag> tags = GetTagsList(interfaceTags);
-
-            List<string> urls = new List<string>();
+            IList<ITag> tags = GetTagsList(interfaceTags);
 
             resultats.Clear();
-            if (or.Checked)
-            {
-                // Génération d'un seul PATH
-                // utiliser genererPath pour OR
+                
+            // Génération de plusieurs PATHS
+            var instance = new MTConnectClient();
 
-            }
-            else
+            foreach (ITag tag in tags)
             {
-                foreach (ITag tag in tags)
-                {
-                    // Génération de plusieurs PATHS
-                    var instance = new MTConnectClient();
-
-                    // Affichage des urls 
-                    //resultats.AppendText(instance.GenererPath(tag, url) + "\r\n"); // => avec le textbox
-                    resultats.Items.Add(instance.GenererPath(tag, url) + "\r\n");
-                }
+                string pathUrl = "";
+                Thread thread = new Thread(() => { pathUrl = ThreadGeneratePath(tag, tagMachine, url, or.Checked, instance); });
+                thread.Start();
+                thread.Join();
+                // Recherche et affichage des urls
+                resultats.Items.Add(pathUrl + "\r\n");
             }
         }
 
@@ -178,8 +171,11 @@ namespace MTConnectAgent
                     checkBox.AutoSize = true;
                     checkBox.Name = "nameValue" + compositeName + tag.Value;
                     checkBox.TabIndex = 0;
+                    checkBox.Tag = new SimpleTag(tag.Name, tag.Id);
                     checkBox.Text = tag.Name + " : " + tag.Value;
                     root.Controls.Add(checkBox);
+
+                    interfaceTags.Add(checkBox);
 
                     totalHeight += checkBox.Height;
                 } else
@@ -194,12 +190,14 @@ namespace MTConnectAgent
                         checkBox.AutoSize = true;
                         checkBox.Height = 10;
                         checkBox.Text = tag.Name;
+                        checkBox.Tag = new SimpleTag(tag.Name, tag.Id);
                         checkBox.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
                         checkBox.Width = root.Width - coord * 2;
+                        checkBox.CheckedChanged += new EventHandler(this.GeneratePaths);
                         root.Controls.Add(checkBox);
 
                         // Ajout à la liste de toutes les checkboxs pour la génération du ou des PATH(S)
-                        interfaceTags.Add(checkBox, tag);
+                        interfaceTags.Add(checkBox);
 
                         if (tag.Value != null && tag.Value.Trim() != "")
                         {
@@ -298,7 +296,25 @@ namespace MTConnectAgent
             XDocument t = mtConnectClient.getCurrentAsync(url).Result;
             return mtConnectClient.ParseXMLRecursif(t.Root);
         }
-        
+
+        private static string ThreadGeneratePath(ITag tag, ITag tagMachine, string url, bool or, MTConnectClient instance)
+        {
+
+            Queue<string> queue = new Queue<string>();
+            if (tag.Id != null && tag.Id != "")
+            {
+                queue.Enqueue(tag.Id);
+            }
+            else
+            {
+                queue.Enqueue(tag.Name);
+            }
+
+            ITag aRechercher = instance.CreateSpecifiqueTag(tagMachine, queue);
+
+            return instance.GenererPath(aRechercher, url, or);
+        }
+
         private void CopyUrl(object o, MouseEventArgs e)
         {
             ListView listView = (ListView)o;

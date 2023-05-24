@@ -45,6 +45,7 @@
     <Compile Include="ITag.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleTag.cs" />
     <Compile Include="Tag.cs" />
   </ItemGroup>
   <ItemGroup>
