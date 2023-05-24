@@ -183,7 +183,6 @@ namespace MTConnectAgent
             resultats.View = View.List;
             resultats.MouseDoubleClick += new MouseEventHandler(CopyUrl);
             container.Controls.Add(resultats);
-            
         }
 
         // Génère le ou les PATHS 
