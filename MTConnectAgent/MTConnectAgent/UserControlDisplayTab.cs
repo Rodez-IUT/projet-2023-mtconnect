@@ -37,9 +37,7 @@ namespace MTConnectAgent
             this.fx = fx;
 
             this.Anchor = AllSideAnchor;
-            this.Location = new Point(0, 0);
             this.Name = "userControl"+fx;
-            this.Size = new Size(613, 399);
             this.TabIndex = 0;
             InitializeComponent();
             UpdateView();
@@ -193,7 +191,6 @@ namespace MTConnectAgent
             resultats.View = View.List;
             resultats.MouseDoubleClick += new MouseEventHandler(CopyUrl);
             container.Controls.Add(resultats);
-            
         }
 
         // Génère le ou les PATHS 
