@@ -10,7 +10,7 @@ using static System.Windows.Forms.ListView;
 
 namespace MTConnectAgent
 {
-    public partial class UserControlProbeCurrent : UserControl
+    public partial class UserControlDisplayTab : UserControl
     {
         private ITag tagMachine;
         private string url;
@@ -31,7 +31,7 @@ namespace MTConnectAgent
         // Checkboxs des items
         private IList<CheckBox> interfaceTags = new List<CheckBox>();
 
-        public UserControlProbeCurrent(string url, functions fx)
+        public UserControlDisplayTab(string url, functions fx)
         {
             this.url = url;
             this.fx = fx;
