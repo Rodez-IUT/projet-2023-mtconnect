@@ -81,6 +81,7 @@
             this.tabs.SelectedIndex = 0;
             this.tabs.Size = new System.Drawing.Size(621, 425);
             this.tabs.TabIndex = 3;
+            this.tabs.SelectedIndexChanged += new System.EventHandler(this.tabs_SelectedIndexChanged);
             // 
             // tabProbe
             // 
@@ -137,7 +138,7 @@
         private System.Windows.Forms.Button buttonAjouterMachine;
         private System.Windows.Forms.TabPage tabProbe;
         private System.Windows.Forms.TabPage tabCurrent;
-        private UserControlProbeCurrent userControlProbe1;
+        private UserControlDisplayTab userControlProbe1;
         private System.Windows.Forms.TabControl tabs;
         private System.Windows.Forms.TabPage tabPath;
     }
