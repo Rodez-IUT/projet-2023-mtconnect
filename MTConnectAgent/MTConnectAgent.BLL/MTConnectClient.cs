@@ -108,7 +108,79 @@ namespace MTConnectAgent.BLL
 
         }
 
-        
+        /// <summary>
+        /// Initialise la génération du path récursive
+        /// </summary>
+        /// <param name="tag">Noeud racine depuis lequel nous allons générer le path</param>
+        /// <returns>Le path généré</returns>
+        public string GenererPath(ITag tag, string urlMachine, bool isOrActivated)
+        {
+            if (tag == null)
+            {
+                return "Impossible de générer le path";
+            }
+            while (urlMachine.EndsWith("/")) {
+                urlMachine = urlMachine.Remove(urlMachine.Length - 1);
+            }
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(urlMachine + "/current?path=");
+            stringBuilder = GenererPath(tag, stringBuilder, isOrActivated);
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Génére un path de façon récursive
+        /// Si le tag contient une id non vide, alors elle est ajoutée en paramètre au path
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="stringBuilder"></param>
+        /// <returns> Le stringBuilder d'entrée auquel on à concaténé le path</returns>
+        private StringBuilder GenererPath(ITag tag, StringBuilder stringBuilder, bool isOrActivated)
+        {
+            stringBuilder.Append("//");
+            stringBuilder.Append(tag.Name);
+            if (!tag.Id.Equals(""))
+            {
+                stringBuilder.Append("[@id=\"");
+                stringBuilder.Append(tag.Id);
+                stringBuilder.Append("\"]");
+            }
+            if (tag.HasChild())
+            {
+                if (tag.Child.Count >= 2 && isOrActivated)
+                {
+                    stringBuilder = GenererPathWithOr(tag.Child[0], stringBuilder, true);
+                    for (int i = 1; i < tag.Child.Count; i++)
+                    {
+                        stringBuilder = GenererPathWithOr(tag.Child[i], stringBuilder, false);
+                    }
+                    stringBuilder.Append("]");
+                } else
+                { 
+                    stringBuilder = GenererPath(tag.Child[0], stringBuilder,isOrActivated);
+                }
+            }
+            return stringBuilder;
+        }
+
+        private StringBuilder GenererPathWithOr(ITag tag, StringBuilder stringBuilder, bool isFirst)
+        {
+            if (isFirst)
+            {
+                stringBuilder.Append("//");
+                stringBuilder.Append(tag.Name);
+                stringBuilder.Append("[");
+            }
+            else
+            {
+                stringBuilder.Append(" or ");
+            }
+            stringBuilder.Append("@id=\"");
+            stringBuilder.Append(tag.Id);
+            stringBuilder.Append("\"");
+            return stringBuilder;
+        }
+
 
         /// <summary>
         /// 
