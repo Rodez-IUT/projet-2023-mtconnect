@@ -380,6 +380,12 @@ namespace MTConnectAgent.BLL
             urlCourante.Append("//");
             urlCourante.Append(tag.Name);
             bool orPossible = true;
+            if (!tag.Id.Equals(""))
+            {
+                urlCourante.Append("[@id=\"");
+                urlCourante.Append(tag.Id);
+                urlCourante.Append("\"]");
+            }
             if (!tag.HasChild())
             {
                 paths.Add(urlCourante.ToString());
@@ -395,13 +401,15 @@ namespace MTConnectAgent.BLL
                 }
                 if (orPossible)
                 {
+                    urlCourante.Append("//");
+                    urlCourante.Append(tag.Child[0].Name);
                     urlCourante.Append("[@id=");
                     bool isFirst = true;
                     foreach (ITag tagEnfant in tag.Child)
                     {
                         if (!isFirst)
                         {
-                            urlCourante.Append(" or ");
+                            urlCourante.Append(" or @id=");
                         }
                         urlCourante.Append("\"");
                         urlCourante.Append(tagEnfant.Id);
