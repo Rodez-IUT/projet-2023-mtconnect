@@ -78,6 +78,7 @@
             this.tabs.Controls.Add(this.tabPath);
             this.tabs.Location = new System.Drawing.Point(167, 13);
             this.tabs.Name = "tabs";
+            this.tabs.Padding = new System.Drawing.Point(3, 3);
             this.tabs.SelectedIndex = 0;
             this.tabs.Size = new System.Drawing.Size(621, 425);
             this.tabs.TabIndex = 3;

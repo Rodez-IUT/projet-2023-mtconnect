@@ -244,17 +244,23 @@ namespace MTConnectAgent
                 case 1: // Current tab
                     UserControlDisplayTab userCtrlCurrent = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.functions.current);
                     this.tabCurrent.Controls.Add(userCtrlCurrent);
+                    userCtrlCurrent.Width = tabCurrent.Width;
+                    userCtrlCurrent.Height = tabCurrent.Height;
                     break;
 
                 case 2: // Path tab
                     UserControlDisplayTab userCtrlPath = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.functions.path);
                     this.tabPath.Controls.Add(userCtrlPath);
+                    userCtrlPath.Width = tabPath.Width;
+                    userCtrlPath.Height = tabPath.Height;
                     break;
                    
                 case 0: // Probe tab
                 default:
                     UserControlDisplayTab userCtrlProbe = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.functions.probe);
                     this.tabProbe.Controls.Add(userCtrlProbe);
+                    userCtrlProbe.Width = tabProbe.Width;
+                    userCtrlProbe.Height = tabProbe.Height;
                     break;
             }
         }
