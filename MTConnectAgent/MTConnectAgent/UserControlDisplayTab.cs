@@ -22,6 +22,14 @@ namespace MTConnectAgent
         }
 
         private IList<ITag> specificTags = new List<ITag>(); 
+        // Utilisation de l'option OR ou non
+        private CheckBox or = new CheckBox();
+
+        // Affichage des paths
+        private ListView resultats = new ListView();
+
+        // Checkboxs des items
+        private IList<CheckBox> interfaceTags = new List<CheckBox>();
 
         public UserControlDisplayTab(string url, functions fx)
         {
@@ -29,7 +37,9 @@ namespace MTConnectAgent
             this.fx = fx;
 
             this.Anchor = AllSideAnchor;
+            this.Location = new Point(0, 0);
             this.Name = "userControl"+fx;
+            this.Size = new Size(613, 399);
             this.TabIndex = 0;
             InitializeComponent();
             UpdateView();
