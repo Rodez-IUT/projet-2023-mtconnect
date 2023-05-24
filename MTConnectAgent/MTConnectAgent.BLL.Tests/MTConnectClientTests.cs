@@ -248,5 +248,49 @@ namespace MTConnectAgent.BLL.Tests
                 Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
             }
         }
+
+        [TestMethod]
+        public void SiTagAvantOrPossiblePossedeIdAlorsListeStringGeneree()
+        {
+            //Arrange
+            string url = "https://smstestbed.nist.gov/vds";
+            List<string> resultatAttendu = new List<string>()
+            {
+                "https://smstestbed.nist.gov/vds/current?path=//Devices[@id=\"test\"]//Device[@id=\"GFAgie01\"]"
+            };
+            ITag device = new Tag("Device", "GFAgie01");
+            ITag devices = new Tag("Devices", "test");
+            devices.AddChild(device);
+
+            //Act
+            List<string> resultatObtenu = mtConnectClient.GenererPath(devices, url, true);
+
+            //Assert
+            for (int i = 0; i < resultatAttendu.Count; i++)
+            {
+                Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
+            }
+        }
+
+        [TestMethod]
+        public void SiOrActifMaisIdVideAlorsOrEstInactif()
+        {
+            //Arrange
+            string url = "https://smstestbed.nist.gov/vds";
+            List<string> resultatAttendu = new List<string>()
+            {
+                "https://smstestbed.nist.gov/vds/current?path=//DataItems"
+            };
+            ITag dataItems = new Tag("DataItems");
+
+            //Act
+            List<string> resultatObtenu = mtConnectClient.GenererPath(dataItems, url, true);
+
+            //Assert
+            for (int i = 0; i < resultatAttendu.Count; i++)
+            {
+                Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
+            }
+        }
     }
 }
