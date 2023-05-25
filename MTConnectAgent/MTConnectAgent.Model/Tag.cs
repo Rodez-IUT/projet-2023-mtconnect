@@ -112,5 +112,21 @@ namespace MTConnectAgent.Model
         {
             this.Child = child;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Tag tag &&
+                   ( GetHashCode() == tag.GetHashCode() ||
+                   (Name == tag.Name &&
+                   Id == tag.Id));
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 1460282102;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Id);
+            return hashCode;
+        }
     }
 }
