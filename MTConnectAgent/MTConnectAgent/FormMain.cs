@@ -36,8 +36,6 @@ namespace MTConnectAgent
                 treeViewClientMachine.Nodes.Add(clients[i].Name);
                 foreach (Machine machine in clients[i].Machines)
                 {
-
-
                     ContextMenuStrip treeViewMachineContext = new ContextMenuStrip();
 
                     ToolStripMenuItem modifyMachineLabel = new ToolStripMenuItem("Modifier", null, modifyMachineLabel_Click);
@@ -49,8 +47,7 @@ namespace MTConnectAgent
                     };
                     modifyMachineLabel.Tag = tags;
                     deleteMachineLabel.Tag = tags;
-
-
+                    
                     TreeNode noeudMachine = new TreeNode(machine.Name);
                     noeudMachine.Tag = machine;
 
@@ -60,8 +57,7 @@ namespace MTConnectAgent
 
                     treeViewClientMachine.Nodes[i].Nodes.Add(noeudMachine);
                 }
-
-
+                
                 ContextMenuStrip treeViewClientContext = new ContextMenuStrip();
 
                 ToolStripMenuItem modifyClientLabel = new ToolStripMenuItem("Modifier", null, modifyClientLabel_Click);
@@ -261,6 +257,44 @@ namespace MTConnectAgent
                     this.tabProbe.Controls.Add(userCtrlProbe);
                     userCtrlProbe.Width = tabProbe.Width;
                     userCtrlProbe.Height = tabProbe.Height;
+                    break;
+            }
+        }
+
+        private void tabs_Resize(object sender, EventArgs e)
+        {
+            UserControlDisplayTab userControl;
+            switch (tabIndex)
+            {
+                case 1: // Current tab
+                    if (tabCurrent.Controls.Count <= 0)
+                    {
+                        return;
+                    }
+                    userControl =  (UserControlDisplayTab)this.tabCurrent.Controls[0];
+                    userControl.Width = tabCurrent.Width;
+                    userControl.Height = tabCurrent.Height;
+                    break;
+
+                case 2: // Path tab
+                    if (tabPath.Controls.Count <= 0)
+                    {
+                        return;
+                    }
+                    userControl = (UserControlDisplayTab)this.tabPath.Controls[0];
+                    userControl.Width = tabPath.Width;
+                    userControl.Height = tabPath.Height;
+                    break;
+
+                case 0: // Probe tab
+                default:
+                    if (tabProbe.Controls.Count <= 0)
+                    {
+                        return;
+                    }
+                    userControl = (UserControlDisplayTab)this.tabProbe.Controls[0];
+                    userControl.Width = tabProbe.Width;
+                    userControl.Height = tabProbe.Height;
                     break;
             }
         }

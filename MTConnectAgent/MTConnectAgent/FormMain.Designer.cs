@@ -42,6 +42,7 @@
             // 
             this.treeViewClientMachine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeViewClientMachine.BackColor = System.Drawing.SystemColors.Info;
             this.treeViewClientMachine.Location = new System.Drawing.Point(12, 71);
             this.treeViewClientMachine.Name = "treeViewClientMachine";
             this.treeViewClientMachine.Size = new System.Drawing.Size(149, 363);
@@ -83,6 +84,7 @@
             this.tabs.Size = new System.Drawing.Size(621, 425);
             this.tabs.TabIndex = 3;
             this.tabs.SelectedIndexChanged += new System.EventHandler(this.tabs_SelectedIndexChanged);
+            this.tabs.Resize += new System.EventHandler(this.tabs_Resize);
             // 
             // tabProbe
             // 
@@ -117,6 +119,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabs);
             this.Controls.Add(this.buttonAjouterMachine);
@@ -127,6 +130,7 @@
             this.Text = "MTConnect";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Shown += new System.EventHandler(this.FormMain_Shown);
+            this.Resize += new System.EventHandler(this.tabs_Resize);
             this.tabs.ResumeLayout(false);
             this.ResumeLayout(false);
 

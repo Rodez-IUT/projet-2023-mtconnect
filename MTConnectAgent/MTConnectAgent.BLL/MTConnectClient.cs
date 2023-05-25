@@ -113,20 +113,20 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="tag">Noeud racine depuis lequel nous allons générer le path</param>
         /// <returns>Le path généré</returns>
-        public string GenererPath(ITag tag, string urlMachine, bool isOrActivated)
-        {
-            if (tag == null)
-            {
-                return "Impossible de générer le path";
-            }
-            while (urlMachine.EndsWith("/")) {
-                urlMachine = urlMachine.Remove(urlMachine.Length - 1);
-            }
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(urlMachine + "/current?path=");
-            stringBuilder = GenererPath(tag, stringBuilder, isOrActivated);
-            return stringBuilder.ToString();
-        }
+        //public string GenererPath(ITag tag, string urlMachine, bool isOrActivated)
+        //{
+        //    if (tag == null)
+        //    {
+        //        return "Impossible de générer le path";
+        //    }
+        //    while (urlMachine.EndsWith("/")) {
+        //        urlMachine = urlMachine.Remove(urlMachine.Length - 1);
+        //    }
+        //    StringBuilder stringBuilder = new StringBuilder();
+        //    stringBuilder.Append(urlMachine + "/current?path=");
+        //    stringBuilder = GenererPath(tag, stringBuilder, isOrActivated);
+        //    return stringBuilder.ToString();
+        //}
 
         /// <summary>
         /// Génére un path de façon récursive

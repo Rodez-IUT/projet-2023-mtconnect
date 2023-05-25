@@ -20,16 +20,16 @@ namespace MTConnectAgent
             current,
             path
         }
-
-        private IList<ITag> specificTags = new List<ITag>(); 
-        // Utilisation de l'option OR ou non
+       
         private CheckBox or = new CheckBox();
 
-        // Affichage des paths
+        IList<string> lst = new List<string>();
+
         private ListView resultats = new ListView();
 
-        // Checkboxs des items
-        private IList<CheckBox> interfaceTags = new List<CheckBox>();
+        private MTConnectClient instance = new MTConnectClient();
+
+        private IList<ITag> specificTags = new List<ITag>();
 
         public UserControlDisplayTab(string url, functions fx)
         {
@@ -61,12 +61,8 @@ namespace MTConnectAgent
             threadCalcul.Start();
             threadCalcul.Join();
            
-            if (this.fx.Equals(functions.path))
-            {
-                treeAffichage.Height = this.Height - 200;
-                treeAffichage.CheckBoxes = true;
-                GeneratePathResults(this);
-            }
+            GeneratePathResults();
+
             foreach (ITag tag in tagMachine.Child)
             {
                 string compositeName = tag.Name + tag.GetHashCode();
@@ -80,17 +76,16 @@ namespace MTConnectAgent
 
                 if (tag.HasChild())
                 {
-                    genV2(tag.Child, node);
+                    Generer(tag.Child, node);
                 }
             }
         }
 
-        private readonly AnchorStyles TopLeftAnchor = AnchorStyles.Top | AnchorStyles.Left;
-        private readonly AnchorStyles BottomLeftAnchor = AnchorStyles.Bottom | AnchorStyles.Left;
         private readonly AnchorStyles AllSideAnchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        private readonly Font boldFont = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+        private readonly Font boldFont = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
 
-        private void genV2(IList<ITag> tags,TreeNode root)
+        // Affichage sous la forme d'un arbre des tags avec leurs attributs, id et nom
+        private void Generer(IList<ITag> tags,TreeNode root)
         {
             foreach (ITag tag in tags)
             {
@@ -146,73 +141,44 @@ namespace MTConnectAgent
 
                 if (tag.HasChild())
                 {
-                    genV2(tag.Child, node);
+                    Generer(tag.Child, node);
                 }
             }
         }
 
         // Fenêtre de génération et obtention des PATHS
-        private void GeneratePathResults(Control root)
+        private void GeneratePathResults()
         {
-            GroupBox container = new GroupBox();
-            container.Anchor = BottomLeftAnchor;
-            container.Dock = DockStyle.Bottom;
-            container.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-            container.Location = new Point(0, root.Height-200);
-            container.Name = "containerPath";
-            //container.Size = new Size(500, 200);
-            container.Height = 200;
-            container.Width = root.Width;
-            container.Text = "Résultat des paths";
-            root.Controls.Add(container);
+            btnExpandNodes.MouseClick += new MouseEventHandler(ExpandNodes);
+            btnCollapseNodes.MouseClick += new MouseEventHandler(CollapseNodes);
 
-            FlowLayoutPanel containerFlow = new FlowLayoutPanel();
-            containerFlow.Anchor = TopLeftAnchor;
-            containerFlow.FlowDirection = FlowDirection.LeftToRight;
-            containerFlow.Location = new Point(10, 20);
-            containerFlow.Name = "containerFlow";
-            containerFlow.Size = new Size(10, 10);
-            containerFlow.AutoSize = true;
-            container.Controls.Add(containerFlow);
+            if (this.fx.Equals(functions.path))
+            {
+                // Equilibre l'affichage entre l'arbre des tags et le container des boutons et des résultats des paths
+                treeAffichage.Height = this.Height - 200;
+                treeAffichage.CheckBoxes = true;
+                container.Height = 200;
+                container.Location = new Point(0, treeAffichage.Height);
+                container.Text = "Résultat des paths";
+                containerFlow.Location = new Point(0,containerFlow.Location.Y + 5);
 
-            CheckBox or = new CheckBox();
-            // Utilisation de l'option OR ou non
-            or.AutoSize = true;
-            or.Name = "checkboxOr";
-            or.Text = "Avec option OR";
-            or.Anchor = AnchorStyles.None;
-            containerFlow.Controls.Add(or);
+                // Utilisation de l'option OR ou non
+                or.AutoSize = true;
+                or.Name = "checkboxOr";
+                or.Text = "Avec option OR";
+                or.Anchor = AnchorStyles.None;
+                containerFlow.Controls.Add(or);
 
-            ListView resultats = new ListView();
-            // Affichage du ou des PATH(S) à chaque checkbox cochée
-            resultats.Name = "listResultatsPath";
-            resultats.Location = new Point(10, 70);
-            resultats.Size = new Size(480, 120);
-            resultats.View = View.List;
-            resultats.MouseDoubleClick += new MouseEventHandler(CopyUrl);
-            container.Controls.Add(resultats);
-        }
-
-        // Génère le ou les PATHS 
-        private void GeneratePaths(object sender, EventArgs e)
-        {
-            // Récupération de la liste de tags à utiliser pour générer le(s) PATH(S)
-            //IList<ITag> tags = GetTagsList(interfaceTags);
-
-            //resultats.Clear();
-                
-            //// Génération de plusieurs PATHS
-            //var instance = new MTConnectClient();
-
-            //foreach (ITag tag in tags)
-            //{
-            //    string pathUrl = "";
-            //    Thread thread = new Thread(() => { pathUrl = ThreadGeneratePath(tag, tagMachine, url, or.Checked, instance); });
-            //    thread.Start();
-            //    thread.Join();
-            //    // Recherche et affichage des urls
-            //    resultats.Items.Add(pathUrl + "\r\n");
-            //}
+                // Affichage du ou des PATH(S) à chaque checkbox cochée
+                resultats.Name = "listResultatsPath";
+                resultats.Location = new Point(5, containerFlow.Location.Y + containerFlow.Height);
+                resultats.Size = new Size(containerFlow.Width - 10, 155);
+                resultats.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+                resultats.View = View.List;
+                resultats.TabIndex = 2;
+                resultats.MouseDoubleClick += new MouseEventHandler(CopyUrl);
+                container.Controls.Add(resultats);
+            }
         }
 
         private static ITag ThreadParseProbe(string url)
@@ -229,24 +195,6 @@ namespace MTConnectAgent
             return mtConnectClient.ParseXMLRecursif(t.Root);
         }
 
-        private static string ThreadGeneratePath(ITag tag, ITag tagMachine, string url, bool or, MTConnectClient instance)
-        {
-
-            Queue<string> queue = new Queue<string>();
-            if (tag.Id != null && tag.Id != "")
-            {
-                queue.Enqueue(tag.Id);
-            }
-            else
-            {
-                queue.Enqueue(tag.Name);
-            }
-
-            ITag aRechercher = instance.CreateSpecifiqueTag(tagMachine, queue);
-
-            return instance.GenererPath(aRechercher, url, or);
-        }
-
         private void CopyUrl(object o, MouseEventArgs e)
         {
             ListView listView = (ListView)o;
@@ -254,10 +202,21 @@ namespace MTConnectAgent
             copyNotification.ShowBalloonTip(1000, "MTConnect", "Le path a été copié dans le presse-papier.", ToolTipIcon.Info);
         }
 
+        // Réduire l'affichage de l'arbre
+        private void CollapseNodes(object sender, MouseEventArgs e)
+        {
+            treeAffichage.CollapseAll();
+        }
+
+        // Développe l'affichage de l'arbre
+        private void ExpandNodes(object sender, MouseEventArgs e)
+        {
+            treeAffichage.ExpandAll();
+        }
+
         private ITag ParseFullPath(string path)
         {
             string[] splitPath = path.Split('\\');
-            IList<string> returnedList = new List<string>();
             Queue<string> queue = new Queue<string>();
 
             foreach (string todoRenommer in splitPath)
@@ -273,25 +232,32 @@ namespace MTConnectAgent
                 if (todoRenommer.Trim().EndsWith(")"))
                 {
                     string[] todoRenommer3 = todoRenommer.Trim().Split('(');
-                    todoRenommer2 = todoRenommer3[todoRenommer3.Length-1];
+                    todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
                     todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
                 }
-
-                returnedList.Add(todoRenommer2);
                 queue.Enqueue(todoRenommer2);
             }
-
-            MTConnectClient instance = new MTConnectClient();
 
             return instance.CreateSpecifiqueTag(tagMachine, queue);
         }
 
         private void treeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            //MTConnectClient instance = new MTConnectClient();
+            ITag tagTmp = ParseFullPath(e.Node.FullPath);
+            specificTags.Add(tagTmp);
 
-            specificTags.Add(ParseFullPath(e.Node.FullPath));
-            //instance.GenererPath(aRechercher, url, or);
+
+        //    foreach (ITag aRechercher in tmp)
+        //    {
+        //        IList<string> todoAREnommer = instance.GenererPath(aRechercher, url, or.Checked);
+
+        //        resultats.Items.Clear();
+
+        //        foreach (string todoAREnommer2 in todoAREnommer)
+        //        {
+        //            resultats.Items.Add(todoAREnommer2 + "\r\n");
+        //        }
+        //    }
         }
     }
 }
