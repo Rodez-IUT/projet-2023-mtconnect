@@ -61,8 +61,12 @@ namespace MTConnectAgent
             threadCalcul.Start();
             threadCalcul.Join();
            
-            GeneratePathResults();
-
+            if (this.fx.Equals(functions.path))
+            {
+                treeAffichage.Height = this.Height - 200;
+                treeAffichage.CheckBoxes = true;
+                GeneratePathResults(this);
+            }
             foreach (ITag tag in tagMachine.Child)
             {
                 string compositeName = tag.Name + tag.GetHashCode();
