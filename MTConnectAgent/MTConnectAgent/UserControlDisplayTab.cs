@@ -261,5 +261,29 @@ namespace MTConnectAgent
         //        }
         //    }
         }
+
+        public ITag CreateSpecifiqueTag(List<string> chemins)
+        {
+            ITag root = new Tag(tagMachine.Name);
+            /*foreach (string chemin in chemins)
+            {
+                //todo trouver meilleur nom
+                string[] tagActuelString = chemin.Split('\\');
+                ref ITag parent = ref root;
+
+                foreach (string item in tagActuelString)
+                {
+                    ITag tagCourant = ParseFullPath(item);
+                    if (!parent.Child.Contains(tagCourant))
+                    {
+                        parent.AddChild(tagCourant);
+                    }
+
+                    ref parent = ref instance.FindTagById(parent,tagCourant.Id);
+                }
+            }*/
+
+            return root;
+        }
     }
 }
