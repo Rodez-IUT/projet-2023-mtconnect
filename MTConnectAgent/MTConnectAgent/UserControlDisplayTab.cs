@@ -65,8 +65,12 @@ namespace MTConnectAgent
             {
                 treeAffichage.Height = this.Height - 200;
                 treeAffichage.CheckBoxes = true;
-                GeneratePathResults(this);
+                GeneratePathResults();
             }
+
+            btnExpandNodes.MouseClick += new MouseEventHandler(ExpandNodes);
+            btnCollapseNodes.MouseClick += new MouseEventHandler(CollapseNodes);
+
             foreach (ITag tag in tagMachine.Child)
             {
                 string compositeName = tag.Name + tag.GetHashCode();
@@ -153,36 +157,30 @@ namespace MTConnectAgent
         // Fenêtre de génération et obtention des PATHS
         private void GeneratePathResults()
         {
-            btnExpandNodes.MouseClick += new MouseEventHandler(ExpandNodes);
-            btnCollapseNodes.MouseClick += new MouseEventHandler(CollapseNodes);
+            // Equilibre l'affichage entre l'arbre des tags et le container des boutons et des résultats des paths
+            treeAffichage.Height = this.Height - 200;
+            treeAffichage.CheckBoxes = true;
+            container.Height = 200;
+            container.Location = new Point(0, treeAffichage.Height);
+            container.Text = "Résultat des paths";
+            containerFlow.Location = new Point(0,containerFlow.Location.Y + 5);
 
-            if (this.fx.Equals(functions.path))
-            {
-                // Equilibre l'affichage entre l'arbre des tags et le container des boutons et des résultats des paths
-                treeAffichage.Height = this.Height - 200;
-                treeAffichage.CheckBoxes = true;
-                container.Height = 200;
-                container.Location = new Point(0, treeAffichage.Height);
-                container.Text = "Résultat des paths";
-                containerFlow.Location = new Point(0,containerFlow.Location.Y + 5);
+            // Utilisation de l'option OR ou non
+            or.AutoSize = true;
+            or.Name = "checkboxOr";
+            or.Text = "Avec option OR";
+            or.Anchor = AnchorStyles.None;
+            containerFlow.Controls.Add(or);
 
-                // Utilisation de l'option OR ou non
-                or.AutoSize = true;
-                or.Name = "checkboxOr";
-                or.Text = "Avec option OR";
-                or.Anchor = AnchorStyles.None;
-                containerFlow.Controls.Add(or);
-
-                // Affichage du ou des PATH(S) à chaque checkbox cochée
-                resultats.Name = "listResultatsPath";
-                resultats.Location = new Point(5, containerFlow.Location.Y + containerFlow.Height);
-                resultats.Size = new Size(containerFlow.Width - 10, 155);
-                resultats.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-                resultats.View = View.List;
-                resultats.TabIndex = 2;
-                resultats.MouseDoubleClick += new MouseEventHandler(CopyUrl);
-                container.Controls.Add(resultats);
-            }
+            // Affichage du ou des PATH(S) à chaque checkbox cochée
+            resultats.Name = "listResultatsPath";
+            resultats.Location = new Point(5, containerFlow.Location.Y + containerFlow.Height);
+            resultats.Size = new Size(containerFlow.Width - 10, 155);
+            resultats.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            resultats.View = View.List;
+            resultats.TabIndex = 2;
+            resultats.MouseDoubleClick += new MouseEventHandler(CopyUrl);
+            container.Controls.Add(resultats);
         }
 
         private static ITag ThreadParseProbe(string url)
