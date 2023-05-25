@@ -174,12 +174,14 @@ namespace MTConnectAgent.BLL
             {
                 return null;
             }
+
             if (identifiantTagQueue.Count > 0)
             {
                 List<ITag> childList = new List<ITag>();
                 if (!identifiantTagQueue.Peek().Equals("") && (root.Id.Equals(identifiantTagQueue.Peek()) || root.Name.Equals(identifiantTagQueue.Peek())))
                 {
                     identifiantTagQueue.Dequeue();
+
                     foreach (ITag tagChild in root.Child)
                     {
                         var result = CreateSpecifiqueTag(tagChild, identifiantTagQueue);
@@ -201,11 +203,13 @@ namespace MTConnectAgent.BLL
                         childList.Add(result);
                     }
                 }
+
                 if (childList.Count > 0)
                 {
                     root.SetChild(childList);
                     return root;
                 }
+                
             }
             return null;
         }
@@ -245,13 +249,13 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="tag">Tag dans lequel vas être effectué la recherche</param>
         /// <param name="id">Id du tag recherché</param>
-        /// <returns>Renvoi le tag qui correspond au critère de recherche sinon null</returns>
-        public ITag FindTagById(ITag tag, string id)
+        /// <returns>Renvoi le nom du tag correspondant sinon null</returns>
+        public string FindTagById(ITag tag, string id)
         {
-            ITag result = null;
+            string result = null;
             if (tag.Id.Equals(id))
             {
-                return tag;
+                return tag.Name;
             }
 
             if (tag.Child.Count > 0)

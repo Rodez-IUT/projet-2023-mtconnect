@@ -15,7 +15,7 @@ namespace ConsoleApp1
         {
 
             MTConnectClient mTConnectClient = new MTConnectClient();
-            const string agentUrl = "http://mtconnect.mazakcorp.com:5701/";
+            const string agentUrl = "https://smstestbed.nist.gov/vds/";
 
             XDocument x = mTConnectClient.getProbeAsync(agentUrl).Result;
 
@@ -23,9 +23,12 @@ namespace ConsoleApp1
 
             Queue<string> idTagQueue = new Queue<string>();
 
-            idTagQueue.Enqueue("d1");
-            idTagQueue.Enqueue("avail");
-            idTagQueue.Enqueue("functionalmode");
+            idTagQueue.Enqueue("Devices");
+            idTagQueue.Enqueue("GFAgie01");
+            idTagQueue.Enqueue("GFAgie01-dtop_1");
+            idTagQueue.Enqueue("Mazak03");
+            idTagQueue.Enqueue("Mazak01");
+            idTagQueue.Enqueue("Mazak01-X_1");
 
             ITag tag = mTConnectClient.CreateSpecifiqueTag(root, idTagQueue);
 
@@ -33,7 +36,7 @@ namespace ConsoleApp1
 
             Console.WriteLine("----------------------------------------");
 
-            List<string> paths = mTConnectClient.GenererPath(tag, "http://mtconnect.mazakcorp.com:5701", true);
+            List<string> paths = mTConnectClient.GenererPath(tag, "https://smstestbed.nist.gov/vds", true);
 
             foreach (string path in paths)
             {
@@ -42,23 +45,24 @@ namespace ConsoleApp1
 
             Console.WriteLine("----------------------------------------\n");
 
-            idTagQueue = new Queue<string>();
+            //idTagQueue = new Queue<string>();
 
-            idTagQueue.Enqueue("d1");
-            idTagQueue.Enqueue("avail");
+            //idTagQueue.Enqueue("d1");
+            //idTagQueue.Enqueue("avail");
+            //idTagQueue.Enqueue("functionalmode");
 
-            tag = mTConnectClient.CreateSpecifiqueTag(root, idTagQueue);
+            //tag = mTConnectClient.CreateSpecifiqueTag(root, idTagQueue);
 
-            Program.AfficherTag(tag, "");
+            //Program.AfficherTag(tag, "");
 
-            Console.WriteLine("----------------------------------------");
+            //Console.WriteLine("----------------------------------------");
 
-            paths = mTConnectClient.GenererPath(tag, "http://mtconnect.mazakcorp.com:5701", false);
+            //paths = mTConnectClient.GenererPath(tag, "http://mtconnect.mazakcorp.com:5701", false);
 
-            foreach (string path in paths)
-            {
-                Console.WriteLine(path);
-            }
+            //foreach (string path in paths)
+            //{
+            //    Console.WriteLine(path);
+            //}
 
             while (true)
             {
