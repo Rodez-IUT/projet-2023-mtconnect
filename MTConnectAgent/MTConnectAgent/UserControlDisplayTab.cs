@@ -29,7 +29,7 @@ namespace MTConnectAgent
 
         private MTConnectClient instance = new MTConnectClient();
 
-        private IList<ITag> specificTags = new List<ITag>();
+        private List<string> pathsFromTree = new List<string>();
 
         public UserControlDisplayTab(string url, functions fx)
         {
@@ -245,45 +245,35 @@ namespace MTConnectAgent
 
         private ITag ParseFullPath(string path)
         {
-
-            ITag newTag = new Tag();
-                string todoRenommer2 = path.Trim();
-                if (path.Contains(":"))
-                {
-                    string[] todoRenommer3 = path.Trim().Split(':');
-                    todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
-                    todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
-
-                    newTag = new Tag(todoRenommer2);
-                }
-
-                if (path.Trim().EndsWith(")"))
-                {
-                    string[] todoRenommer3 = path.Trim().Split('(');
-                    todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
-                    todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
-
-                    newTag = new Tag("", todoRenommer2);
-                    newTag.Name = instance.FindTagNameById(tagMachine, newTag.Id);
-                }
+            ITag newTag;
+            path = path.Trim();
+            if (path.Trim().EndsWith(")"))
+            {
+                string[] todoRenommer3 = path.Trim().Split('(');
+                path = todoRenommer3[todoRenommer3.Length - 1];
+                path = path.Remove(path.Length - 1, 1).Trim();
+                newTag = instance.FindTagById(tagMachine, path);
+                newTag.Child.Clear();
+                newTag.Attributs.Clear();
+            }
+            else
+            {
+                newTag = new Tag(path);
+            }
             return newTag;
         }
 
         private void treeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            ITag tagTmp = ParseFullPath(e.Node.FullPath);
-            specificTags.Add(tagTmp);
+            pathsFromTree.Add(e.Node.FullPath);
 
-            foreach (ITag aRechercher in specificTags)
+            ITag tagGeneration = CreateSpecifiqueTag(pathsFromTree);
+
+            List<string> paths = instance.GenererPath(tagGeneration, url, or.Checked);
+            resultats.Items.Clear();
+            foreach(string path in paths)
             {
-                IList<string> todoAREnommer = instance.GenererPath(aRechercher, url, or.Checked);
-
-                resultats.Items.Clear();
-
-                foreach (string todoAREnommer2 in todoAREnommer)
-                {
-                    resultats.Items.Add(todoAREnommer2 + "\r\n");
-                }
+                resultats.Items.Add(path + "\n");
             }
         }
 
@@ -294,7 +284,6 @@ namespace MTConnectAgent
             {
                 string[] tagActuelString = chemin.Split('\\');
                 root.AddChild(CreateTagRecursive(root, tagActuelString, 0));
-
             }
             return root;
         }
@@ -306,7 +295,7 @@ namespace MTConnectAgent
             {
                 tagCourant = ParseFullPath(items[index]);
                 
-                ITag enfant = CreateTagRecursive(tagCourant, items, index++);
+                ITag enfant = CreateTagRecursive(tagCourant, items, index + 1);
                 if (parent.Child.Contains(tagCourant)  && enfant != null)
                 {
                     parent.Child[parent.Child.IndexOf(tagCourant)].AddChild(enfant);
