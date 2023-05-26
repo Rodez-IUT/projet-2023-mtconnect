@@ -216,31 +216,57 @@ namespace MTConnectAgent
             treeAffichage.ExpandAll();
         }
 
+        //private ITag ParseFullPath(string path)
+        //{
+        //    string[] splitPath = path.Split('\\');
+        //    Queue<string> queue = new Queue<string>();
+
+        //    foreach (string todoRenommer in splitPath)
+        //    {
+        //        string todoRenommer2 = todoRenommer.Trim();
+        //        if (todoRenommer.Contains(":"))
+        //        {
+        //            string[] todoRenommer3 = todoRenommer.Trim().Split(':');
+        //            todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
+        //            todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
+        //        }
+
+        //        if (todoRenommer.Trim().EndsWith(")"))
+        //        {
+        //            string[] todoRenommer3 = todoRenommer.Trim().Split('(');
+        //            todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
+        //            todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
+        //        }
+        //        queue.Enqueue(todoRenommer2);
+        //    }
+
+        //    return instance.CreateSpecifiqueTag(tagMachine, queue);
+        //}
+
         private ITag ParseFullPath(string path)
         {
-            string[] splitPath = path.Split('\\');
-            Queue<string> queue = new Queue<string>();
 
-            foreach (string todoRenommer in splitPath)
-            {
-                string todoRenommer2 = todoRenommer.Trim();
-                if (todoRenommer.Contains(":"))
+            ITag newTag = new Tag();
+                string todoRenommer2 = path.Trim();
+                if (path.Contains(":"))
                 {
-                    string[] todoRenommer3 = todoRenommer.Trim().Split(':');
+                    string[] todoRenommer3 = path.Trim().Split(':');
                     todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
                     todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
+
+                    newTag = new Tag(todoRenommer2);
                 }
 
-                if (todoRenommer.Trim().EndsWith(")"))
+                if (path.Trim().EndsWith(")"))
                 {
-                    string[] todoRenommer3 = todoRenommer.Trim().Split('(');
+                    string[] todoRenommer3 = path.Trim().Split('(');
                     todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
                     todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
-                }
-                queue.Enqueue(todoRenommer2);
-            }
 
-            return instance.CreateSpecifiqueTag(tagMachine, queue);
+                    newTag = new Tag("", todoRenommer2);
+                    newTag.Name = instance.FindTagNameById(tagMachine, newTag.Id);
+                }
+            return newTag;
         }
 
         private void treeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
@@ -248,42 +274,53 @@ namespace MTConnectAgent
             ITag tagTmp = ParseFullPath(e.Node.FullPath);
             specificTags.Add(tagTmp);
 
+            foreach (ITag aRechercher in specificTags)
+            {
+                IList<string> todoAREnommer = instance.GenererPath(aRechercher, url, or.Checked);
 
-        //    foreach (ITag aRechercher in tmp)
-        //    {
-        //        IList<string> todoAREnommer = instance.GenererPath(aRechercher, url, or.Checked);
+                resultats.Items.Clear();
 
-        //        resultats.Items.Clear();
-
-        //        foreach (string todoAREnommer2 in todoAREnommer)
-        //        {
-        //            resultats.Items.Add(todoAREnommer2 + "\r\n");
-        //        }
-        //    }
+                foreach (string todoAREnommer2 in todoAREnommer)
+                {
+                    resultats.Items.Add(todoAREnommer2 + "\r\n");
+                }
+            }
         }
 
         public ITag CreateSpecifiqueTag(List<string> chemins)
         {
             ITag root = new Tag(tagMachine.Name);
-            /*foreach (string chemin in chemins)
+            foreach (string chemin in chemins)
             {
-                //todo trouver meilleur nom
                 string[] tagActuelString = chemin.Split('\\');
-                ref ITag parent = ref root;
+                root.AddChild(CreateTagRecursive(root, tagActuelString, 0));
 
-                foreach (string item in tagActuelString)
-                {
-                    ITag tagCourant = ParseFullPath(item);
-                    if (!parent.Child.Contains(tagCourant))
-                    {
-                        parent.AddChild(tagCourant);
-                    }
-
-                    ref parent = ref instance.FindTagById(parent,tagCourant.Id);
-                }
-            }*/
-
+            }
             return root;
+        }
+
+        private ITag CreateTagRecursive(ITag parent, string[] items, int index)
+        {
+            ITag tagCourant;
+            if (index < items.Length)
+            {
+                tagCourant = ParseFullPath(items[index]);
+                
+                ITag enfant = CreateTagRecursive(tagCourant, items, index++);
+                if (parent.Child.Contains(tagCourant)  && enfant != null)
+                {
+                    parent.Child[parent.Child.IndexOf(tagCourant)].AddChild(enfant);
+                    return parent.Child[parent.Child.IndexOf(tagCourant)];
+
+                }
+                if (enfant != null)
+                {
+                    tagCourant.AddChild(enfant);
+                }
+
+                return tagCourant;                
+            }
+            return null;
         }
     }
 }

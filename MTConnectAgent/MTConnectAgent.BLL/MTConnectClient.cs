@@ -354,6 +354,36 @@ namespace MTConnectAgent.BLL
             return null;
         }
 
+
+        /// <summary>
+        /// Recherche d'un tag spécifique dans tout les tag enfant de celui passer en paramètre
+        /// </summary>
+        /// <param name="tag">Tag dans lequel vas être effectué la recherche</param>
+        /// <param name="id">Id du tag recherché</param>
+        /// <returns>Renvoi le nom du tag correspondant sinon null</returns>
+        public ITag FindRefTagById(ITag tag, string id)
+        {
+            ITag result = null;
+            if (tag.Id.Equals(id))
+            {
+                return tag;
+            }
+
+            if (tag.Child.Count > 0)
+            {
+                foreach (ITag tagChild in tag.Child)
+                {
+                    result = FindRefTagById(tagChild, id);
+                    if (result != null)
+                    {
+                        return result;
+                    }
+                }
+            }
+
+            return null;
+        }
+
         /// <summary>
         /// Initialise et lance la génération des paths
         /// </summary>
