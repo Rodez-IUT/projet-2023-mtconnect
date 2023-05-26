@@ -220,6 +220,24 @@ namespace MTConnectAgent
             treeAffichage.ExpandAll();
         }
 
+        // Recherche au sein de la TreeView le texte écrit par l'utilisateur
+        private void SearchItem(object sender, EventArgs e)
+        {
+            string item = ((TextBox)sender).Text;
+
+            foreach (TreeNode node in nodes)
+            {
+                node.ForeColor = Color.Empty;
+                node.BackColor = Color.Empty;
+
+                if (node.Text.IndexOf(item, 0, StringComparison.OrdinalIgnoreCase) != -1 && item != "")
+                {
+                    node.ForeColor = Color.Tomato;
+                    node.BackColor = Color.Yellow;
+                }
+            }
+        }
+
         private ITag ParseFullPath(string path)
         {
 
