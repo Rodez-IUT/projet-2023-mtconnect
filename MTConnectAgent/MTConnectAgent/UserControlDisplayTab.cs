@@ -6,6 +6,7 @@ using MTConnectAgent.BLL;
 using System.Xml.Linq;
 using System.Threading;
 using System;
+using System.Linq;
 
 namespace MTConnectAgent
 {
@@ -30,6 +31,8 @@ namespace MTConnectAgent
         private MTConnectClient instance = new MTConnectClient();
 
         private List<string> pathsFromTree = new List<string>();
+
+        private IList<TreeNode> nodes = new List<TreeNode>();
 
         public UserControlDisplayTab(string url, functions fx)
         {
@@ -70,6 +73,7 @@ namespace MTConnectAgent
 
             btnExpandNodes.MouseClick += new MouseEventHandler(ExpandNodes);
             btnCollapseNodes.MouseClick += new MouseEventHandler(CollapseNodes);
+            rechercheBox.TextChanged += new EventHandler(SearchItem);
 
             foreach (ITag tag in tagMachine.Child)
             {
@@ -81,6 +85,7 @@ namespace MTConnectAgent
                 node.Tag = new SimpleTag(tag.Name, tag.Id);
 
                 treeAffichage.Nodes.Add(node);
+                nodes.Add(node);
 
                 if (tag.HasChild())
                 {
@@ -146,6 +151,7 @@ namespace MTConnectAgent
                 node.Text = prefixe + corps + suffixe;
 
                 root.Nodes.Add(node);
+                nodes.Add(node);
 
                 if (tag.HasChild())
                 {
@@ -216,32 +222,23 @@ namespace MTConnectAgent
             treeAffichage.ExpandAll();
         }
 
-        //private ITag ParseFullPath(string path)
-        //{
-        //    string[] splitPath = path.Split('\\');
-        //    Queue<string> queue = new Queue<string>();
+        // Recherche au sein de la TreeView le texte écrit par l'utilisateur
+        private void SearchItem(object sender, EventArgs e)
+        {
+            string item = ((TextBox)sender).Text;
 
-        //    foreach (string todoRenommer in splitPath)
-        //    {
-        //        string todoRenommer2 = todoRenommer.Trim();
-        //        if (todoRenommer.Contains(":"))
-        //        {
-        //            string[] todoRenommer3 = todoRenommer.Trim().Split(':');
-        //            todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
-        //            todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
-        //        }
+            foreach (TreeNode node in nodes)
+            {
+                node.ForeColor = Color.Empty;
+                node.BackColor = Color.Empty;
 
-        //        if (todoRenommer.Trim().EndsWith(")"))
-        //        {
-        //            string[] todoRenommer3 = todoRenommer.Trim().Split('(');
-        //            todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
-        //            todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
-        //        }
-        //        queue.Enqueue(todoRenommer2);
-        //    }
-
-        //    return instance.CreateSpecifiqueTag(tagMachine, queue);
-        //}
+                if (node.Text.IndexOf(item, 0, StringComparison.OrdinalIgnoreCase) != -1 && item != "")
+                {
+                    node.ForeColor = Color.Tomato;
+                    node.BackColor = Color.Yellow;
+                }
+            }
+        }
 
         private ITag ParseFullPath(string path)
         {
