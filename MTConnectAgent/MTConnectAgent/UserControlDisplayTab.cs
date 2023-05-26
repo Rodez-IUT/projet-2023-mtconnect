@@ -24,11 +24,13 @@ namespace MTConnectAgent
        
         private CheckBox or = new CheckBox();
 
+        IList<string> lst = new List<string>();
+
         private ListView resultats = new ListView();
 
         private MTConnectClient instance = new MTConnectClient();
 
-        private IList<ITag> specificTags = new List<ITag>();
+        private List<string> pathsFromTree = new List<string>();
 
         private IList<TreeNode> nodes = new List<TreeNode>();
 
@@ -234,7 +236,7 @@ namespace MTConnectAgent
             or.Name = "checkboxOr";
             or.Text = "Avec option OR";
             or.Anchor = AnchorStyles.None;
-            or.Checked = true;
+            or.CheckedChanged += new EventHandler(ActualiserPaths);
             containerFlow.Controls.Add(or);
 
             // Affichage du ou des PATH(S) à chaque checkbox cochée
@@ -247,7 +249,12 @@ namespace MTConnectAgent
             resultats.MouseDoubleClick += new MouseEventHandler(CopyUrl);
             container.Controls.Add(resultats);
         }
-        
+
+        private void ActualiserPaths(object sender, EventArgs e)
+        {
+            GenerationPaths();
+        }
+
         private static ITag ThreadParseProbe(string url)
         {
             MTConnectClient mtConnectClient = new MTConnectClient();
@@ -302,46 +309,98 @@ namespace MTConnectAgent
         
         private ITag ParseFullPath(string path)
         {
-
             ITag newTag = new Tag();
-                string todoRenommer2 = path.Trim();
-                if (path.Contains(":"))
-                {
-                    string[] todoRenommer3 = path.Trim().Split(':');
-                    todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
-                    todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
+            string pathCourant = path.Trim();
 
-                    newTag = new Tag(todoRenommer2);
-                }
-
-                if (path.Trim().EndsWith(")"))
-                {
-                    string[] todoRenommer3 = path.Trim().Split('(');
-                    todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
-                    todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
-
-                    newTag = new Tag("", todoRenommer2);
-                    newTag.Name = instance.FindTagNameById(tagMachine, newTag.Id);
-                }
+            if (pathCourant.EndsWith(")"))
+            {
+                string[] idCourante = pathCourant.Split('(');
+                pathCourant = idCourante[idCourante.Length - 1];
+                pathCourant = pathCourant.Remove(pathCourant.Length - 1, 1).Trim();
+                newTag.Name = instance.FindTagNameById(tagMachine, pathCourant);
+                newTag.Id = pathCourant;
+            }
+            else
+            {
+                string[] nomCourant = pathCourant.Split(':');
+                newTag = new Tag(nomCourant[0].Trim());
+            }
             return newTag;
         }
 
         private void treeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            ITag tagTmp = ParseFullPath(e.Node.FullPath);
-            specificTags.Add(tagTmp);
-            
-            //    foreach (ITag aRechercher in tmp)
-            //    {
-            //        IList<string> todoAREnommer = instance.GenererPath(aRechercher, url, or.Checked);
+            if (e.Node.Checked)
+            {
+                pathsFromTree.Add(e.Node.FullPath);
+            }
+            else
+            {
+                pathsFromTree.Remove(e.Node.FullPath);
+            }
+            if (pathsFromTree.Count != 0)
+            {
+                GenerationPaths();
+            }
+            else
+            {
+                resultats.Items.Clear();
+            }
+        }
 
-            //        resultats.Items.Clear();
+        private void GenerationPaths()
+        {
+            ITag tagGeneration = CreateSpecifiqueTag(pathsFromTree);
 
-            //        foreach (string todoAREnommer2 in todoAREnommer)
-            //        {
-            //            resultats.Items.Add(todoAREnommer2 + "\r\n");
-            //        }
-            //    }
+            List<string> paths = instance.GenererPath(tagGeneration, url, or.Checked);
+            resultats.Items.Clear();
+            foreach (string path in paths)
+            {
+                resultats.Items.Add(path + "\n");
+            }
+        }
+
+        public ITag CreateSpecifiqueTag(List<string> chemins)
+        {
+            ITag root = new Tag(tagMachine.Name);
+            foreach (string chemin in chemins)
+            {
+                string[] tagActuelString = chemin.Split('\\');
+                root = CreateTagRecursive(root, tagActuelString, 0);
+            }
+            return root;
+        }
+
+        private ITag CreateTagRecursive(ITag parent, string[] items, int index)
+        {
+            ITag tagCourant;
+            if (index < items.Length)
+            {
+                tagCourant = ParseFullPath(items[index]);
+
+                if (EnfantExiste(parent,tagCourant))
+                {
+                    tagCourant = CreateTagRecursive(parent.Child[parent.Child.IndexOf(tagCourant)], items, index + 1);
+                    parent.Child.Remove(tagCourant);
+                    parent.AddChild(tagCourant);
+                }
+                else
+                {
+                    tagCourant = CreateTagRecursive(tagCourant, items, index + 1);
+                    parent.AddChild(tagCourant);
+                }           
+            }
+            return parent;
+        }
+
+        private bool EnfantExiste(ITag parent, ITag enfant)
+        {
+            if (enfant.Id.Equals(""))
+            {
+                return instance.FindTagByName(parent, enfant.Name) != null;
+            }
+
+            return instance.FindTagById(parent, enfant.Id) != null;
         }
     }
 }

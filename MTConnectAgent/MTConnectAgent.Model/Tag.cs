@@ -126,8 +126,8 @@ namespace MTConnectAgent.Model
         {
             return obj is Tag tag &&
                    ( GetHashCode() == tag.GetHashCode() ||
-                   (Name == tag.Name &&
-                   Id == tag.Id));
+                   (Name.Equals(tag.Name) &&
+                   Id.Equals(tag.Id)));
         }
 
         public override int GetHashCode()
