@@ -259,7 +259,11 @@ namespace MTConnectAgent
 
         private void ActualiserPaths(object sender, EventArgs e)
         {
-            GenerationPaths();
+            if (pathsFromTree.Count != 0)
+            {
+                GenerationPaths();
+            }
+            
         }
 
         private static ITag ThreadParseProbe(string url)
