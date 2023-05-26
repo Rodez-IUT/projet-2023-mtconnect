@@ -176,6 +176,7 @@ namespace MTConnectAgent
             or.Name = "checkboxOr";
             or.Text = "Avec option OR";
             or.Anchor = AnchorStyles.None;
+            or.CheckedChanged += new EventHandler(ActualiserPaths);
             containerFlow.Controls.Add(or);
 
             // Affichage du ou des PATH(S) à chaque checkbox cochée
@@ -187,6 +188,11 @@ namespace MTConnectAgent
             resultats.TabIndex = 2;
             resultats.MouseDoubleClick += new MouseEventHandler(CopyUrl);
             container.Controls.Add(resultats);
+        }
+
+        private void ActualiserPaths(object sender, EventArgs e)
+        {
+            GenerationPaths();
         }
 
         private static ITag ThreadParseProbe(string url)
@@ -263,13 +269,31 @@ namespace MTConnectAgent
 
         private void treeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            pathsFromTree.Add(e.Node.FullPath);
+            if (e.Node.Checked)
+            {
+                pathsFromTree.Add(e.Node.FullPath);
+            }
+            else
+            {
+                pathsFromTree.Remove(e.Node.FullPath);
+            }
+            if (pathsFromTree.Count != 0)
+            {
+                GenerationPaths();
+            }
+            else
+            {
+                resultats.Items.Clear();
+            }
+        }
 
+        private void GenerationPaths()
+        {
             ITag tagGeneration = CreateSpecifiqueTag(pathsFromTree);
 
             List<string> paths = instance.GenererPath(tagGeneration, url, or.Checked);
             resultats.Items.Clear();
-            foreach(string path in paths)
+            foreach (string path in paths)
             {
                 resultats.Items.Add(path + "\n");
             }
