@@ -220,49 +220,30 @@ namespace MTConnectAgent
             treeAffichage.ExpandAll();
         }
 
-        // Recherche au sein de la TreeView le texte écrit par l'utilisateur
-        private void SearchItem(object sender, EventArgs e)
-        {
-            string item = ((TextBox) sender).Text;
-
-            foreach (TreeNode node in nodes)
-            {
-                node.ForeColor = Color.Empty;
-                node.BackColor = Color.Empty;
-
-                if (node.Text.IndexOf(item, 0, StringComparison.OrdinalIgnoreCase) != -1 && item != "")
-                {
-                    node.ForeColor = Color.Tomato;
-                    node.BackColor = Color.Yellow;
-                }
-            }
-        }
-
         private ITag ParseFullPath(string path)
         {
-            string[] splitPath = path.Split('\\');
-            Queue<string> queue = new Queue<string>();
 
-            foreach (string todoRenommer in splitPath)
-            {
-                string todoRenommer2 = todoRenommer.Trim();
-                if (todoRenommer.Contains(":"))
+            ITag newTag = new Tag();
+                string todoRenommer2 = path.Trim();
+                if (path.Contains(":"))
                 {
-                    string[] todoRenommer3 = todoRenommer.Trim().Split(':');
+                    string[] todoRenommer3 = path.Trim().Split(':');
                     todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
                     todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
+
+                    newTag = new Tag(todoRenommer2);
                 }
 
-                if (todoRenommer.Trim().EndsWith(")"))
+                if (path.Trim().EndsWith(")"))
                 {
-                    string[] todoRenommer3 = todoRenommer.Trim().Split('(');
+                    string[] todoRenommer3 = path.Trim().Split('(');
                     todoRenommer2 = todoRenommer3[todoRenommer3.Length - 1];
                     todoRenommer2 = todoRenommer2.Remove(todoRenommer2.Length - 1, 1).Trim();
-                }
-                queue.Enqueue(todoRenommer2);
-            }
 
-            return instance.CreateSpecifiqueTag(tagMachine, queue);
+                    newTag = new Tag("", todoRenommer2);
+                    newTag.Name = instance.FindTagNameById(tagMachine, newTag.Id);
+                }
+            return newTag;
         }
 
         private void treeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
@@ -270,17 +251,18 @@ namespace MTConnectAgent
             ITag tagTmp = ParseFullPath(e.Node.FullPath);
             specificTags.Add(tagTmp);
 
-            //foreach (ITag aRechercher in tmp)
-            //{
-            //    IList<string> todoAREnommer = instance.GenererPath(aRechercher, url, or.Checked);
 
-            //    resultats.Items.Clear();
+        //    foreach (ITag aRechercher in tmp)
+        //    {
+        //        IList<string> todoAREnommer = instance.GenererPath(aRechercher, url, or.Checked);
 
-            //    foreach (string todoAREnommer2 in todoAREnommer)
-            //    {
-            //        resultats.Items.Add(todoAREnommer2 + "\r\n");
-            //    }
-            //}
+        //        resultats.Items.Clear();
+
+        //        foreach (string todoAREnommer2 in todoAREnommer)
+        //        {
+        //            resultats.Items.Add(todoAREnommer2 + "\r\n");
+        //        }
+        //    }
         }
     }
 }

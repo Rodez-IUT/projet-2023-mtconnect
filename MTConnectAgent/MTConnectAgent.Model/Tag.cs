@@ -62,6 +62,15 @@ namespace MTConnectAgent.Model
             this.Child = new List<ITag>();
         }
 
+        public Tag()
+        {
+            Id = "";
+            Name = "";
+            Attributs = new Dictionary<string, string>();
+            Child = new List<ITag>();
+            Value = "";
+        }
+
         /// <summary>
         /// Ajoute un attribut à la liste des attributs du Tag actuel
         /// </summary>
