@@ -242,20 +242,21 @@ namespace MTConnectAgent
 
         private ITag ParseFullPath(string path)
         {
-            ITag newTag;
-            path = path.Trim();
-            if (path.Trim().EndsWith(")"))
+            ITag newTag = new Tag();
+            string pathCourant = path.Trim();
+
+            if (pathCourant.EndsWith(")"))
             {
-                string[] todoRenommer3 = path.Trim().Split('(');
-                path = todoRenommer3[todoRenommer3.Length - 1];
-                path = path.Remove(path.Length - 1, 1).Trim();
-                newTag = instance.FindTagById(tagMachine, path);
-                newTag.Child.Clear();
-                newTag.Attributs.Clear();
+                string[] idCourante = pathCourant.Split('(');
+                pathCourant = idCourante[idCourante.Length - 1];
+                pathCourant = pathCourant.Remove(pathCourant.Length - 1, 1).Trim();
+                newTag.Name = instance.FindTagNameById(tagMachine, pathCourant);
+                newTag.Id = pathCourant;
             }
             else
             {
-                newTag = new Tag(path);
+                string[] nomCourant = pathCourant.Split(':');
+                newTag = new Tag(nomCourant[0].Trim());
             }
             return newTag;
         }
@@ -280,7 +281,7 @@ namespace MTConnectAgent
             foreach (string chemin in chemins)
             {
                 string[] tagActuelString = chemin.Split('\\');
-                root.AddChild(CreateTagRecursive(root, tagActuelString, 0));
+                root = CreateTagRecursive(root, tagActuelString, 0);
             }
             return root;
         }
@@ -291,22 +292,30 @@ namespace MTConnectAgent
             if (index < items.Length)
             {
                 tagCourant = ParseFullPath(items[index]);
-                
-                ITag enfant = CreateTagRecursive(tagCourant, items, index + 1);
-                if (parent.Child.Contains(tagCourant)  && enfant != null)
-                {
-                    parent.Child[parent.Child.IndexOf(tagCourant)].AddChild(enfant);
-                    return parent.Child[parent.Child.IndexOf(tagCourant)];
 
-                }
-                if (enfant != null)
+                if (EnfantExiste(parent,tagCourant))
                 {
-                    tagCourant.AddChild(enfant);
+                    tagCourant = CreateTagRecursive(parent.Child[parent.Child.IndexOf(tagCourant)], items, index + 1);
+                    parent.Child.Remove(tagCourant);
+                    parent.AddChild(tagCourant);
                 }
-
-                return tagCourant;                
+                else
+                {
+                    tagCourant = CreateTagRecursive(tagCourant, items, index + 1);
+                    parent.AddChild(tagCourant);
+                }           
             }
-            return null;
+            return parent;
+        }
+
+        private bool EnfantExiste(ITag parent, ITag enfant)
+        {
+            if (enfant.Id.Equals(""))
+            {
+                return instance.FindTagByName(parent, enfant.Name) != null;
+            }
+
+            return instance.FindTagById(parent, enfant.Id) != null;
         }
     }
 }
