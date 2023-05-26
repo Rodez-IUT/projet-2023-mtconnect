@@ -36,6 +36,7 @@
             this.containerFlow = new System.Windows.Forms.FlowLayoutPanel();
             this.btnExpandNodes = new System.Windows.Forms.Button();
             this.btnCollapseNodes = new System.Windows.Forms.Button();
+            this.rechercheBox = new System.Windows.Forms.TextBox();
             this.container.SuspendLayout();
             this.containerFlow.SuspendLayout();
             this.SuspendLayout();
@@ -81,6 +82,7 @@
             // 
             this.containerFlow.Controls.Add(this.btnExpandNodes);
             this.containerFlow.Controls.Add(this.btnCollapseNodes);
+            this.containerFlow.Controls.Add(this.rechercheBox);
             this.containerFlow.Location = new System.Drawing.Point(0, 5);
             this.containerFlow.Margin = new System.Windows.Forms.Padding(0);
             this.containerFlow.Name = "containerFlow";
@@ -108,6 +110,13 @@
             this.btnCollapseNodes.Text = "Réduire l\'affichage";
             this.btnCollapseNodes.UseVisualStyleBackColor = true;
             // 
+            // rechercheBox
+            // 
+            this.rechercheBox.Location = new System.Drawing.Point(261, 4);
+            this.rechercheBox.Name = "rechercheBox";
+            this.rechercheBox.Size = new System.Drawing.Size(159, 20);
+            this.rechercheBox.TabIndex = 3;
+            // 
             // UserControlDisplayTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -133,5 +142,6 @@
         private System.Windows.Forms.FlowLayoutPanel containerFlow;
         private System.Windows.Forms.Button btnExpandNodes;
         private System.Windows.Forms.Button btnCollapseNodes;
+        private System.Windows.Forms.TextBox rechercheBox;
     }
 }

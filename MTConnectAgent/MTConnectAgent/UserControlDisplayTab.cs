@@ -6,6 +6,7 @@ using MTConnectAgent.BLL;
 using System.Xml.Linq;
 using System.Threading;
 using System;
+using System.Linq;
 
 namespace MTConnectAgent
 {
@@ -23,13 +24,13 @@ namespace MTConnectAgent
        
         private CheckBox or = new CheckBox();
 
-        IList<string> lst = new List<string>();
-
         private ListView resultats = new ListView();
 
         private MTConnectClient instance = new MTConnectClient();
 
         private IList<ITag> specificTags = new List<ITag>();
+
+        private IList<TreeNode> nodes = new List<TreeNode>();
 
         public UserControlDisplayTab(string url, functions fx)
         {
@@ -70,6 +71,7 @@ namespace MTConnectAgent
 
             btnExpandNodes.MouseClick += new MouseEventHandler(ExpandNodes);
             btnCollapseNodes.MouseClick += new MouseEventHandler(CollapseNodes);
+            rechercheBox.TextChanged += new EventHandler(SearchItem);
 
             foreach (ITag tag in tagMachine.Child)
             {
@@ -81,6 +83,7 @@ namespace MTConnectAgent
                 node.Tag = new SimpleTag(tag.Name, tag.Id);
 
                 treeAffichage.Nodes.Add(node);
+                nodes.Add(node);
 
                 if (tag.HasChild())
                 {
@@ -146,6 +149,7 @@ namespace MTConnectAgent
                 node.Text = prefixe + corps + suffixe;
 
                 root.Nodes.Add(node);
+                nodes.Add(node);
 
                 if (tag.HasChild())
                 {
@@ -216,6 +220,24 @@ namespace MTConnectAgent
             treeAffichage.ExpandAll();
         }
 
+        // Recherche au sein de la TreeView le texte écrit par l'utilisateur
+        private void SearchItem(object sender, EventArgs e)
+        {
+            string item = ((TextBox) sender).Text;
+
+            foreach (TreeNode node in nodes)
+            {
+                node.ForeColor = Color.Empty;
+                node.BackColor = Color.Empty;
+
+                if (node.Text.IndexOf(item, 0, StringComparison.OrdinalIgnoreCase) != -1 && item != "")
+                {
+                    node.ForeColor = Color.Tomato;
+                    node.BackColor = Color.Yellow;
+                }
+            }
+        }
+
         private ITag ParseFullPath(string path)
         {
             string[] splitPath = path.Split('\\');
@@ -248,18 +270,17 @@ namespace MTConnectAgent
             ITag tagTmp = ParseFullPath(e.Node.FullPath);
             specificTags.Add(tagTmp);
 
+            //foreach (ITag aRechercher in tmp)
+            //{
+            //    IList<string> todoAREnommer = instance.GenererPath(aRechercher, url, or.Checked);
 
-        //    foreach (ITag aRechercher in tmp)
-        //    {
-        //        IList<string> todoAREnommer = instance.GenererPath(aRechercher, url, or.Checked);
+            //    resultats.Items.Clear();
 
-        //        resultats.Items.Clear();
-
-        //        foreach (string todoAREnommer2 in todoAREnommer)
-        //        {
-        //            resultats.Items.Add(todoAREnommer2 + "\r\n");
-        //        }
-        //    }
+            //    foreach (string todoAREnommer2 in todoAREnommer)
+            //    {
+            //        resultats.Items.Add(todoAREnommer2 + "\r\n");
+            //    }
+            //}
         }
     }
 }

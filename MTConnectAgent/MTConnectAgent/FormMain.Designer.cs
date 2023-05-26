@@ -42,7 +42,7 @@
             // 
             this.treeViewClientMachine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeViewClientMachine.BackColor = System.Drawing.SystemColors.Info;
+            this.treeViewClientMachine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.treeViewClientMachine.Location = new System.Drawing.Point(12, 71);
             this.treeViewClientMachine.Name = "treeViewClientMachine";
             this.treeViewClientMachine.Size = new System.Drawing.Size(149, 363);
@@ -51,22 +51,24 @@
             // 
             // buttonAjouterClient
             // 
+            this.buttonAjouterClient.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.buttonAjouterClient.Location = new System.Drawing.Point(12, 13);
             this.buttonAjouterClient.Name = "buttonAjouterClient";
             this.buttonAjouterClient.Size = new System.Drawing.Size(149, 23);
             this.buttonAjouterClient.TabIndex = 1;
             this.buttonAjouterClient.Text = "Ajouter un client";
-            this.buttonAjouterClient.UseVisualStyleBackColor = true;
+            this.buttonAjouterClient.UseVisualStyleBackColor = false;
             this.buttonAjouterClient.Click += new System.EventHandler(this.buttonAjouterClient_Click);
             // 
             // buttonAjouterMachine
             // 
+            this.buttonAjouterMachine.BackColor = System.Drawing.Color.LightSkyBlue;
             this.buttonAjouterMachine.Location = new System.Drawing.Point(12, 42);
             this.buttonAjouterMachine.Name = "buttonAjouterMachine";
             this.buttonAjouterMachine.Size = new System.Drawing.Size(149, 23);
             this.buttonAjouterMachine.TabIndex = 2;
             this.buttonAjouterMachine.Text = "Ajouter une machine";
-            this.buttonAjouterMachine.UseVisualStyleBackColor = true;
+            this.buttonAjouterMachine.UseVisualStyleBackColor = false;
             this.buttonAjouterMachine.Click += new System.EventHandler(this.buttonAjouterMachine_Click);
             // 
             // tabs
