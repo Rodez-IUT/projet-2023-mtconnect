@@ -14,6 +14,11 @@ namespace MTConnectAgent.BLL
     /// </summary>
     public class MTConnectClient
     {
+        public enum Protocol
+        {
+            current,
+            probe
+        }
 
         private List<string> paths;
 
@@ -274,7 +279,7 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="tag">Noeud racine depuis lequel nous allons générer le path, doit venir de la méthode CreateSpecifiqueTag</param>
         /// <returns>La liste des paths générés</returns>
-        public List<string> GenererPath(ITag tag, string urlMachine, bool isOrActivated)
+        public List<string> GenererPath(ITag tag, string urlMachine, bool isOrActivated, Protocol protocole)
         {
             if (tag == null)
             {
@@ -286,7 +291,9 @@ namespace MTConnectAgent.BLL
             }
             StringBuilder urlParente = new StringBuilder();
             urlParente.Append(urlMachine);
-            urlParente.Append("/current?path=");
+            urlParente.Append("/");
+            urlParente.Append(protocole.ToString());
+            urlParente.Append("?path=");
             paths = new List<string>();
             if (isOrActivated)
             {
