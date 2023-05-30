@@ -14,6 +14,11 @@ namespace MTConnectAgent.BLL
     /// </summary>
     public class MTConnectClient
     {
+        public enum Protocol
+        {
+            current,
+            probe
+        }
 
         private List<string> paths;
 
@@ -349,7 +354,9 @@ namespace MTConnectAgent.BLL
             }
             StringBuilder urlParente = new StringBuilder();
             urlParente.Append(urlMachine);
-            urlParente.Append("/current?path=");
+            urlParente.Append("/");
+            urlParente.Append(protocole.ToString());
+            urlParente.Append("?path=");
             paths = new List<string>();
             if (isOrActivated)
             {
