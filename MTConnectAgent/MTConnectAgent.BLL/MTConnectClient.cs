@@ -342,7 +342,7 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="tag">Noeud racine depuis lequel nous allons générer le path, doit venir de la méthode CreateSpecifiqueTag</param>
         /// <returns>La liste des paths générés</returns>
-        public List<string> GenererPath(Tag tag, string urlMachine, bool isOrActivated)
+        public List<string> GenererPath(Tag tag, string urlMachine, bool isOrActivated, Protocol protocole)
         {
             if (tag == null)
             {
