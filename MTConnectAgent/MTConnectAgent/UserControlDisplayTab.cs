@@ -28,6 +28,11 @@ namespace MTConnectAgent
         private CheckBox or = new CheckBox();
 
         /// <summary>
+        /// Déselectionne toutes les checkboxs cochées
+        /// </summary>
+        private Button decocher = new Button();
+
+        /// <summary>
         /// Liste des paths générés
         /// </summary>
         private ListView resultats = new ListView();
@@ -271,6 +276,10 @@ namespace MTConnectAgent
             or.Anchor = AnchorStyles.None;
             or.CheckedChanged += new EventHandler(ActualiserPaths);
             containerFlow.Controls.Add(or);
+
+            // Décocher toutes les checkboxs sélectionnées
+            decocher.
+
 
             // Affichage du ou des PATH(S) à chaque checkbox cochée
             resultats.Name = "listResultatsPath";
