@@ -22,18 +22,36 @@ namespace MTConnectAgent
             path
         }
        
+        /// <summary>
+        /// Checkbox pour choisir l'option or 
+        /// </summary>
         private CheckBox or = new CheckBox();
 
-        IList<string> lst = new List<string>();
-
+        /// <summary>
+        /// Liste des paths générés
+        /// </summary>
         private ListView resultats = new ListView();
 
+        /// <summary>
+        /// Instance courante du client MTConnect
+        /// </summary>
         private MTConnectClient instance = new MTConnectClient();
 
+        /// <summary>
+        /// Liste des paths bruts récupérés sous forme de string via le treeview
+        /// </summary>
         private List<string> pathsFromTree = new List<string>();
 
+        /// <summary>
+        /// Liste des noeuds du treeview
+        /// </summary>
         private IList<TreeNode> nodes = new List<TreeNode>();
 
+        /// <summary>
+        /// Initialise l'interface actuelle
+        /// </summary>
+        /// <param name="url">url de la machine choisie</param>
+        /// <param name="fx">type de requete (probe, current, path)</param>
         public UserControlDisplayTab(string url, functions fx)
         {
             this.url = url;
@@ -46,6 +64,9 @@ namespace MTConnectAgent
             UpdateView();
         }
 
+        /// <summary>
+        /// Met à jour l'interface
+        /// </summary>
         public void UpdateView()
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -109,6 +130,10 @@ namespace MTConnectAgent
             }
         }
 
+        /// <summary>
+        /// Application des icones selon le type de noeud
+        /// </summary>
+        /// <param name="node">Noeud courant</param>
         private void SelectIcon(TreeNode node)
         {
             int iconIndex = 0;
@@ -156,7 +181,11 @@ namespace MTConnectAgent
         private readonly AnchorStyles AllSideAnchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         private readonly Font boldFont = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
 
-        // Affichage sous la forme d'un arbre des tags avec leurs attributs, id et nom
+        /// <summary>
+        /// Affichage sous la forme d'un arbre des tags avec leurs attributs, id et nom
+        /// </summary>
+        /// <param name="tags">Les tags à afficher</param>
+        /// <param name="root">Le noeud racine du treeview</param>
         private void Generer(IList<ITag> tags,TreeNode root)
         {
             foreach (ITag tag in tags)
@@ -220,7 +249,9 @@ namespace MTConnectAgent
             }
         }
 
-        // Fenêtre de génération et obtention des PATHS
+        /// <summary>
+        /// Fenêtre de génération et obtention des PATHS
+        /// </summary>
         private void GeneratePathResults()
         {
             // Equilibre l'affichage entre l'arbre des tags et le container des boutons et des résultats des paths
@@ -250,6 +281,11 @@ namespace MTConnectAgent
             container.Controls.Add(resultats);
         }
 
+        /// <summary>
+        /// Actualise les paths lors du clic sur le bouton "or"
+        /// </summary>
+        /// <param name="sender">Objet appellant</param>
+        /// <param name="e">Evenenement provoqué</param>
         private void ActualiserPaths(object sender, EventArgs e)
         {
             if (pathsFromTree.Count != 0)
@@ -259,6 +295,11 @@ namespace MTConnectAgent
             
         }
 
+        /// <summary>
+        /// Appelle l'url du probe de façon asynchrone
+        /// </summary>
+        /// <param name="url">url de la machine courante</param>
+        /// <returns> Tag contenant la totalité des information du probe</returns>
         private static ITag ThreadParseProbe(string url)
         {
             MTConnectClient mtConnectClient = new MTConnectClient();
@@ -266,6 +307,11 @@ namespace MTConnectAgent
             return mtConnectClient.ParseXMLRecursif(t.Root);
         }
 
+        /// <summary>
+        /// Appelle l'url du current de façon asynchrone
+        /// </summary>
+        /// <param name="url">url de la machine courante</param>
+        /// <returns>Tag contenant la totalité des information du current</returns>
         private static ITag ThreadParseCurrent(string url)
         {
             MTConnectClient mtConnectClient = new MTConnectClient();
@@ -273,6 +319,11 @@ namespace MTConnectAgent
             return mtConnectClient.ParseXMLRecursif(t.Root);
         }
 
+        /// <summary>
+        /// Copie le path sélectionné dans le presse-papier lors d'un double clic de la souris
+        /// </summary>
+        /// <param name="o">Object appellant</param>
+        /// <param name="e">Evenenement provoqué</param>
         private void CopyUrl(object o, MouseEventArgs e)
         {
             ListView listView = (ListView)o;
@@ -281,19 +332,31 @@ namespace MTConnectAgent
             new ToastContentBuilder().AddText("Path copié dans le presse papier").Show();
         }
 
-        // Réduire l'affichage de l'arbre
+        /// <summary>
+        /// Réduire l'affichage de l'arbre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CollapseNodes(object sender, MouseEventArgs e)
         {
             treeAffichage.CollapseAll();
         }
 
-        // Développe l'affichage de l'arbre
+        /// <summary>
+        /// Développe l'affichage de l'arbre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExpandNodes(object sender, MouseEventArgs e)
         {
             treeAffichage.ExpandAll();
         }
 
-        // Recherche au sein de la TreeView le texte écrit par l'utilisateur
+        /// <summary>
+        /// Recherche au sein de la TreeView le texte écrit par l'utilisateur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchItem(object sender, EventArgs e)
         {
             string item = ((TextBox)sender).Text;
@@ -311,6 +374,11 @@ namespace MTConnectAgent
             }
         }
         
+        /// <summary>
+        /// Transforme un item sous forme de string en tag, selon son id et son nom
+        /// </summary>
+        /// <param name="path">L'item à transformer</param>
+        /// <returns>Un tag constitué uniquement d'un nom et d'un id</returns>
         private ITag ParseFullPath(string path)
         {
             ITag newTag = new Tag();
@@ -332,6 +400,12 @@ namespace MTConnectAgent
             return newTag;
         }
 
+
+        /// <summary>
+        /// Méthode appelée dès que le treeview est coché ou décocher, initialise et lance la génération du path
+        /// </summary>
+        /// <param name="sender">Object appelant (la treeview)</param>
+        /// <param name="e">Evenement provoqué</param>
         private void treeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Checked)
@@ -352,6 +426,9 @@ namespace MTConnectAgent
             }
         }
 
+        /// <summary>
+        /// Génére les paths des items demandés et les ajoute à la fenêtre path
+        /// </summary>
         private void GenerationPaths()
         {
             ITag tagGeneration = CreateSpecifiqueTag(pathsFromTree);
@@ -364,6 +441,11 @@ namespace MTConnectAgent
             }
         }
 
+        /// <summary>
+        /// Créer un tag spécifique pour la génération des paths
+        /// </summary>
+        /// <param name="chemins">Les chemins donnés par le treeview</param>
+        /// <returns>Un tag spécial pour la génération des paths</returns>
         public ITag CreateSpecifiqueTag(List<string> chemins)
         {
             ITag root = new Tag(tagMachine.Name);
@@ -375,6 +457,14 @@ namespace MTConnectAgent
             return root;
         }
 
+        /// <summary>
+        /// Créer un tag correspondant à un chemin envoyé (ex : Devices/Device), et si certains items du chemin existe déjà dans le tag parent donné,
+        /// alors ils ne sont pas dédoublés
+        /// </summary>
+        /// <param name="parent">Le tag parent dans lequel on ajoute les enfant si il y en a</param>
+        /// <param name="items">Le chemin demandé séparé par item</param>
+        /// <param name="index">L'index courant</param>
+        /// <returns> Un tag contenant tout les items demandés</returns>
         private ITag CreateTagRecursive(ITag parent, string[] items, int index)
         {
             ITag tagCourant;
@@ -397,6 +487,12 @@ namespace MTConnectAgent
             return parent;
         }
 
+        /// <summary>
+        /// Vérifie si le tag enfant est présent en tant qu'enfant direct du parent
+        /// </summary>
+        /// <param name="parent">Le tag parent</param>
+        /// <param name="enfant">Le tag enfant recherché</param>
+        /// <returns>true si il est trouvé, false sinon</returns>
         private bool EnfantExiste(ITag parent, ITag enfant)
         {
             if (enfant.Id.Equals(""))
