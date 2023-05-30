@@ -65,11 +65,12 @@ namespace MTConnectAgent
         }
 
         /// <summary>
-        /// Met à jour l'interface
+        /// Charge la fenêtre sélectionnée avec l'affichage qui correspond
         /// </summary>
         public void UpdateView()
         {
-            Cursor.Current = Cursors.WaitCursor;
+            Cursor.Current = Cursors.WaitCursor; // Curseur de souris en mode chargement
+
             Thread threadCalcul;
             switch (this.fx)
             {
@@ -99,6 +100,7 @@ namespace MTConnectAgent
             btnCollapseNodes.MouseClick += new MouseEventHandler(CollapseNodes);
             rechercheBox.TextChanged += new EventHandler(SearchItem);
 
+            // Ajout des icones pour les tags dans la TreeView
             imageList1.Images.Add(new Icon(".\\default.ico"));
             imageList1.Images.Add(new Icon(".\\header.ico"));
             imageList1.Images.Add(new Icon(".\\device.ico"));
@@ -107,7 +109,7 @@ namespace MTConnectAgent
             imageList1.Images.Add(new Icon(".\\condition.ico"));
             imageList1.Images.Add(new Icon(".\\description.ico"));
             imageList1.Images.Add(new Icon(".\\event.ico"));
-
+            imageList1.Images.Add(new Icon(".\\sample.ico"));
             treeAffichage.ImageList = imageList1;
 
             foreach (ITag tag in tagMachine.Child)
@@ -131,9 +133,9 @@ namespace MTConnectAgent
         }
 
         /// <summary>
-        /// Application des icones selon le type de noeud
+        /// Sélectionne l'icone correspondant au tag généré
         /// </summary>
-        /// <param name="node">Noeud courant</param>
+        /// <param name="node"></param>
         private void SelectIcon(TreeNode node)
         {
             int iconIndex = 0;
@@ -167,15 +169,15 @@ namespace MTConnectAgent
                 case "Events":
                     iconIndex = 7; // event.ico
                     break;
-                case "Sample": // todo trouver icon pour sample
+                case "Samples":
+                    iconIndex = 8; // sample.ico
+                    break;
                 default:
                     iconIndex = 0; // default.ico
                     break;
             }
-
             node.ImageIndex = iconIndex;
             node.SelectedImageIndex = iconIndex;
-            
         }
 
         private readonly AnchorStyles AllSideAnchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
