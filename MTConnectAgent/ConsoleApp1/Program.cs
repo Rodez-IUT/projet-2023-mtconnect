@@ -30,18 +30,18 @@ namespace ConsoleApp1
             idTagQueue.Enqueue("Mazak01");
             idTagQueue.Enqueue("Mazak01-X_1");
 
-            ITag tag = mTConnectClient.CreateSpecifiqueTag(root, idTagQueue);
+            //ITag tag = mTConnectClient.CreateSpecifiqueTag(root, idTagQueue);
 
-            Program.AfficherTag(tag, "");
+            //Program.AfficherTag(tag, "");
 
             Console.WriteLine("----------------------------------------");
 
-            List<string> paths = mTConnectClient.GenererPath(tag, "https://smstestbed.nist.gov/vds", true);
+            //List<string> paths = mTConnectClient.GenererPath(tag, "https://smstestbed.nist.gov/vds", true);
 
-            foreach (string path in paths)
-            {
-                Console.WriteLine(path);
-            }
+            //foreach (string path in paths)
+            //{
+            //    Console.WriteLine(path);
+            //}
 
             Console.WriteLine("----------------------------------------\n");
 
@@ -70,11 +70,11 @@ namespace ConsoleApp1
             }
         }
 
-        public static void AfficherTag(ITag tag,string marge)
+        public static void AfficherTag(Tag tag,string marge)
         {
             Console.WriteLine(marge + tag.Name + " : " + tag.Id);
 
-            foreach(ITag child in tag.Child)
+            foreach(Tag child in tag.Child)
             {
                 AfficherTag(child, marge +"     ");
             }

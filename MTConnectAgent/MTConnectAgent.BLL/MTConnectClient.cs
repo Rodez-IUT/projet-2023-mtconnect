@@ -22,9 +22,9 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public ITag ParseXMLRecursif(XElement element)
+        public Tag ParseXMLRecursif(XElement element)
         {
-            ITag tag = new Tag(element.Name.ToString().Split('}')[1]);
+            Tag tag = new Tag(element.Name.ToString().Split('}')[1]);
 
             if (element.Attributes().Count() != 0)
             {
@@ -115,7 +115,7 @@ namespace MTConnectAgent.BLL
         /// <param name="tag"></param>
         /// <param name="stringBuilder"></param>
         /// <returns> Le stringBuilder d'entrée auquel on à concaténé le path</returns>
-        private StringBuilder GenererPath(ITag tag, StringBuilder stringBuilder, bool isOrActivated)
+        private StringBuilder GenererPath(Tag tag, StringBuilder stringBuilder, bool isOrActivated)
         {
             stringBuilder.Append("//");
             stringBuilder.Append(tag.Name);
@@ -221,9 +221,9 @@ namespace MTConnectAgent.BLL
         /// <param name="tag">Tag dans lequel vas être effectué la recherche</param>
         /// <param name="name">Nom du tag recherché</param>
         /// <returns>Renvoi le tag qui correspond au critère de recherche sinon null</returns>
-        public ITag FindTagByName(ITag tag, string name)
+        public Tag FindTagByName(Tag tag, string name)
         {
-            ITag result = null;
+            Tag result = null;
             if (tag.Name.Equals(name))
             {
                 return tag;
@@ -250,7 +250,7 @@ namespace MTConnectAgent.BLL
         /// <param name="tag">Tag dans lequel vas être effectué la recherche</param>
         /// <param name="id">Id du tag recherché</param>
         /// <returns>Renvoi le nom du tag correspondant sinon null</returns>
-        public string FindTagNameById(ITag tag, string id)
+        public string FindTagNameById(Tag tag, string id)
         {
             string result = null;
             if (tag.Id.Equals(id))
@@ -260,7 +260,7 @@ namespace MTConnectAgent.BLL
 
             if (tag.Child.Count > 0)
             {
-                foreach (ITag tagChild in tag.Child)
+                foreach (Tag tagChild in tag.Child)
                 {
                     result = FindTagNameById(tagChild, id);
                     if (result != null)
@@ -279,9 +279,9 @@ namespace MTConnectAgent.BLL
         /// <param name="tag">Tag dans lequel vas être effectué la recherche</param>
         /// <param name="id">Id du tag recherché</param>
         /// <returns>Renvoi le nom du tag correspondant sinon null</returns>
-        public ITag FindTagById(ITag tag, string id)
+        public Tag FindTagById(Tag tag, string id)
         {
-            ITag result = null;
+            Tag result = null;
             if (tag.Id.Equals(id))
             {
                 return tag;
@@ -289,7 +289,7 @@ namespace MTConnectAgent.BLL
 
             if (tag.Child.Count > 0)
             {
-                foreach (ITag tagChild in tag.Child)
+                foreach (Tag tagChild in tag.Child)
                 {
                     result = FindTagById(tagChild, id);
                     if (result != null)
@@ -309,9 +309,9 @@ namespace MTConnectAgent.BLL
         /// <param name="tag">Tag dans lequel vas être effectué la recherche</param>
         /// <param name="id">Id du tag recherché</param>
         /// <returns>Renvoi le nom du tag correspondant sinon null</returns>
-        public ITag FindRefTagById(ITag tag, string id)
+        public Tag FindRefTagById(Tag tag, string id)
         {
-            ITag result = null;
+            Tag result = null;
             if (tag.Id.Equals(id))
             {
                 return tag;
@@ -319,7 +319,7 @@ namespace MTConnectAgent.BLL
 
             if (tag.Child.Count > 0)
             {
-                foreach (ITag tagChild in tag.Child)
+                foreach (Tag tagChild in tag.Child)
                 {
                     result = FindRefTagById(tagChild, id);
                     if (result != null)
@@ -337,7 +337,7 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="tag">Noeud racine depuis lequel nous allons générer le path, doit venir de la méthode CreateSpecifiqueTag</param>
         /// <returns>La liste des paths générés</returns>
-        public List<string> GenererPath(ITag tag, string urlMachine, bool isOrActivated)
+        public List<string> GenererPath(Tag tag, string urlMachine, bool isOrActivated)
         {
             if (tag == null)
             {
@@ -367,7 +367,7 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="tag">Le tag courant de la génération du path courant</param>
         /// <param name="urlParente">Url courante de la génération du path courant</param>
-        private void GenererPathSansOr(ITag tag, string urlParente)
+        private void GenererPathSansOr(Tag tag, string urlParente)
         {
             StringBuilder urlCourante = new StringBuilder();
             // Ajout du nom du tag au path courant
@@ -388,7 +388,7 @@ namespace MTConnectAgent.BLL
             }
             else
             {
-                foreach (ITag tagEnfant in tag.Child)
+                foreach (Tag tagEnfant in tag.Child)
                 {
                     GenererPathSansOr(tagEnfant, urlCourante.ToString());
                 }
@@ -401,7 +401,7 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="tag">Le tag courant de la génération du path courant</param>
         /// <param name="urlParente">Url courante de la génération du path courant</param>
-        private void GenererPathAvecOr(ITag tag, string urlParente)
+        private void GenererPathAvecOr(Tag tag, string urlParente)
         {
             StringBuilder urlCourante = new StringBuilder();
             // Ajout du nom du tag au path courant
@@ -424,7 +424,7 @@ namespace MTConnectAgent.BLL
             else
             {
                 // On vérifie si l'utilisation du or est possible
-                foreach (ITag tagEnfant in tag.Child)
+                foreach (Tag tagEnfant in tag.Child)
                 {
                     if (tagEnfant.HasChild() || tagEnfant.Id.Equals(""))
                     {
@@ -438,7 +438,7 @@ namespace MTConnectAgent.BLL
                     urlCourante.Append(tag.Child[0].Name);
                     urlCourante.Append("[@id=");
                     bool isFirst = true;
-                    foreach (ITag tagEnfant in tag.Child)
+                    foreach (Tag tagEnfant in tag.Child)
                     {
                         if (!isFirst)
                         {
@@ -454,7 +454,7 @@ namespace MTConnectAgent.BLL
                 }
                 else
                 { 
-                    foreach (ITag tagEnfant in tag.Child)
+                    foreach (Tag tagEnfant in tag.Child)
                     {
                         GenererPathAvecOr(tagEnfant, urlCourante.ToString());
                     }

@@ -12,7 +12,7 @@ namespace MTConnectAgent
 {
     public partial class UserControlDisplayTab : UserControl
     {
-        private ITag tagMachine;
+        private Tag tagMachine;
         private string url;
         private functions fx;
         public enum functions
@@ -112,7 +112,7 @@ namespace MTConnectAgent
             imageList1.Images.Add(Properties.Resources.sample);
             treeAffichage.ImageList = imageList1;
 
-            foreach (ITag tag in tagMachine.Child)
+            foreach (Tag tag in tagMachine.Child)
             {
                 string compositeName = tag.Name + tag.GetHashCode();
                 TreeNode node = new TreeNode();
@@ -188,9 +188,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="tags">Les tags à afficher</param>
         /// <param name="root">Le noeud racine du treeview</param>
-        private void Generer(IList<ITag> tags,TreeNode root)
+        private void Generer(IList<Tag> tags,TreeNode root)
         {
-            foreach (ITag tag in tags)
+            foreach (Tag tag in tags)
             {
                 string compositeName = tag.Name + tag.GetHashCode();
                 TreeNode node = new TreeNode();
@@ -302,7 +302,7 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="url">url de la machine courante</param>
         /// <returns> Tag contenant la totalité des information du probe</returns>
-        private static ITag ThreadParseProbe(string url)
+        private static Tag ThreadParseProbe(string url)
         {
             MTConnectClient mtConnectClient = new MTConnectClient();
             XDocument t = mtConnectClient.getProbeAsync(url).Result;
@@ -314,7 +314,7 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="url">url de la machine courante</param>
         /// <returns>Tag contenant la totalité des information du current</returns>
-        private static ITag ThreadParseCurrent(string url)
+        private static Tag ThreadParseCurrent(string url)
         {
             MTConnectClient mtConnectClient = new MTConnectClient();
             XDocument t = mtConnectClient.getCurrentAsync(url).Result;
@@ -381,9 +381,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="path">L'item à transformer</param>
         /// <returns>Un tag constitué uniquement d'un nom et d'un id</returns>
-        private ITag ParseFullPath(string path)
+        private Tag ParseFullPath(string path)
         {
-            ITag newTag = new Tag();
+            Tag newTag = new Tag();
             string pathCourant = path.Trim();
 
             if (pathCourant.EndsWith(")"))
@@ -433,7 +433,7 @@ namespace MTConnectAgent
         /// </summary>
         private void GenerationPaths()
         {
-            ITag tagGeneration = CreateSpecifiqueTag(pathsFromTree);
+            Tag tagGeneration = CreateSpecifiqueTag(pathsFromTree);
 
             List<string> paths = instance.GenererPath(tagGeneration, url, or.Checked);
             resultats.Items.Clear();
@@ -448,9 +448,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="chemins">Les chemins donnés par le treeview</param>
         /// <returns>Un tag spécial pour la génération des paths</returns>
-        public ITag CreateSpecifiqueTag(List<string> chemins)
+        public Tag CreateSpecifiqueTag(List<string> chemins)
         {
-            ITag root = new Tag(tagMachine.Name);
+            Tag root = new Tag(tagMachine.Name);
             foreach (string chemin in chemins)
             {
                 string[] tagActuelString = chemin.Split('\\');
@@ -467,9 +467,9 @@ namespace MTConnectAgent
         /// <param name="items">Le chemin demandé séparé par item</param>
         /// <param name="index">L'index courant</param>
         /// <returns> Un tag contenant tout les items demandés</returns>
-        private ITag CreateTagRecursive(ITag parent, string[] items, int index)
+        private Tag CreateTagRecursive(Tag parent, string[] items, int index)
         {
-            ITag tagCourant;
+            Tag tagCourant;
             if (index < items.Length)
             {
                 tagCourant = ParseFullPath(items[index]);
@@ -495,7 +495,7 @@ namespace MTConnectAgent
         /// <param name="parent">Le tag parent</param>
         /// <param name="enfant">Le tag enfant recherché</param>
         /// <returns>true si il est trouvé, false sinon</returns>
-        private bool EnfantExiste(ITag parent, ITag enfant)
+        private bool EnfantExiste(Tag parent, Tag enfant)
         {
             if (enfant.Id.Equals(""))
             {

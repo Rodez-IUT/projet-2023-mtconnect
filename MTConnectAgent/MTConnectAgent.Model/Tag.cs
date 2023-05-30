@@ -29,7 +29,7 @@ namespace MTConnectAgent.Model
         /// <summary>
         /// Liste des noeuds enfant du noeud actuel
         /// </summary>
-        public IList<ITag> Child { get; private set; }
+        public IList<Tag> Child { get; private set; }
 
         /// <summary>
         /// Valeur du noeud xml
@@ -47,7 +47,7 @@ namespace MTConnectAgent.Model
             Name = name; 
             Id = id;
             this.Attributs = new Dictionary<string,string>();
-            this.Child = new List<ITag>();
+            this.Child = new List<Tag>();
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace MTConnectAgent.Model
             Name = name;
             Id = "";
             this.Attributs = new Dictionary<string, string>();
-            this.Child = new List<ITag>();
+            this.Child = new List<Tag>();
         }
 
         public Tag()
@@ -67,7 +67,7 @@ namespace MTConnectAgent.Model
             Id = "";
             Name = "";
             Attributs = new Dictionary<string, string>();
-            Child = new List<ITag>();
+            Child = new List<Tag>();
             Value = "";
         }
 
@@ -88,7 +88,7 @@ namespace MTConnectAgent.Model
         /// </summary>
         /// <param name="childTag"></param>
         /// <returns>L'élément courant</returns>
-        public ITag AddChild(ITag childTag)
+        public Tag AddChild(Tag childTag)
         {
             this.Child.Add(childTag);
             return this;
@@ -114,10 +114,10 @@ namespace MTConnectAgent.Model
 
         public void ClearChild()
         {
-            this.Child = new List<ITag>();
+            this.Child = new List<Tag>();
         }
 
-        public void SetChild(List<ITag> child)
+        public void SetChild(List<Tag> child)
         {
             this.Child = child;
         }
