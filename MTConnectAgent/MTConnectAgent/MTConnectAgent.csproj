@@ -34,6 +34,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -109,6 +113,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UserControlDisplayTab.resx">
       <DependentUpon>UserControlDisplayTab.cs</DependentUpon>
@@ -170,6 +175,35 @@
     <PackageReference Include="System.Runtime.WindowsRuntime.UI.Xaml">
       <Version>4.6.0</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\component.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\condition.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dataitem.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\default.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\description.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\device.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\event.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\header.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sample.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
