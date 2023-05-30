@@ -33,6 +33,11 @@ namespace MTConnectAgent
         private Button decocher = new Button();
 
         /// <summary>
+        /// Boutons radio pour le choix du protocole
+        /// </summary>
+        private GroupBox choixProtocole = new GroupBox();
+
+        /// <summary>
         /// Liste des paths générés
         /// </summary>
         private ListView resultats = new ListView();
@@ -51,6 +56,8 @@ namespace MTConnectAgent
         /// Liste des noeuds du treeview
         /// </summary>
         private IList<TreeNode> nodes = new List<TreeNode>();
+
+        private MTConnectClient.Protocol protocole;
 
         /// <summary>
         /// Initialise l'interface actuelle
@@ -286,6 +293,16 @@ namespace MTConnectAgent
             decocher.MouseClick += new MouseEventHandler(Deselect);
             containerFlow.Controls.Add(decocher);
 
+            // Choix du protocole
+            foreach (string protocol in Enum.GetNames(typeof(MTConnectClient.Protocol)))
+            {
+                RadioButton radioButton = new RadioButton
+                {
+                    Name = protocol,
+                    Text = protocol
+                };
+            }
+
             // Affichage du ou des PATH(S) à chaque checkbox cochée
             resultats.Name = "listResultatsPath";
             resultats.Location = new Point(5, containerFlow.Location.Y + containerFlow.Height);
@@ -501,7 +518,7 @@ namespace MTConnectAgent
         {
             Tag tagGeneration = CreateSpecifiqueTag(pathsFromTree);
 
-            List<string> paths = instance.GenererPath(tagGeneration, url, or.Checked);
+            List<string> paths = instance.GenererPath(tagGeneration, url, or.Checked, protocole);
             resultats.Items.Clear();
             foreach (string path in paths)
             {
