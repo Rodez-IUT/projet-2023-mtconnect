@@ -89,7 +89,7 @@ namespace MTConnectAgent
             imageList1.Images.Add(new Icon(".\\condition.ico"));
             imageList1.Images.Add(new Icon(".\\description.ico"));
             imageList1.Images.Add(new Icon(".\\event.ico"));
-            imageList1.Images.Add(new Icon(".\\sample.ico"));
+            //imageList1.Images.Add(new Icon(".\\sample.ico"));
             treeAffichage.ImageList = imageList1;
 
             foreach (ITag tag in tagMachine.Child)
