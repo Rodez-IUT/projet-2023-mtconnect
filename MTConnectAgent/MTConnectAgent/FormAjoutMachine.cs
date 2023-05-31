@@ -14,13 +14,26 @@ namespace MTConnectAgent
     public partial class FormAjoutMachine : Form
     {
         public bool updated { get; set; }
-        public List<Client> clients { get; set; }
+        private List<Client> clients { get; set; }
+        private string selectedClient = null;
 
-        public FormAjoutMachine(List<Client> clients)
+        public FormAjoutMachine(List<Client> clients, TreeNode selected)
         {
             InitializeComponent();
             this.updated = false;
             this.clients = clients;
+
+            if (selected != null)
+            {
+                if (selected.Parent != null)
+                {
+                    this.selectedClient = selected.Parent.Text;
+                }
+                else
+                {
+                    this.selectedClient = selected.Text;
+                }
+            }
             InitializePage();
         }
 
@@ -43,6 +56,10 @@ namespace MTConnectAgent
                 comboClients.Enabled = true;
                 textMachineName.Enabled = true;
                 textMachineUrl.Enabled = true;
+            }
+            if (selectedClient != null)
+            {
+                comboClients.SelectedIndex = comboClients.FindStringExact(selectedClient);
             }
             comboClients.EndUpdate();
         }

@@ -362,8 +362,16 @@ namespace MTConnectAgent
         private static Tag ThreadParseProbe(string url)
         {
             MTConnectClient mtConnectClient = new MTConnectClient();
-            XDocument t = mtConnectClient.getProbeAsync(url).Result;
-            return mtConnectClient.ParseXMLRecursif(t.Root);
+            try
+            {
+                XDocument t = mtConnectClient.getProbeAsync(url).Result;
+                return mtConnectClient.ParseXMLRecursif(t.Root);
+            }
+            catch (System.AggregateException e) // une erreur est levé lors de l'appelle
+            {
+                new ToastContentBuilder().AddText(e.InnerException.Message).Show();
+                return new Tag();
+            }
         }
 
         /// <summary>
@@ -373,9 +381,17 @@ namespace MTConnectAgent
         /// <returns>Tag contenant la totalité des information du current</returns>
         private static Tag ThreadParseCurrent(string url)
         {
-            MTConnectClient mtConnectClient = new MTConnectClient();
-            XDocument t = mtConnectClient.getCurrentAsync(url).Result;
-            return mtConnectClient.ParseXMLRecursif(t.Root);
+            try
+            {
+                MTConnectClient mtConnectClient = new MTConnectClient();
+                XDocument t = mtConnectClient.getCurrentAsync(url).Result;
+                return mtConnectClient.ParseXMLRecursif(t.Root);
+            }
+            catch (System.AggregateException e) // une erreur est levé lors de l'appelle
+            {
+                new ToastContentBuilder().AddText(e.InnerException.Message).Show();
+                return new Tag();
+            }
         }
 
         /// <summary>
