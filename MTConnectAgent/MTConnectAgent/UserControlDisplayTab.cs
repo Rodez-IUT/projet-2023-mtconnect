@@ -278,8 +278,11 @@ namespace MTConnectAgent
             containerFlow.Controls.Add(or);
 
             // Décocher toutes les checkboxs sélectionnées
-            decocher.
-
+            decocher.Name = "decocher";
+            decocher.Text = "Décocher";
+            decocher.Anchor = AnchorStyles.None;
+            decocher.MouseClick += new MouseEventHandler(Deselect);
+            containerFlow.Controls.Add(decocher);
 
             // Affichage du ou des PATH(S) à chaque checkbox cochée
             resultats.Name = "listResultatsPath";
@@ -364,6 +367,19 @@ namespace MTConnectAgent
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Deselect(object sender, MouseEventArgs e)
+        {
+            foreach (TreeNode node in nodes)
+            {
+                node.Checked = false;
+            }
+        }
+
+        /// <summary>
         /// Recherche au sein de la TreeView le texte écrit par l'utilisateur
         /// </summary>
         /// <param name="sender"></param>
@@ -379,7 +395,6 @@ namespace MTConnectAgent
 
                 if (node.Text.IndexOf(item, 0, StringComparison.OrdinalIgnoreCase) != -1 && item != "")
                 {
-                    //node.ForeColor = Color.Tomato;
                     node.BackColor = Color.Yellow;
                 }
             }
