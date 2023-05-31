@@ -291,7 +291,7 @@ namespace MTConnectAgent
             resultats.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             resultats.View = View.List;
             resultats.TabIndex = 2;
-            resultats.MouseDoubleClick += new MouseEventHandler(OpenBrowser);
+            resultats.MouseClick += new MouseEventHandler(CopyUrl);
             container.Controls.Add(resultats);
         }
 
@@ -339,10 +339,13 @@ namespace MTConnectAgent
         /// <param name="e">Evenenement provoqué</param>
         private void CopyUrl(object o, MouseEventArgs e)
         {
-            ListView listView = (ListView)o;
-            Clipboard.SetText(listView.FocusedItem.Text);
+            if (e.Button == MouseButtons.Right)
+            {
+                ListView listView = (ListView)o;
+                Clipboard.SetText(listView.FocusedItem.Text);
 
-            new ToastContentBuilder().AddText("Path copié dans le presse papier").Show();
+                new ToastContentBuilder().AddText("Path copié dans le presse papier").Show();
+            }
         }
 
         /// <summary>
