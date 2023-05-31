@@ -16,6 +16,10 @@ namespace MTConnectAgent
     {
         private List<Client> clients;
 
+        private int tabIndex = 0;
+
+        private Machine selectedMachine;
+
         public FormMain()
         {
             InitializeComponent();
@@ -32,8 +36,6 @@ namespace MTConnectAgent
                 treeViewClientMachine.Nodes.Add(clients[i].Name);
                 foreach (Machine machine in clients[i].Machines)
                 {
-
-
                     ContextMenuStrip treeViewMachineContext = new ContextMenuStrip();
 
                     ToolStripMenuItem modifyMachineLabel = new ToolStripMenuItem("Modifier", null, modifyMachineLabel_Click);
@@ -45,8 +47,7 @@ namespace MTConnectAgent
                     };
                     modifyMachineLabel.Tag = tags;
                     deleteMachineLabel.Tag = tags;
-
-
+                    
                     TreeNode noeudMachine = new TreeNode(machine.Name);
                     noeudMachine.Tag = machine;
 
@@ -56,8 +57,7 @@ namespace MTConnectAgent
 
                     treeViewClientMachine.Nodes[i].Nodes.Add(noeudMachine);
                 }
-
-
+                
                 ContextMenuStrip treeViewClientContext = new ContextMenuStrip();
 
                 ToolStripMenuItem modifyClientLabel = new ToolStripMenuItem("Modifier", null, modifyClientLabel_Click);
@@ -211,15 +211,91 @@ namespace MTConnectAgent
         {
             if (e.Node.Parent != null)
             {
-                Machine selectedMachine = (Machine)e.Node.Tag;
+                selectedMachine = (Machine)e.Node.Tag;
 
-                UserControlProbeCurrent userCtrlProbe = new UserControlProbeCurrent(selectedMachine.Url, UserControlProbeCurrent.functions.probe);
-                this.tabProbe.Controls.Clear();
-                this.tabProbe.Controls.Add(userCtrlProbe);
+                displayTab();
+            }
+        }
 
-                UserControlProbeCurrent userCtrlCurrent = new UserControlProbeCurrent(selectedMachine.Url, UserControlProbeCurrent.functions.current);
-                this.tabCurrent.Controls.Clear();
-                this.tabCurrent.Controls.Add(userCtrlCurrent);
+        private void tabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tabIndex = ((TabControl)sender).SelectedIndex;
+
+            displayTab();
+        }
+
+        private void displayTab()
+        {
+            if (selectedMachine == null)
+            {
+                return;  // early return pour bloquer l'affichage si aucune machine sélectionnée
+            }
+
+            this.tabCurrent.Controls.Clear();
+            this.tabProbe.Controls.Clear();
+            this.tabPath.Controls.Clear();
+
+            switch (tabIndex)
+            {
+                case 1: // Current tab
+                    UserControlDisplayTab userCtrlCurrent = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.functions.current);
+                    this.tabCurrent.Controls.Add(userCtrlCurrent);
+                    userCtrlCurrent.Width = tabCurrent.Width;
+                    userCtrlCurrent.Height = tabCurrent.Height;
+                    break;
+
+                case 2: // Path tab
+                    UserControlDisplayTab userCtrlPath = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.functions.path);
+                    this.tabPath.Controls.Add(userCtrlPath);
+                    userCtrlPath.Width = tabPath.Width;
+                    userCtrlPath.Height = tabPath.Height;
+                    break;
+                   
+                case 0: // Probe tab
+                default:
+                    UserControlDisplayTab userCtrlProbe = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.functions.probe);
+                    this.tabProbe.Controls.Add(userCtrlProbe);
+                    userCtrlProbe.Width = tabProbe.Width;
+                    userCtrlProbe.Height = tabProbe.Height;
+                    break;
+            }
+        }
+
+        private void tabs_Resize(object sender, EventArgs e)
+        {
+            UserControlDisplayTab userControl;
+            switch (tabIndex)
+            {
+                case 1: // Current tab
+                    if (tabCurrent.Controls.Count <= 0)
+                    {
+                        return;
+                    }
+                    userControl =  (UserControlDisplayTab)this.tabCurrent.Controls[0];
+                    userControl.Width = tabCurrent.Width;
+                    userControl.Height = tabCurrent.Height;
+                    break;
+
+                case 2: // Path tab
+                    if (tabPath.Controls.Count <= 0)
+                    {
+                        return;
+                    }
+                    userControl = (UserControlDisplayTab)this.tabPath.Controls[0];
+                    userControl.Width = tabPath.Width;
+                    userControl.Height = tabPath.Height;
+                    break;
+
+                case 0: // Probe tab
+                default:
+                    if (tabProbe.Controls.Count <= 0)
+                    {
+                        return;
+                    }
+                    userControl = (UserControlDisplayTab)this.tabProbe.Controls[0];
+                    userControl.Width = tabProbe.Width;
+                    userControl.Height = tabProbe.Height;
+                    break;
             }
         }
     }

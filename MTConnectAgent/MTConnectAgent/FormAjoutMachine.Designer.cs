@@ -50,12 +50,8 @@
             // 
             // buttonAjouter
             // 
-            this.buttonAjouter.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.buttonAjouter.FlatAppearance.BorderColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.buttonAjouter.FlatAppearance.BorderSize = 0;
-            this.buttonAjouter.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.buttonAjouter.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.buttonAjouter.Location = new System.Drawing.Point(16, 92);
+            this.buttonAjouter.BackColor = System.Drawing.Color.PapayaWhip;
+            this.buttonAjouter.Location = new System.Drawing.Point(386, 119);
             this.buttonAjouter.Name = "buttonAjouter";
             this.buttonAjouter.Size = new System.Drawing.Size(98, 23);
             this.buttonAjouter.TabIndex = 6;
@@ -65,7 +61,7 @@
             // 
             // buttonAnnuler
             // 
-            this.buttonAnnuler.Location = new System.Drawing.Point(282, 92);
+            this.buttonAnnuler.Location = new System.Drawing.Point(12, 119);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(98, 23);
             this.buttonAnnuler.TabIndex = 5;
@@ -120,12 +116,8 @@
             // 
             // buttonAjouterClient
             // 
-            this.buttonAjouterClient.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.buttonAjouterClient.FlatAppearance.BorderColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.buttonAjouterClient.FlatAppearance.BorderSize = 0;
-            this.buttonAjouterClient.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.buttonAjouterClient.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.buttonAjouterClient.Location = new System.Drawing.Point(153, 92);
+            this.buttonAjouterClient.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.buttonAjouterClient.Location = new System.Drawing.Point(386, 10);
             this.buttonAjouterClient.Name = "buttonAjouterClient";
             this.buttonAjouterClient.Size = new System.Drawing.Size(98, 23);
             this.buttonAjouterClient.TabIndex = 12;
@@ -137,7 +129,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 125);
+            this.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.ClientSize = new System.Drawing.Size(488, 154);
             this.Controls.Add(this.buttonAjouterClient);
             this.Controls.Add(this.textMachineUrl);
             this.Controls.Add(this.labelMachineUrl);

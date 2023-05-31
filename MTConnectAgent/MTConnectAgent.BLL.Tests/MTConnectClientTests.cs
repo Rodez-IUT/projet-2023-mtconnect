@@ -83,55 +83,21 @@ namespace MTConnectAgent.BLL.Tests
         }
 
         [TestMethod]
-        public void CreateSpecifiqueTagTest()
-        {
-            // Arrange 
-            ITag dataItem = new Tag("DataItem", "Mazak03-S_6");
-            ITag dataItems = new Tag("DataItems");
-            dataItems.AddChild(dataItem);
-            ITag axes = new Tag("Axes");
-            axes.AddChild(dataItems);
-            ITag components = new Tag("Components");
-            components.AddChild(axes);
-            ITag device = new Tag("Device", "Mazak03");
-            device.AddChild(components);
-
-            Queue<string> identifiantQueue = new Queue<string>();
-            string id = "Mazak03";
-            identifiantQueue.Enqueue(id);
-
-            identifiantQueue.Enqueue("Components");
-            identifiantQueue.Enqueue("Axes");
-            identifiantQueue.Enqueue("DataItems");
-            identifiantQueue.Enqueue("Mazak03-S_6");
-
-
-
-            // Act
-            ITag tagSpecifique = mtConnectClient.CreateSpecifiqueTag(device, identifiantQueue);
-
-            // Assert
-            Assert.IsNotNull(tagSpecifique);
-            Assert.AreEqual(device.Id, tagSpecifique.Id);
-            Assert.AreEqual("Mazak03-S_6", device.Child[0].Child[0].Child[0].Child[0].Id);
-        }
-
-        [TestMethod]
         public void FindTagByIdTest()
         {
             // Arrange
-            ITag dataItem = new Tag("DataItem", "Mazak03-S_6");
-            ITag dataItems = new Tag("DataItems");
+            Tag dataItem = new Tag("DataItem", "Mazak03-S_6");
+            Tag dataItems = new Tag("DataItems");
             dataItems.AddChild(dataItem);
-            ITag axes = new Tag("Axes");
+            Tag axes = new Tag("Axes");
             axes.AddChild(dataItems);
-            ITag components = new Tag("Components");
+            Tag components = new Tag("Components");
             components.AddChild(axes);
-            ITag device = new Tag("Device", "Mazak03");
+            Tag device = new Tag("Device", "Mazak03");
             device.AddChild(components);
 
             // Act
-            ITag tagSpecifique = mtConnectClient.FindTagById(device, "Mazak03-S_6");
+            Tag tagSpecifique = mtConnectClient.FindTagById(device, "Mazak03-S_6");
 
             // Assert
             Assert.IsNotNull(tagSpecifique);
@@ -143,18 +109,18 @@ namespace MTConnectAgent.BLL.Tests
         public void FindTagByNameTest()
         {
             // Arrange
-            ITag dataItem = new Tag("DataItem", "Mazak03-S_6");
-            ITag dataItems = new Tag("DataItems");
+            Tag dataItem = new Tag("DataItem", "Mazak03-S_6");
+            Tag dataItems = new Tag("DataItems");
             dataItems.AddChild(dataItem);
-            ITag axes = new Tag("Axes");
+            Tag axes = new Tag("Axes");
             axes.AddChild(dataItems);
-            ITag components = new Tag("Components");
+            Tag components = new Tag("Components");
             components.AddChild(axes);
-            ITag device = new Tag("Device", "Mazak03");
+            Tag device = new Tag("Device", "Mazak03");
             device.AddChild(components);
 
             // Act
-            ITag tagSpecifique = mtConnectClient.FindTagByName(device, "DataItem");
+            Tag tagSpecifique = mtConnectClient.FindTagByName(device, "DataItem");
 
             // Assert
             Assert.IsNotNull(tagSpecifique);
@@ -172,11 +138,11 @@ namespace MTConnectAgent.BLL.Tests
                 "https://smstestbed.nist.gov/vds/current?path=//Devices//Device[@id=\"GFAgie01\"]",
                 "https://smstestbed.nist.gov/vds/current?path=//Devices//Device[@id=\"Mazak01\"]//DataItems//DataItem[@id=\"Mazak01-dtop_1\"]"
             };
-            ITag devices = new Tag("Devices");
-            ITag device1 = new Tag("Device", "GFAgie01");
-            ITag device2 = new Tag("Device", "Mazak01");
-            ITag dataItems = new Tag("DataItems");
-            ITag dataItem = new Tag("DataItem", "Mazak01-dtop_1");
+            Tag devices = new Tag("Devices");
+            Tag device1 = new Tag("Device", "GFAgie01");
+            Tag device2 = new Tag("Device", "Mazak01");
+            Tag dataItems = new Tag("DataItems");
+            Tag dataItem = new Tag("DataItem", "Mazak01-dtop_1");
             dataItems.AddChild(dataItem);
             device2.AddChild(dataItems);
             devices.AddChild(device1);
@@ -202,14 +168,14 @@ namespace MTConnectAgent.BLL.Tests
                 "https://smstestbed.nist.gov/vds/current?path=//Devices//Device[@id=\"GFAgie01\"]//DataItems//DataItem[@id=\"GFAgie01-dtop_1\" or @id=\"GFAgie01-dtop_2\"]",
                 "https://smstestbed.nist.gov/vds/current?path=//Devices//Device[@id=\"Mazak01\"]//DataItems//DataItem[@id=\"Mazak01-dtop_1\"]"
             };
-            ITag dataItem1 = new Tag("DataItem", "GFAgie01-dtop_1");
-            ITag dataItem2 = new Tag("DataItem", "GFAgie01-dtop_2");
-            ITag dataItem3 = new Tag("DataItem", "Mazak01-dtop_1");
-            ITag dataItems1 = new Tag("DataItems");
-            ITag dataItems2 = new Tag("DataItems");
-            ITag device1 = new Tag("Device", "GFAgie01");
-            ITag device2 = new Tag("Device", "Mazak01");
-            ITag devices = new Tag("Devices");
+            Tag dataItem1 = new Tag("DataItem", "GFAgie01-dtop_1");
+            Tag dataItem2 = new Tag("DataItem", "GFAgie01-dtop_2");
+            Tag dataItem3 = new Tag("DataItem", "Mazak01-dtop_1");
+            Tag dataItems1 = new Tag("DataItems");
+            Tag dataItems2 = new Tag("DataItems");
+            Tag device1 = new Tag("Device", "GFAgie01");
+            Tag device2 = new Tag("Device", "Mazak01");
+            Tag devices = new Tag("Devices");
             dataItems1.AddChild(dataItem1);
             dataItems1.AddChild(dataItem2);
             dataItems2.AddChild(dataItem3);
@@ -237,7 +203,7 @@ namespace MTConnectAgent.BLL.Tests
             {
                 "https://smstestbed.nist.gov/vds/current?path=//Device[@id=\"GFAgie01\"]"
             };
-            ITag device = new Tag("Device", "GFAgie01");
+            Tag device = new Tag("Device", "GFAgie01");
 
             //Act
             List<string> resultatObtenu = mtConnectClient.GenererPath(device, url, true);
@@ -258,8 +224,8 @@ namespace MTConnectAgent.BLL.Tests
             {
                 "https://smstestbed.nist.gov/vds/current?path=//Devices[@id=\"test\"]//Device[@id=\"GFAgie01\"]"
             };
-            ITag device = new Tag("Device", "GFAgie01");
-            ITag devices = new Tag("Devices", "test");
+            Tag device = new Tag("Device", "GFAgie01");
+            Tag devices = new Tag("Devices", "test");
             devices.AddChild(device);
 
             //Act
@@ -281,7 +247,7 @@ namespace MTConnectAgent.BLL.Tests
             {
                 "https://smstestbed.nist.gov/vds/current?path=//DataItems"
             };
-            ITag dataItems = new Tag("DataItems");
+            Tag dataItems = new Tag("DataItems");
 
             //Act
             List<string> resultatObtenu = mtConnectClient.GenererPath(dataItems, url, true);
