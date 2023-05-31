@@ -293,6 +293,7 @@ namespace MTConnectAgent
             resultats.TabIndex = 2;
             resultats.MouseDoubleClick += new MouseEventHandler(OpenBrowser);
             resultats.MouseDown += new MouseEventHandler(CopyAllUrl);
+            resultats.MouseClick += new MouseEventHandler(CopyUrl);
             container.Controls.Add(resultats);
         }
 
@@ -334,6 +335,21 @@ namespace MTConnectAgent
         }
 
         /// <summary>
+        /// Copie le path sélectionné dans le presse-papier lors d'un double clic de la souris
+        /// </summary>
+        /// <param name="o">Object appellant</param>
+        /// <param name="e">Evenenement provoqué</param>
+        private void CopyUrl(object o, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ListView listView = (ListView)o;
+                Clipboard.SetText(listView.FocusedItem.Text);
+                new ToastContentBuilder().AddText("Path copié dans le presse papier").Show();
+            }
+        }
+
+        /// <summary>
         /// Copie tous les paths générés lors d'un clic en dehors d'un item de la ListView
         /// </summary>
         /// <param name="o">Object appellant</param>
@@ -357,7 +373,7 @@ namespace MTConnectAgent
                 Clipboard.SetText(url);
                 new ToastContentBuilder().AddText("Tous les paths ont été copiés dans le presse papier").Show();
             }
-        }
+        } 
 
         /// <summary>
         /// Ouvre le path sélectionné dans un navigateur lors d'un double clic de la souris
