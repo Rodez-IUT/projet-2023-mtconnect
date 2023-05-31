@@ -80,6 +80,7 @@
             // 
             // containerFlow
             // 
+            this.containerFlow.AutoSize = true;
             this.containerFlow.Controls.Add(this.btnExpandNodes);
             this.containerFlow.Controls.Add(this.btnCollapseNodes);
             this.containerFlow.Controls.Add(this.rechercheBox);
@@ -134,6 +135,7 @@
             this.Name = "UserControlDisplayTab";
             this.Size = new System.Drawing.Size(622, 409);
             this.container.ResumeLayout(false);
+            this.container.PerformLayout();
             this.containerFlow.ResumeLayout(false);
             this.containerFlow.PerformLayout();
             this.ResumeLayout(false);
