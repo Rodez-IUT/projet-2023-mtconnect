@@ -37,7 +37,7 @@
             // buttonModifier
             // 
             this.buttonModifier.BackColor = System.Drawing.Color.PapayaWhip;
-            this.buttonModifier.Location = new System.Drawing.Point(33, 32);
+            this.buttonModifier.Location = new System.Drawing.Point(240, 32);
             this.buttonModifier.Name = "buttonModifier";
             this.buttonModifier.Size = new System.Drawing.Size(98, 23);
             this.buttonModifier.TabIndex = 8;
@@ -47,7 +47,7 @@
             // 
             // buttonAnnuler
             // 
-            this.buttonAnnuler.Location = new System.Drawing.Point(216, 32);
+            this.buttonAnnuler.Location = new System.Drawing.Point(15, 32);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(98, 23);
             this.buttonAnnuler.TabIndex = 7;

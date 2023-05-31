@@ -43,18 +43,20 @@
             this.treeViewClientMachine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.treeViewClientMachine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.treeViewClientMachine.Location = new System.Drawing.Point(12, 71);
+            this.treeViewClientMachine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeViewClientMachine.Location = new System.Drawing.Point(12, 99);
             this.treeViewClientMachine.Name = "treeViewClientMachine";
-            this.treeViewClientMachine.Size = new System.Drawing.Size(149, 363);
+            this.treeViewClientMachine.Size = new System.Drawing.Size(149, 335);
             this.treeViewClientMachine.TabIndex = 0;
             this.treeViewClientMachine.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewClientMachine_AfterSelect);
             // 
             // buttonAjouterClient
             // 
             this.buttonAjouterClient.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.buttonAjouterClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAjouterClient.Location = new System.Drawing.Point(12, 13);
             this.buttonAjouterClient.Name = "buttonAjouterClient";
-            this.buttonAjouterClient.Size = new System.Drawing.Size(149, 23);
+            this.buttonAjouterClient.Size = new System.Drawing.Size(149, 37);
             this.buttonAjouterClient.TabIndex = 1;
             this.buttonAjouterClient.Text = "Ajouter un client";
             this.buttonAjouterClient.UseVisualStyleBackColor = false;
@@ -63,9 +65,10 @@
             // buttonAjouterMachine
             // 
             this.buttonAjouterMachine.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.buttonAjouterMachine.Location = new System.Drawing.Point(12, 42);
+            this.buttonAjouterMachine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAjouterMachine.Location = new System.Drawing.Point(12, 56);
             this.buttonAjouterMachine.Name = "buttonAjouterMachine";
-            this.buttonAjouterMachine.Size = new System.Drawing.Size(149, 23);
+            this.buttonAjouterMachine.Size = new System.Drawing.Size(149, 37);
             this.buttonAjouterMachine.TabIndex = 2;
             this.buttonAjouterMachine.Text = "Ajouter une machine";
             this.buttonAjouterMachine.UseVisualStyleBackColor = false;
@@ -79,6 +82,7 @@
             this.tabs.Controls.Add(this.tabProbe);
             this.tabs.Controls.Add(this.tabCurrent);
             this.tabs.Controls.Add(this.tabPath);
+            this.tabs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabs.Location = new System.Drawing.Point(167, 13);
             this.tabs.Name = "tabs";
             this.tabs.Padding = new System.Drawing.Point(3, 3);
@@ -100,19 +104,19 @@
             // 
             // tabCurrent
             // 
-            this.tabCurrent.Location = new System.Drawing.Point(4, 22);
+            this.tabCurrent.Location = new System.Drawing.Point(4, 29);
             this.tabCurrent.Name = "tabCurrent";
             this.tabCurrent.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCurrent.Size = new System.Drawing.Size(613, 399);
+            this.tabCurrent.Size = new System.Drawing.Size(613, 392);
             this.tabCurrent.TabIndex = 1;
             this.tabCurrent.Text = "Current";
             this.tabCurrent.UseVisualStyleBackColor = true;
             // 
             // tabPath
             // 
-            this.tabPath.Location = new System.Drawing.Point(4, 22);
+            this.tabPath.Location = new System.Drawing.Point(4, 29);
             this.tabPath.Name = "tabPath";
-            this.tabPath.Size = new System.Drawing.Size(613, 399);
+            this.tabPath.Size = new System.Drawing.Size(613, 392);
             this.tabPath.TabIndex = 2;
             this.tabPath.Text = "Path";
             this.tabPath.UseVisualStyleBackColor = true;
