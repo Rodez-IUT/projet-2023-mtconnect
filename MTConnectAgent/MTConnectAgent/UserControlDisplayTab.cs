@@ -21,7 +21,7 @@ namespace MTConnectAgent
             current,
             path
         }
-       
+
         /// <summary>
         /// Checkbox pour choisir l'option or 
         /// </summary>
@@ -36,6 +36,8 @@ namespace MTConnectAgent
         /// Boutons radio pour le choix du protocole
         /// </summary>
         private GroupBox choixProtocole = new GroupBox();
+
+        private RadioButton sampleRadio = new RadioButton();
 
         /// <summary>
         /// Liste des paths générés
@@ -58,6 +60,14 @@ namespace MTConnectAgent
         private IList<TreeNode> nodes = new List<TreeNode>();
 
         private MTConnectClient.Protocol protocole;
+
+        private Dictionary<string, MTConnectClient.Protocol> dictionnaireProtocoles = new Dictionary<string, MTConnectClient.Protocol>()
+        {
+            {"Probe",MTConnectClient.Protocol.probe },
+            {"Current", MTConnectClient.Protocol.current },
+            {"Sample", MTConnectClient.Protocol.sample }
+        };
+
 
         /// <summary>
         /// Initialise l'interface actuelle
@@ -294,14 +304,18 @@ namespace MTConnectAgent
             containerFlow.Controls.Add(decocher);
 
             // Choix du protocole
-            foreach (string protocol in Enum.GetNames(typeof(MTConnectClient.Protocol)))
-            {
-                RadioButton radioButton = new RadioButton
-                {
-                    Name = protocol,
-                    Text = protocol
-                };
-            }
+            currentRadio.Name = "current";
+            currentRadio.Text = "Current";
+            currentRadio.AutoSize = true;
+            sampleRadio.Name = "sample";
+            sampleRadio.Text = "Sample";
+            sampleRadio.AutoSize = true;
+            containerFlow.Controls.Add(currentRadio);
+            containerFlow.Controls.Add(sampleRadio);
+            currentRadio.Checked = true;
+            protocole = MTConnectClient.Protocol.current;
+            currentRadio.CheckedChanged += new EventHandler(ChangementProtocole);
+            sampleRadio.CheckedChanged += new EventHandler(ChangementProtocole);
 
             // Affichage du ou des PATH(S) à chaque checkbox cochée
             resultats.Name = "listResultatsPath";
@@ -316,6 +330,16 @@ namespace MTConnectAgent
             container.Controls.Add(resultats);
         }
 
+        private void ChangementProtocole(object sender, EventArgs e)
+        {
+            RadioButton radioButton = sender as RadioButton;
+            if (!dictionnaireProtocoles.TryGetValue(radioButton.Text, out protocole))
+            {
+                throw new ArgumentException("Un erreur est survenue lors du choix du protocole");
+            }
+            GenerationPaths();
+        }
+
         /// <summary>
         /// Actualise les paths lors du clic sur le bouton "or"
         /// </summary>
@@ -323,10 +347,7 @@ namespace MTConnectAgent
         /// <param name="e">Evenenement provoqué</param>
         private void ActualiserPaths(object sender, EventArgs e)
         {
-            if (pathsFromTree.Count != 0)
-            {
-                GenerationPaths();
-            }
+            GenerationPaths();
         }
 
         /// <summary>
@@ -501,14 +522,7 @@ namespace MTConnectAgent
             {
                 pathsFromTree.Remove(e.Node.FullPath);
             }
-            if (pathsFromTree.Count != 0)
-            {
-                GenerationPaths();
-            }
-            else
-            {
-                resultats.Items.Clear();
-            }
+            GenerationPaths();
         }
 
         /// <summary>
@@ -516,13 +530,20 @@ namespace MTConnectAgent
         /// </summary>
         private void GenerationPaths()
         {
-            Tag tagGeneration = CreateSpecifiqueTag(pathsFromTree);
-
-            List<string> paths = instance.GenererPath(tagGeneration, url, or.Checked, protocole);
-            resultats.Items.Clear();
-            foreach (string path in paths)
+            if (pathsFromTree.Count != 0)
             {
-                resultats.Items.Add(path + "\n");
+                Tag tagGeneration = CreateSpecifiqueTag(pathsFromTree);
+
+                List<string> paths = instance.GenererPath(tagGeneration, url, or.Checked, protocole);
+                resultats.Items.Clear();
+                foreach (string path in paths)
+                {
+                    resultats.Items.Add(path + "\n");
+                }
+            }
+            else
+            {
+                resultats.Items.Clear();
             }
         }
 

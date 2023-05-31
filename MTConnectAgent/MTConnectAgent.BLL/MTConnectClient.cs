@@ -17,7 +17,8 @@ namespace MTConnectAgent.BLL
         public enum Protocol
         {
             current,
-            probe
+            probe,
+            sample
         }
 
         private List<string> paths;
