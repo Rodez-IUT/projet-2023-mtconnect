@@ -41,7 +41,7 @@ namespace MTConnectAgent
         /// </summary>
         private GroupBox choixProtocole = new GroupBox();
 
-        private RadioButton sampleRadio = new RadioButton();
+
 
         /// <summary>
         /// Liste des paths générés
@@ -344,15 +344,6 @@ namespace MTConnectAgent
             GenerationPaths();
         }
 
-        private void ChangementProtocole(object sender, EventArgs e)
-        {
-            RadioButton radioButton = sender as RadioButton;
-            if (!dictionnaireProtocoles.TryGetValue(radioButton.Text, out protocole))
-            {
-                throw new ArgumentException("Un erreur est survenue lors du choix du protocole");
-            }
-            GenerationPaths();
-        }
 
         /// <summary>
         /// Actualise les paths lors du clic sur le bouton "or"
