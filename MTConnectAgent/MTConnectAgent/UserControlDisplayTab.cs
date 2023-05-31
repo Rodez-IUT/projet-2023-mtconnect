@@ -27,6 +27,10 @@ namespace MTConnectAgent
         /// </summary>
         private CheckBox or = new CheckBox();
 
+        private RadioButton currentRadio = new RadioButton();
+
+        private RadioButton sampleRadio = new RadioButton();
+
         /// <summary>
         /// Déselectionne toutes les checkboxs cochées
         /// </summary>
@@ -328,6 +332,16 @@ namespace MTConnectAgent
             resultats.MouseDown += new MouseEventHandler(CopyAllUrl);
             resultats.MouseClick += new MouseEventHandler(CopyUrl);
             container.Controls.Add(resultats);
+        }
+
+        private void ChangementProtocole(object sender, EventArgs e)
+        {
+            RadioButton radioButton = sender as RadioButton;
+            if (!dictionnaireProtocoles.TryGetValue(radioButton.Text, out protocole))
+            {
+                throw new ArgumentException("Un erreur est survenue lors du choix du protocole");
+            }
+            GenerationPaths();
         }
 
         private void ChangementProtocole(object sender, EventArgs e)
