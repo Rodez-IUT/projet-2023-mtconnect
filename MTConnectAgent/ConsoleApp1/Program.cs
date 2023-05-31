@@ -11,7 +11,7 @@ namespace ConsoleApp1
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args) 
         {
 
             MTConnectClient mTConnectClient = new MTConnectClient();
