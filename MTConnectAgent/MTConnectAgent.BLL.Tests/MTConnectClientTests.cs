@@ -19,6 +19,7 @@ namespace MTConnectAgent.BLL.Tests
         private MTConnectClient mtConnectClient;
         string agentUrl = "http://mtconnect.mazakcorp.com:5701/";
         string agentUrl2 = "https://smstestbed.nist.gov/vds/";
+        private MTConnectClient.Protocol protocole;
 
         /// <summary>
         /// Initialisation de la variable 
@@ -27,6 +28,7 @@ namespace MTConnectAgent.BLL.Tests
         public void Init()
         {
             mtConnectClient = new MTConnectClient();
+            protocole = MTConnectClient.Protocol.current;
         }
 
         [TestMethod()]
@@ -149,12 +151,12 @@ namespace MTConnectAgent.BLL.Tests
             devices.AddChild(device2);
 
             //Act
-            //List<string> resultatObtenu = mtConnectClient.GenererPath(devices, url, false);
+            List<string> resultatObtenu = mtConnectClient.GenererPath(devices, url, false, protocole);
 
             //Assert
             for (int i = 0; i < resultatAttendu.Count; i++)
             {
-               // Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
+                Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
             }
         }
 
@@ -185,12 +187,12 @@ namespace MTConnectAgent.BLL.Tests
             devices.AddChild(device2);
 
             //Act
-            //List<string> resultatObtenu = mtConnectClient.GenererPath(devices, url, true);
+            List<string> resultatObtenu = mtConnectClient.GenererPath(devices, url, true, protocole);
 
             //Assert
             for(int i = 0; i < resultatAttendu.Count; i++)
             {
-              //  Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
+                Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
             }
         }
 
@@ -206,12 +208,12 @@ namespace MTConnectAgent.BLL.Tests
             Tag device = new Tag("Device", "GFAgie01");
 
             //Act
-            //List<string> resultatObtenu = mtConnectClient.GenererPath(device, url, true);
+            List<string> resultatObtenu = mtConnectClient.GenererPath(device, url, true, protocole);
 
             //Assert
             for (int i = 0; i < resultatAttendu.Count; i++)
             {
-               // Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
+                Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
             }
         }
 
@@ -229,12 +231,12 @@ namespace MTConnectAgent.BLL.Tests
             devices.AddChild(device);
 
             //Act
-            //List<string> resultatObtenu = mtConnectClient.GenererPath(devices, url, true);
+            List<string> resultatObtenu = mtConnectClient.GenererPath(devices, url, true, protocole);
 
             //Assert
             for (int i = 0; i < resultatAttendu.Count; i++)
             {
-              //  Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
+                Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
             }
         }
 
@@ -250,12 +252,12 @@ namespace MTConnectAgent.BLL.Tests
             Tag dataItems = new Tag("DataItems");
 
             //Act
-            //List<string> resultatObtenu = mtConnectClient.GenererPath(dataItems, url, true);
+            List<string> resultatObtenu = mtConnectClient.GenererPath(dataItems, url, true, protocole);
 
             //Assert
             for (int i = 0; i < resultatAttendu.Count; i++)
             {
-                //Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
+                Assert.AreEqual(resultatAttendu[i], resultatObtenu[i]);
             }
         }
     }
