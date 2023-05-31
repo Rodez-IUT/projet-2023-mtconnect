@@ -291,6 +291,7 @@ namespace MTConnectAgent
             resultats.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             resultats.View = View.List;
             resultats.TabIndex = 2;
+            resultats.MouseDoubleClick += new MouseEventHandler(OpenBrowser);
             resultats.MouseClick += new MouseEventHandler(CopyUrl);
             container.Controls.Add(resultats);
         }
