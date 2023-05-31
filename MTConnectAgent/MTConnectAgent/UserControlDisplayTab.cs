@@ -62,6 +62,7 @@ namespace MTConnectAgent
             this.url = url;
             this.fx = fx;
 
+            this.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             this.Anchor = AllSideAnchor;
             this.Name = "userControl"+fx;
             this.TabIndex = 0;
