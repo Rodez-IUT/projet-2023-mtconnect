@@ -275,6 +275,7 @@ namespace MTConnectAgent
             or.Name = "checkboxOr";
             or.Text = "Avec option OR";
             or.Anchor = AnchorStyles.None;
+            or.Checked = true;
             or.CheckedChanged += new EventHandler(ActualiserPaths);
             containerFlow.Controls.Add(or);
 
