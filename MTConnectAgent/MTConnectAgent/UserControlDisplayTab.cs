@@ -406,6 +406,12 @@ namespace MTConnectAgent
             ListView listView = (ListView)o;
             ListViewHitTestInfo info = listView.HitTest(e.Location);
 
+
+            if (listView.Items.Count == 0)
+            {
+                return;
+            }
+
             // Clic dans une zone ne contenant pas d'item
             if (info.Location == ListViewHitTestLocations.None)
             {
