@@ -27,6 +27,7 @@ namespace MTConnectAgent
         /// </summary>
         private CheckBox or = new CheckBox();
 
+
         private RadioButton currentRadio = new RadioButton();
 
         private RadioButton sampleRadio = new RadioButton();
@@ -35,13 +36,7 @@ namespace MTConnectAgent
         /// Déselectionne toutes les checkboxs cochées
         /// </summary>
         private Button decocher = new Button();
-
-        /// <summary>
-        /// Boutons radio pour le choix du protocole
-        /// </summary>
-        private GroupBox choixProtocole = new GroupBox();
-
-
+               
 
         /// <summary>
         /// Liste des paths générés
