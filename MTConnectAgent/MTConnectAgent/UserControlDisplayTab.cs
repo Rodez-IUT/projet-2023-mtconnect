@@ -323,6 +323,10 @@ namespace MTConnectAgent
 
             // Affichage du ou des PATH(S) à chaque checkbox cochée
             resultats.Name = "listResultatsPath";
+            resultats.View = View.Details;
+            resultats.Scrollable = true;
+
+
             resultats.Location = new Point(5, containerFlow.Location.Y + containerFlow.Height);
             resultats.Size = new Size(containerFlow.Width - 10, 155);
             resultats.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -549,7 +553,8 @@ namespace MTConnectAgent
                 resultats.Items.Clear();
                 foreach (string path in paths)
                 {
-                    resultats.Items.Add(path + "\n");
+                    //resultats.Items.Add(path + "\n");
+                    resultats.Items.Add(path);
                 }
             }
             else
