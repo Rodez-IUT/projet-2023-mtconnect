@@ -62,6 +62,7 @@ namespace MTConnectAgent
             this.url = url;
             this.fx = fx;
 
+            this.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             this.Anchor = AllSideAnchor;
             this.Name = "userControl"+fx;
             this.TabIndex = 0;
@@ -274,6 +275,7 @@ namespace MTConnectAgent
             or.Name = "checkboxOr";
             or.Text = "Avec option OR";
             or.Anchor = AnchorStyles.None;
+            or.Checked = true;
             or.CheckedChanged += new EventHandler(ActualiserPaths);
             containerFlow.Controls.Add(or);
 
@@ -349,7 +351,7 @@ namespace MTConnectAgent
             }
         }
 
-        /// <summary>
+        /// <summary> 
         /// Copie tous les paths générés lors d'un clic en dehors d'un item de la ListView
         /// </summary>
         /// <param name="o">Object appellant</param>

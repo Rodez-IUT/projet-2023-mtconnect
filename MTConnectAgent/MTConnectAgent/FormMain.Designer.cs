@@ -87,17 +87,17 @@
             this.tabs.Name = "tabs";
             this.tabs.Padding = new System.Drawing.Point(3, 3);
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(621, 425);
+            this.tabs.Size = new System.Drawing.Size(785, 425);
             this.tabs.TabIndex = 3;
             this.tabs.SelectedIndexChanged += new System.EventHandler(this.tabs_SelectedIndexChanged);
             this.tabs.Resize += new System.EventHandler(this.tabs_Resize);
             // 
             // tabProbe
             // 
-            this.tabProbe.Location = new System.Drawing.Point(4, 22);
+            this.tabProbe.Location = new System.Drawing.Point(4, 29);
             this.tabProbe.Name = "tabProbe";
             this.tabProbe.Padding = new System.Windows.Forms.Padding(3);
-            this.tabProbe.Size = new System.Drawing.Size(613, 399);
+            this.tabProbe.Size = new System.Drawing.Size(741, 392);
             this.tabProbe.TabIndex = 0;
             this.tabProbe.Text = "Probe";
             this.tabProbe.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@
             this.tabCurrent.Location = new System.Drawing.Point(4, 29);
             this.tabCurrent.Name = "tabCurrent";
             this.tabCurrent.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCurrent.Size = new System.Drawing.Size(613, 392);
+            this.tabCurrent.Size = new System.Drawing.Size(777, 392);
             this.tabCurrent.TabIndex = 1;
             this.tabCurrent.Text = "Current";
             this.tabCurrent.UseVisualStyleBackColor = true;
@@ -126,7 +126,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(964, 450);
             this.Controls.Add(this.tabs);
             this.Controls.Add(this.buttonAjouterMachine);
             this.Controls.Add(this.buttonAjouterClient);

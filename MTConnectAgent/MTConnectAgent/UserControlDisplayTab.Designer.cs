@@ -60,7 +60,7 @@
             this.treeAffichage.Margin = new System.Windows.Forms.Padding(0);
             this.treeAffichage.Name = "treeAffichage";
             this.treeAffichage.ShowNodeToolTips = true;
-            this.treeAffichage.Size = new System.Drawing.Size(622, 368);
+            this.treeAffichage.Size = new System.Drawing.Size(777, 392);
             this.treeAffichage.TabIndex = 0;
             this.treeAffichage.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeAffichage_AfterCheck);
             // 
@@ -70,11 +70,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.container.BackColor = System.Drawing.Color.Transparent;
             this.container.Controls.Add(this.containerFlow);
-            this.container.Location = new System.Drawing.Point(0, 368);
+            this.container.Location = new System.Drawing.Point(0, 351);
             this.container.Margin = new System.Windows.Forms.Padding(0);
             this.container.Name = "container";
             this.container.Padding = new System.Windows.Forms.Padding(0);
-            this.container.Size = new System.Drawing.Size(622, 40);
+            this.container.Size = new System.Drawing.Size(777, 40);
             this.container.TabIndex = 0;
             this.container.TabStop = false;
             // 
@@ -87,7 +87,7 @@
             this.containerFlow.Margin = new System.Windows.Forms.Padding(0);
             this.containerFlow.Name = "containerFlow";
             this.containerFlow.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.containerFlow.Size = new System.Drawing.Size(622, 30);
+            this.containerFlow.Size = new System.Drawing.Size(777, 30);
             this.containerFlow.TabIndex = 1;
             // 
             // btnExpandNodes
@@ -132,7 +132,7 @@
             this.Controls.Add(this.container);
             this.Controls.Add(this.treeAffichage);
             this.Name = "UserControlDisplayTab";
-            this.Size = new System.Drawing.Size(622, 409);
+            this.Size = new System.Drawing.Size(777, 392);
             this.container.ResumeLayout(false);
             this.containerFlow.ResumeLayout(false);
             this.containerFlow.PerformLayout();
