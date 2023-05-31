@@ -291,7 +291,7 @@ namespace MTConnectAgent
             resultats.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             resultats.View = View.List;
             resultats.TabIndex = 2;
-            resultats.MouseDoubleClick += new MouseEventHandler(CopyUrl);
+            resultats.MouseDoubleClick += new MouseEventHandler(OpenBrowser);
             container.Controls.Add(resultats);
         }
 
@@ -306,7 +306,6 @@ namespace MTConnectAgent
             {
                 GenerationPaths();
             }
-            
         }
 
         /// <summary>
@@ -347,6 +346,17 @@ namespace MTConnectAgent
         }
 
         /// <summary>
+        /// Ouvre le path sélectionné dans un navigateur lors d'un double clic de la souris
+        /// </summary>
+        /// <param name="o">Object appellant</param>
+        /// <param name="e">Evenenement provoqué</param>
+        private void OpenBrowser(object o, MouseEventArgs e)
+        {
+            ListView listView = (ListView)o;
+            System.Diagnostics.Process.Start(listView.FocusedItem.Text);
+        }
+
+        /// <summary>
         /// Réduire l'affichage de l'arbre
         /// </summary>
         /// <param name="sender"></param>
@@ -367,7 +377,7 @@ namespace MTConnectAgent
         }
 
         /// <summary>
-        /// 
+        /// Décoche toutes les checkbox sélectionnées
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
