@@ -54,17 +54,18 @@
             // 
             // buttonAnnuler
             // 
+            this.buttonAnnuler.BackColor = System.Drawing.Color.LightSalmon;
             this.buttonAnnuler.Location = new System.Drawing.Point(12, 32);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(98, 23);
             this.buttonAnnuler.TabIndex = 3;
             this.buttonAnnuler.Text = "Annuler";
-            this.buttonAnnuler.UseVisualStyleBackColor = true;
+            this.buttonAnnuler.UseVisualStyleBackColor = false;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
             // 
             // buttonAjouter
             // 
-            this.buttonAjouter.BackColor = System.Drawing.Color.PapayaWhip;
+            this.buttonAjouter.BackColor = System.Drawing.Color.YellowGreen;
             this.buttonAjouter.Enabled = false;
             this.buttonAjouter.Location = new System.Drawing.Point(240, 32);
             this.buttonAjouter.Name = "buttonAjouter";
@@ -78,7 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.BackColor = System.Drawing.Color.MediumAquamarine;
             this.ClientSize = new System.Drawing.Size(350, 62);
             this.Controls.Add(this.buttonAjouter);
             this.Controls.Add(this.buttonAnnuler);

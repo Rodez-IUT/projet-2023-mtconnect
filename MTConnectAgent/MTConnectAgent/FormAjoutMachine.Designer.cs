@@ -50,7 +50,7 @@
             // 
             // buttonAjouter
             // 
-            this.buttonAjouter.BackColor = System.Drawing.Color.PapayaWhip;
+            this.buttonAjouter.BackColor = System.Drawing.Color.YellowGreen;
             this.buttonAjouter.Location = new System.Drawing.Point(386, 119);
             this.buttonAjouter.Name = "buttonAjouter";
             this.buttonAjouter.Size = new System.Drawing.Size(98, 23);
@@ -61,12 +61,13 @@
             // 
             // buttonAnnuler
             // 
+            this.buttonAnnuler.BackColor = System.Drawing.Color.LightSalmon;
             this.buttonAnnuler.Location = new System.Drawing.Point(12, 119);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(98, 23);
             this.buttonAnnuler.TabIndex = 5;
             this.buttonAnnuler.Text = "Annuler";
-            this.buttonAnnuler.UseVisualStyleBackColor = true;
+            this.buttonAnnuler.UseVisualStyleBackColor = false;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
             // 
             // labelClient
@@ -116,7 +117,7 @@
             // 
             // buttonAjouterClient
             // 
-            this.buttonAjouterClient.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.buttonAjouterClient.BackColor = System.Drawing.Color.Silver;
             this.buttonAjouterClient.Location = new System.Drawing.Point(386, 10);
             this.buttonAjouterClient.Name = "buttonAjouterClient";
             this.buttonAjouterClient.Size = new System.Drawing.Size(98, 23);
@@ -129,7 +130,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(488, 154);
             this.Controls.Add(this.buttonAjouterClient);
             this.Controls.Add(this.textMachineUrl);

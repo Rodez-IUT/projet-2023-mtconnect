@@ -42,7 +42,7 @@
             // 
             this.treeViewClientMachine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeViewClientMachine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.treeViewClientMachine.BackColor = System.Drawing.Color.LightYellow;
             this.treeViewClientMachine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeViewClientMachine.Location = new System.Drawing.Point(12, 99);
             this.treeViewClientMachine.Name = "treeViewClientMachine";
@@ -94,13 +94,13 @@
             // 
             // tabProbe
             // 
+            this.tabProbe.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabProbe.Location = new System.Drawing.Point(4, 29);
             this.tabProbe.Name = "tabProbe";
             this.tabProbe.Padding = new System.Windows.Forms.Padding(3);
-            this.tabProbe.Size = new System.Drawing.Size(741, 392);
+            this.tabProbe.Size = new System.Drawing.Size(777, 392);
             this.tabProbe.TabIndex = 0;
             this.tabProbe.Text = "Probe";
-            this.tabProbe.UseVisualStyleBackColor = true;
             // 
             // tabCurrent
             // 
@@ -116,7 +116,7 @@
             // 
             this.tabPath.Location = new System.Drawing.Point(4, 29);
             this.tabPath.Name = "tabPath";
-            this.tabPath.Size = new System.Drawing.Size(613, 392);
+            this.tabPath.Size = new System.Drawing.Size(777, 392);
             this.tabPath.TabIndex = 2;
             this.tabPath.Text = "Path";
             this.tabPath.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Navy;
+            this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(964, 450);
             this.Controls.Add(this.tabs);
             this.Controls.Add(this.buttonAjouterMachine);
