@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using System.Threading;
 using System;
 using Microsoft.Toolkit.Uwp.Notifications;
+using System.Text;
 
 namespace MTConnectAgent
 {
@@ -17,8 +18,8 @@ namespace MTConnectAgent
     {
         private Tag tagMachine;
         private string url;
-        private functions fx;
-        public enum functions
+        private Functions fx;
+        public enum Functions
         {
             probe,
             current,
@@ -80,7 +81,7 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="url">url de la machine choisie</param>
         /// <param name="fx">type de requete (probe, current, path)</param>
-        public UserControlDisplayTab(string url, functions fx)
+        public UserControlDisplayTab(string url, Functions fx)
         {
             this.url = url;
             this.fx = fx;
@@ -103,10 +104,10 @@ namespace MTConnectAgent
             Thread threadCalcul;
             switch (this.fx)
             {
-                case functions.probe: // Probe
+                case Functions.probe: // Probe
                     threadCalcul = new Thread(() => { this.tagMachine = ThreadParseProbe(this.url); });
                     break;
-                case functions.path: // Path
+                case Functions.path: // Path
                     threadCalcul = new Thread(() => { this.tagMachine = ThreadParseProbe(this.url); });
                     break;
                 default: // Default => functions.current
@@ -118,7 +119,7 @@ namespace MTConnectAgent
 
             Cursor.Current = Cursors.Default;
 
-            if (this.fx.Equals(functions.path))
+            if (this.fx.Equals(Functions.path))
             {
                 treeAffichage.Height = this.Height - 200;
                 treeAffichage.CheckBoxes = true;
@@ -144,11 +145,13 @@ namespace MTConnectAgent
             foreach (Tag tag in tagMachine.Child)
             {
                 string compositeName = tag.Name + tag.GetHashCode();
-                TreeNode node = new TreeNode();
-                node.Name = "node" + compositeName;
-                node.Text = tag.Name;
-                node.NodeFont = boldFont;
-                node.Tag = new SimpleTag(tag.Name, tag.Id);
+                TreeNode node = new TreeNode
+                {
+                    Name = "node" + compositeName,
+                    Text = tag.Name,
+                    NodeFont = boldFont,
+                    Tag = new SimpleTag(tag.Name, tag.Id)
+                };
                 SelectIcon(node);
 
                 treeAffichage.Nodes.Add(node);
@@ -222,10 +225,12 @@ namespace MTConnectAgent
             foreach (Tag tag in tags)
             {
                 string compositeName = tag.Name + tag.GetHashCode();
-                TreeNode node = new TreeNode();
-                node.Name = "node" + compositeName;
-                node.NodeFont = boldFont;
-                node.Tag = new SimpleTag(tag.Name, tag.Id);
+                TreeNode node = new TreeNode
+                {
+                    Name = "node" + compositeName,
+                    NodeFont = boldFont,
+                    Tag = new SimpleTag(tag.Name, tag.Id)
+                };
 
                 /* 
                  * Prefixe de la ligne
@@ -376,7 +381,7 @@ namespace MTConnectAgent
             MTConnectClient mtConnectClient = new MTConnectClient();
             try
             {
-                XDocument t = mtConnectClient.getProbeAsync(url).Result;
+                XDocument t = mtConnectClient.GetProbeAsync(url).Result;
                 return mtConnectClient.ParseXMLRecursif(t.Root);
             }
             catch (System.AggregateException e) // une erreur est levé lors de l'appelle
@@ -396,7 +401,7 @@ namespace MTConnectAgent
             try
             {
                 MTConnectClient mtConnectClient = new MTConnectClient();
-                XDocument t = mtConnectClient.getCurrentAsync(url).Result;
+                XDocument t = mtConnectClient.GetCurrentAsync(url).Result;
                 return mtConnectClient.ParseXMLRecursif(t.Root);
             }
             catch (System.AggregateException e) // une erreur est levé lors de l'appelle
@@ -428,7 +433,7 @@ namespace MTConnectAgent
         /// <param name="e">Evenenement provoqué</param>
         private void CopyAllUrl(object o, MouseEventArgs e)
         {
-            string url = "";
+            StringBuilder urlSelectionne = new StringBuilder("");
 
             ListView listView = (ListView)o;
             ListViewHitTestInfo info = listView.HitTest(e.Location);
@@ -445,10 +450,10 @@ namespace MTConnectAgent
                 // Récupération de tous les paths
                 foreach (ListViewItem item in listView.Items)
                 {
-                    url = url + item.Text + "\n";
+                    urlSelectionne.Append(item.Text + "\n");
                 }
 
-                Clipboard.SetText(url);
+                Clipboard.SetText(urlSelectionne.ToString());
                 new ToastContentBuilder().AddText("Tous les paths ont été copiés dans le presse papier").Show();
             }
         } 
@@ -550,7 +555,7 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">Object appelant (la treeview)</param>
         /// <param name="e">Evenement provoqué</param>
-        private void treeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
+        private void TreeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Checked)
             {
@@ -576,7 +581,6 @@ namespace MTConnectAgent
                 resultats.Items.Clear();
                 foreach (string path in paths)
                 {
-                    //resultats.Items.Add(path + "\n");
                     resultats.Items.Add(path);
                 }
             }

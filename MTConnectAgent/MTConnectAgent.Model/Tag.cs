@@ -10,7 +10,7 @@ namespace MTConnectAgent.Model
     /// Représente un noeud XML MTConnect
     /// </summary>
     public class Tag : ITag
-    { 
+    {
         /// <summary>
         /// Nom du noeud xml
         /// </summary>
@@ -24,7 +24,7 @@ namespace MTConnectAgent.Model
         /// <summary>
         /// liste des attributs qui ne sont pas l'id du noeud xml
         /// </summary>
-        public IDictionary<string, string> Attributs { get;}
+        public IDictionary<string, string> Attributs { get; }
 
         /// <summary>
         /// Liste des noeuds enfant du noeud actuel
@@ -44,9 +44,9 @@ namespace MTConnectAgent.Model
         /// <param name="id"></param>
         public Tag(string name, string id)
         {
-            Name = name; 
+            Name = name;
             Id = id;
-            this.Attributs = new Dictionary<string,string>();
+            this.Attributs = new Dictionary<string, string>();
             this.Child = new List<Tag>();
         }
 
@@ -82,7 +82,7 @@ namespace MTConnectAgent.Model
             this.Attributs.Add(key, value);
             return this;
         }
-        
+
         /// <summary>
         /// Ajoute un Tag à la liste des enfants du Tag actuel
         /// </summary>
@@ -100,7 +100,7 @@ namespace MTConnectAgent.Model
         /// <returns>True si il en possède, false sinon</returns>
         public bool HasAttributs()
         {
-            return this.Attributs.Count() > 0;
+            return Attributs.Any();
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace MTConnectAgent.Model
         public override bool Equals(object obj)
         {
             return obj is Tag tag &&
-                   ( GetHashCode() == tag.GetHashCode() ||
+                   (GetHashCode() == tag.GetHashCode() ||
                    (Name.Equals(tag.Name) &&
                    Id.Equals(tag.Id)));
         }

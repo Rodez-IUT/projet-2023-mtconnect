@@ -17,7 +17,7 @@ namespace ConsoleApp1
             MTConnectClient mTConnectClient = new MTConnectClient();
             const string agentUrl = "https://smstestbed.nist.gov/vds/";
 
-            XDocument x = mTConnectClient.getProbeAsync(agentUrl).Result;
+            XDocument x = mTConnectClient.GetProbeAsync(agentUrl).Result;
 
             ITag root = mTConnectClient.ParseXMLRecursif(x.Root);
 

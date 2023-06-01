@@ -26,7 +26,7 @@ namespace MTConnectAgent.BLL.Tests
         public void Init()
         {
             MTConnectClient = new MTConnectClient();
-            XDocument = MTConnectClient.getProbeAsync(agentUrl).Result;
+            XDocument = MTConnectClient.GetProbeAsync(agentUrl).Result;
             Root = MTConnectClient.ParseXMLRecursif(XDocument.Root);
         }
     }

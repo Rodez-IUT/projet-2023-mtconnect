@@ -57,7 +57,7 @@
             this.buttonAjouter.TabIndex = 6;
             this.buttonAjouter.Text = "Ajouter";
             this.buttonAjouter.UseVisualStyleBackColor = false;
-            this.buttonAjouter.Click += new System.EventHandler(this.buttonAjouter_Click);
+            this.buttonAjouter.Click += new System.EventHandler(this.ButtonAjouter_Click);
             // 
             // buttonAnnuler
             // 
@@ -68,7 +68,7 @@
             this.buttonAnnuler.TabIndex = 5;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = false;
-            this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
+            this.buttonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
             // 
             // labelClient
             // 
@@ -94,7 +94,7 @@
             this.textMachineName.Name = "textMachineName";
             this.textMachineName.Size = new System.Drawing.Size(260, 20);
             this.textMachineName.TabIndex = 9;
-            this.textMachineName.TextChanged += new System.EventHandler(this.textMachineName_TextChanged);
+            this.textMachineName.TextChanged += new System.EventHandler(this.TextMachineName_TextChanged);
             this.textMachineName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AjoutMachine_KeyPress);
             // 
             // labelMachineUrl
@@ -112,7 +112,7 @@
             this.textMachineUrl.Name = "textMachineUrl";
             this.textMachineUrl.Size = new System.Drawing.Size(260, 20);
             this.textMachineUrl.TabIndex = 11;
-            this.textMachineUrl.TextChanged += new System.EventHandler(this.textMachineUrl_TextChanged);
+            this.textMachineUrl.TextChanged += new System.EventHandler(this.TextMachineUrl_TextChanged);
             this.textMachineUrl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AjoutMachine_KeyPress);
             // 
             // buttonAjouterClient
@@ -124,7 +124,7 @@
             this.buttonAjouterClient.TabIndex = 12;
             this.buttonAjouterClient.Text = "Ajouter un client";
             this.buttonAjouterClient.UseVisualStyleBackColor = false;
-            this.buttonAjouterClient.Click += new System.EventHandler(this.buttonAjouterClient_Click);
+            this.buttonAjouterClient.Click += new System.EventHandler(this.ButtonAjouterClient_Click);
             // 
             // FormAjoutMachine
             // 

@@ -48,7 +48,7 @@
             this.treeViewClientMachine.Name = "treeViewClientMachine";
             this.treeViewClientMachine.Size = new System.Drawing.Size(149, 335);
             this.treeViewClientMachine.TabIndex = 0;
-            this.treeViewClientMachine.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewClientMachine_AfterSelect);
+            this.treeViewClientMachine.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewClientMachine_AfterSelect);
             // 
             // buttonAjouterClient
             // 
@@ -60,7 +60,7 @@
             this.buttonAjouterClient.TabIndex = 1;
             this.buttonAjouterClient.Text = "Ajouter un client";
             this.buttonAjouterClient.UseVisualStyleBackColor = false;
-            this.buttonAjouterClient.Click += new System.EventHandler(this.buttonAjouterClient_Click);
+            this.buttonAjouterClient.Click += new System.EventHandler(this.ButtonAjouterClient_Click);
             // 
             // buttonAjouterMachine
             // 
@@ -72,7 +72,7 @@
             this.buttonAjouterMachine.TabIndex = 2;
             this.buttonAjouterMachine.Text = "Ajouter une machine";
             this.buttonAjouterMachine.UseVisualStyleBackColor = false;
-            this.buttonAjouterMachine.Click += new System.EventHandler(this.buttonAjouterMachine_Click);
+            this.buttonAjouterMachine.Click += new System.EventHandler(this.ButtonAjouterMachine_Click);
             // 
             // tabs
             // 
@@ -89,8 +89,8 @@
             this.tabs.SelectedIndex = 0;
             this.tabs.Size = new System.Drawing.Size(785, 425);
             this.tabs.TabIndex = 3;
-            this.tabs.SelectedIndexChanged += new System.EventHandler(this.tabs_SelectedIndexChanged);
-            this.tabs.Resize += new System.EventHandler(this.tabs_Resize);
+            this.tabs.SelectedIndexChanged += new System.EventHandler(this.Tabs_SelectedIndexChanged);
+            this.tabs.Resize += new System.EventHandler(this.Tabs_Resize);
             // 
             // tabProbe
             // 
@@ -136,7 +136,7 @@
             this.Text = "MTConnect";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Shown += new System.EventHandler(this.FormMain_Shown);
-            this.Resize += new System.EventHandler(this.tabs_Resize);
+            this.Resize += new System.EventHandler(this.Tabs_Resize);
             this.tabs.ResumeLayout(false);
             this.ResumeLayout(false);
 

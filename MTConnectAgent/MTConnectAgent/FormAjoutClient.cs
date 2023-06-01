@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MTConnectAgent.Model;
 
@@ -19,7 +12,7 @@ namespace MTConnectAgent
         /// <summary>
         /// Le client à ajouter
         /// </summary>
-        public Client newClient { get; set; }
+        public Client NewClient { get; set; }
 
         /// <summary>
         /// Initialise le formulaire
@@ -34,7 +27,7 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void buttonAnnuler_Click(object sender, EventArgs e)
+        private void ButtonAnnuler_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -44,9 +37,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void buttonAjouter_Click(object sender, EventArgs e)
+        private void ButtonAjouter_Click(object sender, EventArgs e)
         {
-            ajouter();
+            Ajouter();
         }
 
         /// <summary>
@@ -61,7 +54,7 @@ namespace MTConnectAgent
         /// <summary>
         /// Active le bouton de validation si la boite de dialogue n'est pas vide, le désactive sinon
         /// </summary>
-        private void toogleButtonAjout()
+        private void ToogleButtonAjout()
         {
             if (IsTextBoxNotEmpty())
             {
@@ -78,9 +71,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void textClientName_TextChanged(object sender, EventArgs e)
+        private void TextClientName_TextChanged(object sender, EventArgs e)
         {
-            toogleButtonAjout();
+            ToogleButtonAjout();
         }
 
         /// <summary>
@@ -92,14 +85,14 @@ namespace MTConnectAgent
         {
             if (buttonAjouter.Enabled && e.KeyChar == (char)Keys.Return)
             {
-                ajouter();
+                Ajouter();
             }
         }
 
         /// <summary>
         /// Ajoute le client
         /// </summary>
-        private void ajouter()
+        private void Ajouter()
         {
             string name = textClientName.Text.Trim();
             if (string.IsNullOrWhiteSpace(name))
@@ -107,7 +100,7 @@ namespace MTConnectAgent
                 MessageBox.Show("Le nom du client ne peut être vide", "Création d'un Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            newClient = new Client(name);
+            NewClient = new Client(name);
             this.Close();
         }
     }

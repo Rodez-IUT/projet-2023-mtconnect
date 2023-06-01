@@ -19,7 +19,7 @@ namespace MTConnectAgent
         /// <summary>
         /// Le client modifié
         /// </summary>
-        public Client modifiedClient { get; set; }
+        public Client ModifiedClient { get; set; }
 
         /// <summary>
         /// Initialise une nouvelle fenêtre de modification d'un client
@@ -27,7 +27,7 @@ namespace MTConnectAgent
         /// <param name="modifiedClient"></param>
         public FormModifieClient(Client modifiedClient)
         {
-            this.modifiedClient = modifiedClient;
+            this.ModifiedClient = modifiedClient;
             InitializeComponent();
             textClientName.Text = modifiedClient.Name;
         }
@@ -37,9 +37,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void buttonAnnuler_Click(object sender, EventArgs e)
+        private void ButtonAnnuler_Click(object sender, EventArgs e)
         {
-            this.modifiedClient = null;
+            this.ModifiedClient = null;
             this.Close();
         }
 
@@ -48,9 +48,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void buttonModifier_Click(object sender, EventArgs e)
+        private void ButtonModifier_Click(object sender, EventArgs e)
         {
-            modifier();
+            Modifier();
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace MTConnectAgent
         /// <summary>
         /// Active le bouton modifier si les boites de dialogues ne sont pas vides, sinon le désactive
         /// </summary>
-        private void toogleButtonModifier()
+        private void ToogleButtonModifier()
         {
             if (IsTextBoxNotEmpty())
             {
@@ -82,9 +82,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void textClientName_TextChanged(object sender, EventArgs e)
+        private void TextClientName_TextChanged(object sender, EventArgs e)
         {
-            toogleButtonModifier();
+            ToogleButtonModifier();
         }
 
         /// <summary>
@@ -96,16 +96,16 @@ namespace MTConnectAgent
         {
             if (buttonModifier.Enabled && e.KeyChar == (char)Keys.Return)
             {
-                modifier();
+                Modifier();
             }
         }
 
         /// <summary>
         /// Modifie le client courant
         /// </summary>
-        private void modifier()
+        private void Modifier()
         {
-            modifiedClient.Name = textClientName.Text.Trim();
+            ModifiedClient.Name = textClientName.Text.Trim();
             this.Close();
         }
     }

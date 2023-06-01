@@ -38,7 +38,7 @@ namespace MTConnectAgent.BLL
         {
             Tag tag = new Tag(element.Name.ToString().Split('}')[1]);
 
-            if (element.Attributes().Count() != 0)
+            if (element.Attributes().Any())
             {
                 foreach (var attribute in element.Attributes().ToList())
                 {
@@ -54,7 +54,7 @@ namespace MTConnectAgent.BLL
                 }
             }
 
-            if (element.Elements().Count() != 0)
+            if (element.Elements().Any())
             {
                 foreach (var child in element.Elements())
                 {
@@ -73,7 +73,7 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="url">url de la machine</param>
         /// <returns>Le XDocument récupéré</returns>
-        public async Task<XDocument> getProbeAsync(string url)
+        public async Task<XDocument> GetProbeAsync(string url)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="url">url de la machine</param>
         /// <returns>Le XDocument récupéré</returns>
-        public async Task<XDocument> getCurrentAsync(string url)
+        public async Task<XDocument> GetCurrentAsync(string url)
         {
             try
             {
@@ -147,9 +147,10 @@ namespace MTConnectAgent.BLL
                         stringBuilder = GenererPathWithOr(tag.Child[i], stringBuilder, false);
                     }
                     stringBuilder.Append("]");
-                } else
-                { 
-                    stringBuilder = GenererPath(tag.Child[0], stringBuilder,isOrActivated);
+                }
+                else
+                {
+                    stringBuilder = GenererPath(tag.Child[0], stringBuilder, isOrActivated);
                 }
             }
             return stringBuilder;
@@ -205,7 +206,7 @@ namespace MTConnectAgent.BLL
         /// </summary>
         /// <param name="url">url de la machine</param>
         /// <returns>Le XDocument récupéré</returns>
-        public async Task<XDocument> getSampleAsync(string url)
+        public async Task<XDocument> GetSampleAsync(string url)
         {
             try
             {
@@ -406,7 +407,7 @@ namespace MTConnectAgent.BLL
                     GenererPathSansOr(tagEnfant, urlCourante.ToString());
                 }
             }
-            
+
         }
 
         /// <summary>
@@ -466,7 +467,7 @@ namespace MTConnectAgent.BLL
                     paths.Add(urlCourante.ToString());
                 }
                 else
-                { 
+                {
                     foreach (Tag tagEnfant in tag.Child)
                     {
                         GenererPathAvecOr(tagEnfant, urlCourante.ToString());

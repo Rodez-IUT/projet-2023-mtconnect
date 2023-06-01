@@ -43,7 +43,7 @@
             this.buttonModifier.TabIndex = 8;
             this.buttonModifier.Text = "Modifier";
             this.buttonModifier.UseVisualStyleBackColor = false;
-            this.buttonModifier.Click += new System.EventHandler(this.buttonModifier_Click);
+            this.buttonModifier.Click += new System.EventHandler(this.ButtonModifier_Click);
             // 
             // buttonAnnuler
             // 
@@ -53,7 +53,7 @@
             this.buttonAnnuler.TabIndex = 7;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = true;
-            this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
+            this.buttonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
             // 
             // labelName
             // 
@@ -70,7 +70,7 @@
             this.textClientName.Name = "textClientName";
             this.textClientName.Size = new System.Drawing.Size(238, 20);
             this.textClientName.TabIndex = 5;
-            this.textClientName.TextChanged += new System.EventHandler(this.textClientName_TextChanged);
+            this.textClientName.TextChanged += new System.EventHandler(this.TextClientName_TextChanged);
             this.textClientName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AjoutClient_KeyPress);
             // 
             // FormModifieClient

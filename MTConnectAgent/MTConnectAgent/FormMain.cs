@@ -55,8 +55,8 @@ namespace MTConnectAgent
                 {
                     ContextMenuStrip treeViewMachineContext = new ContextMenuStrip();
 
-                    ToolStripMenuItem modifyMachineLabel = new ToolStripMenuItem("Modifier", null, modifyMachineLabel_Click);
-                    ToolStripMenuItem deleteMachineLabel = new ToolStripMenuItem("Supprimer", null, deleteMachineLabel_Click);
+                    ToolStripMenuItem modifyMachineLabel = new ToolStripMenuItem("Modifier", null, ModifyMachineLabel_Click);
+                    ToolStripMenuItem deleteMachineLabel = new ToolStripMenuItem("Supprimer", null, DeleteMachineLabel_Click);
                     List<object> tags = new List<object>(2)
                     {
                         machine,
@@ -64,9 +64,11 @@ namespace MTConnectAgent
                     };
                     modifyMachineLabel.Tag = tags;
                     deleteMachineLabel.Tag = tags;
-                    
-                    TreeNode noeudMachine = new TreeNode(machine.Name);
-                    noeudMachine.Tag = machine;
+
+                    TreeNode noeudMachine = new TreeNode(machine.Name)
+                    {
+                        Tag = machine
+                    };
 
                     treeViewMachineContext.Items.AddRange(new ToolStripMenuItem[] { modifyMachineLabel, deleteMachineLabel });
                     noeudMachine.ContextMenuStrip = treeViewMachineContext;
@@ -77,8 +79,8 @@ namespace MTConnectAgent
                 
                 ContextMenuStrip treeViewClientContext = new ContextMenuStrip();
 
-                ToolStripMenuItem modifyClientLabel = new ToolStripMenuItem("Modifier", null, modifyClientLabel_Click);
-                ToolStripMenuItem deleteClientLabel = new ToolStripMenuItem("Supprimer", null, deleteClientLabel_Click);
+                ToolStripMenuItem modifyClientLabel = new ToolStripMenuItem("Modifier", null, ModifyClientLabel_Click);
+                ToolStripMenuItem deleteClientLabel = new ToolStripMenuItem("Supprimer", null, DeleteClientLabel_Click);
                 modifyClientLabel.Tag = clients[i];
                 deleteClientLabel.Tag = clients[i];
 
@@ -98,12 +100,12 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void buttonAjouterClient_Click(object sender, EventArgs e)
+        private void ButtonAjouterClient_Click(object sender, EventArgs e)
         {
             FormAjoutClient addingClient = new FormAjoutClient();
             addingClient.ShowDialog();
 
-            Client newClient = addingClient.newClient;
+            Client newClient = addingClient.NewClient;
             if (newClient != null)
             {
                 clients.Add(newClient);
@@ -117,12 +119,12 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void buttonAjouterMachine_Click(object sender, EventArgs e)
+        private void ButtonAjouterMachine_Click(object sender, EventArgs e)
         {
             FormAjoutMachine addingMachine = new FormAjoutMachine(clients, treeViewClientMachine.SelectedNode);
             addingMachine.ShowDialog();
             
-            if (addingMachine.updated)
+            if (addingMachine.Updated)
             {
                 InitializeTreeView();
             }
@@ -162,7 +164,7 @@ namespace MTConnectAgent
                     return (T)binaryFormatter.Deserialize(stream);
                 }
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 return default(T);
             }
@@ -198,13 +200,13 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void modifyClientLabel_Click(object sender, EventArgs e)
+        private void ModifyClientLabel_Click(object sender, EventArgs e)
         {
             Client target = (Client)((ToolStripMenuItem)sender).Tag;
             FormModifieClient modifyingClient = new FormModifieClient(target);
             modifyingClient.ShowDialog();
 
-            Client modifiedClient = modifyingClient.modifiedClient;
+            Client modifiedClient = modifyingClient.ModifiedClient;
             if (modifiedClient != null)
             {
                 target = modifiedClient;
@@ -217,7 +219,7 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void deleteClientLabel_Click(object sender, EventArgs e)
+        private void DeleteClientLabel_Click(object sender, EventArgs e)
         {
             Client target = (Client)((ToolStripMenuItem)sender).Tag;
             clients.Remove(target);
@@ -229,7 +231,7 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void modifyMachineLabel_Click(object sender, EventArgs e)
+        private void ModifyMachineLabel_Click(object sender, EventArgs e)
         {
             var target = (List<object>)(((ToolStripMenuItem)sender).Tag);
             Machine machine = (Machine)target[0];
@@ -239,11 +241,11 @@ namespace MTConnectAgent
             FormModifieMachine modifyingMachine = new FormModifieMachine(machine, clients, indexClient);
             modifyingMachine.ShowDialog();
 
-            Machine modifiedMachine = modifyingMachine.modifiedMachine;
-            if (indexClient != modifyingMachine.indexClient)
+            Machine modifiedMachine = modifyingMachine.ModifiedMachine;
+            if (indexClient != modifyingMachine.IndexClient)
             {
                 clients[indexClient].Machines.RemoveAt(indexMachine);
-                clients[modifyingMachine.indexClient].AddMachine(modifiedMachine);
+                clients[modifyingMachine.IndexClient].AddMachine(modifiedMachine);
             }
             if (modifiedMachine != null)
             {
@@ -256,7 +258,7 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void deleteMachineLabel_Click(object sender, EventArgs e)
+        private void DeleteMachineLabel_Click(object sender, EventArgs e)
         {
             var target = (List<object>)(((ToolStripMenuItem)sender).Tag);
             Machine machine = (Machine)target[0];
@@ -271,13 +273,13 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void treeViewClientMachine_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TreeViewClientMachine_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Parent != null)
             {
                 selectedMachine = (Machine)e.Node.Tag;
 
-                displayTab();
+                DisplayTab();
             }
         }
 
@@ -286,17 +288,17 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tabs_SelectedIndexChanged(object sender, EventArgs e)
+        private void Tabs_SelectedIndexChanged(object sender, EventArgs e)
         {
             tabIndex = ((TabControl)sender).SelectedIndex;
 
-            displayTab();
+            DisplayTab();
         }
 
         /// <summary>
         /// Affiche l'onglet choisi
         /// </summary>
-        private void displayTab()
+        private void DisplayTab()
         {
             if (selectedMachine == null)
             {
@@ -310,14 +312,14 @@ namespace MTConnectAgent
             switch (tabIndex)
             {
                 case 1: // Current tab
-                    UserControlDisplayTab userCtrlCurrent = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.functions.current);
+                    UserControlDisplayTab userCtrlCurrent = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.Functions.current);
                     this.tabCurrent.Controls.Add(userCtrlCurrent);
                     userCtrlCurrent.Width = tabCurrent.Width;
                     userCtrlCurrent.Height = tabCurrent.Height;
                     break;
 
                 case 2: // Path tab
-                    UserControlDisplayTab userCtrlPath = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.functions.path);
+                    UserControlDisplayTab userCtrlPath = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.Functions.path);
                     this.tabPath.Controls.Add(userCtrlPath);
                     userCtrlPath.Width = tabPath.Width;
                     userCtrlPath.Height = tabPath.Height;
@@ -325,7 +327,7 @@ namespace MTConnectAgent
                    
                 case 0: // Probe tab
                 default:
-                    UserControlDisplayTab userCtrlProbe = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.functions.probe);
+                    UserControlDisplayTab userCtrlProbe = new UserControlDisplayTab(selectedMachine.Url, UserControlDisplayTab.Functions.probe);
                     this.tabProbe.Controls.Add(userCtrlProbe);
                     userCtrlProbe.Width = tabProbe.Width;
                     userCtrlProbe.Height = tabProbe.Height;
@@ -338,7 +340,7 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void tabs_Resize(object sender, EventArgs e)
+        private void Tabs_Resize(object sender, EventArgs e)
         {
             UserControlDisplayTab userControl;
             switch (tabIndex)
@@ -348,7 +350,7 @@ namespace MTConnectAgent
                     {
                         return;
                     }
-                    userControl =  (UserControlDisplayTab)this.tabCurrent.Controls[0];
+                    userControl =  (UserControlDisplayTab)tabCurrent.Controls[0];
                     userControl.Width = tabCurrent.Width;
                     userControl.Height = tabCurrent.Height;
                     break;
@@ -358,18 +360,18 @@ namespace MTConnectAgent
                     {
                         return;
                     }
-                    userControl = (UserControlDisplayTab)this.tabPath.Controls[0];
+                    userControl = (UserControlDisplayTab)tabPath.Controls[0];
                     userControl.Width = tabPath.Width;
                     userControl.Height = tabPath.Height;
                     break;
 
                 case 0: // Probe tab
-                default:
+                default: 
                     if (tabProbe.Controls.Count <= 0)
                     {
                         return;
                     }
-                    userControl = (UserControlDisplayTab)this.tabProbe.Controls[0];
+                    userControl = (UserControlDisplayTab)tabProbe.Controls[0];
                     userControl.Width = tabProbe.Width;
                     userControl.Height = tabProbe.Height;
                     break;

@@ -19,13 +19,13 @@ namespace MTConnectAgent
         /// <summary>
         /// True lorsque la machine est modfiée, false sinon
         /// </summary>
-        public bool updated { get; set; }
+        public bool Updated { get; set; }
         private string selectedClient = null;
 
         /// <summary>
         /// Liste des clients
         /// </summary>
-        public List<Client> clients { get; set; }
+        public List<Client> Clients { get; set; }
 
 
         /// <summary>
@@ -35,8 +35,8 @@ namespace MTConnectAgent
         public FormAjoutMachine(List<Client> clients, TreeNode selected)
         {
             InitializeComponent();
-            this.updated = false;
-            this.clients = clients;
+            this.Updated = false;
+            this.Clients = clients;
 
             if (selected != null)
             {
@@ -59,7 +59,7 @@ namespace MTConnectAgent
         {
             comboClients.BeginUpdate();
             comboClients.DataSource = null;
-            comboClients.DataSource = clients;
+            comboClients.DataSource = Clients;
             comboClients.DisplayMember = "name";
             buttonAjouter.Enabled = false;
             if (comboClients.Items.Count == 0)
@@ -87,7 +87,7 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void buttonAnnuler_Click(object sender, EventArgs e)
+        private void ButtonAnnuler_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -97,9 +97,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void buttonAjouter_Click(object sender, EventArgs e)
+        private void ButtonAjouter_Click(object sender, EventArgs e)
         {
-            ajouter();
+            Ajouter();
         }
 
         /// <summary>
@@ -107,16 +107,16 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonAjouterClient_Click(object sender, EventArgs e)
+        private void ButtonAjouterClient_Click(object sender, EventArgs e)
         {
             FormAjoutClient addingClient = new FormAjoutClient();
             addingClient.ShowDialog();
 
-            Client newClient = addingClient.newClient;
+            Client newClient = addingClient.NewClient;
             if (newClient != null)
             {
-                clients.Add(newClient);
-                this.updated = true;
+                Clients.Add(newClient);
+                this.Updated = true;
                 InitializePage();
             }
         }
@@ -133,7 +133,7 @@ namespace MTConnectAgent
         /// <summary>
         /// Active le bouton d'ajout lorsque les boites de dialogues ne sont pas vides
         /// </summary>
-        private void toogleButtonAjout()
+        private void ToogleButtonAjout()
         {
             if (IsTextBoxNotEmpty())
             {
@@ -150,9 +150,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void textMachineName_TextChanged(object sender, EventArgs e)
+        private void TextMachineName_TextChanged(object sender, EventArgs e)
         {
-            toogleButtonAjout();
+            ToogleButtonAjout();
         }
 
         /// <summary>
@@ -160,9 +160,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void textMachineUrl_TextChanged(object sender, EventArgs e)
+        private void TextMachineUrl_TextChanged(object sender, EventArgs e)
         {
-            toogleButtonAjout();
+            ToogleButtonAjout();
         }
 
         /// <summary>
@@ -174,16 +174,16 @@ namespace MTConnectAgent
         {
             if (buttonAjouter.Enabled && e.KeyChar == (char)Keys.Return)
             {
-                ajouter();
+                Ajouter();
             }
         }
 
         /// <summary>
         /// Ajout de la machine
         /// </summary>
-        private void ajouter()
+        private void Ajouter()
         {
-            Client selectedClient = (Client)comboClients.SelectedItem;
+            Client clientActuel = (Client)comboClients.SelectedItem;
             string machineName = textMachineName.Text.Trim();
             string machineUrl = textMachineUrl.Text.Trim();
             if (!Machine.IsValidURL(machineUrl))
@@ -191,9 +191,9 @@ namespace MTConnectAgent
                 MessageBox.Show("L'url spécifié n'est pas valide", "Création d'une Machine", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            selectedClient.AddMachine(new Machine(machineName, machineUrl));
-            this.updated = true;
-            this.Close();
+            clientActuel.AddMachine(new Machine(machineName, machineUrl));
+            Updated = true;
+            Close();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace MTConnectAgent.BLL.Tests
         public void ParseXMLRecursifTest()
         {
             // Arrange
-            XDocument document = mtConnectClient.getProbeAsync(agentUrl2).Result;
+            XDocument document = mtConnectClient.GetProbeAsync(agentUrl2).Result;
 
             // Act
             ITag root = mtConnectClient.ParseXMLRecursif(document.Root);
@@ -48,7 +48,7 @@ namespace MTConnectAgent.BLL.Tests
         public void GetProbeAsyncTest()
         {
             // Arrange & Act
-            XDocument document = mtConnectClient.getProbeAsync(agentUrl2).Result;
+            XDocument document = mtConnectClient.GetProbeAsync(agentUrl2).Result;
 
             // Assert
             Assert.IsNotNull(document);
@@ -58,7 +58,7 @@ namespace MTConnectAgent.BLL.Tests
         public void GetCurrentAsyncTest()
         {
             // Arrange & Act
-            XDocument document = mtConnectClient.getCurrentAsync(agentUrl2).Result;
+            XDocument document = mtConnectClient.GetCurrentAsync(agentUrl2).Result;
 
             // Assert
             Assert.IsNotNull(document);
@@ -78,7 +78,7 @@ namespace MTConnectAgent.BLL.Tests
         public void GetSampleAsyncTest()
         {
             // Arrange & Act
-            XDocument document = mtConnectClient.getSampleAsync(agentUrl2).Result;
+            XDocument document = mtConnectClient.GetSampleAsync(agentUrl2).Result;
 
             // Assert
             Assert.IsNotNull(document);

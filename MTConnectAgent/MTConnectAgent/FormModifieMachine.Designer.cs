@@ -48,7 +48,7 @@
             this.buttonAjouterClient.TabIndex = 21;
             this.buttonAjouterClient.Text = "Ajouter un client";
             this.buttonAjouterClient.UseVisualStyleBackColor = false;
-            this.buttonAjouterClient.Click += new System.EventHandler(this.buttonAjouterClient_Click);
+            this.buttonAjouterClient.Click += new System.EventHandler(this.ButtonAjouterClient_Click);
             // 
             // textMachineUrl
             // 
@@ -56,7 +56,7 @@
             this.textMachineUrl.Name = "textMachineUrl";
             this.textMachineUrl.Size = new System.Drawing.Size(260, 20);
             this.textMachineUrl.TabIndex = 20;
-            this.textMachineUrl.TextChanged += new System.EventHandler(this.textMachineUrl_TextChanged);
+            this.textMachineUrl.TextChanged += new System.EventHandler(this.TextMachineUrl_TextChanged);
             this.textMachineUrl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AjoutClient_KeyPress);
             // 
             // labelMachineUrl
@@ -74,7 +74,7 @@
             this.textMachineName.Name = "textMachineName";
             this.textMachineName.Size = new System.Drawing.Size(260, 20);
             this.textMachineName.TabIndex = 18;
-            this.textMachineName.TextChanged += new System.EventHandler(this.textMachineName_TextChanged);
+            this.textMachineName.TextChanged += new System.EventHandler(this.TextMachineName_TextChanged);
             this.textMachineName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AjoutClient_KeyPress);
             // 
             // labelMachineName
@@ -104,7 +104,7 @@
             this.buttonAjouter.TabIndex = 15;
             this.buttonAjouter.Text = "Modifier";
             this.buttonAjouter.UseVisualStyleBackColor = false;
-            this.buttonAjouter.Click += new System.EventHandler(this.buttonAjouter_Click);
+            this.buttonAjouter.Click += new System.EventHandler(this.ButtonAjouter_Click);
             // 
             // buttonAnnuler
             // 
@@ -115,7 +115,7 @@
             this.buttonAnnuler.TabIndex = 14;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = false;
-            this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
+            this.buttonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
             // 
             // comboClients
             // 

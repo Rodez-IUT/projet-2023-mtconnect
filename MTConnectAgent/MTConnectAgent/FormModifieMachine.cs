@@ -19,12 +19,12 @@ namespace MTConnectAgent
         /// <summary>
         /// La machine modifiée
         /// </summary>
-        public Machine modifiedMachine { get; set; }
+        public Machine ModifiedMachine { get; set; }
 
         /// <summary>
         /// L'index du client qui possède la machine
         /// </summary>
-        public int indexClient { get; set; }
+        public int IndexClient { get; set; }
 
         /// <summary>
         /// La liste de tous les clients
@@ -39,8 +39,8 @@ namespace MTConnectAgent
         /// <param name="indexClients"></param>
         public FormModifieMachine(Machine modifiedMachine, List<Client>clients, int indexClients)
         {
-            this.modifiedMachine = modifiedMachine;
-            this.indexClient = indexClients;
+            this.ModifiedMachine = modifiedMachine;
+            this.IndexClient = indexClients;
             this.clients = clients;
             InitializeComponent();
             InitializePage();
@@ -64,14 +64,14 @@ namespace MTConnectAgent
             }
             else
             {
-                comboClients.SelectedIndex = this.indexClient;
+                comboClients.SelectedIndex = this.IndexClient;
                 comboClients.Enabled = true;
                 textMachineName.Enabled = true;
                 textMachineUrl.Enabled = true;
             }
             comboClients.EndUpdate();
-            textMachineName.Text = this.modifiedMachine.Name;
-            textMachineUrl.Text = this.modifiedMachine.Url;
+            textMachineName.Text = this.ModifiedMachine.Name;
+            textMachineUrl.Text = this.ModifiedMachine.Url;
         }
 
         /// <summary>
@@ -79,9 +79,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void buttonAnnuler_Click(object sender, EventArgs e)
+        private void ButtonAnnuler_Click(object sender, EventArgs e)
         {
-            this.modifiedMachine = null;
+            this.ModifiedMachine = null;
             this.Close();
         }
 
@@ -90,12 +90,12 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void buttonAjouterClient_Click(object sender, EventArgs e)
+        private void ButtonAjouterClient_Click(object sender, EventArgs e)
         {
             FormAjoutClient addingClient = new FormAjoutClient();
             addingClient.ShowDialog();
 
-            Client newClient = addingClient.newClient;
+            Client newClient = addingClient.NewClient;
             if (newClient != null)
             {
                 clients.Add(newClient);
@@ -108,9 +108,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void buttonAjouter_Click(object sender, EventArgs e)
+        private void ButtonAjouter_Click(object sender, EventArgs e)
         {
-            modifier();
+            Modifier();
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace MTConnectAgent
         /// <summary>
         /// Active le bouton de validation si les boites de dialogues ne sont pas vides
         /// </summary>
-        private void toogleButtonAjout()
+        private void ToogleButtonAjout()
         {
             if (IsTextBoxNotEmpty())
             {
@@ -143,9 +143,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void textMachineName_TextChanged(object sender, EventArgs e)
+        private void TextMachineName_TextChanged(object sender, EventArgs e)
         {
-            toogleButtonAjout();
+            ToogleButtonAjout();
         }
 
         /// <summary>
@@ -153,9 +153,9 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">objet appelant</param>
         /// <param name="e">évenement provoqué</param>
-        private void textMachineUrl_TextChanged(object sender, EventArgs e)
+        private void TextMachineUrl_TextChanged(object sender, EventArgs e)
         {
-            toogleButtonAjout();
+            ToogleButtonAjout();
         }
         
         /// <summary>
@@ -167,25 +167,24 @@ namespace MTConnectAgent
         {
             if (buttonAjouter.Enabled && e.KeyChar == (char)Keys.Return)
             {
-                modifier();
+                Modifier();
             }
         }
 
         /// <summary>
         /// Modifie le client
         /// </summary>
-        private void modifier()
+        private void Modifier()
         {
-            Client selectedClient = (Client)comboClients.SelectedItem;
-            this.modifiedMachine.Name = textMachineName.Text.Trim();
+            this.ModifiedMachine.Name = textMachineName.Text.Trim();
             string machineUrl = textMachineUrl.Text.Trim();
             if (!Machine.IsValidURL(machineUrl))
             {
                 MessageBox.Show("L'url spécifié n'est pas valide", "Création d'une Machine", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            this.modifiedMachine.setUrl(machineUrl);
-            this.indexClient = comboClients.SelectedIndex;
+            this.ModifiedMachine.setUrl(machineUrl);
+            this.IndexClient = comboClients.SelectedIndex;
             this.Close();
         }
     }

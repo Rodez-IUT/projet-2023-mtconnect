@@ -62,7 +62,7 @@
             this.treeAffichage.ShowNodeToolTips = true;
             this.treeAffichage.Size = new System.Drawing.Size(777, 392);
             this.treeAffichage.TabIndex = 0;
-            this.treeAffichage.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeAffichage_AfterCheck);
+            this.treeAffichage.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeAffichage_AfterCheck);
             // 
             // container
             // 

@@ -40,7 +40,7 @@
             this.textClientName.Name = "textClientName";
             this.textClientName.Size = new System.Drawing.Size(238, 20);
             this.textClientName.TabIndex = 0;
-            this.textClientName.TextChanged += new System.EventHandler(this.textClientName_TextChanged);
+            this.textClientName.TextChanged += new System.EventHandler(this.TextClientName_TextChanged);
             this.textClientName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AjoutClient_KeyPress);
             // 
             // labelName
@@ -61,7 +61,7 @@
             this.buttonAnnuler.TabIndex = 3;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = false;
-            this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
+            this.buttonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
             // 
             // buttonAjouter
             // 
@@ -73,7 +73,7 @@
             this.buttonAjouter.TabIndex = 4;
             this.buttonAjouter.Text = "Ajouter";
             this.buttonAjouter.UseVisualStyleBackColor = false;
-            this.buttonAjouter.Click += new System.EventHandler(this.buttonAjouter_Click);
+            this.buttonAjouter.Click += new System.EventHandler(this.ButtonAjouter_Click);
             // 
             // FormAjoutClient
             // 
