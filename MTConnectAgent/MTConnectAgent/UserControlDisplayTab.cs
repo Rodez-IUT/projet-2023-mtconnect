@@ -557,7 +557,7 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">Object appelant (la treeview)</param>
         /// <param name="e">Evenement provoqué</param>
-        private void treeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
+        private void TreeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
 
         {
             if (e.Node.Checked)
