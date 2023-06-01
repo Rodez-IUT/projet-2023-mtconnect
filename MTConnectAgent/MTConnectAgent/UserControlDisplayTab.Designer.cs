@@ -29,24 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.copyNotification = new System.Windows.Forms.NotifyIcon(this.components);
             this.treeAffichage = new System.Windows.Forms.TreeView();
             this.container = new System.Windows.Forms.GroupBox();
             this.containerFlow = new System.Windows.Forms.FlowLayoutPanel();
             this.btnExpandNodes = new System.Windows.Forms.Button();
             this.btnCollapseNodes = new System.Windows.Forms.Button();
             this.rechercheBox = new System.Windows.Forms.TextBox();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imageListIcons = new System.Windows.Forms.ImageList(this.components);
             this.container.SuspendLayout();
             this.containerFlow.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // copyNotification
-            // 
-            this.copyNotification.BalloonTipText = "test";
-            this.copyNotification.BalloonTipTitle = "MTConnect";
-            this.copyNotification.Text = "notifyIcon1";
-            this.copyNotification.Visible = true;
             // 
             // treeAffichage
             // 
@@ -120,9 +112,9 @@
             // 
             // imageList1
             // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(20, 20);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageListIcons.ImageSize = new System.Drawing.Size(20, 20);
+            this.imageListIcons.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // UserControlDisplayTab
             // 
@@ -143,13 +135,12 @@
         }
 
         #endregion
-        private System.Windows.Forms.NotifyIcon copyNotification;
         private System.Windows.Forms.TreeView treeAffichage;
         private System.Windows.Forms.GroupBox container;
         private System.Windows.Forms.FlowLayoutPanel containerFlow;
         private System.Windows.Forms.Button btnExpandNodes;
         private System.Windows.Forms.Button btnCollapseNodes;
         private System.Windows.Forms.TextBox rechercheBox;
-        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ImageList imageListIcons;
     }
 }

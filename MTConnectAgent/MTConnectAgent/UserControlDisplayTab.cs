@@ -131,16 +131,16 @@ namespace MTConnectAgent
             rechercheBox.TextChanged += new EventHandler(SearchItem);
 
             // Ajout des icones pour les tags dans la TreeView
-            imageList1.Images.Add(Properties.Resources.component);
-            imageList1.Images.Add(Properties.Resources.condition);
-            imageList1.Images.Add(Properties.Resources.dataitem);
-            imageList1.Images.Add(Properties.Resources._default);
-            imageList1.Images.Add(Properties.Resources.description);
-            imageList1.Images.Add(Properties.Resources.device);
-            imageList1.Images.Add(Properties.Resources._event);
-            imageList1.Images.Add(Properties.Resources.header);
-            imageList1.Images.Add(Properties.Resources.sample);
-            treeAffichage.ImageList = imageList1;
+            imageListIcons.Images.Add(Properties.Resources._default);
+            imageListIcons.Images.Add(Properties.Resources.header);
+            imageListIcons.Images.Add(Properties.Resources.device);
+            imageListIcons.Images.Add(Properties.Resources.dataitem);
+            imageListIcons.Images.Add(Properties.Resources.component);
+            imageListIcons.Images.Add(Properties.Resources.condition);
+            imageListIcons.Images.Add(Properties.Resources.description);
+            imageListIcons.Images.Add(Properties.Resources._event);
+            imageListIcons.Images.Add(Properties.Resources.sample);
+            treeAffichage.ImageList = imageListIcons;
 
             foreach (Tag tag in tagMachine.Child)
             {
