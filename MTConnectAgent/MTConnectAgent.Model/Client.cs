@@ -64,20 +64,5 @@ namespace MTConnectAgent.Model
             this.Machines.Add(newMachine);
             return this;
         }
-
-        /// <summary>
-        /// Fait un copie profonde de l'objet
-        /// </summary>
-        /// <returns>L'objet copié</returns>
-        public Client DeepClone()
-        {
-            using (MemoryStream stream = new MemoryStream())
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(stream, this);
-                stream.Position = 0;
-                return (Client)formatter.Deserialize(stream);
-            }
-        }
     }
 }
