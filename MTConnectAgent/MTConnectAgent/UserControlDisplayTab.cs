@@ -310,6 +310,7 @@ namespace MTConnectAgent
             // Décocher toutes les checkboxs sélectionnées
             decocher.Name = "decocher";
             decocher.Text = "Décocher";
+            decocher.AutoSize = true;
             decocher.Anchor = AnchorStyles.None;
             decocher.MouseClick += new MouseEventHandler(Deselect);
             containerFlow.Controls.Add(decocher);
