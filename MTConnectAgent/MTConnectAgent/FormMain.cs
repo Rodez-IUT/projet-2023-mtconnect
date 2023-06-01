@@ -119,7 +119,7 @@ namespace MTConnectAgent
         /// <param name="e">évenement provoqué</param>
         private void buttonAjouterMachine_Click(object sender, EventArgs e)
         {
-            FormAjoutMachine addingMachine = new FormAjoutMachine(clients);
+            FormAjoutMachine addingMachine = new FormAjoutMachine(clients, treeViewClientMachine.SelectedNode);
             addingMachine.ShowDialog();
             
             if (addingMachine.updated)

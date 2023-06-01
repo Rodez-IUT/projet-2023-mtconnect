@@ -20,21 +20,35 @@ namespace MTConnectAgent
         /// True lorsque la machine est modfiée, false sinon
         /// </summary>
         public bool updated { get; set; }
+        private string selectedClient = null;
 
         /// <summary>
         /// Liste des clients
         /// </summary>
         public List<Client> clients { get; set; }
 
+
         /// <summary>
         /// Initialise une fenêtre d'ajout de machine
         /// </summary>
         /// <param name="clients">La liste des clients à initialiser</param>
-        public FormAjoutMachine(List<Client> clients)
+        public FormAjoutMachine(List<Client> clients, TreeNode selected)
         {
             InitializeComponent();
             this.updated = false;
             this.clients = clients;
+
+            if (selected != null)
+            {
+                if (selected.Parent != null)
+                {
+                    this.selectedClient = selected.Parent.Text;
+                }
+                else
+                {
+                    this.selectedClient = selected.Text;
+                }
+            }
             InitializePage();
         }
 
@@ -60,6 +74,10 @@ namespace MTConnectAgent
                 comboClients.Enabled = true;
                 textMachineName.Enabled = true;
                 textMachineUrl.Enabled = true;
+            }
+            if (selectedClient != null)
+            {
+                comboClients.SelectedIndex = comboClients.FindStringExact(selectedClient);
             }
             comboClients.EndUpdate();
         }
