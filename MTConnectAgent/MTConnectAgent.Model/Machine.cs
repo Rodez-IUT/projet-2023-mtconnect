@@ -19,7 +19,16 @@ namespace MTConnectAgent.Model
 
         public void setUrl(string url)
         {
-            if (IsValidURL(url)) { this.Url = url; }
+            if (IsValidURL(url))
+            {
+                url = url.Trim();
+                // supprime tout les "/" en trop en fin de l'url
+                while (url.EndsWith("/"))
+                {
+                    url = url.Remove(url.Length - 1, 1);
+                }
+                this.Url = url + "/"; // rajoute "/" afin d'avoir un url valide
+            }
             else { throw new FormatException("La valeur passé n'est pas un URL"); }
         }
 
@@ -37,8 +46,7 @@ namespace MTConnectAgent.Model
             this.Name = (String)info.GetValue("machineName", typeof(string));
             string url = (String)info.GetValue("machineUrl", typeof(string));
 
-            if (IsValidURL(url)) { this.Url = url; }
-            else { throw new FormatException("La valeur passé n'est pas un URL"); }
+            this.setUrl(url);
         }
 
         /// <summary></summary>
@@ -46,8 +54,7 @@ namespace MTConnectAgent.Model
         public Machine(string name, string url)
         {
             this.Name = name;
-            if (IsValidURL(url.Trim())) { this.Url = url.Trim(); }
-            else { throw new FormatException("La valeur passé n'est pas un URL"); }
+            this.setUrl(url);
         }
 
 

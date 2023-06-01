@@ -46,7 +46,7 @@
             this.treeViewClientMachine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeViewClientMachine.Location = new System.Drawing.Point(12, 99);
             this.treeViewClientMachine.Name = "treeViewClientMachine";
-            this.treeViewClientMachine.Size = new System.Drawing.Size(149, 335);
+            this.treeViewClientMachine.Size = new System.Drawing.Size(149, 396);
             this.treeViewClientMachine.TabIndex = 0;
             this.treeViewClientMachine.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewClientMachine_AfterSelect);
             // 
@@ -87,7 +87,7 @@
             this.tabs.Name = "tabs";
             this.tabs.Padding = new System.Drawing.Point(3, 3);
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(785, 425);
+            this.tabs.Size = new System.Drawing.Size(785, 486);
             this.tabs.TabIndex = 3;
             this.tabs.SelectedIndexChanged += new System.EventHandler(this.Tabs_SelectedIndexChanged);
             this.tabs.Resize += new System.EventHandler(this.Tabs_Resize);
@@ -98,7 +98,7 @@
             this.tabProbe.Location = new System.Drawing.Point(4, 29);
             this.tabProbe.Name = "tabProbe";
             this.tabProbe.Padding = new System.Windows.Forms.Padding(3);
-            this.tabProbe.Size = new System.Drawing.Size(777, 392);
+            this.tabProbe.Size = new System.Drawing.Size(777, 453);
             this.tabProbe.TabIndex = 0;
             this.tabProbe.Text = "Probe";
             // 
@@ -126,12 +126,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(964, 450);
+            this.ClientSize = new System.Drawing.Size(964, 511);
             this.Controls.Add(this.tabs);
             this.Controls.Add(this.buttonAjouterMachine);
             this.Controls.Add(this.buttonAjouterClient);
             this.Controls.Add(this.treeViewClientMachine);
-            this.MinimumSize = new System.Drawing.Size(500, 300);
+            this.MinimumSize = new System.Drawing.Size(550, 450);
             this.Name = "FormMain";
             this.Text = "MTConnect";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
