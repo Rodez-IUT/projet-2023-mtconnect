@@ -450,10 +450,10 @@ namespace MTConnectAgent
             // Récupération de tous les paths
             foreach (string item in resultats.Items)
             {
-                url = url + item + "\n";
+                urlSelectionne.Append(item);
             }
 
-            Clipboard.SetText(url);
+            Clipboard.SetText(urlSelectionne.ToString());
             new ToastContentBuilder().AddText("Tous les paths ont été copiés dans le presse papier").Show();
         }
 

@@ -209,7 +209,6 @@ namespace MTConnectAgent
             Client modifiedClient = modifyingClient.ModifiedClient;
             if (modifiedClient != null)
             {
-                target = modifiedClient;
                 InitializeTreeView();
             }
         }
