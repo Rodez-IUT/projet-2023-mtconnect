@@ -46,10 +46,13 @@ namespace MTConnectAgent
         /// </summary>
         private Button decocher = new Button();
 
+        private Button copyAll = new Button();
+               
+
         /// <summary>
         /// Liste des paths générés
         /// </summary>
-        private ListView resultats = new ListView();
+        private ListBox resultats = new ListBox();
 
         /// <summary>
         /// Instance courante du client MTConnect
@@ -329,28 +332,46 @@ namespace MTConnectAgent
             currentRadio.CheckedChanged += new EventHandler(ChangementProtocole);
             sampleRadio.CheckedChanged += new EventHandler(ChangementProtocole);
 
+            copyAll.Name = "copyAll";
+            copyAll.Text = "Tout copier";
+            copyAll.AutoSize = true;
+            containerFlow.Controls.Add(copyAll);
+            copyAll.MouseClick += new MouseEventHandler(CopyAllUrl);
+
             // Affichage du ou des PATH(S) à chaque checkbox cochée
             resultats.Name = "listResultatsPath";
-            resultats.View = View.Details;
-            resultats.Scrollable = true;
-
+            resultats.HorizontalScrollbar = true;
 
             resultats.Location = new Point(5, containerFlow.Location.Y + containerFlow.Height);
             resultats.Size = new Size(containerFlow.Width - 10, 155);
             resultats.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            resultats.View = View.List;
             resultats.TabIndex = 2;
             resultats.MouseDoubleClick += new MouseEventHandler(OpenBrowser);
-            resultats.MouseDown += new MouseEventHandler(CopyAllUrl);
-            resultats.MouseClick += new MouseEventHandler(CopyUrl);
+            resultats.MouseDown += new MouseEventHandler(CopyUrl);
             container.Controls.Add(resultats);
         }
 
         /// <summary>
-        /// Change le protocole courant et actualise les paths lors du click sur les boutons radio de choix du protocole
+        /// Copie le path sélectionné dans le presse-papier lors d'un double clic de la souris
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="o">Object appellant</param>
+        /// <param name="e">Evenenement provoqué</param>
+        private void CopyUrl(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button == MouseButtons.Right)
+            {
+                int index = this.resultats.IndexFromPoint(e.Location);
+                if (index != ListBox.NoMatches)
+                {
+                    resultats.SelectedItem =  resultats.Items[index];
+                    Clipboard.SetText(resultats.SelectedItem.ToString());
+                    new ToastContentBuilder().AddText("Path copié dans le presse papier").Show();
+                }
+            }
+
+        }
+
         private void ChangementProtocole(object sender, EventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;
@@ -412,23 +433,8 @@ namespace MTConnectAgent
             }
         }
 
-        /// <summary>
-        /// Copie le path sélectionné dans le presse-papier lors d'un double clic de la souris
-        /// </summary>
-        /// <param name="o">Object appellant</param>
-        /// <param name="e">Evenenement provoqué</param>
-        private void CopyUrl(object o, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                ListView listView = (ListView)o;
-                Clipboard.SetText(listView.FocusedItem.Text);
-                new ToastContentBuilder().AddText("Path copié dans le presse papier").Show();
-            }
-        }
-
         /// <summary> 
-        /// Copie tous les paths générés lors d'un clic en dehors d'un item de la ListView
+        /// Copie tous les paths générés lors d'un clic en dehors d'un item de la ListBox
         /// </summary>
         /// <param name="o">Object appellant</param>
         /// <param name="e">Evenenement provoqué</param>
@@ -436,28 +442,20 @@ namespace MTConnectAgent
         {
             StringBuilder urlSelectionne = new StringBuilder("");
 
-            ListView listView = (ListView)o;
-            ListViewHitTestInfo info = listView.HitTest(e.Location);
-
-
-            if (listView.Items.Count == 0)
+            if (resultats.Items.Count == 0)
             {
                 return;
             }
 
-            // Clic dans une zone ne contenant pas d'item
-            if (info.Location == ListViewHitTestLocations.None)
+            // Récupération de tous les paths
+            foreach (string item in resultats.Items)
             {
-                // Récupération de tous les paths
-                foreach (ListViewItem item in listView.Items)
-                {
-                    urlSelectionne.Append(item.Text + "\n");
-                }
-
-                Clipboard.SetText(urlSelectionne.ToString());
-                new ToastContentBuilder().AddText("Tous les paths ont été copiés dans le presse papier").Show();
+                url = url + item + "\n";
             }
-        } 
+
+            Clipboard.SetText(url);
+            new ToastContentBuilder().AddText("Tous les paths ont été copiés dans le presse papier").Show();
+        }
 
         /// <summary>
         /// Ouvre le path sélectionné dans un navigateur lors d'un double clic de la souris
@@ -466,8 +464,11 @@ namespace MTConnectAgent
         /// <param name="e">Evenenement provoqué</param>
         private void OpenBrowser(object o, MouseEventArgs e)
         {
-            ListView listView = (ListView)o;
-            System.Diagnostics.Process.Start(listView.FocusedItem.Text);
+            ListBox listView = (ListBox)o;
+            if (listView.SelectedItem != null)
+            {
+                System.Diagnostics.Process.Start(listView.SelectedItem.ToString());
+            }
         }
 
         /// <summary>
@@ -556,7 +557,8 @@ namespace MTConnectAgent
         /// </summary>
         /// <param name="sender">Object appelant (la treeview)</param>
         /// <param name="e">Evenement provoqué</param>
-        private void TreeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
+        private void treeAffichage_AfterCheck(object sender, TreeViewEventArgs e)
+
         {
             if (e.Node.Checked)
             {
