@@ -10,10 +10,13 @@ using System.Xml.Linq;
 namespace MTConnectAgent.BLL
 {
     /// <summary>
-    /// 
+    /// Gere la logique métier du client MTConnect
     /// </summary>
     public class MTConnectClient
     {
+        /// <summary>
+        /// Les protocoles possibles
+        /// </summary>
         public enum Protocol
         {
             current,
@@ -21,13 +24,16 @@ namespace MTConnectAgent.BLL
             sample
         }
 
+        /// <summary>
+        /// La liste des paths générés
+        /// </summary>
         private List<string> paths;
 
         /// <summary>
-        /// 
+        /// Transforme un document xml en Tag
         /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
+        /// <param name="element">L'élément racine du document XML</param>
+        /// <returns>Un tag représentant le document xml</returns>
         public Tag ParseXMLRecursif(XElement element)
         {
             Tag tag = new Tag(element.Name.ToString().Split('}')[1]);
@@ -63,10 +69,10 @@ namespace MTConnectAgent.BLL
         }
 
         /// <summary>
-        /// 
+        /// Récupere le probe d'une machine de façon asynchrone
         /// </summary>
-        /// <param name="url"></param>
-        /// <returns></returns>
+        /// <param name="url">url de la machine</param>
+        /// <returns>Le XDocument récupéré</returns>
         public async Task<XDocument> getProbeAsync(string url)
         {
             try
@@ -88,10 +94,10 @@ namespace MTConnectAgent.BLL
         }
 
         /// <summary>
-        /// 
+        /// Récupere le current d'une machine de façon asynchrone
         /// </summary>
-        /// <param name="url"></param>
-        /// <returns></returns>
+        /// <param name="url">url de la machine</param>
+        /// <returns>Le XDocument récupéré</returns>
         public async Task<XDocument> getCurrentAsync(string url)
         {
             try
@@ -169,10 +175,10 @@ namespace MTConnectAgent.BLL
 
 
         /// <summary>
-        /// 
+        /// Récupere les assets d'une machine de façon asynchrone
         /// </summary>
-        /// <param name="url"></param>
-        /// <returns></returns>
+        /// <param name="url">url de la machine</param>
+        /// <returns>Le XDocument récupéré</returns>
         public async Task<XDocument> getAssetsAsync(string url)
         {
             try
@@ -195,10 +201,10 @@ namespace MTConnectAgent.BLL
         }
 
         /// <summary>
-        /// 
+        /// Récupere le sample d'une machine de façon asynchrone
         /// </summary>
-        /// <param name="url"></param>
-        /// <returns></returns>
+        /// <param name="url">url de la machine</param>
+        /// <returns>Le XDocument récupéré</returns>
         public async Task<XDocument> getSampleAsync(string url)
         {
             try
@@ -221,7 +227,6 @@ namespace MTConnectAgent.BLL
         }
 
         /// <summary>1
-        /// 
         /// Recherche d'un tag spécifique dans tout les tag enfant de celui passer en paramètre
         /// </summary>
         /// <param name="tag">Tag dans lequel vas être effectué la recherche</param>

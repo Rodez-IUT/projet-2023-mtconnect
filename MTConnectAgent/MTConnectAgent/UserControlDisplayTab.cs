@@ -10,6 +10,9 @@ using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace MTConnectAgent
 {
+    /// <summary>
+    /// Gere les interactions entre l'interface et la logique métier
+    /// </summary>
     public partial class UserControlDisplayTab : UserControl
     {
         private Tag tagMachine;
@@ -27,16 +30,20 @@ namespace MTConnectAgent
         /// </summary>
         private CheckBox or = new CheckBox();
 
-
+        /// <summary>
+        /// Bouton radio permettant de choisir le protocole current, il est coché par défaut
+        /// </summary>
         private RadioButton currentRadio = new RadioButton();
 
+        /// <summary>
+        /// Bouton radio permettant de choisir le protocole sample.
+        /// </summary>
         private RadioButton sampleRadio = new RadioButton();
 
         /// <summary>
         /// Déselectionne toutes les checkboxs cochées
         /// </summary>
         private Button decocher = new Button();
-               
 
         /// <summary>
         /// Liste des paths générés
@@ -333,6 +340,11 @@ namespace MTConnectAgent
             container.Controls.Add(resultats);
         }
 
+        /// <summary>
+        /// Change le protocole courant et actualise les paths lors du click sur les boutons radio de choix du protocole
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChangementProtocole(object sender, EventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;

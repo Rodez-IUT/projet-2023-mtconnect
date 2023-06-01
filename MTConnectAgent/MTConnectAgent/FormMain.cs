@@ -12,20 +12,37 @@ using MTConnectAgent.Model;
 
 namespace MTConnectAgent
 {
+    /// <summary>
+    /// Gere les interactions du formulaire principal
+    /// </summary>
     public partial class FormMain : Form
     {
+        /// <summary>
+        /// Liste des clients
+        /// </summary>
         private List<Client> clients;
 
+        /// <summary>
+        /// Numéro de l'onglet choisi
+        /// </summary>
         private int tabIndex = 0;
 
+        /// <summary>
+        /// Machine sélectionnée
+        /// </summary>
         private Machine selectedMachine;
 
+        /// <summary>
+        /// Initialise la fenêtre
+        /// </summary>
         public FormMain()
         {
             InitializeComponent();
         }
 
-        // Populates a TreeView control with example nodes. 
+        /// <summary>
+        /// Initialise la treeview des clients et des machines 
+        /// </summary>
         private void InitializeTreeView()
         {
             treeViewClientMachine.BeginUpdate();
@@ -75,6 +92,12 @@ namespace MTConnectAgent
             WriteToBinaryFile<List<Client>>(".\\clients", clients);
         }
 
+        /// <summary>
+        /// Gere le clic sur le bouton d'ajout d'un client
+        /// Ouvre le formulaire d'ajout de client
+        /// </summary>
+        /// <param name="sender">objet appelant</param>
+        /// <param name="e">évenement provoqué</param>
         private void buttonAjouterClient_Click(object sender, EventArgs e)
         {
             FormAjoutClient addingClient = new FormAjoutClient();
@@ -88,6 +111,12 @@ namespace MTConnectAgent
             }
         }
 
+        /// <summary>
+        /// Gere le clic sur le bouton d'ajout d'une machine
+        /// Ouvre le formulaire d'ajout de machine
+        /// </summary>
+        /// <param name="sender">objet appelant</param>
+        /// <param name="e">évenement provoqué</param>
         private void buttonAjouterMachine_Click(object sender, EventArgs e)
         {
             FormAjoutMachine addingMachine = new FormAjoutMachine(clients);
@@ -139,11 +168,21 @@ namespace MTConnectAgent
             }
         }
 
+        /// <summary>
+        /// Enregistre la liste des clients lors de la fermeture de la fenêtre
+        /// </summary>
+        /// <param name="sender">objet appelant</param>
+        /// <param name="e">évenement provoqué</param>
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             WriteToBinaryFile<List<Client>>(".\\clients", clients);
         }
 
+        /// <summary>
+        /// Affiche le formulaire principal
+        /// </summary>
+        /// <param name="sender">objet appelant</param>
+        /// <param name="e">évenement provoqué</param>
         private void FormMain_Shown(object sender, EventArgs e)
         {
             clients = ReadFromBinaryFile<List<Client>>(".\\clients");
@@ -154,6 +193,11 @@ namespace MTConnectAgent
             InitializeTreeView();
         }
 
+        /// <summary>
+        /// Lance la fenêtre de modification d'un client lors du clic sur le bouton modifier du menu contextuel d'un client
+        /// </summary>
+        /// <param name="sender">objet appelant</param>
+        /// <param name="e">évenement provoqué</param>
         private void modifyClientLabel_Click(object sender, EventArgs e)
         {
             Client target = (Client)((ToolStripMenuItem)sender).Tag;
@@ -168,6 +212,11 @@ namespace MTConnectAgent
             }
         }
 
+        /// <summary>
+        /// Supprime le client lors du clic sur le bouton supprimer du menu contextuel du client en question
+        /// </summary>
+        /// <param name="sender">objet appelant</param>
+        /// <param name="e">évenement provoqué</param>
         private void deleteClientLabel_Click(object sender, EventArgs e)
         {
             Client target = (Client)((ToolStripMenuItem)sender).Tag;
@@ -175,6 +224,11 @@ namespace MTConnectAgent
             InitializeTreeView();
         }
 
+        /// <summary>
+        /// Lance la fenêtre de modification d'une machine lors du clic sur le bouton modifier du menu contextuel d'une machine
+        /// </summary>
+        /// <param name="sender">objet appelant</param>
+        /// <param name="e">évenement provoqué</param>
         private void modifyMachineLabel_Click(object sender, EventArgs e)
         {
             var target = (List<object>)(((ToolStripMenuItem)sender).Tag);
@@ -197,6 +251,11 @@ namespace MTConnectAgent
             }
         }
 
+        /// <summary>
+        /// Supprime la machine lors du clic sur le bouton supprimer du menu contextuel de la machine en question
+        /// </summary>
+        /// <param name="sender">objet appelant</param>
+        /// <param name="e">évenement provoqué</param>
         private void deleteMachineLabel_Click(object sender, EventArgs e)
         {
             var target = (List<object>)(((ToolStripMenuItem)sender).Tag);
@@ -207,6 +266,11 @@ namespace MTConnectAgent
             InitializeTreeView();
         }
 
+        /// <summary>
+        /// Initialise l'onglet choisi lors du clic sur une machine
+        /// </summary>
+        /// <param name="sender">objet appelant</param>
+        /// <param name="e">évenement provoqué</param>
         private void treeViewClientMachine_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Parent != null)
@@ -217,6 +281,11 @@ namespace MTConnectAgent
             }
         }
 
+        /// <summary>
+        /// Initialise l'onglet choisi lors du clic sur un onglet différent
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tabs_SelectedIndexChanged(object sender, EventArgs e)
         {
             tabIndex = ((TabControl)sender).SelectedIndex;
@@ -224,6 +293,9 @@ namespace MTConnectAgent
             displayTab();
         }
 
+        /// <summary>
+        /// Affiche l'onglet choisi
+        /// </summary>
         private void displayTab()
         {
             if (selectedMachine == null)
@@ -261,6 +333,11 @@ namespace MTConnectAgent
             }
         }
 
+        /// <summary>
+        /// Gere la modification de taille d'un onglet
+        /// </summary>
+        /// <param name="sender">objet appelant</param>
+        /// <param name="e">évenement provoqué</param>
         private void tabs_Resize(object sender, EventArgs e)
         {
             UserControlDisplayTab userControl;
