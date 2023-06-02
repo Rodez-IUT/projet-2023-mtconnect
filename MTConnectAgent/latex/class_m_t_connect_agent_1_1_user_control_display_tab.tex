@@ -1,0 +1,657 @@
+\hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab}{}\section{Référence de la classe M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab}
+\label{class_m_t_connect_agent_1_1_user_control_display_tab}\index{M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab}}
+
+
+Gere les interactions entre l\textquotesingle{}interface et la logique métier  
+
+
+Graphe d\textquotesingle{}héritage de M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_m_t_connect_agent_1_1_user_control_display_tab}
+\end{center}
+\end{figure}
+\subsection*{Types publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ec}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ec}} 
+enum {\bfseries Functions} \{ {\bfseries probe}, 
+{\bfseries current}, 
+{\bfseries path}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a75f993d745781ea932a201f00bbe150e}{User\+Control\+Display\+Tab}} (string url, Functions fx)
+\begin{DoxyCompactList}\small\item\em Initialise l\textquotesingle{}interface actuelle \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_abcf66374bf792fe271d968bb035d749d}{Update\+View}} ()
+\begin{DoxyCompactList}\small\item\em Charge la fenêtre sélectionnée avec l\textquotesingle{}affichage qui correspond \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a97ab71f68df06c33f0420131314c8a68}{Create\+Specifique\+Tag}} (List$<$ string $>$ chemins)
+\begin{DoxyCompactList}\small\item\em Créer un tag spécifique pour la génération des paths \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a0cfe1921bf9282de4c87b7b3c68bf6e6}{Dispose}} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Nettoyage des ressources utilisées. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_aea40e1e7daf5f6821fc4b6c7dc717563}{Select\+Icon}} (Tree\+Node node)
+\begin{DoxyCompactList}\small\item\em Sélectionne l\textquotesingle{}icone correspondant au tag généré \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a936a17ca9a88c0cbab0e70894567cdad}{Generer}} (I\+List$<$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} $>$ tags, Tree\+Node root)
+\begin{DoxyCompactList}\small\item\em Affichage sous la forme d\textquotesingle{}un arbre des tags avec leurs attributs, id et nom \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a8007de48e5b3c138c3260fa361f744c0}{Generate\+Path\+Results}} ()
+\begin{DoxyCompactList}\small\item\em Fenêtre de génération et obtention des P\+A\+T\+HS \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_ae279107d6601b7bc7b28a44dcbc68e5e}{Changement\+Protocole}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Change le protocole courant et actualise les paths lors du click sur les boutons radio de choix du protocole \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a2f29e407545f62944defd9533dc895e0}{Actualiser\+Paths}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Actualise les paths lors du clic sur le bouton \char`\"{}or\char`\"{} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a105e38f9a87a83a4bc4c1af82bf45993}{Copy\+Url}} (object o, Mouse\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Copie le path sélectionné dans le presse-\/papier lors d\textquotesingle{}un double clic de la souris \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_ac473c5026d9d7af94210c53170be841b}{Copy\+All\+Url}} (object o, Mouse\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Copie tous les paths générés lors d\textquotesingle{}un clic en dehors d\textquotesingle{}un item de la List\+View \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a35c3095a47ee602da98eca8e77e6ff3b}{Open\+Browser}} (object o, Mouse\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Ouvre le path sélectionné dans un navigateur lors d\textquotesingle{}un double clic de la souris \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a9e5f7105041510bae0e1da721a7bc4c3}{Collapse\+Nodes}} (object sender, Mouse\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Réduire l\textquotesingle{}affichage de l\textquotesingle{}arbre \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a3b3bc198b2518ec65b3b2dba371d6f83}{Expand\+Nodes}} (object sender, Mouse\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Développe l\textquotesingle{}affichage de l\textquotesingle{}arbre \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a1913b7cb8611c0670e08abaf6e20352d}{Deselect}} (object sender, Mouse\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Décoche toutes les checkbox sélectionnées \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a9645609103b3c419c143c6f0becad308}{Search\+Item}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Recherche au sein de la Tree\+View le texte écrit par l\textquotesingle{}utilisateur \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_adee83739d03527dcd7dd13c95d8ca3c9}{Parse\+Full\+Path}} (string path)
+\begin{DoxyCompactList}\small\item\em Transforme un item sous forme de string en tag, selon son id et son nom \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a867300e7d41f63cf0e728ba0f137af94}{Tree\+Affichage\+\_\+\+After\+Check}} (object sender, Tree\+View\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Méthode appelée dès que le treeview est coché ou décocher, initialise et lance la génération du path \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_ab942bfad7bf216e1b4915f0841d8c42f}{Generation\+Paths}} ()
+\begin{DoxyCompactList}\small\item\em Génére les paths des items demandés et les ajoute à la fenêtre path \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a7fc3123014a0546fd4fb29d2ced80183}{Create\+Tag\+Recursive}} (\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} parent, string\mbox{[}$\,$\mbox{]} items, int index)
+\begin{DoxyCompactList}\small\item\em Créer un tag correspondant à un chemin envoyé (ex \+: Devices/\+Device), et si certains items du chemin existe déjà dans le tag parent donné, alors ils ne sont pas dédoublés \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_ae8831a67e98923b77b22df4e35842a17}{Enfant\+Existe}} (\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} parent, \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} enfant)
+\begin{DoxyCompactList}\small\item\em Vérifie si le tag enfant est présent en tant qu\textquotesingle{}enfant direct du parent \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a7280eefa02218d37616dadb3c0e01136}{Initialize\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Méthode requise pour la prise en charge du concepteur -\/ ne modifiez pas le contenu de cette méthode avec l\textquotesingle{}éditeur de code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres privées statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_ad1fd6a35a00d563b8515f464a3f60afc}{Thread\+Parse\+Probe}} (string url)
+\begin{DoxyCompactList}\small\item\em Appelle l\textquotesingle{}url du probe de façon asynchrone \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a1035636aa3d4084fdc2b8adde3fe5e3a}{Thread\+Parse\+Current}} (string url)
+\begin{DoxyCompactList}\small\item\em Appelle l\textquotesingle{}url du current de façon asynchrone \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_adb85fd45a6e04656bf4eed212040e1a9}\label{class_m_t_connect_agent_1_1_user_control_display_tab_adb85fd45a6e04656bf4eed212040e1a9}} 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} {\bfseries tag\+Machine}
+\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_aadac9f472866bf956cae2bd897200e1a}\label{class_m_t_connect_agent_1_1_user_control_display_tab_aadac9f472866bf956cae2bd897200e1a}} 
+string {\bfseries url}
+\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_addffe628fc1709f3f186bdaa1946e558}\label{class_m_t_connect_agent_1_1_user_control_display_tab_addffe628fc1709f3f186bdaa1946e558}} 
+Functions {\bfseries fx}
+\item 
+Check\+Box \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a31fcb431f108a7067f9293700d985a7b}{or}} = new Check\+Box()
+\begin{DoxyCompactList}\small\item\em Checkbox pour choisir l\textquotesingle{}option or \end{DoxyCompactList}\item 
+Radio\+Button \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_ae9cb8140db2e3be2016b811f1df7010a}{current\+Radio}} = new Radio\+Button()
+\begin{DoxyCompactList}\small\item\em Bouton radio permettant de choisir le protocole current, il est coché par défaut \end{DoxyCompactList}\item 
+Radio\+Button \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_afd8149a27f0eca9e61e12880fce8bdc9}{sample\+Radio}} = new Radio\+Button()
+\begin{DoxyCompactList}\small\item\em Bouton radio permettant de choisir le protocole sample. \end{DoxyCompactList}\item 
+Button \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a0dfedd189ce40e92ee9621a790ec5b9f}{decocher}} = new Button()
+\begin{DoxyCompactList}\small\item\em Déselectionne toutes les checkboxs cochées \end{DoxyCompactList}\item 
+List\+View \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a246386326d94ef712378b72727570995}{resultats}} = new List\+View()
+\begin{DoxyCompactList}\small\item\em Liste des paths générés \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client}{M\+T\+Connect\+Client}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a4bfdc2032bbe24566e9e4d7053438ab1}{instance}} = new \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client}{M\+T\+Connect\+Client}}()
+\begin{DoxyCompactList}\small\item\em Instance courante du client M\+T\+Connect \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_aefd62ca9c1f8ff816f6208332ae4860e}{paths\+From\+Tree}} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em Liste des paths bruts récupérés sous forme de string via le treeview \end{DoxyCompactList}\item 
+I\+List$<$ Tree\+Node $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a70ccdb75ebd47abf8cf75656c5318492}{nodes}} = new List$<$Tree\+Node$>$()
+\begin{DoxyCompactList}\small\item\em Liste des noeuds du treeview \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a3471dd7677ae1037fe9319383ef5ccbd}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a3471dd7677ae1037fe9319383ef5ccbd}} 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{M\+T\+Connect\+Client.\+Protocol}} {\bfseries protocole}
+\item 
+Dictionary$<$ string, \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{M\+T\+Connect\+Client.\+Protocol}} $>$ {\bfseries dictionnaire\+Protocoles}
+\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_aa600efb65adb7313ed6e5ec98c84863c}\label{class_m_t_connect_agent_1_1_user_control_display_tab_aa600efb65adb7313ed6e5ec98c84863c}} 
+readonly Anchor\+Styles {\bfseries All\+Side\+Anchor} = Anchor\+Styles.\+Top $\vert$ Anchor\+Styles.\+Bottom $\vert$ Anchor\+Styles.\+Left $\vert$ Anchor\+Styles.\+Right
+\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a2de53bacd7b44a121af957bda6d0faa4}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a2de53bacd7b44a121af957bda6d0faa4}} 
+readonly Font {\bfseries bold\+Font} = new Font(\char`\"{}Microsoft Sans Serif\char`\"{}, 9\+F, Font\+Style.\+Bold, Graphics\+Unit.\+Point, 0)
+\item 
+System.\+Component\+Model.\+I\+Container \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a69ab804e102c9f7530a0441d2dd65da6}{components}} = null
+\begin{DoxyCompactList}\small\item\em Variable nécessaire au concepteur. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ac4f4ff399ae001cb2d8774b58a4e5532}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ac4f4ff399ae001cb2d8774b58a4e5532}} 
+System.\+Windows.\+Forms.\+Tree\+View {\bfseries tree\+Affichage}
+\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a0f26e5be51a11045133d1bdd3b8ebaee}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a0f26e5be51a11045133d1bdd3b8ebaee}} 
+System.\+Windows.\+Forms.\+Group\+Box {\bfseries container}
+\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a11dd621a8bf6a2d3b0be91f20fc0c9f0}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a11dd621a8bf6a2d3b0be91f20fc0c9f0}} 
+System.\+Windows.\+Forms.\+Flow\+Layout\+Panel {\bfseries container\+Flow}
+\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ad2e73116a8315b183e006850caa767ad}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ad2e73116a8315b183e006850caa767ad}} 
+System.\+Windows.\+Forms.\+Button {\bfseries btn\+Expand\+Nodes}
+\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_aa39615008797ebe155e99322a8a0e020}\label{class_m_t_connect_agent_1_1_user_control_display_tab_aa39615008797ebe155e99322a8a0e020}} 
+System.\+Windows.\+Forms.\+Button {\bfseries btn\+Collapse\+Nodes}
+\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a789854421cf3f00de88bc6bf168e4ada}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a789854421cf3f00de88bc6bf168e4ada}} 
+System.\+Windows.\+Forms.\+Text\+Box {\bfseries recherche\+Box}
+\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a4e0ab361176edf2f0a3b1f7bf0fe4f5d}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a4e0ab361176edf2f0a3b1f7bf0fe4f5d}} 
+System.\+Windows.\+Forms.\+Image\+List {\bfseries image\+List\+Icons}
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Gere les interactions entre l\textquotesingle{}interface et la logique métier 
+
+
+
+\subsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a75f993d745781ea932a201f00bbe150e}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a75f993d745781ea932a201f00bbe150e}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!User\+Control\+Display\+Tab@{User\+Control\+Display\+Tab}}
+\index{User\+Control\+Display\+Tab@{User\+Control\+Display\+Tab}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{User\+Control\+Display\+Tab()}{UserControlDisplayTab()}}
+{\footnotesize\ttfamily M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+User\+Control\+Display\+Tab (\begin{DoxyParamCaption}\item[{string}]{url,  }\item[{Functions}]{fx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initialise l\textquotesingle{}interface actuelle 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em url} & url de la machine choisie\\
+\hline
+{\em fx} & type de requete (probe, current, path)\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a2f29e407545f62944defd9533dc895e0}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a2f29e407545f62944defd9533dc895e0}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Actualiser\+Paths@{Actualiser\+Paths}}
+\index{Actualiser\+Paths@{Actualiser\+Paths}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Actualiser\+Paths()}{ActualiserPaths()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Actualiser\+Paths (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Actualise les paths lors du clic sur le bouton \char`\"{}or\char`\"{} 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & Objet appellant\\
+\hline
+{\em e} & Evenenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ae279107d6601b7bc7b28a44dcbc68e5e}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ae279107d6601b7bc7b28a44dcbc68e5e}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Changement\+Protocole@{Changement\+Protocole}}
+\index{Changement\+Protocole@{Changement\+Protocole}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Changement\+Protocole()}{ChangementProtocole()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Changement\+Protocole (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Change le protocole courant et actualise les paths lors du click sur les boutons radio de choix du protocole 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a9e5f7105041510bae0e1da721a7bc4c3}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a9e5f7105041510bae0e1da721a7bc4c3}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Collapse\+Nodes@{Collapse\+Nodes}}
+\index{Collapse\+Nodes@{Collapse\+Nodes}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Collapse\+Nodes()}{CollapseNodes()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Collapse\+Nodes (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Mouse\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Réduire l\textquotesingle{}affichage de l\textquotesingle{}arbre 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ac473c5026d9d7af94210c53170be841b}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ac473c5026d9d7af94210c53170be841b}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Copy\+All\+Url@{Copy\+All\+Url}}
+\index{Copy\+All\+Url@{Copy\+All\+Url}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Copy\+All\+Url()}{CopyAllUrl()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Copy\+All\+Url (\begin{DoxyParamCaption}\item[{object}]{o,  }\item[{Mouse\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Copie tous les paths générés lors d\textquotesingle{}un clic en dehors d\textquotesingle{}un item de la List\+View 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em o} & Object appellant\\
+\hline
+{\em e} & Evenenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a105e38f9a87a83a4bc4c1af82bf45993}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a105e38f9a87a83a4bc4c1af82bf45993}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Copy\+Url@{Copy\+Url}}
+\index{Copy\+Url@{Copy\+Url}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Copy\+Url()}{CopyUrl()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Copy\+Url (\begin{DoxyParamCaption}\item[{object}]{o,  }\item[{Mouse\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Copie le path sélectionné dans le presse-\/papier lors d\textquotesingle{}un double clic de la souris 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em o} & Object appellant\\
+\hline
+{\em e} & Evenenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a97ab71f68df06c33f0420131314c8a68}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a97ab71f68df06c33f0420131314c8a68}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Create\+Specifique\+Tag@{Create\+Specifique\+Tag}}
+\index{Create\+Specifique\+Tag@{Create\+Specifique\+Tag}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Create\+Specifique\+Tag()}{CreateSpecifiqueTag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Create\+Specifique\+Tag (\begin{DoxyParamCaption}\item[{List$<$ string $>$}]{chemins }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Créer un tag spécifique pour la génération des paths 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em chemins} & Les chemins donnés par le treeview\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Un tag spécial pour la génération des paths
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a7fc3123014a0546fd4fb29d2ced80183}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a7fc3123014a0546fd4fb29d2ced80183}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Create\+Tag\+Recursive@{Create\+Tag\+Recursive}}
+\index{Create\+Tag\+Recursive@{Create\+Tag\+Recursive}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Create\+Tag\+Recursive()}{CreateTagRecursive()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Create\+Tag\+Recursive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}}}]{parent,  }\item[{string \mbox{[}$\,$\mbox{]}}]{items,  }\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Créer un tag correspondant à un chemin envoyé (ex \+: Devices/\+Device), et si certains items du chemin existe déjà dans le tag parent donné, alors ils ne sont pas dédoublés 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em parent} & Le tag parent dans lequel on ajoute les enfant si il y en a\\
+\hline
+{\em items} & Le chemin demandé séparé par item\\
+\hline
+{\em index} & L\textquotesingle{}index courant\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Un tag contenant tout les items demandés
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a1913b7cb8611c0670e08abaf6e20352d}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a1913b7cb8611c0670e08abaf6e20352d}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Deselect@{Deselect}}
+\index{Deselect@{Deselect}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Deselect()}{Deselect()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Deselect (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Mouse\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Décoche toutes les checkbox sélectionnées 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a0cfe1921bf9282de4c87b7b3c68bf6e6}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a0cfe1921bf9282de4c87b7b3c68bf6e6}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily override void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Nettoyage des ressources utilisées. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em disposing} & true si les ressources managées doivent être supprimées ; sinon, false.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ae8831a67e98923b77b22df4e35842a17}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ae8831a67e98923b77b22df4e35842a17}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Enfant\+Existe@{Enfant\+Existe}}
+\index{Enfant\+Existe@{Enfant\+Existe}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Enfant\+Existe()}{EnfantExiste()}}
+{\footnotesize\ttfamily bool M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Enfant\+Existe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}}}]{parent,  }\item[{\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}}}]{enfant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Vérifie si le tag enfant est présent en tant qu\textquotesingle{}enfant direct du parent 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em parent} & Le tag parent\\
+\hline
+{\em enfant} & Le tag enfant recherché\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+true si il est trouvé, false sinon
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a3b3bc198b2518ec65b3b2dba371d6f83}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a3b3bc198b2518ec65b3b2dba371d6f83}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Expand\+Nodes@{Expand\+Nodes}}
+\index{Expand\+Nodes@{Expand\+Nodes}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Expand\+Nodes()}{ExpandNodes()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Expand\+Nodes (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Mouse\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Développe l\textquotesingle{}affichage de l\textquotesingle{}arbre 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a8007de48e5b3c138c3260fa361f744c0}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a8007de48e5b3c138c3260fa361f744c0}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Generate\+Path\+Results@{Generate\+Path\+Results}}
+\index{Generate\+Path\+Results@{Generate\+Path\+Results}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Generate\+Path\+Results()}{GeneratePathResults()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Generate\+Path\+Results (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Fenêtre de génération et obtention des P\+A\+T\+HS 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ab942bfad7bf216e1b4915f0841d8c42f}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ab942bfad7bf216e1b4915f0841d8c42f}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Generation\+Paths@{Generation\+Paths}}
+\index{Generation\+Paths@{Generation\+Paths}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Generation\+Paths()}{GenerationPaths()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Generation\+Paths (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Génére les paths des items demandés et les ajoute à la fenêtre path 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a936a17ca9a88c0cbab0e70894567cdad}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a936a17ca9a88c0cbab0e70894567cdad}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Generer@{Generer}}
+\index{Generer@{Generer}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Generer()}{Generer()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Generer (\begin{DoxyParamCaption}\item[{I\+List$<$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} $>$}]{tags,  }\item[{Tree\+Node}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Affichage sous la forme d\textquotesingle{}un arbre des tags avec leurs attributs, id et nom 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tags} & Les tags à afficher\\
+\hline
+{\em root} & Le noeud racine du treeview\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a7280eefa02218d37616dadb3c0e01136}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a7280eefa02218d37616dadb3c0e01136}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Initialize\+Component@{Initialize\+Component}}
+\index{Initialize\+Component@{Initialize\+Component}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Initialize\+Component()}{InitializeComponent()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Initialize\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Méthode requise pour la prise en charge du concepteur -\/ ne modifiez pas le contenu de cette méthode avec l\textquotesingle{}éditeur de code. 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a35c3095a47ee602da98eca8e77e6ff3b}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a35c3095a47ee602da98eca8e77e6ff3b}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Open\+Browser@{Open\+Browser}}
+\index{Open\+Browser@{Open\+Browser}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Open\+Browser()}{OpenBrowser()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Open\+Browser (\begin{DoxyParamCaption}\item[{object}]{o,  }\item[{Mouse\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Ouvre le path sélectionné dans un navigateur lors d\textquotesingle{}un double clic de la souris 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em o} & Object appellant\\
+\hline
+{\em e} & Evenenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_adee83739d03527dcd7dd13c95d8ca3c9}\label{class_m_t_connect_agent_1_1_user_control_display_tab_adee83739d03527dcd7dd13c95d8ca3c9}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Parse\+Full\+Path@{Parse\+Full\+Path}}
+\index{Parse\+Full\+Path@{Parse\+Full\+Path}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Parse\+Full\+Path()}{ParseFullPath()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Parse\+Full\+Path (\begin{DoxyParamCaption}\item[{string}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Transforme un item sous forme de string en tag, selon son id et son nom 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & L\textquotesingle{}item à transformer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Un tag constitué uniquement d\textquotesingle{}un nom et d\textquotesingle{}un id
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a9645609103b3c419c143c6f0becad308}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a9645609103b3c419c143c6f0becad308}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Search\+Item@{Search\+Item}}
+\index{Search\+Item@{Search\+Item}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Search\+Item()}{SearchItem()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Search\+Item (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Recherche au sein de la Tree\+View le texte écrit par l\textquotesingle{}utilisateur 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_aea40e1e7daf5f6821fc4b6c7dc717563}\label{class_m_t_connect_agent_1_1_user_control_display_tab_aea40e1e7daf5f6821fc4b6c7dc717563}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Select\+Icon@{Select\+Icon}}
+\index{Select\+Icon@{Select\+Icon}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Select\+Icon()}{SelectIcon()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Select\+Icon (\begin{DoxyParamCaption}\item[{Tree\+Node}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Sélectionne l\textquotesingle{}icone correspondant au tag généré 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em node} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a1035636aa3d4084fdc2b8adde3fe5e3a}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a1035636aa3d4084fdc2b8adde3fe5e3a}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Thread\+Parse\+Current@{Thread\+Parse\+Current}}
+\index{Thread\+Parse\+Current@{Thread\+Parse\+Current}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Thread\+Parse\+Current()}{ThreadParseCurrent()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Thread\+Parse\+Current (\begin{DoxyParamCaption}\item[{string}]{url }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Appelle l\textquotesingle{}url du current de façon asynchrone 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em url} & url de la machine courante\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Tag contenant la totalité des information du current
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ad1fd6a35a00d563b8515f464a3f60afc}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ad1fd6a35a00d563b8515f464a3f60afc}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Thread\+Parse\+Probe@{Thread\+Parse\+Probe}}
+\index{Thread\+Parse\+Probe@{Thread\+Parse\+Probe}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Thread\+Parse\+Probe()}{ThreadParseProbe()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Thread\+Parse\+Probe (\begin{DoxyParamCaption}\item[{string}]{url }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Appelle l\textquotesingle{}url du probe de façon asynchrone 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em url} & url de la machine courante\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Tag contenant la totalité des information du probe
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a867300e7d41f63cf0e728ba0f137af94}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a867300e7d41f63cf0e728ba0f137af94}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Tree\+Affichage\+\_\+\+After\+Check@{Tree\+Affichage\+\_\+\+After\+Check}}
+\index{Tree\+Affichage\+\_\+\+After\+Check@{Tree\+Affichage\+\_\+\+After\+Check}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Tree\+Affichage\+\_\+\+After\+Check()}{TreeAffichage\_AfterCheck()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Tree\+Affichage\+\_\+\+After\+Check (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Tree\+View\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Méthode appelée dès que le treeview est coché ou décocher, initialise et lance la génération du path 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & Object appelant (la treeview)\\
+\hline
+{\em e} & Evenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_abcf66374bf792fe271d968bb035d749d}\label{class_m_t_connect_agent_1_1_user_control_display_tab_abcf66374bf792fe271d968bb035d749d}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Update\+View@{Update\+View}}
+\index{Update\+View@{Update\+View}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{Update\+View()}{UpdateView()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Update\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Charge la fenêtre sélectionnée avec l\textquotesingle{}affichage qui correspond 
+
+
+
+\subsection{Documentation des données membres}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a69ab804e102c9f7530a0441d2dd65da6}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a69ab804e102c9f7530a0441d2dd65da6}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!components@{components}}
+\index{components@{components}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{components}{components}}
+{\footnotesize\ttfamily System.\+Component\+Model.\+I\+Container M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+components = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Variable nécessaire au concepteur. 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ae9cb8140db2e3be2016b811f1df7010a}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ae9cb8140db2e3be2016b811f1df7010a}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!current\+Radio@{current\+Radio}}
+\index{current\+Radio@{current\+Radio}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{current\+Radio}{currentRadio}}
+{\footnotesize\ttfamily Radio\+Button M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+current\+Radio = new Radio\+Button()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bouton radio permettant de choisir le protocole current, il est coché par défaut 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a0dfedd189ce40e92ee9621a790ec5b9f}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a0dfedd189ce40e92ee9621a790ec5b9f}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!decocher@{decocher}}
+\index{decocher@{decocher}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{decocher}{decocher}}
+{\footnotesize\ttfamily Button M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+decocher = new Button()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Déselectionne toutes les checkboxs cochées 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a1befb6328dc600965793a138d51ef77e}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a1befb6328dc600965793a138d51ef77e}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!dictionnaire\+Protocoles@{dictionnaire\+Protocoles}}
+\index{dictionnaire\+Protocoles@{dictionnaire\+Protocoles}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{dictionnaire\+Protocoles}{dictionnaireProtocoles}}
+{\footnotesize\ttfamily Dictionary$<$string, \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{M\+T\+Connect\+Client.\+Protocol}}$>$ M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+dictionnaire\+Protocoles\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}
+= \textcolor{keyword}{new} Dictionary<string, MTConnectClient.Protocol>()
+        \{
+            \{\textcolor{stringliteral}{"Probe"},MTConnectClient.Protocol.probe \},
+            \{\textcolor{stringliteral}{"Current"}, MTConnectClient.Protocol.current \},
+            \{\textcolor{stringliteral}{"Sample"}, MTConnectClient.Protocol.sample \}
+        \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a4bfdc2032bbe24566e9e4d7053438ab1}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a4bfdc2032bbe24566e9e4d7053438ab1}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!instance@{instance}}
+\index{instance@{instance}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{instance}{instance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client}{M\+T\+Connect\+Client}} M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+instance = new \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client}{M\+T\+Connect\+Client}}()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Instance courante du client M\+T\+Connect 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a70ccdb75ebd47abf8cf75656c5318492}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a70ccdb75ebd47abf8cf75656c5318492}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!nodes@{nodes}}
+\index{nodes@{nodes}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{nodes}{nodes}}
+{\footnotesize\ttfamily I\+List$<$Tree\+Node$>$ M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+nodes = new List$<$Tree\+Node$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Liste des noeuds du treeview 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a31fcb431f108a7067f9293700d985a7b}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a31fcb431f108a7067f9293700d985a7b}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!or@{or}}
+\index{or@{or}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{or}{or}}
+{\footnotesize\ttfamily Check\+Box M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+or = new Check\+Box()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checkbox pour choisir l\textquotesingle{}option or 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_aefd62ca9c1f8ff816f6208332ae4860e}\label{class_m_t_connect_agent_1_1_user_control_display_tab_aefd62ca9c1f8ff816f6208332ae4860e}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!paths\+From\+Tree@{paths\+From\+Tree}}
+\index{paths\+From\+Tree@{paths\+From\+Tree}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{paths\+From\+Tree}{pathsFromTree}}
+{\footnotesize\ttfamily List$<$string$>$ M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+paths\+From\+Tree = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Liste des paths bruts récupérés sous forme de string via le treeview 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a246386326d94ef712378b72727570995}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a246386326d94ef712378b72727570995}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!resultats@{resultats}}
+\index{resultats@{resultats}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{resultats}{resultats}}
+{\footnotesize\ttfamily List\+View M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+resultats = new List\+View()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Liste des paths générés 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_afd8149a27f0eca9e61e12880fce8bdc9}\label{class_m_t_connect_agent_1_1_user_control_display_tab_afd8149a27f0eca9e61e12880fce8bdc9}} 
+\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!sample\+Radio@{sample\+Radio}}
+\index{sample\+Radio@{sample\+Radio}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
+\subsubsection{\texorpdfstring{sample\+Radio}{sampleRadio}}
+{\footnotesize\ttfamily Radio\+Button M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+sample\+Radio = new Radio\+Button()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bouton radio permettant de choisir le protocole sample. 
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+M\+T\+Connect\+Agent/User\+Control\+Display\+Tab.\+cs\item 
+M\+T\+Connect\+Agent/User\+Control\+Display\+Tab.\+Designer.\+cs\end{DoxyCompactItemize}

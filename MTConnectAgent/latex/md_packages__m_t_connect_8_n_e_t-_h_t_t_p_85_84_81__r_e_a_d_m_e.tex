@@ -1,0 +1,331 @@
+These client classes use the Http R\+E\+ST Api that is described in \href{https://model.mtconnect.org/#Package__8082e379-d82e-4b0e-abad-83cdf92f7fe6}{\tt M\+T\+Connect Standard}.
+
+\subsection*{M\+T\+Connect\+Http\+Client}
+
+The \href{MTConnectHttpClient.cs}{\tt M\+T\+Connect\+Http\+Client} class is the primary class to use when wanting to implement the full M\+T\+Connect R\+E\+ST protocol. This class handles an initial Probe request to gather capabilities of the Agent, a Current request to read the initial values, and a Sample request (at the specified Interval) to read successive values.
+
+\subsubsection*{Class Initialization}
+
+Class initialization is straightforward in that specifiying the Base\+Url (the U\+RL of the Agent) is all that is required. Then call the {\bfseries Start()} method to start the request sequence.
+
+\#\#\#\# No Device Name (Get All Devices) 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Clients;
+
+var baseUrl = "localhost:5000";
+
+var client = new MTConnectHttpClient(baseUrl);
+client.Interval = 500;
+client.Start();
+\end{DoxyCode}
+
+
+\#\#\#\# Get Specific Device by Name 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Clients;
+
+var baseUrl = "localhost:5000";
+var deviceName = "OKUMA-Lathe";
+
+var client = new MTConnectHttpClient(baseUrl, deviceName);
+client.Interval = 500;
+client.Start();
+\end{DoxyCode}
+
+
+\#\#\#\# Specfiy Hostname and Port 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Clients;
+
+var hostname = "localhost";
+var port = 5000;
+
+var client = new MTConnectHttpClient(hostname, port);
+client.Interval = 500;
+client.Start();
+\end{DoxyCode}
+
+
+\#\#\#\# Specfiy Hostname, Port, and Device 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Clients;
+
+var hostname = "localhost";
+var port = 5000;
+var deviceName = "OKUMA.Lathe";
+
+var client = new MTConnectHttpClient(hostname, port, deviceName);
+client.Interval = 500;
+client.Start();
+\end{DoxyCode}
+
+
+\subsubsection*{Properties}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily Id} -\/ A unique Identifier used to indentify this instance of the M\+T\+Connect\+Client class
+\item {\ttfamily Authority} -\/ The authority portion consists of the D\+NS name or IP address associated with an Agent
+\item {\ttfamily Device} -\/ If present, specifies that only the Equipment Metadata for the piece of equipment represented by the name or uuid will be published
+\item {\ttfamily Document\+Format} -\/ Gets or Sets the Document Format to use (ex. X\+ML, J\+S\+ON, etc.)
+\item {\ttfamily Interval} -\/ Gets or Sets the Interval in Milliseconds for the Sample Stream
+\item {\ttfamily Timeout} -\/ Gets or Sets the connection timeout for the request
+\item {\ttfamily Heartbeat} -\/ Gets or Sets the M\+T\+Connect Agent Heartbeat for the request
+\item {\ttfamily Retry\+Interval} -\/ Gets or Sets the Interval in Milliseconds that the Client will attempt to reconnect if the connection fails
+\item {\ttfamily Maximum\+Sample\+Count} -\/ Gets or Sets the Maximum Number of Samples returned per interval from the Sample Stream
+\item {\ttfamily Content\+Encodings} -\/ Gets or Sets the List of Encodings (ex. gzip, br, deflate) to pass to the Accept-\/\+Encoding H\+T\+TP Header
+\item {\ttfamily Content\+Type} -\/ Gets or Sets the Content-\/type (or M\+I\+M\+E-\/type) to pass to the Accept H\+T\+TP Header
+\item {\ttfamily Last\+Instance\+Id} -\/ Gets the Last Instance ID read from the M\+T\+Connect Agent
+\item {\ttfamily Last\+Sequence} -\/ Gets the Last Sequence read from the M\+T\+Connect Agent
+\item {\ttfamily Last\+Response} -\/ Gets the Unix Timestamp (in Milliseconds) since the last response from the M\+T\+Connect Agent
+\item {\ttfamily Current\+Only} -\/ Gets or Sets whether the stream requests a Current (true) or a Sample (false)
+\end{DoxyItemize}
+
+\subsubsection*{Handle Probe Received Event}
+
+\#\#\#\#\#\# (M\+T\+Connect\+Devices Response Document received from a Probe Request) 
+\begin{DoxyCode}
+\{c#\}
+var baseUrl = "localhost:5000";
+var deviceName = "OKUMA-Lathe";
+
+var client = new MTConnectHttpClient(baseUrl, deviceName);
+client.OnProbeReceived += (sender, document) =>
+\{
+    foreach (var device in document.Devices)
+    \{
+        // Device
+        Console.WriteLine(device.Id);
+
+        // All DataItems (traverse the entire Device model)
+        foreach (var dataItem in device.GetDataItems())
+        \{
+            Console.WriteLine(dataItem.IdPath);
+        \}
+
+        // All Components (traverse the entire Device model)
+        foreach (var component in device.GetComponents())
+        \{
+            Console.WriteLine(component.IdPath);
+        \}
+
+        // All Compositions (traverse the entire Device model)
+        foreach (var composition in device.GetCompositions())
+        \{
+            Console.WriteLine(composition.IdPath);
+        \}
+    \}
+\};
+client.Start();
+\end{DoxyCode}
+
+
+\subsubsection*{Handle Current Received Event}
+
+\#\#\#\#\#\# (M\+T\+Connect\+Streams Response Document received from a Current Request) 
+\begin{DoxyCode}
+\{c#\}
+var baseUrl = "localhost:5000";
+var deviceName = "OKUMA-Lathe";
+
+var client = new MTConnectHttpClient(baseUrl, deviceName);
+client.OnCurrentReceived += (sender, document) =>
+\{
+    foreach (var deviceStream in document.Streams)
+    \{
+        // DeviceStream
+        Console.WriteLine(deviceStream.Name);
+
+        // Component Streams
+        foreach (var componentStream in deviceStream.ComponentStreams)
+        \{
+            Console.WriteLine(componentStream.Name);
+
+            // DataItems (Samples, Events, and Conditions)
+            foreach (var observation in componentStream.Observations)
+            \{
+                Console.WriteLine(observation.DataItemId);
+            \}
+        \}
+    \}
+\};
+client.Start();
+\end{DoxyCode}
+
+
+\subsubsection*{Handle Samples Received Event}
+
+\#\#\#\#\#\# (M\+T\+Connect\+Streams Response Document received from a Sample Stream) 
+\begin{DoxyCode}
+\{c#\}
+var baseUrl = "localhost:5000";
+var deviceName = "OKUMA-Lathe";
+
+var client = new MTConnectHttpClient(baseUrl, deviceName);
+client.Interval = 500;
+client.OnSampleReceived += (sender, document) =>
+\{
+    foreach (var deviceStream in document.Streams)
+    \{
+        // DeviceStream
+        Console.WriteLine(deviceStream.Name);
+
+        // Component Streams
+        foreach (var componentStream in deviceStream.ComponentStreams)
+        \{
+            Console.WriteLine(componentStream.Name);
+
+            // DataItems (Samples, Events, and Conditions)
+            foreach (var observation in componentStream.Observations)
+            \{
+                Console.WriteLine(observation.DataItemId);
+            \}
+        \}
+    \}
+\};
+client.Start();
+\end{DoxyCode}
+
+
+\subsubsection*{Handle Assets Received Event}
+
+\#\#\#\#\#\# (M\+T\+Connect\+Assets Response Document received from an Asset Request) 
+\begin{DoxyCode}
+\{c#\}
+var baseUrl = "localhost:5000";
+var deviceName = "OKUMA-Lathe";
+
+var client = new MTConnectHttpClient(baseUrl, deviceName);
+client.Interval = 500;
+client.OnAssetsReceived += (sender, document) =>
+\{
+    foreach (var asset in document.Assets)
+    \{
+        // Print AssetId to the Console
+        Console.WriteLine(asset.AssetId);
+    \}
+\};
+client.Start();
+\end{DoxyCode}
+
+
+\subsection*{M\+T\+Connect\+Http\+Probe\+Client}
+
+The \href{MTConnectHttpProbeClient.cs}{\tt M\+T\+Connect\+Http\+Probe\+Client} class is used to send a Probe request and return an M\+T\+Connect\+Devices Response Document. 
+\begin{DoxyCode}
+\{c#\}
+var baseUrl = "localhost:5000";
+var deviceName = "OKUMA.Lathe";
+
+var client = new MTConnectHttpProbeClient(baseUrl, deviceName);
+var document = client.Get();
+foreach (var device in document.Devices)
+\{
+    // Device
+    Console.WriteLine(device.Id);
+
+    // All DataItems (traverse the entire Device model)
+    foreach (var dataItem in device.GetDataItems())
+    \{
+        Console.WriteLine(dataItem.IdPath);
+    \}
+
+    // All Components (traverse the entire Device model)
+    foreach (var component in device.GetComponents())
+    \{
+        Console.WriteLine(component.IdPath);
+    \}
+
+    // All Compositions (traverse the entire Device model)
+    foreach (var composition in device.GetCompositions())
+    \{
+        Console.WriteLine(composition.IdPath);
+    \}
+\}
+\end{DoxyCode}
+
+
+\subsection*{M\+T\+Connect\+Http\+Current\+Client}
+
+The \href{MTConnectHttpCurrentClient.cs}{\tt M\+T\+Connect\+Http\+Current\+Client} class is used to send a Current request and return an M\+T\+Connect\+Streams Response Document. 
+\begin{DoxyCode}
+\{c#\}
+var baseUrl = "localhost:5000";
+var deviceName = "OKUMA.Lathe";
+
+var client = new MTConnectHttpCurrentClient(baseUrl, deviceName);
+var document = client.Get();
+foreach (var deviceStream in document.Streams)
+\{
+    // Device
+    Console.WriteLine(deviceStream.Name);
+
+    // Component Streams
+    foreach (var componentStream in deviceStream.ComponentStreams)
+    \{
+        Console.WriteLine(componentStream.Name);
+
+        // DataItems (Samples, Events, and Conditions)
+        foreach (var observation in componentStream.Observations)
+        \{
+            Console.WriteLine(observation.DataItemId);
+        \}
+    \}
+\}
+\end{DoxyCode}
+
+
+\subsection*{M\+T\+Connect\+Http\+Sample\+Client}
+
+The \href{MTConnectHttpSampleClient.cs}{\tt M\+T\+Connect\+Http\+Sample\+Client} class is used to send a Sample request and return an M\+T\+Connect\+Streams Response Document. 
+\begin{DoxyCode}
+\{c#\}
+var baseUrl = "localhost:5000";
+var deviceName = "OKUMA.Lathe";
+var fromSequence = 150;
+var toSequence = 250;
+
+var client = new MTConnectHttpSampleClient(baseUrl, deviceName, fromSequence, toSequence);
+var document = client.Get();
+foreach (var deviceStream in document.Streams)
+\{
+    // Device
+    Console.WriteLine(deviceStream.Name);
+
+    // Component Streams
+    foreach (var componentStream in deviceStream.ComponentStreams)
+    \{
+        Console.WriteLine(componentStream.Name);
+
+        // DataItems (Samples, Events, and Conditions)
+        foreach (var observation in componentStream.Observations)
+        \{
+            Console.WriteLine(observation.DataItemId);
+        \}
+    \}
+\}
+\end{DoxyCode}
+
+
+\subsection*{M\+T\+Connect\+Http\+Asset\+Client}
+
+The \href{MTConnectHttpAssetClient.cs}{\tt M\+T\+Connect\+Http\+Asset\+Client} class is used to send an Assets request and return an M\+T\+Connect\+Assets Response Document. 
+\begin{DoxyCode}
+\{c#\}
+var baseUrl = "localhost:5000";
+var deviceName = "OKUMA.Lathe";
+var count = 5
+
+var client = new MTConnectHttpAssetClient(baseUrl, deviceName, count);
+var document = client.Get();
+foreach (var asset in document.Assets)
+\{
+    // Print AssetId to the Console
+    Console.WriteLine(asset.AssetId);
+\}
+\end{DoxyCode}
+ 

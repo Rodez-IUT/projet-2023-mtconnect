@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet MtConnnect: MTConnect Http REST Clients</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet MtConnnect
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">MTConnect Http REST Clients </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>These client classes use the Http REST Api that is described in <a href="https://model.mtconnect.org/#Package__8082e379-d82e-4b0e-abad-83cdf92f7fe6">MTConnect Standard</a>.</p>
+<h2>MTConnectHttpClient</h2>
+<p>The <a href="MTConnectHttpClient.cs">MTConnectHttpClient</a> class is the primary class to use when wanting to implement the full MTConnect REST protocol. This class handles an initial Probe request to gather capabilities of the Agent, a Current request to read the initial values, and a Sample request (at the specified Interval) to read successive values.</p>
+<h3>Class Initialization</h3>
+<p>Class initialization is straightforward in that specifiying the BaseUrl (the URL of the Agent) is all that is required. Then call the <b>Start()</b> method to start the request sequence.</p>
+<p>#### No Device Name (Get All Devices) </p><div class="fragment"><div class="line">{c#}</div><div class="line">using MTConnect.Clients;</div><div class="line"></div><div class="line">var baseUrl = &quot;localhost:5000&quot;;</div><div class="line"></div><div class="line">var client = new MTConnectHttpClient(baseUrl);</div><div class="line">client.Interval = 500;</div><div class="line">client.Start();</div></div><!-- fragment --><p>#### Get Specific Device by Name </p><div class="fragment"><div class="line">{c#}</div><div class="line">using MTConnect.Clients;</div><div class="line"></div><div class="line">var baseUrl = &quot;localhost:5000&quot;;</div><div class="line">var deviceName = &quot;OKUMA-Lathe&quot;;</div><div class="line"></div><div class="line">var client = new MTConnectHttpClient(baseUrl, deviceName);</div><div class="line">client.Interval = 500;</div><div class="line">client.Start();</div></div><!-- fragment --><p>#### Specfiy Hostname and Port </p><div class="fragment"><div class="line">{c#}</div><div class="line">using MTConnect.Clients;</div><div class="line"></div><div class="line">var hostname = &quot;localhost&quot;;</div><div class="line">var port = 5000;</div><div class="line"></div><div class="line">var client = new MTConnectHttpClient(hostname, port);</div><div class="line">client.Interval = 500;</div><div class="line">client.Start();</div></div><!-- fragment --><p>#### Specfiy Hostname, Port, and Device </p><div class="fragment"><div class="line">{c#}</div><div class="line">using MTConnect.Clients;</div><div class="line"></div><div class="line">var hostname = &quot;localhost&quot;;</div><div class="line">var port = 5000;</div><div class="line">var deviceName = &quot;OKUMA.Lathe&quot;;</div><div class="line"></div><div class="line">var client = new MTConnectHttpClient(hostname, port, deviceName);</div><div class="line">client.Interval = 500;</div><div class="line">client.Start();</div></div><!-- fragment --><h3>Properties</h3>
+<ul>
+<li><code>Id</code> - A unique Identifier used to indentify this instance of the MTConnectClient class</li>
+<li><code>Authority</code> - The authority portion consists of the DNS name or IP address associated with an Agent</li>
+<li><code>Device</code> - If present, specifies that only the Equipment Metadata for the piece of equipment represented by the name or uuid will be published</li>
+<li><code>DocumentFormat</code> - Gets or Sets the Document Format to use (ex. XML, JSON, etc.)</li>
+<li><code>Interval</code> - Gets or Sets the Interval in Milliseconds for the Sample Stream</li>
+<li><code>Timeout</code> - Gets or Sets the connection timeout for the request</li>
+<li><code>Heartbeat</code> - Gets or Sets the MTConnect Agent Heartbeat for the request</li>
+<li><code>RetryInterval</code> - Gets or Sets the Interval in Milliseconds that the Client will attempt to reconnect if the connection fails</li>
+<li><code>MaximumSampleCount</code> - Gets or Sets the Maximum Number of Samples returned per interval from the Sample Stream</li>
+<li><code>ContentEncodings</code> - Gets or Sets the List of Encodings (ex. gzip, br, deflate) to pass to the Accept-Encoding HTTP Header</li>
+<li><code>ContentType</code> - Gets or Sets the Content-type (or MIME-type) to pass to the Accept HTTP Header</li>
+<li><code>LastInstanceId</code> - Gets the Last Instance ID read from the MTConnect Agent</li>
+<li><code>LastSequence</code> - Gets the Last Sequence read from the MTConnect Agent</li>
+<li><code>LastResponse</code> - Gets the Unix Timestamp (in Milliseconds) since the last response from the MTConnect Agent</li>
+<li><code>CurrentOnly</code> - Gets or Sets whether the stream requests a Current (true) or a Sample (false)</li>
+</ul>
+<h3>Handle Probe Received Event</h3>
+<p>###### (MTConnectDevices Response Document received from a Probe Request) </p><div class="fragment"><div class="line">{c#}</div><div class="line">var baseUrl = &quot;localhost:5000&quot;;</div><div class="line">var deviceName = &quot;OKUMA-Lathe&quot;;</div><div class="line"></div><div class="line">var client = new MTConnectHttpClient(baseUrl, deviceName);</div><div class="line">client.OnProbeReceived += (sender, document) =&gt;</div><div class="line">{</div><div class="line">    foreach (var device in document.Devices)</div><div class="line">    {</div><div class="line">        // Device</div><div class="line">        Console.WriteLine(device.Id);</div><div class="line"></div><div class="line">        // All DataItems (traverse the entire Device model)</div><div class="line">        foreach (var dataItem in device.GetDataItems())</div><div class="line">        {</div><div class="line">            Console.WriteLine(dataItem.IdPath);</div><div class="line">        }</div><div class="line"></div><div class="line">        // All Components (traverse the entire Device model)</div><div class="line">        foreach (var component in device.GetComponents())</div><div class="line">        {</div><div class="line">            Console.WriteLine(component.IdPath);</div><div class="line">        }</div><div class="line"></div><div class="line">        // All Compositions (traverse the entire Device model)</div><div class="line">        foreach (var composition in device.GetCompositions())</div><div class="line">        {</div><div class="line">            Console.WriteLine(composition.IdPath);</div><div class="line">        }</div><div class="line">    }</div><div class="line">};</div><div class="line">client.Start();</div></div><!-- fragment --><h3>Handle Current Received Event</h3>
+<p>###### (MTConnectStreams Response Document received from a Current Request) </p><div class="fragment"><div class="line">{c#}</div><div class="line">var baseUrl = &quot;localhost:5000&quot;;</div><div class="line">var deviceName = &quot;OKUMA-Lathe&quot;;</div><div class="line"></div><div class="line">var client = new MTConnectHttpClient(baseUrl, deviceName);</div><div class="line">client.OnCurrentReceived += (sender, document) =&gt;</div><div class="line">{</div><div class="line">    foreach (var deviceStream in document.Streams)</div><div class="line">    {</div><div class="line">        // DeviceStream</div><div class="line">        Console.WriteLine(deviceStream.Name);</div><div class="line"></div><div class="line">        // Component Streams</div><div class="line">        foreach (var componentStream in deviceStream.ComponentStreams)</div><div class="line">        {</div><div class="line">            Console.WriteLine(componentStream.Name);</div><div class="line"></div><div class="line">            // DataItems (Samples, Events, and Conditions)</div><div class="line">            foreach (var observation in componentStream.Observations)</div><div class="line">            {</div><div class="line">                Console.WriteLine(observation.DataItemId);</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">};</div><div class="line">client.Start();</div></div><!-- fragment --><h3>Handle Samples Received Event</h3>
+<p>###### (MTConnectStreams Response Document received from a Sample Stream) </p><div class="fragment"><div class="line">{c#}</div><div class="line">var baseUrl = &quot;localhost:5000&quot;;</div><div class="line">var deviceName = &quot;OKUMA-Lathe&quot;;</div><div class="line"></div><div class="line">var client = new MTConnectHttpClient(baseUrl, deviceName);</div><div class="line">client.Interval = 500;</div><div class="line">client.OnSampleReceived += (sender, document) =&gt;</div><div class="line">{</div><div class="line">    foreach (var deviceStream in document.Streams)</div><div class="line">    {</div><div class="line">        // DeviceStream</div><div class="line">        Console.WriteLine(deviceStream.Name);</div><div class="line"></div><div class="line">        // Component Streams</div><div class="line">        foreach (var componentStream in deviceStream.ComponentStreams)</div><div class="line">        {</div><div class="line">            Console.WriteLine(componentStream.Name);</div><div class="line"></div><div class="line">            // DataItems (Samples, Events, and Conditions)</div><div class="line">            foreach (var observation in componentStream.Observations)</div><div class="line">            {</div><div class="line">                Console.WriteLine(observation.DataItemId);</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">};</div><div class="line">client.Start();</div></div><!-- fragment --><h3>Handle Assets Received Event</h3>
+<p>###### (MTConnectAssets Response Document received from an Asset Request) </p><div class="fragment"><div class="line">{c#}</div><div class="line">var baseUrl = &quot;localhost:5000&quot;;</div><div class="line">var deviceName = &quot;OKUMA-Lathe&quot;;</div><div class="line"></div><div class="line">var client = new MTConnectHttpClient(baseUrl, deviceName);</div><div class="line">client.Interval = 500;</div><div class="line">client.OnAssetsReceived += (sender, document) =&gt;</div><div class="line">{</div><div class="line">    foreach (var asset in document.Assets)</div><div class="line">    {</div><div class="line">        // Print AssetId to the Console</div><div class="line">        Console.WriteLine(asset.AssetId);</div><div class="line">    }</div><div class="line">};</div><div class="line">client.Start();</div></div><!-- fragment --><h2>MTConnectHttpProbeClient</h2>
+<p>The <a href="MTConnectHttpProbeClient.cs">MTConnectHttpProbeClient</a> class is used to send a Probe request and return an MTConnectDevices Response Document. </p><div class="fragment"><div class="line">{c#}</div><div class="line">var baseUrl = &quot;localhost:5000&quot;;</div><div class="line">var deviceName = &quot;OKUMA.Lathe&quot;;</div><div class="line"></div><div class="line">var client = new MTConnectHttpProbeClient(baseUrl, deviceName);</div><div class="line">var document = client.Get();</div><div class="line">foreach (var device in document.Devices)</div><div class="line">{</div><div class="line">    // Device</div><div class="line">    Console.WriteLine(device.Id);</div><div class="line"></div><div class="line">    // All DataItems (traverse the entire Device model)</div><div class="line">    foreach (var dataItem in device.GetDataItems())</div><div class="line">    {</div><div class="line">        Console.WriteLine(dataItem.IdPath);</div><div class="line">    }</div><div class="line"></div><div class="line">    // All Components (traverse the entire Device model)</div><div class="line">    foreach (var component in device.GetComponents())</div><div class="line">    {</div><div class="line">        Console.WriteLine(component.IdPath);</div><div class="line">    }</div><div class="line"></div><div class="line">    // All Compositions (traverse the entire Device model)</div><div class="line">    foreach (var composition in device.GetCompositions())</div><div class="line">    {</div><div class="line">        Console.WriteLine(composition.IdPath);</div><div class="line">    }</div><div class="line">}</div></div><!-- fragment --><h2>MTConnectHttpCurrentClient</h2>
+<p>The <a href="MTConnectHttpCurrentClient.cs">MTConnectHttpCurrentClient</a> class is used to send a Current request and return an MTConnectStreams Response Document. </p><div class="fragment"><div class="line">{c#}</div><div class="line">var baseUrl = &quot;localhost:5000&quot;;</div><div class="line">var deviceName = &quot;OKUMA.Lathe&quot;;</div><div class="line"></div><div class="line">var client = new MTConnectHttpCurrentClient(baseUrl, deviceName);</div><div class="line">var document = client.Get();</div><div class="line">foreach (var deviceStream in document.Streams)</div><div class="line">{</div><div class="line">    // Device</div><div class="line">    Console.WriteLine(deviceStream.Name);</div><div class="line"></div><div class="line">    // Component Streams</div><div class="line">    foreach (var componentStream in deviceStream.ComponentStreams)</div><div class="line">    {</div><div class="line">        Console.WriteLine(componentStream.Name);</div><div class="line"></div><div class="line">        // DataItems (Samples, Events, and Conditions)</div><div class="line">        foreach (var observation in componentStream.Observations)</div><div class="line">        {</div><div class="line">            Console.WriteLine(observation.DataItemId);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></div><!-- fragment --><h2>MTConnectHttpSampleClient</h2>
+<p>The <a href="MTConnectHttpSampleClient.cs">MTConnectHttpSampleClient</a> class is used to send a Sample request and return an MTConnectStreams Response Document. </p><div class="fragment"><div class="line">{c#}</div><div class="line">var baseUrl = &quot;localhost:5000&quot;;</div><div class="line">var deviceName = &quot;OKUMA.Lathe&quot;;</div><div class="line">var fromSequence = 150;</div><div class="line">var toSequence = 250;</div><div class="line"></div><div class="line">var client = new MTConnectHttpSampleClient(baseUrl, deviceName, fromSequence, toSequence);</div><div class="line">var document = client.Get();</div><div class="line">foreach (var deviceStream in document.Streams)</div><div class="line">{</div><div class="line">    // Device</div><div class="line">    Console.WriteLine(deviceStream.Name);</div><div class="line"></div><div class="line">    // Component Streams</div><div class="line">    foreach (var componentStream in deviceStream.ComponentStreams)</div><div class="line">    {</div><div class="line">        Console.WriteLine(componentStream.Name);</div><div class="line"></div><div class="line">        // DataItems (Samples, Events, and Conditions)</div><div class="line">        foreach (var observation in componentStream.Observations)</div><div class="line">        {</div><div class="line">            Console.WriteLine(observation.DataItemId);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></div><!-- fragment --><h2>MTConnectHttpAssetClient</h2>
+<p>The <a href="MTConnectHttpAssetClient.cs">MTConnectHttpAssetClient</a> class is used to send an Assets request and return an MTConnectAssets Response Document. </p><div class="fragment"><div class="line">{c#}</div><div class="line">var baseUrl = &quot;localhost:5000&quot;;</div><div class="line">var deviceName = &quot;OKUMA.Lathe&quot;;</div><div class="line">var count = 5</div><div class="line"></div><div class="line">var client = new MTConnectHttpAssetClient(baseUrl, deviceName, count);</div><div class="line">var document = client.Get();</div><div class="line">foreach (var asset in document.Assets)</div><div class="line">{</div><div class="line">    // Print AssetId to the Console</div><div class="line">    Console.WriteLine(asset.AssetId);</div><div class="line">}</div></div><!-- fragment --> </div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>
