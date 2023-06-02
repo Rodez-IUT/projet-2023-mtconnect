@@ -1,0 +1,489 @@
+\hypertarget{class_m_t_connect_agent_1_1_form_main}{}\section{Référence de la classe M\+T\+Connect\+Agent.\+Form\+Main}
+\label{class_m_t_connect_agent_1_1_form_main}\index{M\+T\+Connect\+Agent.\+Form\+Main@{M\+T\+Connect\+Agent.\+Form\+Main}}
+
+
+Gere les interactions du formulaire principal  
+
+
+Graphe d\textquotesingle{}héritage de M\+T\+Connect\+Agent.\+Form\+Main\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_m_t_connect_agent_1_1_form_main}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a13aab0ed9e05b8165e341ead37cb121e}{Form\+Main}} ()
+\begin{DoxyCompactList}\small\item\em Initialise la fenêtre \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a6233cef0809d41ecc061bd6fa63afd5d}{Write\+To\+Binary\+File$<$ T $>$}} (string file\+Path, T object\+To\+Write, bool append=false)
+\begin{DoxyCompactList}\small\item\em Writes the given object instance to a binary file. \end{DoxyCompactList}\item 
+static T \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_af15030e628945bf0e6af793a954560b0}{Read\+From\+Binary\+File$<$ T $>$}} (string file\+Path)
+\begin{DoxyCompactList}\small\item\em Reads an object instance from a binary file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a3d1ddf99b2318c689bd65eff1e863445}{Dispose}} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Nettoyage des ressources utilisées. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a90b43ceba6da9143b98ded12f0d31a5e}{Initialize\+Tree\+View}} ()
+\begin{DoxyCompactList}\small\item\em Initialise la treeview des clients et des machines \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a52a71c632c1f54d42d45e7220ed97923}{Button\+Ajouter\+Client\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Gere le clic sur le bouton d\textquotesingle{}ajout d\textquotesingle{}un client Ouvre le formulaire d\textquotesingle{}ajout de client \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_aab7098479c86c56fc6b1bd57cc9fe7fc}{Button\+Ajouter\+Machine\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Gere le clic sur le bouton d\textquotesingle{}ajout d\textquotesingle{}une machine Ouvre le formulaire d\textquotesingle{}ajout de machine \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a7bf61fab117d7928a7f0cc0eca0d2189}{Form\+Main\+\_\+\+Form\+Closing}} (object sender, Form\+Closing\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Enregistre la liste des clients lors de la fermeture de la fenêtre \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a6135a4be969947c0c26db758ba0acaed}{Form\+Main\+\_\+\+Shown}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Affiche le formulaire principal \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_adf54b84f7d625d8656f6e6114c8da775}{Modify\+Client\+Label\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Lance la fenêtre de modification d\textquotesingle{}un client lors du clic sur le bouton modifier du menu contextuel d\textquotesingle{}un client \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a63b6bc05b458da02b80617365163d10d}{Delete\+Client\+Label\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Supprime le client lors du clic sur le bouton supprimer du menu contextuel du client en question \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_ab8577129e9dfbf78979a80aaf5e7bf6a}{Modify\+Machine\+Label\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Lance la fenêtre de modification d\textquotesingle{}une machine lors du clic sur le bouton modifier du menu contextuel d\textquotesingle{}une machine \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a326e8aba114dece871aa510ce1aa495e}{Delete\+Machine\+Label\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Supprime la machine lors du clic sur le bouton supprimer du menu contextuel de la machine en question \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a5b5fed31ec48f818e016ffc50d2c930a}{Tree\+View\+Client\+Machine\+\_\+\+After\+Select}} (object sender, Tree\+View\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Initialise l\textquotesingle{}onglet choisi lors du clic sur une machine \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a7bca59d140a9c1514af0c5ab7b7f2166}{Tabs\+\_\+\+Selected\+Index\+Changed}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Initialise l\textquotesingle{}onglet choisi lors du clic sur un onglet différent \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_aea0155e69bf10a220151c5f3ff4e07c8}{Display\+Tab}} ()
+\begin{DoxyCompactList}\small\item\em Affiche l\textquotesingle{}onglet choisi \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_aac4a1cf234165d7c9c0b0c4691a88f8d}{Tabs\+\_\+\+Resize}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Gere la modification de taille d\textquotesingle{}un onglet \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_adcf40eec3a3bf56148d6cd5fbdeda2c5}{Initialize\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Méthode requise pour la prise en charge du concepteur -\/ ne modifiez pas le contenu de cette méthode avec l\textquotesingle{}éditeur de code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_client}{Client}} $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a09ffacfbac9fad30a140bd11b36577a5}{clients}}
+\begin{DoxyCompactList}\small\item\em Liste des clients \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_aa1f34402faaa02cad5c6c8028ff4e633}{tab\+Index}} = 0
+\begin{DoxyCompactList}\small\item\em Numéro de l\textquotesingle{}onglet choisi \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_machine}{Machine}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a0baaf0dbbac66a3914652ce754f2398b}{selected\+Machine}}
+\begin{DoxyCompactList}\small\item\em Machine sélectionnée \end{DoxyCompactList}\item 
+System.\+Component\+Model.\+I\+Container \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a5d0fbfe75eb79bdc22e0d262fdc18ff2}{components}} = null
+\begin{DoxyCompactList}\small\item\em Variable nécessaire au concepteur. \end{DoxyCompactList}\item 
+System.\+Windows.\+Forms.\+Tree\+View \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_addc30e71091a6b662653b36b6ba182a9}{tree\+View\+Client\+Machine}}
+\item 
+System.\+Windows.\+Forms.\+Button \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_ab4d2bcf24db1f9edcb05988105c85ddf}{button\+Ajouter\+Client}}
+\item 
+System.\+Windows.\+Forms.\+Button \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a71bcb0b19ed0dae8dce1f61723f68f12}{button\+Ajouter\+Machine}}
+\item 
+System.\+Windows.\+Forms.\+Tab\+Page \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a75b27d8a3abec3df92d20d4154084624}{tab\+Probe}}
+\item 
+System.\+Windows.\+Forms.\+Tab\+Page \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_afb83c919c538512ec8043e3054520672}{tab\+Current}}
+\item 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab}{User\+Control\+Display\+Tab}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_adec9b69cbb5d4fa32dac340367ca98fa}{user\+Control\+Probe1}}
+\item 
+System.\+Windows.\+Forms.\+Tab\+Control \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a21f2a3d788dd4fd47680fdc8b80a516f}{tabs}}
+\item 
+System.\+Windows.\+Forms.\+Tab\+Page \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_main_a732a9a6fd7aa0f69c764a1c7e75bf1fe}{tab\+Path}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Gere les interactions du formulaire principal 
+
+
+
+\subsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a13aab0ed9e05b8165e341ead37cb121e}\label{class_m_t_connect_agent_1_1_form_main_a13aab0ed9e05b8165e341ead37cb121e}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Form\+Main@{Form\+Main}}
+\index{Form\+Main@{Form\+Main}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Form\+Main()}{FormMain()}}
+{\footnotesize\ttfamily M\+T\+Connect\+Agent.\+Form\+Main.\+Form\+Main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initialise la fenêtre 
+
+
+
+\subsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a52a71c632c1f54d42d45e7220ed97923}\label{class_m_t_connect_agent_1_1_form_main_a52a71c632c1f54d42d45e7220ed97923}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Button\+Ajouter\+Client\+\_\+\+Click@{Button\+Ajouter\+Client\+\_\+\+Click}}
+\index{Button\+Ajouter\+Client\+\_\+\+Click@{Button\+Ajouter\+Client\+\_\+\+Click}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Button\+Ajouter\+Client\+\_\+\+Click()}{ButtonAjouterClient\_Click()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Button\+Ajouter\+Client\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Gere le clic sur le bouton d\textquotesingle{}ajout d\textquotesingle{}un client Ouvre le formulaire d\textquotesingle{}ajout de client 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_aab7098479c86c56fc6b1bd57cc9fe7fc}\label{class_m_t_connect_agent_1_1_form_main_aab7098479c86c56fc6b1bd57cc9fe7fc}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Button\+Ajouter\+Machine\+\_\+\+Click@{Button\+Ajouter\+Machine\+\_\+\+Click}}
+\index{Button\+Ajouter\+Machine\+\_\+\+Click@{Button\+Ajouter\+Machine\+\_\+\+Click}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Button\+Ajouter\+Machine\+\_\+\+Click()}{ButtonAjouterMachine\_Click()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Button\+Ajouter\+Machine\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Gere le clic sur le bouton d\textquotesingle{}ajout d\textquotesingle{}une machine Ouvre le formulaire d\textquotesingle{}ajout de machine 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a63b6bc05b458da02b80617365163d10d}\label{class_m_t_connect_agent_1_1_form_main_a63b6bc05b458da02b80617365163d10d}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Delete\+Client\+Label\+\_\+\+Click@{Delete\+Client\+Label\+\_\+\+Click}}
+\index{Delete\+Client\+Label\+\_\+\+Click@{Delete\+Client\+Label\+\_\+\+Click}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Delete\+Client\+Label\+\_\+\+Click()}{DeleteClientLabel\_Click()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Delete\+Client\+Label\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Supprime le client lors du clic sur le bouton supprimer du menu contextuel du client en question 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a326e8aba114dece871aa510ce1aa495e}\label{class_m_t_connect_agent_1_1_form_main_a326e8aba114dece871aa510ce1aa495e}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Delete\+Machine\+Label\+\_\+\+Click@{Delete\+Machine\+Label\+\_\+\+Click}}
+\index{Delete\+Machine\+Label\+\_\+\+Click@{Delete\+Machine\+Label\+\_\+\+Click}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Delete\+Machine\+Label\+\_\+\+Click()}{DeleteMachineLabel\_Click()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Delete\+Machine\+Label\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Supprime la machine lors du clic sur le bouton supprimer du menu contextuel de la machine en question 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_aea0155e69bf10a220151c5f3ff4e07c8}\label{class_m_t_connect_agent_1_1_form_main_aea0155e69bf10a220151c5f3ff4e07c8}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Display\+Tab@{Display\+Tab}}
+\index{Display\+Tab@{Display\+Tab}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Display\+Tab()}{DisplayTab()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Display\+Tab (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Affiche l\textquotesingle{}onglet choisi 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a3d1ddf99b2318c689bd65eff1e863445}\label{class_m_t_connect_agent_1_1_form_main_a3d1ddf99b2318c689bd65eff1e863445}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily override void M\+T\+Connect\+Agent.\+Form\+Main.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Nettoyage des ressources utilisées. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em disposing} & true si les ressources managées doivent être supprimées ; sinon, false.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a7bf61fab117d7928a7f0cc0eca0d2189}\label{class_m_t_connect_agent_1_1_form_main_a7bf61fab117d7928a7f0cc0eca0d2189}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Form\+Main\+\_\+\+Form\+Closing@{Form\+Main\+\_\+\+Form\+Closing}}
+\index{Form\+Main\+\_\+\+Form\+Closing@{Form\+Main\+\_\+\+Form\+Closing}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Form\+Main\+\_\+\+Form\+Closing()}{FormMain\_FormClosing()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Form\+Main\+\_\+\+Form\+Closing (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Form\+Closing\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Enregistre la liste des clients lors de la fermeture de la fenêtre 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a6135a4be969947c0c26db758ba0acaed}\label{class_m_t_connect_agent_1_1_form_main_a6135a4be969947c0c26db758ba0acaed}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Form\+Main\+\_\+\+Shown@{Form\+Main\+\_\+\+Shown}}
+\index{Form\+Main\+\_\+\+Shown@{Form\+Main\+\_\+\+Shown}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Form\+Main\+\_\+\+Shown()}{FormMain\_Shown()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Form\+Main\+\_\+\+Shown (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Affiche le formulaire principal 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_adcf40eec3a3bf56148d6cd5fbdeda2c5}\label{class_m_t_connect_agent_1_1_form_main_adcf40eec3a3bf56148d6cd5fbdeda2c5}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Initialize\+Component@{Initialize\+Component}}
+\index{Initialize\+Component@{Initialize\+Component}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Initialize\+Component()}{InitializeComponent()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Initialize\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Méthode requise pour la prise en charge du concepteur -\/ ne modifiez pas le contenu de cette méthode avec l\textquotesingle{}éditeur de code. 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a90b43ceba6da9143b98ded12f0d31a5e}\label{class_m_t_connect_agent_1_1_form_main_a90b43ceba6da9143b98ded12f0d31a5e}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Initialize\+Tree\+View@{Initialize\+Tree\+View}}
+\index{Initialize\+Tree\+View@{Initialize\+Tree\+View}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Initialize\+Tree\+View()}{InitializeTreeView()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Initialize\+Tree\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Initialise la treeview des clients et des machines 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_adf54b84f7d625d8656f6e6114c8da775}\label{class_m_t_connect_agent_1_1_form_main_adf54b84f7d625d8656f6e6114c8da775}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Modify\+Client\+Label\+\_\+\+Click@{Modify\+Client\+Label\+\_\+\+Click}}
+\index{Modify\+Client\+Label\+\_\+\+Click@{Modify\+Client\+Label\+\_\+\+Click}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Modify\+Client\+Label\+\_\+\+Click()}{ModifyClientLabel\_Click()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Modify\+Client\+Label\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Lance la fenêtre de modification d\textquotesingle{}un client lors du clic sur le bouton modifier du menu contextuel d\textquotesingle{}un client 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_ab8577129e9dfbf78979a80aaf5e7bf6a}\label{class_m_t_connect_agent_1_1_form_main_ab8577129e9dfbf78979a80aaf5e7bf6a}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Modify\+Machine\+Label\+\_\+\+Click@{Modify\+Machine\+Label\+\_\+\+Click}}
+\index{Modify\+Machine\+Label\+\_\+\+Click@{Modify\+Machine\+Label\+\_\+\+Click}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Modify\+Machine\+Label\+\_\+\+Click()}{ModifyMachineLabel\_Click()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Modify\+Machine\+Label\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Lance la fenêtre de modification d\textquotesingle{}une machine lors du clic sur le bouton modifier du menu contextuel d\textquotesingle{}une machine 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_af15030e628945bf0e6af793a954560b0}\label{class_m_t_connect_agent_1_1_form_main_af15030e628945bf0e6af793a954560b0}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Read\+From\+Binary\+File$<$ T $>$@{Read\+From\+Binary\+File$<$ T $>$}}
+\index{Read\+From\+Binary\+File$<$ T $>$@{Read\+From\+Binary\+File$<$ T $>$}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Read\+From\+Binary\+File$<$ T $>$()}{ReadFromBinaryFile< T >()}}
+{\footnotesize\ttfamily static T M\+T\+Connect\+Agent.\+Form\+Main.\+Read\+From\+Binary\+File$<$ T $>$ (\begin{DoxyParamCaption}\item[{string}]{file\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Reads an object instance from a binary file. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of object to read from the binary file.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Paramètres}
+{\em file\+Path} & The file path to read the object instance from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Returns a new instance of the object read from the binary file.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_aac4a1cf234165d7c9c0b0c4691a88f8d}\label{class_m_t_connect_agent_1_1_form_main_aac4a1cf234165d7c9c0b0c4691a88f8d}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Tabs\+\_\+\+Resize@{Tabs\+\_\+\+Resize}}
+\index{Tabs\+\_\+\+Resize@{Tabs\+\_\+\+Resize}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Tabs\+\_\+\+Resize()}{Tabs\_Resize()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Tabs\+\_\+\+Resize (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Gere la modification de taille d\textquotesingle{}un onglet 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a7bca59d140a9c1514af0c5ab7b7f2166}\label{class_m_t_connect_agent_1_1_form_main_a7bca59d140a9c1514af0c5ab7b7f2166}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Tabs\+\_\+\+Selected\+Index\+Changed@{Tabs\+\_\+\+Selected\+Index\+Changed}}
+\index{Tabs\+\_\+\+Selected\+Index\+Changed@{Tabs\+\_\+\+Selected\+Index\+Changed}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Tabs\+\_\+\+Selected\+Index\+Changed()}{Tabs\_SelectedIndexChanged()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Tabs\+\_\+\+Selected\+Index\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Initialise l\textquotesingle{}onglet choisi lors du clic sur un onglet différent 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a5b5fed31ec48f818e016ffc50d2c930a}\label{class_m_t_connect_agent_1_1_form_main_a5b5fed31ec48f818e016ffc50d2c930a}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Tree\+View\+Client\+Machine\+\_\+\+After\+Select@{Tree\+View\+Client\+Machine\+\_\+\+After\+Select}}
+\index{Tree\+View\+Client\+Machine\+\_\+\+After\+Select@{Tree\+View\+Client\+Machine\+\_\+\+After\+Select}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Tree\+View\+Client\+Machine\+\_\+\+After\+Select()}{TreeViewClientMachine\_AfterSelect()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Main.\+Tree\+View\+Client\+Machine\+\_\+\+After\+Select (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Tree\+View\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Initialise l\textquotesingle{}onglet choisi lors du clic sur une machine 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a6233cef0809d41ecc061bd6fa63afd5d}\label{class_m_t_connect_agent_1_1_form_main_a6233cef0809d41ecc061bd6fa63afd5d}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!Write\+To\+Binary\+File$<$ T $>$@{Write\+To\+Binary\+File$<$ T $>$}}
+\index{Write\+To\+Binary\+File$<$ T $>$@{Write\+To\+Binary\+File$<$ T $>$}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{Write\+To\+Binary\+File$<$ T $>$()}{WriteToBinaryFile< T >()}}
+{\footnotesize\ttfamily static void M\+T\+Connect\+Agent.\+Form\+Main.\+Write\+To\+Binary\+File$<$ T $>$ (\begin{DoxyParamCaption}\item[{string}]{file\+Path,  }\item[{T}]{object\+To\+Write,  }\item[{bool}]{append = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Writes the given object instance to a binary file. 
+
+Object type (and all child types) must be decorated with the \mbox{[}Serializable\mbox{]} attribute.
+
+To prevent a variable from being serialized, decorate it with the \mbox{[}Non\+Serialized\mbox{]} attribute; cannot be applied to properties.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of object being written to the binary file.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Paramètres}
+{\em file\+Path} & The file path to write the object instance to.\\
+\hline
+{\em object\+To\+Write} & The object instance to write to the binary file.\\
+\hline
+{\em append} & If false the file will be overwritten if it already exists. If true the contents will be appended to the file.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des données membres}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_ab4d2bcf24db1f9edcb05988105c85ddf}\label{class_m_t_connect_agent_1_1_form_main_ab4d2bcf24db1f9edcb05988105c85ddf}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!button\+Ajouter\+Client@{button\+Ajouter\+Client}}
+\index{button\+Ajouter\+Client@{button\+Ajouter\+Client}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{button\+Ajouter\+Client}{buttonAjouterClient}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Button M\+T\+Connect\+Agent.\+Form\+Main.\+button\+Ajouter\+Client\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a71bcb0b19ed0dae8dce1f61723f68f12}\label{class_m_t_connect_agent_1_1_form_main_a71bcb0b19ed0dae8dce1f61723f68f12}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!button\+Ajouter\+Machine@{button\+Ajouter\+Machine}}
+\index{button\+Ajouter\+Machine@{button\+Ajouter\+Machine}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{button\+Ajouter\+Machine}{buttonAjouterMachine}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Button M\+T\+Connect\+Agent.\+Form\+Main.\+button\+Ajouter\+Machine\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a09ffacfbac9fad30a140bd11b36577a5}\label{class_m_t_connect_agent_1_1_form_main_a09ffacfbac9fad30a140bd11b36577a5}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!clients@{clients}}
+\index{clients@{clients}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{clients}{clients}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_client}{Client}}$>$ M\+T\+Connect\+Agent.\+Form\+Main.\+clients\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Liste des clients 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a5d0fbfe75eb79bdc22e0d262fdc18ff2}\label{class_m_t_connect_agent_1_1_form_main_a5d0fbfe75eb79bdc22e0d262fdc18ff2}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!components@{components}}
+\index{components@{components}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{components}{components}}
+{\footnotesize\ttfamily System.\+Component\+Model.\+I\+Container M\+T\+Connect\+Agent.\+Form\+Main.\+components = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Variable nécessaire au concepteur. 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a0baaf0dbbac66a3914652ce754f2398b}\label{class_m_t_connect_agent_1_1_form_main_a0baaf0dbbac66a3914652ce754f2398b}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!selected\+Machine@{selected\+Machine}}
+\index{selected\+Machine@{selected\+Machine}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{selected\+Machine}{selectedMachine}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_machine}{Machine}} M\+T\+Connect\+Agent.\+Form\+Main.\+selected\+Machine\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Machine sélectionnée 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_afb83c919c538512ec8043e3054520672}\label{class_m_t_connect_agent_1_1_form_main_afb83c919c538512ec8043e3054520672}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!tab\+Current@{tab\+Current}}
+\index{tab\+Current@{tab\+Current}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{tab\+Current}{tabCurrent}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Tab\+Page M\+T\+Connect\+Agent.\+Form\+Main.\+tab\+Current\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_aa1f34402faaa02cad5c6c8028ff4e633}\label{class_m_t_connect_agent_1_1_form_main_aa1f34402faaa02cad5c6c8028ff4e633}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!tab\+Index@{tab\+Index}}
+\index{tab\+Index@{tab\+Index}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{tab\+Index}{tabIndex}}
+{\footnotesize\ttfamily int M\+T\+Connect\+Agent.\+Form\+Main.\+tab\+Index = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Numéro de l\textquotesingle{}onglet choisi 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a732a9a6fd7aa0f69c764a1c7e75bf1fe}\label{class_m_t_connect_agent_1_1_form_main_a732a9a6fd7aa0f69c764a1c7e75bf1fe}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!tab\+Path@{tab\+Path}}
+\index{tab\+Path@{tab\+Path}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{tab\+Path}{tabPath}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Tab\+Page M\+T\+Connect\+Agent.\+Form\+Main.\+tab\+Path\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a75b27d8a3abec3df92d20d4154084624}\label{class_m_t_connect_agent_1_1_form_main_a75b27d8a3abec3df92d20d4154084624}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!tab\+Probe@{tab\+Probe}}
+\index{tab\+Probe@{tab\+Probe}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{tab\+Probe}{tabProbe}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Tab\+Page M\+T\+Connect\+Agent.\+Form\+Main.\+tab\+Probe\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_a21f2a3d788dd4fd47680fdc8b80a516f}\label{class_m_t_connect_agent_1_1_form_main_a21f2a3d788dd4fd47680fdc8b80a516f}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!tabs@{tabs}}
+\index{tabs@{tabs}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{tabs}{tabs}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Tab\+Control M\+T\+Connect\+Agent.\+Form\+Main.\+tabs\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_addc30e71091a6b662653b36b6ba182a9}\label{class_m_t_connect_agent_1_1_form_main_addc30e71091a6b662653b36b6ba182a9}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!tree\+View\+Client\+Machine@{tree\+View\+Client\+Machine}}
+\index{tree\+View\+Client\+Machine@{tree\+View\+Client\+Machine}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{tree\+View\+Client\+Machine}{treeViewClientMachine}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Tree\+View M\+T\+Connect\+Agent.\+Form\+Main.\+tree\+View\+Client\+Machine\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_main_adec9b69cbb5d4fa32dac340367ca98fa}\label{class_m_t_connect_agent_1_1_form_main_adec9b69cbb5d4fa32dac340367ca98fa}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}!user\+Control\+Probe1@{user\+Control\+Probe1}}
+\index{user\+Control\+Probe1@{user\+Control\+Probe1}!M\+T\+Connect\+Agent\+::\+Form\+Main@{M\+T\+Connect\+Agent\+::\+Form\+Main}}
+\subsubsection{\texorpdfstring{user\+Control\+Probe1}{userControlProbe1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab}{User\+Control\+Display\+Tab}} M\+T\+Connect\+Agent.\+Form\+Main.\+user\+Control\+Probe1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+M\+T\+Connect\+Agent/\mbox{\hyperlink{_form_main_8cs}{Form\+Main.\+cs}}\item 
+M\+T\+Connect\+Agent/\mbox{\hyperlink{_form_main_8_designer_8cs}{Form\+Main.\+Designer.\+cs}}\end{DoxyCompactItemize}

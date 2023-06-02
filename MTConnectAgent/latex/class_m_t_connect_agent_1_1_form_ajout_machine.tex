@@ -1,0 +1,378 @@
+\hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine}{}\section{Référence de la classe M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine}
+\label{class_m_t_connect_agent_1_1_form_ajout_machine}\index{M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine}}
+
+
+Gere les interactions du formulaire d\textquotesingle{}ajout d\textquotesingle{}une machine  
+
+
+Graphe d\textquotesingle{}héritage de M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_m_t_connect_agent_1_1_form_ajout_machine}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_acabb6332771d87cf6d8538abd9416de8}{Form\+Ajout\+Machine}} (List$<$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_client}{Client}} $>$ clients, Tree\+Node selected)
+\begin{DoxyCompactList}\small\item\em Initialise une fenêtre d\textquotesingle{}ajout de machine \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a281c5466b5ca2d5daea6fc4280955969}{Dispose}} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Clean up any resources being used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Propriétés}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_ab24ec6044e36da1d0b618df5cccd9870}{Updated}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em True lorsque la machine est modfiée, false sinon \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_client}{Client}} $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a81292c7cbf049dad49be39272b3dedc6}{Clients}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Liste des clients \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a8782b1e6e835fbd2a925874bed63bc29}{Initialize\+Page}} ()
+\begin{DoxyCompactList}\small\item\em Initialise l\textquotesingle{}interface de la fenêtre \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_ae93513d1c019ddeeaaa1f04d8d723bf4}{Button\+Annuler\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Gere le click sur le bouton annuler \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_ac98f3d5f7eecc96683250f04466e8f69}{Button\+Ajouter\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Ajoute la machine lors du click sur le bouton valider \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a2db9bc636b698deb1ae1aec251862360}{Button\+Ajouter\+Client\+\_\+\+Click}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Lance la fenêtre d\textquotesingle{}ajout d\textquotesingle{}un client lors du click sur le bouton d\textquotesingle{}ajout d\textquotesingle{}un client \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_ab2aa6319f61b995ca37c62d29aa130ab}{Is\+Text\+Box\+Not\+Empty}} ()
+\begin{DoxyCompactList}\small\item\em Vérifie si les boites de dialogues sont vides \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a36df449c486dc97b83b4d4463ef98e15}{Toogle\+Button\+Ajout}} ()
+\begin{DoxyCompactList}\small\item\em Active le bouton d\textquotesingle{}ajout lorsque les boites de dialogues ne sont pas vides \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a12860f897c6b23d62f0b09db92626583}{Text\+Machine\+Name\+\_\+\+Text\+Changed}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Lance l\textquotesingle{}activation du bouton de validation lors du changement du texte dans la boite de dialogue du nom de la machine \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_acfa9fdb3189331da1245fef3e23f8ed4}{Text\+Machine\+Url\+\_\+\+Text\+Changed}} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Lance l\textquotesingle{}activation du bouton de validation lors du changement du texte dans la boite de dialogue de l\textquotesingle{}url de la machine \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a8040ed6042861e356694de42ffc48653}{Ajout\+Machine\+\_\+\+Key\+Press}} (object sender, Key\+Press\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Lance l\textquotesingle{}ajout de la machine lors de l\textquotesingle{}appui sur la touche entrée du clavier \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a43fb917c218c43331ae32f2e056f9b46}{Ajouter}} ()
+\begin{DoxyCompactList}\small\item\em Ajout de la machine \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a936b4b500ded91215c0ed272b98b94be}{Initialize\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Required method for Designer support -\/ do not modify the contents of this method with the code editor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_ab3a8b1ac438fedbb984634be306edc5c}{selected\+Client}} = null
+\item 
+System.\+Component\+Model.\+I\+Container \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a52f1b57913f91bf6d032fe92c6dee576}{components}} = null
+\begin{DoxyCompactList}\small\item\em Required designer variable. \end{DoxyCompactList}\item 
+System.\+Windows.\+Forms.\+Combo\+Box \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_aee77af459c269fba5431001f87ab33d3}{combo\+Clients}}
+\item 
+System.\+Windows.\+Forms.\+Button \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a614ac1084888e4aa12b9a27dd006b920}{button\+Ajouter}}
+\item 
+System.\+Windows.\+Forms.\+Button \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a01604f1c9a9ab7a659ca54f5437b44ef}{button\+Annuler}}
+\item 
+System.\+Windows.\+Forms.\+Label \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_ac1856bb9d697139f7b5a0fe585fefcef}{label\+Client}}
+\item 
+System.\+Windows.\+Forms.\+Label \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_ae7aee960fbe99876ef433d50cc4c19e3}{label\+Machine\+Name}}
+\item 
+System.\+Windows.\+Forms.\+Text\+Box \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_aef216554526b007b74247eee491113ff}{text\+Machine\+Name}}
+\item 
+System.\+Windows.\+Forms.\+Label \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_adc37ebc1401c7bc29fe5702178280574}{label\+Machine\+Url}}
+\item 
+System.\+Windows.\+Forms.\+Text\+Box \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a851fa7cd322a2229351b91d23e9a404d}{text\+Machine\+Url}}
+\item 
+System.\+Windows.\+Forms.\+Button \mbox{\hyperlink{class_m_t_connect_agent_1_1_form_ajout_machine_a1506c93a74590c1b28038054ff108d77}{button\+Ajouter\+Client}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Gere les interactions du formulaire d\textquotesingle{}ajout d\textquotesingle{}une machine 
+
+
+
+\subsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_acabb6332771d87cf6d8538abd9416de8}\label{class_m_t_connect_agent_1_1_form_ajout_machine_acabb6332771d87cf6d8538abd9416de8}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Form\+Ajout\+Machine@{Form\+Ajout\+Machine}}
+\index{Form\+Ajout\+Machine@{Form\+Ajout\+Machine}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Form\+Ajout\+Machine()}{FormAjoutMachine()}}
+{\footnotesize\ttfamily M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Form\+Ajout\+Machine (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_client}{Client}} $>$}]{clients,  }\item[{Tree\+Node}]{selected }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initialise une fenêtre d\textquotesingle{}ajout de machine 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em clients} & La liste des clients à initialiser\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a43fb917c218c43331ae32f2e056f9b46}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a43fb917c218c43331ae32f2e056f9b46}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Ajouter@{Ajouter}}
+\index{Ajouter@{Ajouter}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Ajouter()}{Ajouter()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Ajouter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Ajout de la machine 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a8040ed6042861e356694de42ffc48653}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a8040ed6042861e356694de42ffc48653}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Ajout\+Machine\+\_\+\+Key\+Press@{Ajout\+Machine\+\_\+\+Key\+Press}}
+\index{Ajout\+Machine\+\_\+\+Key\+Press@{Ajout\+Machine\+\_\+\+Key\+Press}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Ajout\+Machine\+\_\+\+Key\+Press()}{AjoutMachine\_KeyPress()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Ajout\+Machine\+\_\+\+Key\+Press (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Key\+Press\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Lance l\textquotesingle{}ajout de la machine lors de l\textquotesingle{}appui sur la touche entrée du clavier 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_ac98f3d5f7eecc96683250f04466e8f69}\label{class_m_t_connect_agent_1_1_form_ajout_machine_ac98f3d5f7eecc96683250f04466e8f69}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Button\+Ajouter\+\_\+\+Click@{Button\+Ajouter\+\_\+\+Click}}
+\index{Button\+Ajouter\+\_\+\+Click@{Button\+Ajouter\+\_\+\+Click}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Button\+Ajouter\+\_\+\+Click()}{ButtonAjouter\_Click()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Button\+Ajouter\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Ajoute la machine lors du click sur le bouton valider 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a2db9bc636b698deb1ae1aec251862360}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a2db9bc636b698deb1ae1aec251862360}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Button\+Ajouter\+Client\+\_\+\+Click@{Button\+Ajouter\+Client\+\_\+\+Click}}
+\index{Button\+Ajouter\+Client\+\_\+\+Click@{Button\+Ajouter\+Client\+\_\+\+Click}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Button\+Ajouter\+Client\+\_\+\+Click()}{ButtonAjouterClient\_Click()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Button\+Ajouter\+Client\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Lance la fenêtre d\textquotesingle{}ajout d\textquotesingle{}un client lors du click sur le bouton d\textquotesingle{}ajout d\textquotesingle{}un client 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & \\
+\hline
+{\em e} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_ae93513d1c019ddeeaaa1f04d8d723bf4}\label{class_m_t_connect_agent_1_1_form_ajout_machine_ae93513d1c019ddeeaaa1f04d8d723bf4}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Button\+Annuler\+\_\+\+Click@{Button\+Annuler\+\_\+\+Click}}
+\index{Button\+Annuler\+\_\+\+Click@{Button\+Annuler\+\_\+\+Click}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Button\+Annuler\+\_\+\+Click()}{ButtonAnnuler\_Click()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Button\+Annuler\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Gere le click sur le bouton annuler 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a281c5466b5ca2d5daea6fc4280955969}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a281c5466b5ca2d5daea6fc4280955969}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily override void M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Clean up any resources being used. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em disposing} & true if managed resources should be disposed; otherwise, false.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a936b4b500ded91215c0ed272b98b94be}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a936b4b500ded91215c0ed272b98b94be}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Initialize\+Component@{Initialize\+Component}}
+\index{Initialize\+Component@{Initialize\+Component}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Initialize\+Component()}{InitializeComponent()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Initialize\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Required method for Designer support -\/ do not modify the contents of this method with the code editor. 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a8782b1e6e835fbd2a925874bed63bc29}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a8782b1e6e835fbd2a925874bed63bc29}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Initialize\+Page@{Initialize\+Page}}
+\index{Initialize\+Page@{Initialize\+Page}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Initialize\+Page()}{InitializePage()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Initialize\+Page (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Initialise l\textquotesingle{}interface de la fenêtre 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_ab2aa6319f61b995ca37c62d29aa130ab}\label{class_m_t_connect_agent_1_1_form_ajout_machine_ab2aa6319f61b995ca37c62d29aa130ab}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Is\+Text\+Box\+Not\+Empty@{Is\+Text\+Box\+Not\+Empty}}
+\index{Is\+Text\+Box\+Not\+Empty@{Is\+Text\+Box\+Not\+Empty}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Is\+Text\+Box\+Not\+Empty()}{IsTextBoxNotEmpty()}}
+{\footnotesize\ttfamily bool M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Is\+Text\+Box\+Not\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Vérifie si les boites de dialogues sont vides 
+
+\begin{DoxyReturn}{Renvoie}
+true si aucune n\textquotesingle{}est vide, false sinon
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a12860f897c6b23d62f0b09db92626583}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a12860f897c6b23d62f0b09db92626583}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Text\+Machine\+Name\+\_\+\+Text\+Changed@{Text\+Machine\+Name\+\_\+\+Text\+Changed}}
+\index{Text\+Machine\+Name\+\_\+\+Text\+Changed@{Text\+Machine\+Name\+\_\+\+Text\+Changed}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Text\+Machine\+Name\+\_\+\+Text\+Changed()}{TextMachineName\_TextChanged()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Text\+Machine\+Name\+\_\+\+Text\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Lance l\textquotesingle{}activation du bouton de validation lors du changement du texte dans la boite de dialogue du nom de la machine 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_acfa9fdb3189331da1245fef3e23f8ed4}\label{class_m_t_connect_agent_1_1_form_ajout_machine_acfa9fdb3189331da1245fef3e23f8ed4}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Text\+Machine\+Url\+\_\+\+Text\+Changed@{Text\+Machine\+Url\+\_\+\+Text\+Changed}}
+\index{Text\+Machine\+Url\+\_\+\+Text\+Changed@{Text\+Machine\+Url\+\_\+\+Text\+Changed}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Text\+Machine\+Url\+\_\+\+Text\+Changed()}{TextMachineUrl\_TextChanged()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Text\+Machine\+Url\+\_\+\+Text\+Changed (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Lance l\textquotesingle{}activation du bouton de validation lors du changement du texte dans la boite de dialogue de l\textquotesingle{}url de la machine 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em sender} & objet appelant\\
+\hline
+{\em e} & évenement provoqué\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a36df449c486dc97b83b4d4463ef98e15}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a36df449c486dc97b83b4d4463ef98e15}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Toogle\+Button\+Ajout@{Toogle\+Button\+Ajout}}
+\index{Toogle\+Button\+Ajout@{Toogle\+Button\+Ajout}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Toogle\+Button\+Ajout()}{ToogleButtonAjout()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Toogle\+Button\+Ajout (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Active le bouton d\textquotesingle{}ajout lorsque les boites de dialogues ne sont pas vides 
+
+
+
+\subsection{Documentation des données membres}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a614ac1084888e4aa12b9a27dd006b920}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a614ac1084888e4aa12b9a27dd006b920}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!button\+Ajouter@{button\+Ajouter}}
+\index{button\+Ajouter@{button\+Ajouter}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{button\+Ajouter}{buttonAjouter}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Button M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+button\+Ajouter\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a1506c93a74590c1b28038054ff108d77}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a1506c93a74590c1b28038054ff108d77}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!button\+Ajouter\+Client@{button\+Ajouter\+Client}}
+\index{button\+Ajouter\+Client@{button\+Ajouter\+Client}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{button\+Ajouter\+Client}{buttonAjouterClient}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Button M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+button\+Ajouter\+Client\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a01604f1c9a9ab7a659ca54f5437b44ef}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a01604f1c9a9ab7a659ca54f5437b44ef}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!button\+Annuler@{button\+Annuler}}
+\index{button\+Annuler@{button\+Annuler}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{button\+Annuler}{buttonAnnuler}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Button M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+button\+Annuler\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_aee77af459c269fba5431001f87ab33d3}\label{class_m_t_connect_agent_1_1_form_ajout_machine_aee77af459c269fba5431001f87ab33d3}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!combo\+Clients@{combo\+Clients}}
+\index{combo\+Clients@{combo\+Clients}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{combo\+Clients}{comboClients}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Combo\+Box M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+combo\+Clients\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a52f1b57913f91bf6d032fe92c6dee576}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a52f1b57913f91bf6d032fe92c6dee576}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!components@{components}}
+\index{components@{components}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{components}{components}}
+{\footnotesize\ttfamily System.\+Component\+Model.\+I\+Container M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+components = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Required designer variable. 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_ac1856bb9d697139f7b5a0fe585fefcef}\label{class_m_t_connect_agent_1_1_form_ajout_machine_ac1856bb9d697139f7b5a0fe585fefcef}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!label\+Client@{label\+Client}}
+\index{label\+Client@{label\+Client}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{label\+Client}{labelClient}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Label M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+label\+Client\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_ae7aee960fbe99876ef433d50cc4c19e3}\label{class_m_t_connect_agent_1_1_form_ajout_machine_ae7aee960fbe99876ef433d50cc4c19e3}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!label\+Machine\+Name@{label\+Machine\+Name}}
+\index{label\+Machine\+Name@{label\+Machine\+Name}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{label\+Machine\+Name}{labelMachineName}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Label M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+label\+Machine\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_adc37ebc1401c7bc29fe5702178280574}\label{class_m_t_connect_agent_1_1_form_ajout_machine_adc37ebc1401c7bc29fe5702178280574}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!label\+Machine\+Url@{label\+Machine\+Url}}
+\index{label\+Machine\+Url@{label\+Machine\+Url}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{label\+Machine\+Url}{labelMachineUrl}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Label M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+label\+Machine\+Url\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_ab3a8b1ac438fedbb984634be306edc5c}\label{class_m_t_connect_agent_1_1_form_ajout_machine_ab3a8b1ac438fedbb984634be306edc5c}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!selected\+Client@{selected\+Client}}
+\index{selected\+Client@{selected\+Client}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{selected\+Client}{selectedClient}}
+{\footnotesize\ttfamily string M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+selected\+Client = null\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_aef216554526b007b74247eee491113ff}\label{class_m_t_connect_agent_1_1_form_ajout_machine_aef216554526b007b74247eee491113ff}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!text\+Machine\+Name@{text\+Machine\+Name}}
+\index{text\+Machine\+Name@{text\+Machine\+Name}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{text\+Machine\+Name}{textMachineName}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Text\+Box M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+text\+Machine\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a851fa7cd322a2229351b91d23e9a404d}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a851fa7cd322a2229351b91d23e9a404d}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!text\+Machine\+Url@{text\+Machine\+Url}}
+\index{text\+Machine\+Url@{text\+Machine\+Url}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{text\+Machine\+Url}{textMachineUrl}}
+{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Text\+Box M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+text\+Machine\+Url\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\subsection{Documentation des propriétés}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_a81292c7cbf049dad49be39272b3dedc6}\label{class_m_t_connect_agent_1_1_form_ajout_machine_a81292c7cbf049dad49be39272b3dedc6}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Clients@{Clients}}
+\index{Clients@{Clients}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Clients}{Clients}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_client}{Client}}$>$ M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Clients\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Liste des clients 
+
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_form_ajout_machine_ab24ec6044e36da1d0b618df5cccd9870}\label{class_m_t_connect_agent_1_1_form_ajout_machine_ab24ec6044e36da1d0b618df5cccd9870}} 
+\index{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}!Updated@{Updated}}
+\index{Updated@{Updated}!M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine@{M\+T\+Connect\+Agent\+::\+Form\+Ajout\+Machine}}
+\subsubsection{\texorpdfstring{Updated}{Updated}}
+{\footnotesize\ttfamily bool M\+T\+Connect\+Agent.\+Form\+Ajout\+Machine.\+Updated\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+True lorsque la machine est modfiée, false sinon 
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+M\+T\+Connect\+Agent/\mbox{\hyperlink{_form_ajout_machine_8cs}{Form\+Ajout\+Machine.\+cs}}\item 
+M\+T\+Connect\+Agent/\mbox{\hyperlink{_form_ajout_machine_8_designer_8cs}{Form\+Ajout\+Machine.\+Designer.\+cs}}\end{DoxyCompactItemize}

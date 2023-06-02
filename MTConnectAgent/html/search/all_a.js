@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['bll',['BLL',['../namespace_m_t_connect_agent_1_1_b_l_l.html',1,'MTConnectAgent']]],
+  ['machine',['Machine',['../class_m_t_connect_agent_1_1_model_1_1_machine.html',1,'MTConnectAgent.Model.Machine'],['../class_m_t_connect_agent_1_1_model_1_1_machine.html#aa5b3b34432aa1586c337c6b46b17d0d9',1,'MTConnectAgent.Model.Machine.Machine(SerializationInfo info, StreamingContext ctx)'],['../class_m_t_connect_agent_1_1_model_1_1_machine.html#a2fd689b697c2297a488219ac15765d1b',1,'MTConnectAgent.Model.Machine.Machine(string name, string url)']]],
+  ['machine_2ecs',['Machine.cs',['../_machine_8cs.html',1,'']]],
+  ['machines',['Machines',['../class_m_t_connect_agent_1_1_model_1_1_client.html#a99571f570e22af5b1555ad37c2aa6d06',1,'MTConnectAgent::Model::Client']]],
+  ['main',['Main',['../class_console_app1_1_1_program.html#ae6cedb55c6b52f4193827df8c1cf88cc',1,'ConsoleApp1::Program']]],
+  ['model',['Model',['../namespace_m_t_connect_agent_1_1_model.html',1,'MTConnectAgent']]],
+  ['modifiedclient',['ModifiedClient',['../class_m_t_connect_agent_1_1_form_modifie_client.html#a8f2c248d245052d915c92a991ce11e75',1,'MTConnectAgent::FormModifieClient']]],
+  ['modifiedmachine',['ModifiedMachine',['../class_m_t_connect_agent_1_1_form_modifie_machine.html#ad14ae74d3b5cd3987f6a9604514eb3c1',1,'MTConnectAgent::FormModifieMachine']]],
+  ['modifier',['Modifier',['../class_m_t_connect_agent_1_1_form_modifie_client.html#a3afd18ad3968998f66567dad318a17f9',1,'MTConnectAgent.FormModifieClient.Modifier()'],['../class_m_t_connect_agent_1_1_form_modifie_machine.html#af65b4b64655a0e36a36bb0e439e8f8f0',1,'MTConnectAgent.FormModifieMachine.Modifier()']]],
+  ['modifyclientlabel_5fclick',['ModifyClientLabel_Click',['../class_m_t_connect_agent_1_1_form_main.html#adf54b84f7d625d8656f6e6114c8da775',1,'MTConnectAgent::FormMain']]],
+  ['modifymachinelabel_5fclick',['ModifyMachineLabel_Click',['../class_m_t_connect_agent_1_1_form_main.html#ab8577129e9dfbf78979a80aaf5e7bf6a',1,'MTConnectAgent::FormMain']]],
+  ['mtconnectagent',['MTConnectAgent',['../namespace_m_t_connect_agent.html',1,'']]],
+  ['mtconnectclient',['MTConnectClient',['../class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client.html',1,'MTConnectAgent.BLL.MTConnectClient'],['../class_m_t_connect_agent_1_1_b_l_l_1_1_tests_1_1_m_t_connect_client_tests.html#af4b9a9b854925f636589f1487f0d95cb',1,'MTConnectAgent.BLL.Tests.MTConnectClientTests.mtConnectClient()'],['../class_m_t_connect_agent_1_1_b_l_l_1_1_tests_1_1_m_t_connect_client_tests_integration.html#a6ff81a67a2d25bb2d74a8b64ddb17cdb',1,'MTConnectAgent.BLL.Tests.MTConnectClientTestsIntegration.MTConnectClient()']]],
+  ['mtconnectclient_2ecs',['MTConnectClient.cs',['../_m_t_connect_client_8cs.html',1,'']]],
+  ['mtconnectclienttests',['MTConnectClientTests',['../class_m_t_connect_agent_1_1_b_l_l_1_1_tests_1_1_m_t_connect_client_tests.html',1,'MTConnectAgent::BLL::Tests']]],
+  ['mtconnectclienttests_2ecs',['MTConnectClientTests.cs',['../_m_t_connect_client_tests_8cs.html',1,'']]],
+  ['mtconnectclienttestsintegration',['MTConnectClientTestsIntegration',['../class_m_t_connect_agent_1_1_b_l_l_1_1_tests_1_1_m_t_connect_client_tests_integration.html',1,'MTConnectAgent::BLL::Tests']]],
+  ['mtconnectclienttestsintegration_2ecs',['MTConnectClientTestsIntegration.cs',['../_m_t_connect_client_tests_integration_8cs.html',1,'']]],
+  ['mtconnectclienttesttests',['MTConnectClientTestTests',['../class_m_t_connect_agent_1_1_b_l_l_1_1_tests_1_1_m_t_connect_client_test_tests.html',1,'MTConnectAgent::BLL::Tests']]],
+  ['mtconnectclienttesttests_2ecs',['MTConnectClientTestTests.cs',['../_m_t_connect_client_test_tests_8cs.html',1,'']]],
+  ['properties',['Properties',['../namespace_m_t_connect_agent_1_1_properties.html',1,'MTConnectAgent']]],
+  ['tests',['Tests',['../namespace_m_t_connect_agent_1_1_b_l_l_1_1_tests.html',1,'MTConnectAgent.BLL.Tests'],['../namespace_m_t_connect_agent_1_1_model_1_1_tests.html',1,'MTConnectAgent.Model.Tests']]]
+];
