@@ -2,9 +2,7 @@ var searchData=
 [
   ['findreftagbyid',['FindRefTagById',['../class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client.html#a3a54cecea9664fb03bfbbaa4350f408c',1,'MTConnectAgent::BLL::MTConnectClient']]],
   ['findtagbyid',['FindTagById',['../class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client.html#a0deda7ea94d3370139eb1851c1e58bf8',1,'MTConnectAgent::BLL::MTConnectClient']]],
-  ['findtagbyidtest',['FindTagByIdTest',['../class_m_t_connect_agent_1_1_b_l_l_1_1_tests_1_1_m_t_connect_client_tests.html#a2ce138d6c1d226d4ce5b58d6b16846fa',1,'MTConnectAgent::BLL::Tests::MTConnectClientTests']]],
   ['findtagbyname',['FindTagByName',['../class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client.html#adf30641f680b3a6ea91414aedc30c176',1,'MTConnectAgent::BLL::MTConnectClient']]],
-  ['findtagbynametest',['FindTagByNameTest',['../class_m_t_connect_agent_1_1_b_l_l_1_1_tests_1_1_m_t_connect_client_tests.html#ad7e1fd075ca20e8e80abf5e2c18c595b',1,'MTConnectAgent::BLL::Tests::MTConnectClientTests']]],
   ['findtagnamebyid',['FindTagNameById',['../class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client.html#a785a56a144ad88ed9b8c3efbcc046fde',1,'MTConnectAgent::BLL::MTConnectClient']]],
   ['formajoutclient',['FormAjoutClient',['../class_m_t_connect_agent_1_1_form_ajout_client.html#a9e308a7b3f687af4d8fb9a1ab11b5a9c',1,'MTConnectAgent::FormAjoutClient']]],
   ['formajoutmachine',['FormAjoutMachine',['../class_m_t_connect_agent_1_1_form_ajout_machine.html#acabb6332771d87cf6d8538abd9416de8',1,'MTConnectAgent::FormAjoutMachine']]],

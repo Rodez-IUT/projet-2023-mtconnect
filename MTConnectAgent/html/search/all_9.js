@@ -1,7 +1,19 @@
 var searchData=
 [
-  ['labelclient',['labelClient',['../class_m_t_connect_agent_1_1_form_ajout_machine.html#ac1856bb9d697139f7b5a0fe585fefcef',1,'MTConnectAgent.FormAjoutMachine.labelClient()'],['../class_m_t_connect_agent_1_1_form_modifie_machine.html#a2ad6243106d121056db9f2740c873c48',1,'MTConnectAgent.FormModifieMachine.labelClient()']]],
-  ['labelmachinename',['labelMachineName',['../class_m_t_connect_agent_1_1_form_ajout_machine.html#ae7aee960fbe99876ef433d50cc4c19e3',1,'MTConnectAgent.FormAjoutMachine.labelMachineName()'],['../class_m_t_connect_agent_1_1_form_modifie_machine.html#a5dd5828ef0178c40dbd0c74e2a5ec5db',1,'MTConnectAgent.FormModifieMachine.labelMachineName()']]],
-  ['labelmachineurl',['labelMachineUrl',['../class_m_t_connect_agent_1_1_form_ajout_machine.html#adc37ebc1401c7bc29fe5702178280574',1,'MTConnectAgent.FormAjoutMachine.labelMachineUrl()'],['../class_m_t_connect_agent_1_1_form_modifie_machine.html#a934d6cbe52246aa6fe5e40143565f677',1,'MTConnectAgent.FormModifieMachine.labelMachineUrl()']]],
-  ['labelname',['labelName',['../class_m_t_connect_agent_1_1_form_ajout_client.html#af4bf6c8ff0e1b15b816788d941831a47',1,'MTConnectAgent.FormAjoutClient.labelName()'],['../class_m_t_connect_agent_1_1_form_modifie_client.html#a3ce819cd742694c37aed4ff866535f23',1,'MTConnectAgent.FormModifieClient.labelName()']]]
+  ['bll',['BLL',['../namespace_m_t_connect_agent_1_1_b_l_l.html',1,'MTConnectAgent']]],
+  ['machine',['Machine',['../class_m_t_connect_agent_1_1_model_1_1_machine.html',1,'MTConnectAgent.Model.Machine'],['../class_m_t_connect_agent_1_1_model_1_1_machine.html#a2fd689b697c2297a488219ac15765d1b',1,'MTConnectAgent.Model.Machine.Machine()']]],
+  ['machines',['Machines',['../class_m_t_connect_agent_1_1_model_1_1_client.html#a99571f570e22af5b1555ad37c2aa6d06',1,'MTConnectAgent::Model::Client']]],
+  ['model',['Model',['../namespace_m_t_connect_agent_1_1_model.html',1,'MTConnectAgent']]],
+  ['modifiedclient',['ModifiedClient',['../class_m_t_connect_agent_1_1_form_modifie_client.html#a8f2c248d245052d915c92a991ce11e75',1,'MTConnectAgent::FormModifieClient']]],
+  ['modifiedmachine',['ModifiedMachine',['../class_m_t_connect_agent_1_1_form_modifie_machine.html#ad14ae74d3b5cd3987f6a9604514eb3c1',1,'MTConnectAgent::FormModifieMachine']]],
+  ['modifier',['Modifier',['../class_m_t_connect_agent_1_1_form_modifie_client.html#a3afd18ad3968998f66567dad318a17f9',1,'MTConnectAgent.FormModifieClient.Modifier()'],['../class_m_t_connect_agent_1_1_form_modifie_machine.html#af65b4b64655a0e36a36bb0e439e8f8f0',1,'MTConnectAgent.FormModifieMachine.Modifier()']]],
+  ['modifyclientlabel_5fclick',['ModifyClientLabel_Click',['../class_m_t_connect_agent_1_1_form_main.html#adf54b84f7d625d8656f6e6114c8da775',1,'MTConnectAgent::FormMain']]],
+  ['modifymachinelabel_5fclick',['ModifyMachineLabel_Click',['../class_m_t_connect_agent_1_1_form_main.html#ab8577129e9dfbf78979a80aaf5e7bf6a',1,'MTConnectAgent::FormMain']]],
+  ['mtconnectagent',['MTConnectAgent',['../namespace_m_t_connect_agent.html',1,'']]],
+  ['mtconnectclient',['MTConnectClient',['../class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client.html',1,'MTConnectAgent::BLL']]],
+  ['mtconnectclienttests',['MTConnectClientTests',['../class_m_t_connect_agent_1_1_b_l_l_1_1_tests_1_1_m_t_connect_client_tests.html',1,'MTConnectAgent::BLL::Tests']]],
+  ['mtconnectclienttestsintegration',['MTConnectClientTestsIntegration',['../class_m_t_connect_agent_1_1_b_l_l_1_1_tests_1_1_m_t_connect_client_tests_integration.html',1,'MTConnectAgent::BLL::Tests']]],
+  ['mtconnectclienttesttests',['MTConnectClientTestTests',['../class_m_t_connect_agent_1_1_b_l_l_1_1_tests_1_1_m_t_connect_client_test_tests.html',1,'MTConnectAgent::BLL::Tests']]],
+  ['properties',['Properties',['../namespace_m_t_connect_agent_1_1_properties.html',1,'MTConnectAgent']]],
+  ['tests',['Tests',['../namespace_m_t_connect_agent_1_1_b_l_l_1_1_tests.html',1,'MTConnectAgent.BLL.Tests'],['../namespace_m_t_connect_agent_1_1_model_1_1_tests.html',1,'MTConnectAgent.Model.Tests']]]
 ];

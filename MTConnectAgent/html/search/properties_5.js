@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['root',['Root',['../class_m_t_connect_agent_1_1_b_l_l_1_1_tests_1_1_m_t_connect_client_tests_integration.html#a761a2ca9ed56072ac4edcbc21ae18983',1,'MTConnectAgent::BLL::Tests::MTConnectClientTestsIntegration']]]
+  ['updated',['Updated',['../class_m_t_connect_agent_1_1_form_ajout_machine.html#ab24ec6044e36da1d0b618df5cccd9870',1,'MTConnectAgent::FormAjoutMachine']]],
+  ['url',['Url',['../class_m_t_connect_agent_1_1_model_1_1_machine.html#ad31a7be0d27dbfeb749bbf6874546a30',1,'MTConnectAgent::Model::Machine']]]
 ];

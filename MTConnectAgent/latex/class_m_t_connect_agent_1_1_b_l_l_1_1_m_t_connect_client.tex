@@ -8,9 +8,9 @@ Gere la logique métier du client M\+T\+Connect
 \subsection*{Types publics}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{Protocol}} \{ \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474a43b5c9175984c071f30b873fdce0a000}{Protocol.\+current}}, 
-\mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474a8da843ff65205a61374b09b81ed0fa35}{Protocol.\+probe}}, 
-\mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474a5e8ff9bf55ba3508199d22e984129be6}{Protocol.\+sample}}
+enum \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{Protocol}} \{ {\bfseries current}, 
+{\bfseries probe}, 
+{\bfseries sample}
  \}
 \begin{DoxyCompactList}\small\item\em Les protocoles possibles \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Fonctions membres publiques}
@@ -41,7 +41,8 @@ List$<$ string $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_co
 \item 
 String\+Builder \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ad38815a224cb788630db2a3eb09d84c7}{Generer\+Path}} (\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} tag, String\+Builder string\+Builder, bool is\+Or\+Activated)
 \begin{DoxyCompactList}\small\item\em Génére un path de façon récursive Si le tag contient une id non vide, alors elle est ajoutée en paramètre au path \end{DoxyCompactList}\item 
-String\+Builder \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ae62829c685da54c7761cb892d292d190}{Generer\+Path\+With\+Or}} (\mbox{\hyperlink{interface_m_t_connect_agent_1_1_model_1_1_i_tag}{I\+Tag}} tag, String\+Builder string\+Builder, bool is\+First)
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ae62829c685da54c7761cb892d292d190}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ae62829c685da54c7761cb892d292d190}} 
+String\+Builder {\bfseries Generer\+Path\+With\+Or} (\mbox{\hyperlink{interface_m_t_connect_agent_1_1_model_1_1_i_tag}{I\+Tag}} tag, String\+Builder string\+Builder, bool is\+First)
 \item 
 void \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a49be318d688f99f3fe6596c74eba7ca1}{Generer\+Path\+Sans\+Or}} (\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} tag, string url\+Parente)
 \begin{DoxyCompactList}\small\item\em Génére les paths de façon récursive si l\textquotesingle{}option or est désactivée \end{DoxyCompactList}\item 
@@ -70,20 +71,6 @@ Gere la logique métier du client M\+T\+Connect
 
 Les protocoles possibles 
 
-\begin{DoxyEnumFields}{Valeurs énumérées}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{current@{current}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!current@{current}}}\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474a43b5c9175984c071f30b873fdce0a000}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474a43b5c9175984c071f30b873fdce0a000}} 
-current&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{probe@{probe}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!probe@{probe}}}\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474a8da843ff65205a61374b09b81ed0fa35}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474a8da843ff65205a61374b09b81ed0fa35}} 
-probe&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{sample@{sample}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!sample@{sample}}}\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474a5e8ff9bf55ba3508199d22e984129be6}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474a5e8ff9bf55ba3508199d22e984129be6}} 
-sample&\\
-\hline
-
-\end{DoxyEnumFields}
 
 
 \subsection{Documentation des fonctions membres}
@@ -239,12 +226,6 @@ Génére les paths de façon récursive si l\textquotesingle{}option or est dés
 {\em url\+Parente} & Url courante de la génération du path courant\\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ae62829c685da54c7761cb892d292d190}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ae62829c685da54c7761cb892d292d190}} 
-\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Generer\+Path\+With\+Or@{Generer\+Path\+With\+Or}}
-\index{Generer\+Path\+With\+Or@{Generer\+Path\+With\+Or}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
-\subsubsection{\texorpdfstring{Generer\+Path\+With\+Or()}{GenererPathWithOr()}}
-{\footnotesize\ttfamily String\+Builder M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Generer\+Path\+With\+Or (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_m_t_connect_agent_1_1_model_1_1_i_tag}{I\+Tag}}}]{tag,  }\item[{String\+Builder}]{string\+Builder,  }\item[{bool}]{is\+First }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
-
 \mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a70ce6301ae2f75b317c73b4a35660e41}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a70ce6301ae2f75b317c73b4a35660e41}} 
 \index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!get\+Assets\+Async@{get\+Assets\+Async}}
 \index{get\+Assets\+Async@{get\+Assets\+Async}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
@@ -352,4 +333,4 @@ La liste des paths générés
 
 La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
 \item 
-M\+T\+Connect\+Agent.\+B\+L\+L/\mbox{\hyperlink{_m_t_connect_client_8cs}{M\+T\+Connect\+Client.\+cs}}\end{DoxyCompactItemize}
+M\+T\+Connect\+Agent.\+B\+L\+L/M\+T\+Connect\+Client.\+cs\end{DoxyCompactItemize}

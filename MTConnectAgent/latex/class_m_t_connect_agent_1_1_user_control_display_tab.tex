@@ -14,15 +14,16 @@ Graphe d\textquotesingle{}héritage de M\+T\+Connect\+Agent.\+User\+Control\+Dis
 \subsection*{Types publics}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ec}{Functions}} \{ \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557eca8da843ff65205a61374b09b81ed0fa35}{Functions.\+probe}}, 
-\mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557eca43b5c9175984c071f30b873fdce0a000}{Functions.\+current}}, 
-\mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ecad6fe1d0be6347b8ef2427fa629c04485}{Functions.\+path}}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ec}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ec}} 
+enum {\bfseries Functions} \{ {\bfseries probe}, 
+{\bfseries current}, 
+{\bfseries path}
  \}
 \end{DoxyCompactItemize}
 \subsection*{Fonctions membres publiques}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a75f993d745781ea932a201f00bbe150e}{User\+Control\+Display\+Tab}} (string \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_aadac9f472866bf956cae2bd897200e1a}{url}}, \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ec}{Functions}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_addffe628fc1709f3f186bdaa1946e558}{fx}})
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a75f993d745781ea932a201f00bbe150e}{User\+Control\+Display\+Tab}} (string url, Functions fx)
 \begin{DoxyCompactList}\small\item\em Initialise l\textquotesingle{}interface actuelle \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_abcf66374bf792fe271d968bb035d749d}{Update\+View}} ()
 \begin{DoxyCompactList}\small\item\em Charge la fenêtre sélectionnée avec l\textquotesingle{}affichage qui correspond \end{DoxyCompactList}\item 
@@ -44,7 +45,8 @@ void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a8007
 \begin{DoxyCompactList}\small\item\em Fenêtre de génération et obtention des P\+A\+T\+HS \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_ac246a46fbe6cab71326ea2a6e6ade5cd}{Copy\+Url}} (object sender, Mouse\+Event\+Args e)
 \begin{DoxyCompactList}\small\item\em Copie le path sélectionné dans le presse-\/papier lors d\textquotesingle{}un double clic de la souris \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_ae279107d6601b7bc7b28a44dcbc68e5e}{Changement\+Protocole}} (object sender, Event\+Args e)
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ae279107d6601b7bc7b28a44dcbc68e5e}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ae279107d6601b7bc7b28a44dcbc68e5e}} 
+void {\bfseries Changement\+Protocole} (object sender, Event\+Args e)
 \item 
 void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a2f29e407545f62944defd9533dc895e0}{Actualiser\+Paths}} (object sender, Event\+Args e)
 \begin{DoxyCompactList}\small\item\em Actualise les paths lors du clic sur le bouton \char`\"{}or\char`\"{} \end{DoxyCompactList}\item 
@@ -75,18 +77,21 @@ void \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a7280
 \subsection*{Fonctions membres privées statiques}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_ad1fd6a35a00d563b8515f464a3f60afc}{Thread\+Parse\+Probe}} (string \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_aadac9f472866bf956cae2bd897200e1a}{url}})
+static \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_ad1fd6a35a00d563b8515f464a3f60afc}{Thread\+Parse\+Probe}} (string url)
 \begin{DoxyCompactList}\small\item\em Appelle l\textquotesingle{}url du probe de façon asynchrone \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a1035636aa3d4084fdc2b8adde3fe5e3a}{Thread\+Parse\+Current}} (string \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_aadac9f472866bf956cae2bd897200e1a}{url}})
+static \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a1035636aa3d4084fdc2b8adde3fe5e3a}{Thread\+Parse\+Current}} (string url)
 \begin{DoxyCompactList}\small\item\em Appelle l\textquotesingle{}url du current de façon asynchrone \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Attributs privés}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_adb85fd45a6e04656bf4eed212040e1a9}{tag\+Machine}}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_adb85fd45a6e04656bf4eed212040e1a9}\label{class_m_t_connect_agent_1_1_user_control_display_tab_adb85fd45a6e04656bf4eed212040e1a9}} 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} {\bfseries tag\+Machine}
 \item 
-string \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_aadac9f472866bf956cae2bd897200e1a}{url}}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_aadac9f472866bf956cae2bd897200e1a}\label{class_m_t_connect_agent_1_1_user_control_display_tab_aadac9f472866bf956cae2bd897200e1a}} 
+string {\bfseries url}
 \item 
-\mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ec}{Functions}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_addffe628fc1709f3f186bdaa1946e558}{fx}}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_addffe628fc1709f3f186bdaa1946e558}\label{class_m_t_connect_agent_1_1_user_control_display_tab_addffe628fc1709f3f186bdaa1946e558}} 
+Functions {\bfseries fx}
 \item 
 Check\+Box \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a31fcb431f108a7067f9293700d985a7b}{or}} = new Check\+Box()
 \begin{DoxyCompactList}\small\item\em Checkbox pour choisir l\textquotesingle{}option or \end{DoxyCompactList}\item 
@@ -96,7 +101,8 @@ Radio\+Button \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_
 \begin{DoxyCompactList}\small\item\em Bouton radio permettant de choisir le protocole sample. \end{DoxyCompactList}\item 
 Button \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a0dfedd189ce40e92ee9621a790ec5b9f}{decocher}} = new Button()
 \begin{DoxyCompactList}\small\item\em Déselectionne toutes les checkboxs cochées \end{DoxyCompactList}\item 
-Button \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_aa15d70b2eb99ccc3c793590fa01d6881}{copy\+All}} = new Button()
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_aa15d70b2eb99ccc3c793590fa01d6881}\label{class_m_t_connect_agent_1_1_user_control_display_tab_aa15d70b2eb99ccc3c793590fa01d6881}} 
+Button {\bfseries copy\+All} = new Button()
 \item 
 List\+Box \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a083da92870ac6aad4307ae14a32bc561}{resultats}} = new List\+Box()
 \begin{DoxyCompactList}\small\item\em Liste des paths générés \end{DoxyCompactList}\item 
@@ -106,29 +112,39 @@ List$<$ string $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_dis
 \begin{DoxyCompactList}\small\item\em Liste des paths bruts récupérés sous forme de string via le treeview \end{DoxyCompactList}\item 
 I\+List$<$ Tree\+Node $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a70ccdb75ebd47abf8cf75656c5318492}{nodes}} = new List$<$Tree\+Node$>$()
 \begin{DoxyCompactList}\small\item\em Liste des noeuds du treeview \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{M\+T\+Connect\+Client.\+Protocol}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a3471dd7677ae1037fe9319383ef5ccbd}{protocole}}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a3471dd7677ae1037fe9319383ef5ccbd}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a3471dd7677ae1037fe9319383ef5ccbd}} 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{M\+T\+Connect\+Client.\+Protocol}} {\bfseries protocole}
 \item 
-Dictionary$<$ string, \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{M\+T\+Connect\+Client.\+Protocol}} $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a1befb6328dc600965793a138d51ef77e}{dictionnaire\+Protocoles}}
+Dictionary$<$ string, \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{M\+T\+Connect\+Client.\+Protocol}} $>$ {\bfseries dictionnaire\+Protocoles}
 \item 
-readonly Anchor\+Styles \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_aa600efb65adb7313ed6e5ec98c84863c}{All\+Side\+Anchor}} = Anchor\+Styles.\+Top $\vert$ Anchor\+Styles.\+Bottom $\vert$ Anchor\+Styles.\+Left $\vert$ Anchor\+Styles.\+Right
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_aa600efb65adb7313ed6e5ec98c84863c}\label{class_m_t_connect_agent_1_1_user_control_display_tab_aa600efb65adb7313ed6e5ec98c84863c}} 
+readonly Anchor\+Styles {\bfseries All\+Side\+Anchor} = Anchor\+Styles.\+Top $\vert$ Anchor\+Styles.\+Bottom $\vert$ Anchor\+Styles.\+Left $\vert$ Anchor\+Styles.\+Right
 \item 
-readonly Font \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a2de53bacd7b44a121af957bda6d0faa4}{bold\+Font}} = new Font(\char`\"{}Microsoft Sans Serif\char`\"{}, 9\+F, Font\+Style.\+Bold, Graphics\+Unit.\+Point, 0)
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a2de53bacd7b44a121af957bda6d0faa4}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a2de53bacd7b44a121af957bda6d0faa4}} 
+readonly Font {\bfseries bold\+Font} = new Font(\char`\"{}Microsoft Sans Serif\char`\"{}, 9\+F, Font\+Style.\+Bold, Graphics\+Unit.\+Point, 0)
 \item 
 System.\+Component\+Model.\+I\+Container \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a69ab804e102c9f7530a0441d2dd65da6}{components}} = null
 \begin{DoxyCompactList}\small\item\em Variable nécessaire au concepteur. \end{DoxyCompactList}\item 
-System.\+Windows.\+Forms.\+Tree\+View \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_ac4f4ff399ae001cb2d8774b58a4e5532}{tree\+Affichage}}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ac4f4ff399ae001cb2d8774b58a4e5532}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ac4f4ff399ae001cb2d8774b58a4e5532}} 
+System.\+Windows.\+Forms.\+Tree\+View {\bfseries tree\+Affichage}
 \item 
-System.\+Windows.\+Forms.\+Group\+Box \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a0f26e5be51a11045133d1bdd3b8ebaee}{container}}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a0f26e5be51a11045133d1bdd3b8ebaee}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a0f26e5be51a11045133d1bdd3b8ebaee}} 
+System.\+Windows.\+Forms.\+Group\+Box {\bfseries container}
 \item 
-System.\+Windows.\+Forms.\+Flow\+Layout\+Panel \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a11dd621a8bf6a2d3b0be91f20fc0c9f0}{container\+Flow}}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a11dd621a8bf6a2d3b0be91f20fc0c9f0}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a11dd621a8bf6a2d3b0be91f20fc0c9f0}} 
+System.\+Windows.\+Forms.\+Flow\+Layout\+Panel {\bfseries container\+Flow}
 \item 
-System.\+Windows.\+Forms.\+Button \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_ad2e73116a8315b183e006850caa767ad}{btn\+Expand\+Nodes}}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ad2e73116a8315b183e006850caa767ad}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ad2e73116a8315b183e006850caa767ad}} 
+System.\+Windows.\+Forms.\+Button {\bfseries btn\+Expand\+Nodes}
 \item 
-System.\+Windows.\+Forms.\+Button \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_aa39615008797ebe155e99322a8a0e020}{btn\+Collapse\+Nodes}}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_aa39615008797ebe155e99322a8a0e020}\label{class_m_t_connect_agent_1_1_user_control_display_tab_aa39615008797ebe155e99322a8a0e020}} 
+System.\+Windows.\+Forms.\+Button {\bfseries btn\+Collapse\+Nodes}
 \item 
-System.\+Windows.\+Forms.\+Text\+Box \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a789854421cf3f00de88bc6bf168e4ada}{recherche\+Box}}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a789854421cf3f00de88bc6bf168e4ada}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a789854421cf3f00de88bc6bf168e4ada}} 
+System.\+Windows.\+Forms.\+Text\+Box {\bfseries recherche\+Box}
 \item 
-System.\+Windows.\+Forms.\+Image\+List \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a4e0ab361176edf2f0a3b1f7bf0fe4f5d}{image\+List\+Icons}}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a4e0ab361176edf2f0a3b1f7bf0fe4f5d}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a4e0ab361176edf2f0a3b1f7bf0fe4f5d}} 
+System.\+Windows.\+Forms.\+Image\+List {\bfseries image\+List\+Icons}
 \end{DoxyCompactItemize}
 
 
@@ -137,35 +153,12 @@ Gere les interactions entre l\textquotesingle{}interface et la logique métier
 
 
 
-\subsection{Documentation des énumérations membres}
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ec}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ec}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Functions@{Functions}}
-\index{Functions@{Functions}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{Functions}{Functions}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ec}{M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Functions}}\hspace{0.3cm}{\ttfamily [strong]}}
-
-\begin{DoxyEnumFields}{Valeurs énumérées}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{probe@{probe}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!probe@{probe}}}\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557eca8da843ff65205a61374b09b81ed0fa35}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557eca8da843ff65205a61374b09b81ed0fa35}} 
-probe&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{current@{current}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!current@{current}}}\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557eca43b5c9175984c071f30b873fdce0a000}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557eca43b5c9175984c071f30b873fdce0a000}} 
-current&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{path@{path}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!path@{path}}}\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ecad6fe1d0be6347b8ef2427fa629c04485}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ecad6fe1d0be6347b8ef2427fa629c04485}} 
-path&\\
-\hline
-
-\end{DoxyEnumFields}
-
-
 \subsection{Documentation des constructeurs et destructeur}
 \mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a75f993d745781ea932a201f00bbe150e}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a75f993d745781ea932a201f00bbe150e}} 
 \index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!User\+Control\+Display\+Tab@{User\+Control\+Display\+Tab}}
 \index{User\+Control\+Display\+Tab@{User\+Control\+Display\+Tab}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
 \subsubsection{\texorpdfstring{User\+Control\+Display\+Tab()}{UserControlDisplayTab()}}
-{\footnotesize\ttfamily M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+User\+Control\+Display\+Tab (\begin{DoxyParamCaption}\item[{string}]{url,  }\item[{\mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ec}{Functions}}}]{fx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+User\+Control\+Display\+Tab (\begin{DoxyParamCaption}\item[{string}]{url,  }\item[{Functions}]{fx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -198,12 +191,6 @@ Actualise les paths lors du clic sur le bouton \char`\"{}or\char`\"{}
 {\em e} & Evenenement provoqué\\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ae279107d6601b7bc7b28a44dcbc68e5e}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ae279107d6601b7bc7b28a44dcbc68e5e}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Changement\+Protocole@{Changement\+Protocole}}
-\index{Changement\+Protocole@{Changement\+Protocole}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{Changement\+Protocole()}{ChangementProtocole()}}
-{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+Changement\+Protocole (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
-
 \mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a9e5f7105041510bae0e1da721a7bc4c3}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a9e5f7105041510bae0e1da721a7bc4c3}} 
 \index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!Collapse\+Nodes@{Collapse\+Nodes}}
 \index{Collapse\+Nodes@{Collapse\+Nodes}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
@@ -544,30 +531,6 @@ Charge la fenêtre sélectionnée avec l\textquotesingle{}affichage qui correspo
 
 
 \subsection{Documentation des données membres}
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_aa600efb65adb7313ed6e5ec98c84863c}\label{class_m_t_connect_agent_1_1_user_control_display_tab_aa600efb65adb7313ed6e5ec98c84863c}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!All\+Side\+Anchor@{All\+Side\+Anchor}}
-\index{All\+Side\+Anchor@{All\+Side\+Anchor}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{All\+Side\+Anchor}{AllSideAnchor}}
-{\footnotesize\ttfamily readonly Anchor\+Styles M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+All\+Side\+Anchor = Anchor\+Styles.\+Top $\vert$ Anchor\+Styles.\+Bottom $\vert$ Anchor\+Styles.\+Left $\vert$ Anchor\+Styles.\+Right\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a2de53bacd7b44a121af957bda6d0faa4}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a2de53bacd7b44a121af957bda6d0faa4}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!bold\+Font@{bold\+Font}}
-\index{bold\+Font@{bold\+Font}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{bold\+Font}{boldFont}}
-{\footnotesize\ttfamily readonly Font M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+bold\+Font = new Font(\char`\"{}Microsoft Sans Serif\char`\"{}, 9\+F, Font\+Style.\+Bold, Graphics\+Unit.\+Point, 0)\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_aa39615008797ebe155e99322a8a0e020}\label{class_m_t_connect_agent_1_1_user_control_display_tab_aa39615008797ebe155e99322a8a0e020}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!btn\+Collapse\+Nodes@{btn\+Collapse\+Nodes}}
-\index{btn\+Collapse\+Nodes@{btn\+Collapse\+Nodes}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{btn\+Collapse\+Nodes}{btnCollapseNodes}}
-{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Button M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+btn\+Collapse\+Nodes\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ad2e73116a8315b183e006850caa767ad}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ad2e73116a8315b183e006850caa767ad}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!btn\+Expand\+Nodes@{btn\+Expand\+Nodes}}
-\index{btn\+Expand\+Nodes@{btn\+Expand\+Nodes}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{btn\+Expand\+Nodes}{btnExpandNodes}}
-{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Button M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+btn\+Expand\+Nodes\hspace{0.3cm}{\ttfamily [private]}}
-
 \mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a69ab804e102c9f7530a0441d2dd65da6}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a69ab804e102c9f7530a0441d2dd65da6}} 
 \index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!components@{components}}
 \index{components@{components}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
@@ -577,24 +540,6 @@ Charge la fenêtre sélectionnée avec l\textquotesingle{}affichage qui correspo
 
 
 Variable nécessaire au concepteur. 
-
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a0f26e5be51a11045133d1bdd3b8ebaee}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a0f26e5be51a11045133d1bdd3b8ebaee}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!container@{container}}
-\index{container@{container}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{container}{container}}
-{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Group\+Box M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+container\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a11dd621a8bf6a2d3b0be91f20fc0c9f0}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a11dd621a8bf6a2d3b0be91f20fc0c9f0}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!container\+Flow@{container\+Flow}}
-\index{container\+Flow@{container\+Flow}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{container\+Flow}{containerFlow}}
-{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Flow\+Layout\+Panel M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+container\+Flow\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_aa15d70b2eb99ccc3c793590fa01d6881}\label{class_m_t_connect_agent_1_1_user_control_display_tab_aa15d70b2eb99ccc3c793590fa01d6881}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!copy\+All@{copy\+All}}
-\index{copy\+All@{copy\+All}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{copy\+All}{copyAll}}
-{\footnotesize\ttfamily Button M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+copy\+All = new Button()\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ae9cb8140db2e3be2016b811f1df7010a}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ae9cb8140db2e3be2016b811f1df7010a}} 
 \index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!current\+Radio@{current\+Radio}}
@@ -631,18 +576,6 @@ Déselectionne toutes les checkboxs cochées
             \{\textcolor{stringliteral}{"Sample"}, MTConnectClient.Protocol.sample \}
         \}
 \end{DoxyCode}
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_addffe628fc1709f3f186bdaa1946e558}\label{class_m_t_connect_agent_1_1_user_control_display_tab_addffe628fc1709f3f186bdaa1946e558}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!fx@{fx}}
-\index{fx@{fx}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{fx}{fx}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_m_t_connect_agent_1_1_user_control_display_tab_a39c6241e9b8ef40634f8340676d557ec}{Functions}} M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+fx\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a4e0ab361176edf2f0a3b1f7bf0fe4f5d}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a4e0ab361176edf2f0a3b1f7bf0fe4f5d}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!image\+List\+Icons@{image\+List\+Icons}}
-\index{image\+List\+Icons@{image\+List\+Icons}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{image\+List\+Icons}{imageListIcons}}
-{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Image\+List M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+image\+List\+Icons\hspace{0.3cm}{\ttfamily [private]}}
-
 \mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a4bfdc2032bbe24566e9e4d7053438ab1}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a4bfdc2032bbe24566e9e4d7053438ab1}} 
 \index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!instance@{instance}}
 \index{instance@{instance}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
@@ -683,18 +616,6 @@ Checkbox pour choisir l\textquotesingle{}option or
 
 Liste des paths bruts récupérés sous forme de string via le treeview 
 
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a3471dd7677ae1037fe9319383ef5ccbd}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a3471dd7677ae1037fe9319383ef5ccbd}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!protocole@{protocole}}
-\index{protocole@{protocole}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{protocole}{protocole}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{M\+T\+Connect\+Client.\+Protocol}} M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+protocole\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a789854421cf3f00de88bc6bf168e4ada}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a789854421cf3f00de88bc6bf168e4ada}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!recherche\+Box@{recherche\+Box}}
-\index{recherche\+Box@{recherche\+Box}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{recherche\+Box}{rechercheBox}}
-{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Text\+Box M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+recherche\+Box\hspace{0.3cm}{\ttfamily [private]}}
-
 \mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_a083da92870ac6aad4307ae14a32bc561}\label{class_m_t_connect_agent_1_1_user_control_display_tab_a083da92870ac6aad4307ae14a32bc561}} 
 \index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!resultats@{resultats}}
 \index{resultats@{resultats}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
@@ -715,27 +636,9 @@ Liste des paths générés
 
 Bouton radio permettant de choisir le protocole sample. 
 
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_adb85fd45a6e04656bf4eed212040e1a9}\label{class_m_t_connect_agent_1_1_user_control_display_tab_adb85fd45a6e04656bf4eed212040e1a9}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!tag\+Machine@{tag\+Machine}}
-\index{tag\+Machine@{tag\+Machine}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{tag\+Machine}{tagMachine}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+tag\+Machine\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_ac4f4ff399ae001cb2d8774b58a4e5532}\label{class_m_t_connect_agent_1_1_user_control_display_tab_ac4f4ff399ae001cb2d8774b58a4e5532}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!tree\+Affichage@{tree\+Affichage}}
-\index{tree\+Affichage@{tree\+Affichage}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{tree\+Affichage}{treeAffichage}}
-{\footnotesize\ttfamily System.\+Windows.\+Forms.\+Tree\+View M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+tree\+Affichage\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_m_t_connect_agent_1_1_user_control_display_tab_aadac9f472866bf956cae2bd897200e1a}\label{class_m_t_connect_agent_1_1_user_control_display_tab_aadac9f472866bf956cae2bd897200e1a}} 
-\index{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}!url@{url}}
-\index{url@{url}!M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab@{M\+T\+Connect\+Agent\+::\+User\+Control\+Display\+Tab}}
-\subsubsection{\texorpdfstring{url}{url}}
-{\footnotesize\ttfamily string M\+T\+Connect\+Agent.\+User\+Control\+Display\+Tab.\+url\hspace{0.3cm}{\ttfamily [private]}}
-
 
 
 La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
 \item 
-M\+T\+Connect\+Agent/\mbox{\hyperlink{_user_control_display_tab_8cs}{User\+Control\+Display\+Tab.\+cs}}\item 
-M\+T\+Connect\+Agent/\mbox{\hyperlink{_user_control_display_tab_8_designer_8cs}{User\+Control\+Display\+Tab.\+Designer.\+cs}}\end{DoxyCompactItemize}
+M\+T\+Connect\+Agent/User\+Control\+Display\+Tab.\+cs\item 
+M\+T\+Connect\+Agent/User\+Control\+Display\+Tab.\+Designer.\+cs\end{DoxyCompactItemize}

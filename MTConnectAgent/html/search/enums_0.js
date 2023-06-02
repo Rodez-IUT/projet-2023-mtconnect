@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['functions',['Functions',['../class_m_t_connect_agent_1_1_user_control_display_tab.html#a39c6241e9b8ef40634f8340676d557ec',1,'MTConnectAgent::UserControlDisplayTab']]]
+  ['protocol',['Protocol',['../class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client.html#a2f390f74a0ad3ee5147e9438ceed6474',1,'MTConnectAgent::BLL::MTConnectClient']]]
 ];

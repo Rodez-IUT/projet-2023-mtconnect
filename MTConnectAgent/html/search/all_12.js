@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value',['Value',['../class_m_t_connect_agent_1_1_model_1_1_tag.html#a446f4051e2cf01508b20405491b1ca4a',1,'MTConnectAgent::Model::Tag']]]
+  ['writetobinaryfile_3c_20t_20_3e',['WriteToBinaryFile&lt; T &gt;',['../class_m_t_connect_agent_1_1_form_main.html#a6233cef0809d41ecc061bd6fa63afd5d',1,'MTConnectAgent::FormMain']]]
 ];
