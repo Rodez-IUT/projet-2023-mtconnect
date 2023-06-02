@@ -1,0 +1,728 @@
+Classes to handle the S\+H\+DR Agent Adapter Protocol associated with the M\+T\+Connect Standard.
+
+\subsection*{Overview}
+
+The Shdr\+Adapter classes handle the T\+CP connection to the Agent\+:
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/TrakHound/MTConnect.NET/blob/master/src/MTConnect.NET-SHDR/Adapters/Shdr/ShdrAdapter.cs}{\tt Shdr\+Adapter} \+: Sends the most recent values On-\/\+Demand using the Send\+Changed() method. This is used when full control of the communication is needed.
+\item \href{https://github.com/TrakHound/MTConnect.NET/blob/master/src/MTConnect.NET-SHDR/Adapters/Shdr/ShdrIntervalAdapter.cs}{\tt Shdr\+Interval\+Adapter} \+: Sends the most recent values at the specified Interval. This is used when a set interval is adequate and the most recent value is all that is needed
+\item \href{https://github.com/TrakHound/MTConnect.NET/blob/master/src/MTConnect.NET-SHDR/Adapters/Shdr/ShdrQueueAdapter.cs}{\tt Shdr\+Queue\+Adapter} \+: Queues all values that are sent from the P\+LC and sends them all on demand using the Send\+Buffer() method. This is used when all values are needed and full control of the communication is needed.
+\item \href{https://github.com/TrakHound/MTConnect.NET/blob/master/src/MTConnect.NET-SHDR/Adapters/Shdr/ShdrIntervalQueueAdapter.cs}{\tt Shdr\+Interval\+Queue\+Adapter} \+: Queues all values that are sent from the P\+LC and sends any queued values at the specified Interval. This is used when all values are needed but an interval is adequate.
+\end{DoxyItemize}
+
+S\+H\+DR conversion is handled in each individual class\+:
+\begin{DoxyItemize}
+\item \href{Shdr/ShdrDataItem.cs}{\tt Shdr\+Data\+Item} \+: Handles converting Events and/or Samples with a Representation of V\+A\+L\+UE to the appropriate S\+H\+DR format.
+\item \href{Shdr/ShdrCondition.cs}{\tt Shdr\+Condition} \+: Handles converting Conditions to the appropriate S\+H\+DR format
+\item \href{Shdr/ShdrTimeSeries.cs}{\tt Shdr\+Time\+Series} \+: Handles converting Samples with a Representation of T\+I\+M\+E\+\_\+\+S\+E\+R\+I\+ES to the appropriate S\+H\+DR format
+\item \href{Shdr/ShdrDataSet.cs}{\tt Shdr\+Data\+Set} \+: Handles converting Events and/or Samples with a Representation of D\+A\+T\+A\+\_\+\+S\+ET to the appropriate S\+H\+DR format
+\item \href{Shdr/ShdrTable.cs}{\tt Shdr\+Table} \+: Handles converting Events and/or Samples with a Representation of T\+A\+B\+LE to the appropriate S\+H\+DR format
+\item \href{Shdr/ShdrAsset.cs}{\tt Shdr\+Asset} \+: Handles converting Assets to the appropriate S\+H\+DR format
+\end{DoxyItemize}
+
+The \href{Adapters/Shdr/ShdrAdapterClient.cs}{\tt Shdr\+Adapter\+Client} class handles the T\+CP connection to read from the Adapter and add data to an I\+M\+T\+Connect\+Agent class.
+
+\subsection*{Usage}
+
+There are several different ways to setup and add data to the Shdr\+Adapter
+
+\subsubsection*{Shdr\+Adapter}
+
+The example below creates a new Shdr\+Adapter. The added Data\+Item will be sent using the \char`\"{}adapter.\+Send\+Changed()\char`\"{} method 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Adapters.Shdr;
+
+ShdrAdapter adapter = new ShdrAdapter();
+adapter.Start();
+
+adapter.AddDataItem("L2estop", "ARMED");
+adapter.SendChanged();
+\end{DoxyCode}
+ \#\#\#\# S\+H\+DR Output 
+\begin{DoxyCode}
+2023-01-26T16:48:17.0206852Z|L2estop|ARMED
+\end{DoxyCode}
+
+
+\subsubsection*{Shdr\+Adapter (specific Port)}
+
+The example below creates a new Shdr\+Adapter on the 7980 T\+CP Port. 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Adapters.Shdr;
+
+ShdrAdapter adapter = new ShdrAdapter(7980);
+\end{DoxyCode}
+
+
+\subsubsection*{Shdr\+Adapter (specific Device)}
+
+The example below creates a new Shdr\+Adapter for the \char`\"{}\+O\+K\+U\+M\+A-\/\+Lathe\char`\"{} device. The added Data\+Item will be sent using the \char`\"{}adapter.\+Send\+Changed()\char`\"{} method 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Adapters.Shdr;
+
+ShdrAdapter adapter = new ShdrAdapter("OKUMA-Lathe", 7980);
+adapter.Start();
+
+adapter.AddDataItem("L2estop", "ARMED");
+adapter.SendChanged();
+\end{DoxyCode}
+ \#\#\#\# S\+H\+DR Output 
+\begin{DoxyCode}
+2023-01-26T20:54:34.1694626Z|OKUMA-Lathe:L2estop|ARMED
+\end{DoxyCode}
+
+
+\subsubsection*{Shdr\+Adapter (specific Device and Port)}
+
+The example below creates a new Shdr\+Adapter for the \char`\"{}\+O\+K\+U\+M\+A-\/\+Lathe\char`\"{} device on the 7980 T\+CP Port. 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Adapters.Shdr;
+
+ShdrAdapter adapter = new ShdrAdapter("OKUMA-Lathe", 7980);
+\end{DoxyCode}
+
+
+\subsubsection*{Shdr\+Interval\+Adapter}
+
+The example below creates a new Shdr\+Interval\+Adapter and sets the Interval to 500ms. Only the most recent Data\+Item with the ID = \char`\"{}\+L2estop\char`\"{} will be sent after 500ms has elapsed. 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Adapters.Shdr;
+
+ShdrIntervalAdapter adapter = new ShdrIntervalAdapter(interval: 500);
+adapter.Start();
+
+adapter.AddDataItem("L2estop", "ARMED");
+adapter.AddDataItem("L2estop", "TRIGGERED");
+adapter.AddDataItem("L2estop", "ARMED");
+adapter.AddDataItem("L2estop", "TRIGGERED");
+\end{DoxyCode}
+ \#\#\#\# S\+H\+DR Output 
+\begin{DoxyCode}
+2023-01-26T17:22:10.3128693Z|L2estop|TRIGGERED
+\end{DoxyCode}
+
+
+\subsubsection*{Shdr\+Queue\+Adapter}
+
+The example below creates a new Shdr\+Queue\+Adapter. All of the added Data\+Items will be sent using the \char`\"{}adapter.\+Send\+Buffer()\char`\"{} method 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Adapters.Shdr;
+
+ShdrQueueAdapter adapter = new ShdrQueueAdapter();
+adapter.Start();
+
+adapter.AddDataItem("L2estop", "ARMED");
+adapter.AddDataItem("L2estop", "TRIGGERED");
+adapter.AddDataItem("L2estop", "ARMED");
+adapter.AddDataItem("L2estop", "TRIGGERED");
+adapter.SendBuffer();
+\end{DoxyCode}
+ \#\#\#\# S\+H\+DR Output 
+\begin{DoxyCode}
+2023-01-26T17:22:10.2882160Z|L2estop|ARMED
+2023-01-26T17:22:10.3125127Z|L2estop|TRIGGERED
+2023-01-26T17:22:10.3128389Z|L2estop|ARMED
+2023-01-26T17:22:10.3128693Z|L2estop|TRIGGERED
+\end{DoxyCode}
+
+
+\subsubsection*{Shdr\+Interval\+Queue\+Adapter}
+
+The example below creates a new Shdr\+Interval\+Queue\+Adapter and sets the Interval to 500ms. All of the added Data\+Items will be sent after 500ms has elapsed. 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Adapters.Shdr;
+
+ShdrIntervalQueueAdapter adapter = new ShdrIntervalQueueAdapter(interval: 500);
+adapter.Start();
+
+adapter.AddDataItem("L2estop", "ARMED");
+adapter.AddDataItem("L2estop", "TRIGGERED");
+adapter.AddDataItem("L2estop", "ARMED");
+adapter.AddDataItem("L2estop", "TRIGGERED");
+\end{DoxyCode}
+ \#\#\#\# S\+H\+DR Output 
+\begin{DoxyCode}
+2023-01-26T17:22:10.2882160Z|L2estop|ARMED
+2023-01-26T17:22:10.3125127Z|L2estop|TRIGGERED
+2023-01-26T17:22:10.3128389Z|L2estop|ARMED
+2023-01-26T17:22:10.3128693Z|L2estop|TRIGGERED
+\end{DoxyCode}
+
+
+\subsection*{Configuration}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily Id} -\/ Get a unique identifier for the Adapter
+\item {\ttfamily Device\+Key} -\/ The Name or U\+U\+ID of the Device to create a connection for
+\item {\ttfamily Port} -\/ The T\+CP Port used for communication
+\item {\ttfamily Heartbeat} -\/ The heartbeat used to maintain a connection between the Adapter and the Agent
+\item {\ttfamily Connection\+Timeout} -\/ The amount of time (in milliseconds) to allow for a connection attempt to the Agent
+\item {\ttfamily Reconnect\+Interval} -\/ The amount of time (in milliseconds) between adapter reconnection attempts
+\item {\ttfamily Multiline\+Assets} -\/ Use multiline Assets
+\item {\ttfamily Multiline\+Devices} -\/ Sets the default for Converting Units when adding Observations
+\item {\ttfamily Filter\+Duplicates} -\/ Determines whether to filter out duplicate data
+\item {\ttfamily Output\+Timestamps} -\/ Determines whether to output Timestamps for each S\+H\+DR line
+\end{DoxyItemize}
+
+\subsubsection*{Output\+Timestamps}
+
+Timestamps may be output in the S\+H\+DR protocol in order to pass the timestamp from the Adapter instead of allowing the Agent to apply a timestamp.
+
+{\bfseries Output\+Timestamp} = true 
+\begin{DoxyCode}
+2023-01-27T03:47:53.4477372Z|L2estop|ARMED
+\end{DoxyCode}
+ {\bfseries Output\+Timestamp} = false 
+\begin{DoxyCode}
+L2estop|ARMED
+\end{DoxyCode}
+
+
+\subsection*{Sending Data}
+
+\#\#\# Add Data\+Items Individually 
+\begin{DoxyCode}
+\{c#\}
+// DataItemId and CDATA
+adapter.AddDataItem("L2estop", "ARMED");
+
+// DataItemId and CDATA, and Timestamp
+adapter.AddDataItem("L2estop", "ARMED", DateTime.UtcNow);
+
+// DataItemId and CDATA as ShdrDataItem
+adapter.AddDataItem(new ShdrDataItem("L2estop", "ARMED"));
+
+// DataItemId, CDATA, and Timestamp as ShdrDataItem
+adapter.AddDataItem(new ShdrDataItem("L2estop", "ARMED", DateTime.UtcNow));
+\end{DoxyCode}
+ \begin{quote}
+If no timestamp is given then the timestamp will be set when the Data\+Item is sent to the Agent. To insure that all dataitems have the same timestamp, it can be set explicitly. \end{quote}
+
+
+\#\#\# Add List of Data\+Items 
+\begin{DoxyCode}
+\{c#\}
+var ts = DateTime.UtcNow;
+var dataItems = new List<ShdrDataItem>();
+
+dataItems.Add(new ShdrDataItem("L2p1execution", "READY", ts));
+dataItems.Add(new ShdrDataItem("L2p1Fovr", 100, ts));
+dataItems.Add(new ShdrDataItem("L2p1partcount", 15, ts));
+dataItems.Add(new ShdrDataItem("L2p1Fact", 250, ts));
+
+adapter.AddDataItems(dataItems);
+\end{DoxyCode}
+ \#\#\#\# Output 
+\begin{DoxyCode}
+2023-01-26T20:50:53.6161001Z|L2p1execution|READY|L2p1Fovr|100|L2p1partcount|15|L2p1Fact|250
+\end{DoxyCode}
+
+
+\#\#\# Store Data\+Items in Variables 
+\begin{DoxyCode}
+\{c#\}
+ShdrDataItem executionDataItem = new ShdrDataItem("L2p1execution");
+ShdrDataItem feedrateOverrideDataItem = new ShdrDataItem("L2p1Fovr");
+ShdrDataItem partCountDataItem = new ShdrDataItem("L2p1partcount");
+ShdrDataItem feedrateActualDataItem = new ShdrDataItem("L2p1Fact");
+
+executionDataItem.Value = "READY";
+feedrateOverrideDataItem.Value = 100;
+partCountDataItem.Value = 15;
+feedrateActualDataItem.Value = 250;
+
+adapter.AddDataItem(executionDataItem);
+adapter.AddDataItem(feedrateOverrideDataItem);
+adapter.AddDataItem(partCountDataItem);
+adapter.AddDataItem(feedrateActualDataItem);
+\end{DoxyCode}
+
+
+\subsubsection*{Send Data\+Item Manually}
+
+Data\+Items can be added to the Adapter and immediately send to the Agent using the \char`\"{}\+Send\+Data\+Item()\char`\"{} method 
+\begin{DoxyCode}
+\{c#\}
+adapter.SendDataItem("L2estop", "ARMED");
+\end{DoxyCode}
+
+
+\subsection*{Conditions}
+
+The Shdr\+Condition class is used to send M\+T\+Connect Condition data using the 5 primary values Level, Native\+Code, Native\+Severity, Qualifier, and Message (referred to as Result in the M\+T\+Connect Standard). A Condition is made up of 1 or more Fault\+States. Each Fault\+State is represented by the Shdr\+Fault\+State class.
+
+\#\#\#\# Add a Fault Condition 
+\begin{DoxyCode}
+\{c#\}
+ShdrCondition condition = new ShdrCondition("L2p1system", ConditionLevel.FAULT);
+adapter.AddCondition(condition);
+\end{DoxyCode}
+
+
+A Condition can also be added by using the built-\/in functions\+:
+
+\#\#\#\# Set the Condition to Normal 
+\begin{DoxyCode}
+\{c#\}
+ShdrCondition condition = new ShdrCondition("L2p1system");
+condition.Normal();
+
+adapter.AddCondition(condition);
+\end{DoxyCode}
+
+
+\#\#\#\# Set the Condition to Warning 
+\begin{DoxyCode}
+\{c#\}
+ShdrCondition condition = new ShdrCondition("L2p1system");
+condition.Warning("Not Found", "404", "100", ConditionQualifier.LOW);
+
+adapter.AddCondition(condition);
+\end{DoxyCode}
+
+
+\#\#\#\# Set the Condition to Fault 
+\begin{DoxyCode}
+\{c#\}
+ShdrCondition condition = new ShdrCondition("L2p1system");
+condition.Fault("Internal Error", "500", "10254", ConditionQualifier.HIGH);
+
+adapter.AddCondition(condition);
+\end{DoxyCode}
+
+
+\#\#\#\# Set multiple Fault\+States 
+\begin{DoxyCode}
+\{c#\}
+ShdrCondition condition = new ShdrCondition("L2p1coolant");
+condition.AddWarning("Coolant Level Low", "47321", qualifier: ConditionQualifier.LOW);
+condition.AddWarning("Coolant Temperature High", "98712", qualifier: ConditionQualifier.HIGH);
+
+adapter.AddCondition(condition);
+\end{DoxyCode}
+
+
+\#\#\#\# Set the Condition to Unavailable 
+\begin{DoxyCode}
+\{c#\}
+ShdrCondition condition = new ShdrCondition("L2p1system");
+condition.Unavailable();
+
+adapter.AddCondition(condition);
+\end{DoxyCode}
+
+
+\#\#\#\# Add Fault\+States Individually 
+\begin{DoxyCode}
+\{c#\}
+ShdrCondition condition = new ShdrCondition("L2p1system");
+
+ShdrFaultState faultState = new ShdrFaultState();
+faultState.NativeCode = "404";
+faultState.NativeSeverity = "100";
+faultState.Qualifier = "LOW";
+faultState.Message = "Testing from new adapter";
+
+condition.AddFaultState(faultState);
+adapter.AddCondition(condition);
+\end{DoxyCode}
+
+
+\subsubsection*{Send Condition Manually}
+
+Conditions can be added to the Adapter and immediately send to the Agent using the \char`\"{}\+Send\+Condition()\char`\"{} method 
+\begin{DoxyCode}
+\{c#\}
+adapter.SendCondition(condition);
+\end{DoxyCode}
+
+
+\#\# Time\+Series 
+\begin{DoxyCode}
+\{c#\}
+List<double> samples = new List<double>();
+samples.Add(12);
+samples.Add(15);
+samples.Add(14);
+samples.Add(18);
+samples.Add(25);
+samples.Add(30);
+
+ShdrTimeSeries timeSeries = new ShdrTimeSeries("L2p1Sensor", samples, 100);
+
+adapter.AddTimeSeries(timeSeries);
+\end{DoxyCode}
+ \#\#\# Output 
+\begin{DoxyCode}
+2023-01-26T20:39:28.1540686Z|L2p1Sensor|6|100|12 15 14 18 25 30
+\end{DoxyCode}
+
+
+\subsubsection*{Send Time\+Series Manually}
+
+Time\+Series can be added to the Adapter and immediately send to the Agent using the \char`\"{}\+Send\+Time\+Series()\char`\"{} method 
+\begin{DoxyCode}
+\{c#\}
+adapter.SendTimeSeries(timeSeries);
+\end{DoxyCode}
+
+
+\#\# Data\+Sets 
+\begin{DoxyCode}
+\{c#\}
+List<DataSetEntry> dataSetEntries = new List<DataSetEntry>();
+dataSetEntries.Add(new DataSetEntry("V1", 5));
+dataSetEntries.Add(new DataSetEntry("V2", 205));
+
+ShdrDataSet dataSet = new ShdrDataSet("L2p1Variables", dataSetEntries);
+
+adapter.AddDataSet(dataSet);
+\end{DoxyCode}
+ \#\#\# Output 
+\begin{DoxyCode}
+2023-01-26T20:40:30.6718334Z|L2p1Variables|V1=5 V2=205
+\end{DoxyCode}
+
+
+\subsubsection*{Send Data\+Sets Manually}
+
+Data\+Sets can be added to the Adapter and immediately send to the Agent using the \char`\"{}\+Send\+Data\+Sets()\char`\"{} method 
+\begin{DoxyCode}
+\{c#\}
+adapter.SendDataSets(dataSet);
+\end{DoxyCode}
+
+
+\#\# Tables 
+\begin{DoxyCode}
+\{c#\}
+List<TableEntry> tableEntries = new List<TableEntry>();
+
+// Tool 1
+List<TableCell> t1Cells = new List<TableCell>();
+t1Cells.Add(new TableCell("LENGTH", 7.123));
+t1Cells.Add(new TableCell("DIAMETER", 0.494));
+t1Cells.Add(new TableCell("REMAINING\_LIFE", 35));
+tableEntries.Add(new TableEntry("T1", t1Cells));
+
+// Tool 2
+List<TableCell> t2Cells = new List<TableCell>();
+t2Cells.Add(new TableCell("LENGTH", 10.456));
+t2Cells.Add(new TableCell("DIAMETER", 0.125));
+t2Cells.Add(new TableCell("REMAINING\_LIFE", 100));
+tableEntries.Add(new TableEntry("T2", t2Cells));
+
+// Tool 3
+List<TableCell> t3Cells = new List<TableCell>();
+t3Cells.Add(new TableCell("LENGTH", 6.251));
+t3Cells.Add(new TableCell("DIAMETER", 1.249));
+t3Cells.Add(new TableCell("REMAINING\_LIFE", 93));
+tableEntries.Add(new TableEntry("T3", t3Cells));
+
+ShdrTable table = new ShdrTable("L2p1ToolTable", tableEntries);
+
+adapter.AddTable(table);
+\end{DoxyCode}
+ \#\#\# Output 
+\begin{DoxyCode}
+2023-01-26T20:40:55.8702675Z|L2p1ToolTable|T1=\{LENGTH=7.123 DIAMETER=0.494 TOOL\_LIFE=0.35\}
+       T2=\{LENGTH=10.456 DIAMETER=0.125 TOOL\_LIFE=1\} T3=\{LENGTH=6.251 DIAMETER=1.249 TOOL\_LIFE=0.93\}
+\end{DoxyCode}
+
+
+\subsubsection*{Send Tables Manually}
+
+Tables can be added to the Adapter and immediately send to the Agent using the \char`\"{}\+Send\+Tables()\char`\"{} method 
+\begin{DoxyCode}
+\{c#\}
+adapter.SendTables(table);
+\end{DoxyCode}
+
+
+\subsection*{Assets}
+
+M\+T\+Connect Assets are sent by first defining the Asset using the appropriate class (Cutting\+Tool\+Asset, File\+Asset, etc.) then using the \char`\"{}\+Add\+Asset()\char`\"{}.
+
+\#\#\# Cutting\+Tool Asset 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Assets.CuttingTools;
+using MTConnect.Assets.CuttingTools.Measurements;
+
+var tool = new CuttingToolAsset();
+tool.AssetId = "5.12";
+tool.ToolId = "12";
+tool.CuttingToolLifeCycle = new CuttingToolLifeCycle
+\{
+    Location = new Location \{ Type = LocationType.SPINDLE \},
+    ProgramToolNumber = "12",
+    ProgramToolGroup = "5"
+\};
+tool.CuttingToolLifeCycle.Measurements.Add(new FunctionalLengthMeasurement(7.6543));
+tool.CuttingToolLifeCycle.Measurements.Add(new CuttingDiameterMaxMeasurement(0.375));
+tool.CuttingToolLifeCycle.CuttingItems.Add(new CuttingItem
+\{
+    ItemId = "12.1",
+    Locus = CuttingItemLocas.FLUTE.ToString()
+\});
+tool.CuttingToolLifeCycle.CutterStatus.Add(CutterStatus.AVAILABLE);
+tool.CuttingToolLifeCycle.CutterStatus.Add(CutterStatus.NEW);
+tool.CuttingToolLifeCycle.CutterStatus.Add(CutterStatus.MEASURED);
+tool.DateTime = DateTime.Now;
+
+adapter.AddAsset(tool);
+\end{DoxyCode}
+ \#\#\#\# Output (with Multiline\+Assets = true) 
+\begin{DoxyCode}
+2023-01-26T17:56:59.9694353Z|@ASSET@|5.12|CuttingTool|--multiline--W5XZBJ2QZV
+<CuttingTool assetId="5.12" timestamp="2023-01-26T12:56:59.4778578-05:00" toolId="12">
+  <CuttingToolLifeCycle>
+    <CutterStatus>
+      <Status>AVAILABLE</Status>
+      <Status>NEW</Status>
+      <Status>MEASURED</Status>
+    </CutterStatus>
+    <Location type="SPINDLE">0</Location>
+    <ProgramToolGroup>5</ProgramToolGroup>
+    <ProgramToolNumber>12</ProgramToolNumber>
+    <Measurements>
+      <FunctionalLength units="MILLIMETER" code="LF">7.6543</FunctionalLength>
+      <CuttingDiameterMax units="MILLIMETER" code="DC">0.375</CuttingDiameterMax>
+    </Measurements>
+    <CuttingItems count="1">
+      <CuttingItem itemId="12.1">
+        <Locus>FLUTE</Locus>
+      </CuttingItem>
+    </CuttingItems>
+  </CuttingToolLifeCycle>
+</CuttingTool>
+--multiline--W5XZBJ2QZV
+\end{DoxyCode}
+
+
+\#\#\# File Asset 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Assets.Files;
+
+var file = new FileAsset();
+file.DateTime = DateTime.UtcNow;
+file.AssetId = "file.test";
+file.Size = 12346;
+file.VersionId = "test-v1";
+file.State = FileState.PRODUCTION;
+file.Name = "file-123.txt";
+file.MediaType = "text/plain";
+file.ApplicationCategory = ApplicationCategory.DEVICE;
+file.ApplicationType = ApplicationType.DATA;
+file.FileLocation = new FileLocation(@"C:\(\backslash\)temp\(\backslash\)file-123.txt");
+file.CreationTime = DateTime.Now;
+
+adapter.AddAsset(file);
+\end{DoxyCode}
+ \#\#\#\# Output (with Multiline\+Assets = true) 
+\begin{DoxyCode}
+2023-01-26T18:01:50.3085245Z|@ASSET@|file.test|File|--multiline--6UH71Y7IYW
+<File assetId="file.test" timestamp="2023-01-26T18:01:49.9929867Z" name="file-123.txt"
+       mediaType="text/plain" applicationCategory="DEVICE" applicationType="DATA" size="12346" versionId="test-v1" state="PRODUCTION">
+  <FileLocation href="C:\(\backslash\)temp\(\backslash\)file-123.txt" />
+  <CreationTime>2023-01-26T13:01:49.9939538-05:00</CreationTime>
+</File>
+--multiline--6UH71Y7IYW
+\end{DoxyCode}
+
+
+\#\#\# Add Multiple Assets 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Assets.CuttingTools;
+using MTConnect.Assets.CuttingTools.Measurements;
+using MTConnect.Assets.Files;
+
+var assets = new List<IAsset>();
+
+
+// Add the Cutting Tool Asset to the "assets" list variable
+var tool = new CuttingToolAsset();
+tool.AssetId = "5.12";
+tool.ToolId = "12";
+tool.CuttingToolLifeCycle = new CuttingToolLifeCycle
+\{
+    Location = new Location \{ Type = LocationType.SPINDLE \},
+    ProgramToolNumber = "12",
+    ProgramToolGroup = "5"
+\};
+tool.CuttingToolLifeCycle.Measurements.Add(new FunctionalLengthMeasurement(7.6543));
+tool.CuttingToolLifeCycle.Measurements.Add(new CuttingDiameterMaxMeasurement(0.375));
+tool.CuttingToolLifeCycle.CuttingItems.Add(new CuttingItem
+\{
+    ItemId = "12.1",
+    Locus = CuttingItemLocas.FLUTE.ToString()
+\});
+tool.CuttingToolLifeCycle.CutterStatus.Add(CutterStatus.AVAILABLE);
+tool.CuttingToolLifeCycle.CutterStatus.Add(CutterStatus.NEW);
+tool.CuttingToolLifeCycle.CutterStatus.Add(CutterStatus.MEASURED);
+tool.DateTime = DateTime.Now;
+
+assets.Add(tool);
+
+
+// Add the File Asset to the "assets" list variable
+var file = new FileAsset();
+file.DateTime = DateTime.UtcNow;
+file.AssetId = "file.test";
+file.Size = 12346;
+file.VersionId = "test-v1";
+file.State = FileState.PRODUCTION;
+file.Name = "file-123.txt";
+file.MediaType = "text/plain";
+file.ApplicationCategory = ApplicationCategory.DEVICE;
+file.ApplicationType = ApplicationType.DATA;
+file.FileLocation = new FileLocation(@"C:\(\backslash\)temp\(\backslash\)file-123.txt");
+file.CreationTime = DateTime.Now;
+
+assets.Add(file);
+
+adapter.AddAssets(assets);
+\end{DoxyCode}
+
+
+\subsubsection*{Send Asset Manually}
+
+Assets can be added to the Adapter and immediately send to the Agent using the \char`\"{}\+Send\+Asset()\char`\"{} method 
+\begin{DoxyCode}
+\{c#\}
+using MTConnect.Assets.Files;
+
+var file = new FileAsset();
+// ..
+// ..
+// ..
+
+adapter.SendAsset(file);
+\end{DoxyCode}
+
+
+\#\#\# Remove Individual Asset by Asset\+Id 
+\begin{DoxyCode}
+\{c#\}
+adapter.RemoveAsset("file.test");
+\end{DoxyCode}
+ \#\#\#\# Output 
+\begin{DoxyCode}
+2023-01-26T18:21:57.8208518Z|@REMOVE\_ASSET@|file.test
+\end{DoxyCode}
+
+
+\#\#\# Remove All Assets of a specified Type 
+\begin{DoxyCode}
+\{c#\}
+adapter.RemoveAllAssets("File");
+\end{DoxyCode}
+ \#\#\#\# Output 
+\begin{DoxyCode}
+2023-01-26T18:31:23.6664032Z|@REMOVE\_ALL\_ASSETS@|File
+\end{DoxyCode}
+
+
+\subsection*{S\+H\+DR Conversion}
+
+Conversion to and from an S\+H\+DR message is done through methods in the Shdr\+Data\+Item, Shdr\+Condition, Shdr\+Time\+Series, Shdr\+Data\+Set, and Shdr\+Table classes. Each class overrides the base \char`\"{}\+To\+String()\char`\"{} method and also contains a \char`\"{}\+From\+String()\char`\"{} method. The \char`\"{}\+To\+String()\char`\"{} method creates an S\+H\+DR compatible string from the object and the \char`\"{}\+From\+String()\char`\"{} creates an object from an S\+H\+DR string.
+
+\#\#\# Shdr\+Data\+Item.\+To\+String() 
+\begin{DoxyCode}
+\{c#\}
+ShdrDataItem availableDataItem = new ShdrDataItem("L2avail", Availability.AVAILABLE, DateTime.UtcNow);
+Console.WriteLine(availableDataItem);
+\end{DoxyCode}
+ \begin{quote}
+2022-\/02-\/01\+T13\+:53\+:03.\+6940000Z$\vert$\+L2avail$\vert$\+A\+V\+A\+I\+L\+A\+B\+LE \end{quote}
+
+
+\#\#\# Shdr\+Condition.\+To\+String() 
+\begin{DoxyCode}
+\{c#\}
+ShdrCondition condition = new ShdrCondition("L2p1system", ConditionLevel.FAULT, DateTime.UtcNow);
+condition.NativeCode = "404";
+condition.NativeSeverity = "100";
+condition.Qualifier = "LOW";
+condition.Message = "Testing from new adapter";
+Console.WriteLine(condition);
+\end{DoxyCode}
+ \begin{quote}
+2022-\/02-\/01\+T13\+:55\+:11.\+8460000Z$\vert$\+L2p1system$\vert$\+F\+A\+U\+L\+T$\vert$404$\vert$100$\vert$\+L\+O\+W$\vert$\+Testing from new adapter \end{quote}
+
+
+\#\#\# Shdr\+Time\+Series.\+To\+String() 
+\begin{DoxyCode}
+\{c#\}
+List<double> samples = new List<double>();
+samples.Add(12);
+samples.Add(15);
+samples.Add(14);
+samples.Add(18);
+samples.Add(25);
+samples.Add(30);
+
+ShdrTimeSeries timeSeries = new ShdrTimeSeries("L2p1Sensor", samples, 100, DateTime.UtcNow);
+Console.WriteLine(timeSeries);
+\end{DoxyCode}
+ \begin{quote}
+2022-\/02-\/01\+T13\+:56\+:58.\+7700000Z$\vert$\+L2p1\+Sensor$\vert$6$\vert$100$\vert$12 15 14 18 25 30 \end{quote}
+
+
+\#\#\# Shdr\+Data\+Set.\+To\+String() 
+\begin{DoxyCode}
+\{c#\}
+List<DataSetEntry> dataSetEntries = new List<DataSetEntry>();
+dataSetEntries.Add(new DataSetEntry("V1", 5));
+dataSetEntries.Add(new DataSetEntry("V2", 205));
+
+ShdrDataSet dataSet = new ShdrDataSet("L2p1Variables", dataSetEntries, DateTime.UtcNow);
+Console.WriteLine(dataSet);
+\end{DoxyCode}
+ \begin{quote}
+2022-\/02-\/01\+T13\+:58\+:31.\+8150000Z$\vert$\+L2p1\+Variables$\vert$\+V1=5 V2=205 \end{quote}
+
+
+\#\#\# Shdr\+Table.\+To\+String() 
+\begin{DoxyCode}
+\{c#\}
+List<TableEntry> tableEntries = new List<TableEntry>();
+
+// Tool 1
+List<TableCell> t1Cells = new List<TableCell>();
+t1Cells.Add(new TableCell("LENGTH", 7.123));
+t1Cells.Add(new TableCell("DIAMETER", 0.494));
+t1Cells.Add(new TableCell("TOOL\_LIFE", 0.35));
+tableEntries.Add(new TableEntry("T1", t1Cells));
+
+// Tool 2
+List<TableCell> t2Cells = new List<TableCell>();
+t2Cells.Add(new TableCell("LENGTH", 10.456));
+t2Cells.Add(new TableCell("DIAMETER", 0.125));
+t2Cells.Add(new TableCell("TOOL\_LIFE", 1));
+tableEntries.Add(new TableEntry("T2", t2Cells));
+
+// Tool 3
+List<TableCell> t3Cells = new List<TableCell>();
+t3Cells.Add(new TableCell("LENGTH", 6.251));
+t3Cells.Add(new TableCell("DIAMETER", 1.249));
+t3Cells.Add(new TableCell("TOOL\_LIFE", 0.93));
+tableEntries.Add(new TableEntry("T3", t3Cells));
+
+ShdrTable table = new ShdrTable("L2p1ToolTable", tableEntries, DateTime.UtcNow);
+Console.WriteLine(table);
+\end{DoxyCode}
+ \begin{quote}
+2022-\/02-\/01\+T13\+:59\+:47.\+5980000Z$\vert$\+L2p1\+Tool\+Table$\vert$\+T1=\{L\+E\+N\+G\+TH=7.\+123 D\+I\+A\+M\+E\+T\+ER=0.\+494 T\+O\+O\+L\+\_\+\+L\+I\+FE=0.\+35\} T2=\{L\+E\+N\+G\+TH=10.\+456 D\+I\+A\+M\+E\+T\+ER=0.\+125 T\+O\+O\+L\+\_\+\+L\+I\+FE=1\} T3=\{L\+E\+N\+G\+TH=6.\+251 D\+I\+A\+M\+E\+T\+ER=1.\+249 T\+O\+O\+L\+\_\+\+L\+I\+FE=0.\+93\}\end{quote}

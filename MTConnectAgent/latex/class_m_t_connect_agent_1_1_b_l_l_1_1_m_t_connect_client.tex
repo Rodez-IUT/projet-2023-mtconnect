@@ -1,0 +1,336 @@
+\hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client}{}\section{Référence de la classe M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client}
+\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client}\index{M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client}}
+
+
+Gere la logique métier du client M\+T\+Connect  
+
+
+\subsection*{Types publics}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{Protocol}} \{ {\bfseries current}, 
+{\bfseries probe}, 
+{\bfseries sample}
+ \}
+\begin{DoxyCompactList}\small\item\em Les protocoles possibles \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a1500af478377913d4a5ad6e56e532af8}{Parse\+X\+M\+L\+Recursif}} (X\+Element element)
+\begin{DoxyCompactList}\small\item\em Transforme un document xml en Tag \end{DoxyCompactList}\item 
+async Task$<$ X\+Document $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a6a7f9024ead2a10401a80be8ac504e7b}{Get\+Probe\+Async}} (string url)
+\begin{DoxyCompactList}\small\item\em Récupere le probe d\textquotesingle{}une machine de façon asynchrone \end{DoxyCompactList}\item 
+async Task$<$ X\+Document $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a98f0238b0ad50cb531ff790c39e4b00d}{Get\+Current\+Async}} (string url)
+\begin{DoxyCompactList}\small\item\em Récupere le current d\textquotesingle{}une machine de façon asynchrone \end{DoxyCompactList}\item 
+async Task$<$ X\+Document $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a70ce6301ae2f75b317c73b4a35660e41}{get\+Assets\+Async}} (string url)
+\begin{DoxyCompactList}\small\item\em Récupere les assets d\textquotesingle{}une machine de façon asynchrone \end{DoxyCompactList}\item 
+async Task$<$ X\+Document $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a391ac09f130d6e39d6d57f2e35c62b72}{Get\+Sample\+Async}} (string url)
+\begin{DoxyCompactList}\small\item\em Récupere le sample d\textquotesingle{}une machine de façon asynchrone \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_adf30641f680b3a6ea91414aedc30c176}{Find\+Tag\+By\+Name}} (\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} tag, string name)
+\begin{DoxyCompactList}\small\item\em 1 Recherche d\textquotesingle{}un tag spécifique dans tout les tag enfant de celui passer en paramètre \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a785a56a144ad88ed9b8c3efbcc046fde}{Find\+Tag\+Name\+By\+Id}} (\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} tag, string id)
+\begin{DoxyCompactList}\small\item\em Recherche d\textquotesingle{}un tag spécifique dans tout les tag enfant de celui passer en paramètre \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a0deda7ea94d3370139eb1851c1e58bf8}{Find\+Tag\+By\+Id}} (\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} tag, string id)
+\begin{DoxyCompactList}\small\item\em Recherche d\textquotesingle{}un tag spécifique dans tout les tag enfant de celui passer en paramètre \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a3a54cecea9664fb03bfbbaa4350f408c}{Find\+Ref\+Tag\+By\+Id}} (\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} tag, string id)
+\begin{DoxyCompactList}\small\item\em Recherche d\textquotesingle{}un tag spécifique dans tout les tag enfant de celui passer en paramètre \end{DoxyCompactList}\item 
+List$<$ string $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a00fd074e11835791343b6d0c9c74b5f8}{Generer\+Path}} (\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} tag, string url\+Machine, bool is\+Or\+Activated, \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{Protocol}} protocole)
+\begin{DoxyCompactList}\small\item\em Initialise et lance la génération des paths \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+String\+Builder \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ad38815a224cb788630db2a3eb09d84c7}{Generer\+Path}} (\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} tag, String\+Builder string\+Builder, bool is\+Or\+Activated)
+\begin{DoxyCompactList}\small\item\em Génére un path de façon récursive Si le tag contient une id non vide, alors elle est ajoutée en paramètre au path \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ae62829c685da54c7761cb892d292d190}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ae62829c685da54c7761cb892d292d190}} 
+String\+Builder {\bfseries Generer\+Path\+With\+Or} (\mbox{\hyperlink{interface_m_t_connect_agent_1_1_model_1_1_i_tag}{I\+Tag}} tag, String\+Builder string\+Builder, bool is\+First)
+\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a49be318d688f99f3fe6596c74eba7ca1}{Generer\+Path\+Sans\+Or}} (\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} tag, string url\+Parente)
+\begin{DoxyCompactList}\small\item\em Génére les paths de façon récursive si l\textquotesingle{}option or est désactivée \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a7e6917938b6629de25db52ed84dba6c5}{Generer\+Path\+Avec\+Or}} (\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} tag, string url\+Parente)
+\begin{DoxyCompactList}\small\item\em Génére les paths de façon récursive si l\textquotesingle{}option or est activée \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ string $>$ \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ad1f188c1a4cd646e7630866643045d34}{paths}}
+\begin{DoxyCompactList}\small\item\em La liste des paths générés \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Gere la logique métier du client M\+T\+Connect 
+
+
+
+\subsection{Documentation des énumérations membres}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Protocol@{Protocol}}
+\index{Protocol@{Protocol}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{Protocol}{Protocol}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Protocol}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Les protocoles possibles 
+
+
+
+\subsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a3a54cecea9664fb03bfbbaa4350f408c}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a3a54cecea9664fb03bfbbaa4350f408c}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Find\+Ref\+Tag\+By\+Id@{Find\+Ref\+Tag\+By\+Id}}
+\index{Find\+Ref\+Tag\+By\+Id@{Find\+Ref\+Tag\+By\+Id}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{Find\+Ref\+Tag\+By\+Id()}{FindRefTagById()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Find\+Ref\+Tag\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}}}]{tag,  }\item[{string}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Recherche d\textquotesingle{}un tag spécifique dans tout les tag enfant de celui passer en paramètre 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tag} & Tag dans lequel vas être effectué la recherche\\
+\hline
+{\em id} & Id du tag recherché\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Renvoi le nom du tag correspondant sinon null
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a0deda7ea94d3370139eb1851c1e58bf8}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a0deda7ea94d3370139eb1851c1e58bf8}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Find\+Tag\+By\+Id@{Find\+Tag\+By\+Id}}
+\index{Find\+Tag\+By\+Id@{Find\+Tag\+By\+Id}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{Find\+Tag\+By\+Id()}{FindTagById()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Find\+Tag\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}}}]{tag,  }\item[{string}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Recherche d\textquotesingle{}un tag spécifique dans tout les tag enfant de celui passer en paramètre 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tag} & Tag dans lequel vas être effectué la recherche\\
+\hline
+{\em id} & Id du tag recherché\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Renvoi le nom du tag correspondant sinon null
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_adf30641f680b3a6ea91414aedc30c176}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_adf30641f680b3a6ea91414aedc30c176}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Find\+Tag\+By\+Name@{Find\+Tag\+By\+Name}}
+\index{Find\+Tag\+By\+Name@{Find\+Tag\+By\+Name}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{Find\+Tag\+By\+Name()}{FindTagByName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Find\+Tag\+By\+Name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}}}]{tag,  }\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+1 Recherche d\textquotesingle{}un tag spécifique dans tout les tag enfant de celui passer en paramètre 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tag} & Tag dans lequel vas être effectué la recherche\\
+\hline
+{\em name} & Nom du tag recherché\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Renvoi le tag qui correspond au critère de recherche sinon null
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a785a56a144ad88ed9b8c3efbcc046fde}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a785a56a144ad88ed9b8c3efbcc046fde}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Find\+Tag\+Name\+By\+Id@{Find\+Tag\+Name\+By\+Id}}
+\index{Find\+Tag\+Name\+By\+Id@{Find\+Tag\+Name\+By\+Id}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{Find\+Tag\+Name\+By\+Id()}{FindTagNameById()}}
+{\footnotesize\ttfamily string M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Find\+Tag\+Name\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}}}]{tag,  }\item[{string}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Recherche d\textquotesingle{}un tag spécifique dans tout les tag enfant de celui passer en paramètre 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tag} & Tag dans lequel vas être effectué la recherche\\
+\hline
+{\em id} & Id du tag recherché\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Renvoi le nom du tag correspondant sinon null
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ad38815a224cb788630db2a3eb09d84c7}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ad38815a224cb788630db2a3eb09d84c7}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Generer\+Path@{Generer\+Path}}
+\index{Generer\+Path@{Generer\+Path}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{Generer\+Path()}{GenererPath()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily String\+Builder M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Generer\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}}}]{tag,  }\item[{String\+Builder}]{string\+Builder,  }\item[{bool}]{is\+Or\+Activated }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Génére un path de façon récursive Si le tag contient une id non vide, alors elle est ajoutée en paramètre au path 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tag} & \\
+\hline
+{\em string\+Builder} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Le string\+Builder d\textquotesingle{}entrée auquel on à concaténé le path
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a00fd074e11835791343b6d0c9c74b5f8}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a00fd074e11835791343b6d0c9c74b5f8}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Generer\+Path@{Generer\+Path}}
+\index{Generer\+Path@{Generer\+Path}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{Generer\+Path()}{GenererPath()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily List$<$string$>$ M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Generer\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}}}]{tag,  }\item[{string}]{url\+Machine,  }\item[{bool}]{is\+Or\+Activated,  }\item[{\mbox{\hyperlink{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a2f390f74a0ad3ee5147e9438ceed6474}{Protocol}}}]{protocole }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initialise et lance la génération des paths 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tag} & Noeud racine depuis lequel nous allons générer le path, doit venir de la méthode Create\+Specifique\+Tag\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La liste des paths générés
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a7e6917938b6629de25db52ed84dba6c5}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a7e6917938b6629de25db52ed84dba6c5}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Generer\+Path\+Avec\+Or@{Generer\+Path\+Avec\+Or}}
+\index{Generer\+Path\+Avec\+Or@{Generer\+Path\+Avec\+Or}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{Generer\+Path\+Avec\+Or()}{GenererPathAvecOr()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Generer\+Path\+Avec\+Or (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}}}]{tag,  }\item[{string}]{url\+Parente }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Génére les paths de façon récursive si l\textquotesingle{}option or est activée 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tag} & Le tag courant de la génération du path courant\\
+\hline
+{\em url\+Parente} & Url courante de la génération du path courant\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a49be318d688f99f3fe6596c74eba7ca1}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a49be318d688f99f3fe6596c74eba7ca1}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Generer\+Path\+Sans\+Or@{Generer\+Path\+Sans\+Or}}
+\index{Generer\+Path\+Sans\+Or@{Generer\+Path\+Sans\+Or}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{Generer\+Path\+Sans\+Or()}{GenererPathSansOr()}}
+{\footnotesize\ttfamily void M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Generer\+Path\+Sans\+Or (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}}}]{tag,  }\item[{string}]{url\+Parente }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Génére les paths de façon récursive si l\textquotesingle{}option or est désactivée 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tag} & Le tag courant de la génération du path courant\\
+\hline
+{\em url\+Parente} & Url courante de la génération du path courant\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a70ce6301ae2f75b317c73b4a35660e41}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a70ce6301ae2f75b317c73b4a35660e41}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!get\+Assets\+Async@{get\+Assets\+Async}}
+\index{get\+Assets\+Async@{get\+Assets\+Async}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{get\+Assets\+Async()}{getAssetsAsync()}}
+{\footnotesize\ttfamily async Task$<$X\+Document$>$ M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+get\+Assets\+Async (\begin{DoxyParamCaption}\item[{string}]{url }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Récupere les assets d\textquotesingle{}une machine de façon asynchrone 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em url} & url de la machine\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Le X\+Document récupéré
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a98f0238b0ad50cb531ff790c39e4b00d}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a98f0238b0ad50cb531ff790c39e4b00d}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Get\+Current\+Async@{Get\+Current\+Async}}
+\index{Get\+Current\+Async@{Get\+Current\+Async}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{Get\+Current\+Async()}{GetCurrentAsync()}}
+{\footnotesize\ttfamily async Task$<$X\+Document$>$ M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Get\+Current\+Async (\begin{DoxyParamCaption}\item[{string}]{url }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Récupere le current d\textquotesingle{}une machine de façon asynchrone 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em url} & url de la machine\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Le X\+Document récupéré
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a6a7f9024ead2a10401a80be8ac504e7b}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a6a7f9024ead2a10401a80be8ac504e7b}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Get\+Probe\+Async@{Get\+Probe\+Async}}
+\index{Get\+Probe\+Async@{Get\+Probe\+Async}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{Get\+Probe\+Async()}{GetProbeAsync()}}
+{\footnotesize\ttfamily async Task$<$X\+Document$>$ M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Get\+Probe\+Async (\begin{DoxyParamCaption}\item[{string}]{url }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Récupere le probe d\textquotesingle{}une machine de façon asynchrone 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em url} & url de la machine\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Le X\+Document récupéré
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a391ac09f130d6e39d6d57f2e35c62b72}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a391ac09f130d6e39d6d57f2e35c62b72}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Get\+Sample\+Async@{Get\+Sample\+Async}}
+\index{Get\+Sample\+Async@{Get\+Sample\+Async}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{Get\+Sample\+Async()}{GetSampleAsync()}}
+{\footnotesize\ttfamily async Task$<$X\+Document$>$ M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Get\+Sample\+Async (\begin{DoxyParamCaption}\item[{string}]{url }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Récupere le sample d\textquotesingle{}une machine de façon asynchrone 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em url} & url de la machine\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Le X\+Document récupéré
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a1500af478377913d4a5ad6e56e532af8}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_a1500af478377913d4a5ad6e56e532af8}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!Parse\+X\+M\+L\+Recursif@{Parse\+X\+M\+L\+Recursif}}
+\index{Parse\+X\+M\+L\+Recursif@{Parse\+X\+M\+L\+Recursif}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{Parse\+X\+M\+L\+Recursif()}{ParseXMLRecursif()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_m_t_connect_agent_1_1_model_1_1_tag}{Tag}} M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+Parse\+X\+M\+L\+Recursif (\begin{DoxyParamCaption}\item[{X\+Element}]{element }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Transforme un document xml en Tag 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em element} & L\textquotesingle{}élément racine du document X\+ML\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Un tag représentant le document xml
+\end{DoxyReturn}
+
+
+\subsection{Documentation des données membres}
+\mbox{\Hypertarget{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ad1f188c1a4cd646e7630866643045d34}\label{class_m_t_connect_agent_1_1_b_l_l_1_1_m_t_connect_client_ad1f188c1a4cd646e7630866643045d34}} 
+\index{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}!paths@{paths}}
+\index{paths@{paths}!M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client@{M\+T\+Connect\+Agent\+::\+B\+L\+L\+::\+M\+T\+Connect\+Client}}
+\subsubsection{\texorpdfstring{paths}{paths}}
+{\footnotesize\ttfamily List$<$string$>$ M\+T\+Connect\+Agent.\+B\+L\+L.\+M\+T\+Connect\+Client.\+paths\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La liste des paths générés 
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+M\+T\+Connect\+Agent.\+B\+L\+L/M\+T\+Connect\+Client.\+cs\end{DoxyCompactItemize}

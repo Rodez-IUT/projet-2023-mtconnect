@@ -1,0 +1,191 @@
+
+
+\section*{M\+T\+Connect.\+N\+ET}
+
+\href{https://github.com/TrakHound/MTConnect.NET/actions/workflows/dotnet.yml}{\tt } \href{https://github.com/TrakHound/MTConnect.NET/releases/latest}{\tt } \href{https://www.nuget.org/packages/MTConnect.NET}{\tt }
+
+\begin{quote}
+1/22/2023 Updated to support M\+T\+Connect 2.\+1 \end{quote}
+
+
+\subsection*{Overview}
+
+M\+T\+Connect.\+N\+ET is a fully featured .N\+ET library for M\+T\+Connect to develop Agents, Adapters, and Clients. Supports M\+T\+Connect Versions up to 2.\+1.
+
+The Agent, Buffers, and Adapter are separated into individual classes in order to allow for modular implementations such as the following \+:
+
+
+\begin{DoxyItemize}
+\item A traditional Agent that uses a R\+E\+ST Api, in-\/memory buffer, and Adapters that communicate using the S\+H\+DR protocol
+\item An agent imbedded with the Adapter (which elminates the need for the Adapter T\+CP communication)
+\item Supports S\+H\+DR Apdaters
+\item Supports H\+T\+TP and M\+Q\+TT
+\item Integration with cloud services such as A\+WS and Azure
+\end{DoxyItemize}
+
+Other features of M\+T\+Connect.\+N\+ET \+:
+\begin{DoxyItemize}
+\item Extensible through plugin libraries to extend Types
+\item Presistent Buffers that are backed up on the File System. Retains state after Agent is restarted
+\item Supports multiple M\+T\+Connect Version output. Automatically removes data that is not compatible with the requested version
+\item Supports running as Windows Service with easy to use command line arguments
+\item Full data validation
+\begin{DoxyItemize}
+\item Validation on Input
+\item X\+ML Schema Validation on output
+\item Configurable Validation Levels
+\end{DoxyItemize}
+\item Fully documented objects using text from the M\+T\+Connect Standard. This enables Intellisense in applications such as Visual Studio.
+\item Full list of Device, Component, Composition, and Data\+Item types. See \href{https://github.com/TrakHound/MTConnect.NET/tree/master/src/MTConnect.NET-Common/Devices}{\tt Devices} for more information.
+\item Full list of Asset types. See \href{https://github.com/TrakHound/MTConnect.NET/tree/master/src/MTConnect.NET-Common/Assets}{\tt Devices} for more information.
+\item Fully supports Unit conversion. Default Units and Unit\+Conversion is done automatically when sending Streams and when reading Streams.
+\item Full client support for requesting data from any M\+T\+Connect Agent (Probe, Current, Sample Stream, Assets, etc.). See \href{https://github.com/TrakHound/MTConnect.NET/tree/master/src/MTConnect.NET-HTTP/Clients/Rest}{\tt Clients} for more information.
+\item (In-\/\+Progress) \href{https://github.com/TrakHound/MTConnect.NET/tree/master/src/MTConnect.NET-Models/Models}{\tt Models} framework for setting and accessing data using an object model as opposed to Data\+Item ID\textquotesingle{}s and Types
+\end{DoxyItemize}
+
+\subsection*{Agent Applications}
+
+\paragraph*{Recommended (Windows / Linux)}
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/TrakHound/MTConnect.NET/tree/master/applications/Agents/MTConnect-Agent-Http}{\tt M\+T\+Connect H\+T\+TP Agent} \+: M\+T\+Connect Agent application is fully compatible with the latest Version 2.\+1 of the M\+T\+Connect Standard. It uses the S\+H\+DR protocol to receive data from Adapters, an in-\/memory buffer with an optional durable file system based buffer, and an Http R\+E\+ST interface for retrieving data.
+\item \href{https://github.com/TrakHound/MTConnect.NET/tree/master/applications/Agents/MTConnect-Agent-Http-Gateway}{\tt M\+T\+Connect H\+T\+TP Gateway Agent} \+: M\+T\+Connect Agent application is fully compatible with the latest Version 2.\+1 of the M\+T\+Connect Standard. It receives data from other M\+T\+Connect Agents using H\+T\+TP, an in-\/memory buffer with an optional durable file system based buffer, and an Http R\+E\+ST interface for retrieving data.
+\item \href{https://github.com/TrakHound/MTConnect.NET/tree/master/applications/Agents/MTConnect-Agent-MQTT-Relay}{\tt M\+T\+Connect M\+Q\+TT Relay Agent} \+: This M\+T\+Connect Agent application is fully compatible with the latest Version 2.\+1 of the M\+T\+Connect Standard. It uses the S\+H\+DR protocol to receive data from Adapters, an in-\/memory buffer with an optional durable file system based buffer, and an M\+Q\+TT client to publish messages to an external M\+Q\+TT Broker.
+\item \href{https://github.com/TrakHound/MTConnect.NET/tree/master/applications/Agents/MTConnect-Agent-MQTT-Broker}{\tt M\+T\+Connect M\+Q\+TT Broker Agent} \+: This M\+T\+Connect Agent application is fully compatible with the latest Version 2.\+1 of the M\+T\+Connect Standard. It uses the S\+H\+DR protocol to receive data from Adapters, an in-\/memory buffer with an optional durable file system based buffer, and a built-\/in M\+Q\+TT broker.
+\end{DoxyItemize}
+
+\paragraph*{Specialized (I\+IS)}
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/TrakHound/MTConnect.NET/tree/master/applications/Agents/MTConnect-Agent-Http-AspNetCore}{\tt M\+T\+Connect H\+T\+TP Agent -\/ Asp\+Net\+Core} \+: Similar to the M\+T\+Connect Agent application but uses either the built-\/in Kestrel server or can be setup through I\+IS (Internet Information Services). This allows the agent to be used with all of the features available through A\+S\+P.\+N\+ET and I\+IS such as security, permissions, monitoring, etc.
+\item \href{https://github.com/TrakHound/MTConnect.NET/tree/master/applications/Agents/MTConnect-Agent-Http-Gateway-AspNetCore}{\tt M\+T\+Connect H\+T\+TP Gateway Agent -\/ Asp\+Net\+Core} \+: An Agent that runs mulitple M\+T\+Connect\+Clients on the backend and passes that data to an \mbox{\hyperlink{namespace_m_t_connect_agent}{M\+T\+Connect\+Agent}}. This can be used to access M\+T\+Connect data on a central server. Uses either the built-\/in Kestrel server or can be setup through I\+IS (Internet Information Services). This allows the agent to be used with all of the features available through A\+S\+P.\+N\+ET and I\+IS such as security, permissions, monitoring, etc.
+\end{DoxyItemize}
+
+\paragraph*{In Progress}
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/TrakHound/MTConnect.NET/tree/master/applications/Agents/MTConnect-Agent-MQTT-Gateway}{\tt M\+T\+Connect M\+Q\+TT Gateway Agent} \+: (In-\/\+Progress) An M\+T\+Connect Gateway Agent with an M\+Q\+TT broker built-\/in.
+\end{DoxyItemize}
+
+\subsubsection*{Live Demo}
+
+A live demo of the M\+T\+Connect Gateway H\+T\+TP Agent (Asp\+Net\+Core) application is running at \href{https://mtconnect.trakhound.com?outputComments=true&indentOutput=true&version=2.1}{\tt https\+://mtconnect.\+trakhound.\+com}.
+\begin{DoxyItemize}
+\item \href{https://mtconnect.trakhound.com/current?outputComments=true&indentOutput=true&version=2.1}{\tt https\+://mtconnect.\+trakhound.\+com/current}
+\item \href{https://mtconnect.trakhound.com/sample?outputComments=true&indentOutput=true&version=2.1&count=500}{\tt https\+://mtconnect.\+trakhound.\+com/sample}
+\item \href{https://mtconnect.trakhound.com/assets?outputComments=true&indentOutput=true}{\tt https\+://mtconnect.\+trakhound.\+com/assets}
+\end{DoxyItemize}
+
+\subsection*{Docker}
+
+Docker images are located at \+:
+\begin{DoxyItemize}
+\item M\+T\+Connect H\+T\+TP Agent \+: \href{https://hub.docker.com/r/trakhound/mtconnect-agent-http}{\tt https\+://hub.\+docker.\+com/r/trakhound/mtconnect-\/agent-\/http}
+\end{DoxyItemize}
+
+\subsection*{Nuget Packages}
+
+The Nuget packages for the libraries in this repo are listed below\+:
+\begin{DoxyItemize}
+\item \href{https://www.nuget.org/packages/MTConnect.NET/}{\tt M\+T\+Connect.\+N\+ET}
+\item \href{https://www.nuget.org/packages/MTConnect.NET-Common/}{\tt M\+T\+Connect.\+N\+ET-\/\+Common}
+\item \href{https://www.nuget.org/packages/MTConnect.NET-HTTP/}{\tt M\+T\+Connect.\+N\+ET-\/\+H\+T\+TP}
+\item \href{https://www.nuget.org/packages/MTConnect.NET-HTTP-AspNetCore/}{\tt M\+T\+Connect.\+N\+ET-\/\+H\+T\+T\+P-\/\+Asp\+Net\+Core}
+\item \href{https://www.nuget.org/packages/MTConnect.NET-XML/}{\tt M\+T\+Connect.\+N\+ET-\/\+X\+ML}
+\item \href{https://www.nuget.org/packages/MTConnect.NET-JSON/}{\tt M\+T\+Connect.\+N\+ET-\/\+J\+S\+ON}
+\item \href{https://www.nuget.org/packages/MTConnect.NET-SHDR/}{\tt M\+T\+Connect.\+N\+ET-\/\+S\+H\+DR}
+\item \href{https://www.nuget.org/packages/MTConnect.NET-MQTT/}{\tt M\+T\+Connect.\+N\+ET-\/\+M\+Q\+TT}
+\item \href{https://www.nuget.org/packages/MTConnect.NET-Services/}{\tt M\+T\+Connect.\+N\+ET-\/\+Services}
+\item \href{https://www.nuget.org/packages/MTConnect.NET-DeviceFinder/}{\tt M\+T\+Connect.\+N\+ET-\/\+Device\+Finder}
+\item \href{https://www.nuget.org/packages/MTConnect.NET-Applications-Adapters-SHDR/}{\tt M\+T\+Connect.\+N\+ET-\/\+Applications-\/\+Adapters-\/\+S\+H\+DR}
+\item \href{https://www.nuget.org/packages/MTConnect.NET-Applications-Agents/}{\tt M\+T\+Connect.\+N\+ET-\/\+Applications-\/\+Agents}
+\item \href{https://www.nuget.org/packages/MTConnect.NET-Applications-Agents-MQTT/}{\tt M\+T\+Connect.\+N\+ET-\/\+Applications-\/\+Agents-\/\+M\+Q\+TT}
+\end{DoxyItemize}
+
+\subsection*{Supported Frameworks}
+
+
+\begin{DoxyItemize}
+\item .N\+ET 7.\+0
+\item .N\+ET 6.\+0
+\item .N\+ET 5.\+0
+\item .N\+ET Core 3.\+1
+\item .N\+ET Standard 2.\+0
+\item .N\+ET Framework 4.\+8
+\item .N\+ET Framework 4.\+7.\+2
+\item .N\+ET Framework 4.\+7.\+1
+\item .N\+ET Framework 4.\+7
+\item .N\+ET Framework 4.\+6.\+2
+\item .N\+ET Framework 4.\+6.\+1
+\end{DoxyItemize}
+
+\subsection*{M\+T\+Connect Version Compatibility}
+
+M\+T\+Connect.\+N\+ET is designed to be fully compatible for all versions of the M\+T\+Connect standard. This is done through processing by the \href{https://github.com/TrakHound/MTConnect.NET/tree/master/src/MTConnect.NET-Common/Agents/MTConnectAgent.cs}{\tt M\+T\+Connect\+Agent} class before data is output. This allows the version to be a parameter when requesting data from the Agent. More information can be found in the https\+://github.com/\+Trak\+Hound/\+M\+T\+Connect.\+N\+ET/tree/master/src/\+M\+T\+Connect.N\+E\+T-\/\+Common/\+Devices/\+R\+E\+A\+D\+M\+E.\+md \char`\"{}\+Devices R\+E\+A\+D\+M\+E\char`\"{}.
+
+\subsection*{Data Validation}
+
+Validation is performed on a Device, Component, Composition, or Data\+Item level through the classes in \href{https://github.com/TrakHound/MTConnect.NET/tree/master/src/MTConnect.NET-Common/Devices}{\tt Devices}. This allows for validation without the need to use X\+ML schemas (although X\+ML Validation against X\+SD schemas is supported).
+
+\subsection*{Releases}
+
+Releases are available at \+: \href{https://github.com/TrakHound/MTConnect.NET/releases}{\tt Releases}
+
+\subsection*{Agents}
+
+Agents are implemented using the \mbox{\hyperlink{namespace_m_t_connect_agent}{M\+T\+Connect\+Agent}} class and I\+M\+T\+Connect\+Agent interface. The \mbox{\hyperlink{namespace_m_t_connect_agent}{M\+T\+Connect\+Agent}} class implements the M\+T\+Connect standard and is inteded to be full implemenation. More information about agents can be found at \href{https://github.com/TrakHound/MTConnect.NET/tree/master/src/MTConnect.NET-Common/Agents}{\tt Agents} and Agent Applications can be found at \href{https://github.com/TrakHound/MTConnect.NET/tree/master/applications/Agents}{\tt Agent Applications}.
+
+\subsubsection*{S\+H\+DR $>$ H\+T\+TP Implementation}
+
+A S\+H\+DR to H\+T\+TP implementation is the traditional M\+T\+Connect Agent configuration. The agent reads from one or more Adapter applications that implement the S\+H\+DR Protocol. Data is then read from the Agent using the H\+T\+TP R\+E\+ST protocol. The agent and adapter(s) are typically separate applications. The agent and adapter(s) can still be run on the same PC (or H\+MI) but there is still T\+CP communication between them.
+
+
+
+\subsubsection*{H\+T\+TP $>$ H\+T\+TP Implementation}
+
+An H\+T\+TP to H\+T\+TP implementation reads from other M\+T\+Connect Agents and forwards that data to a central M\+T\+Connect Agent. This implementation can be used to create a \char`\"{}\+Gateway\char`\"{} that multiple other M\+T\+Connect Agents can be forwarded to. This can be used to provide a single access point, implement stricter security policies, or upgrade an older agent without effecting other applications that may already be using the older version.
+
+
+
+\subsubsection*{S\+H\+DR $>$ M\+Q\+TT Implementation}
+
+A S\+H\+DR to M\+Q\+TT implementation uses M\+Q\+TT to send and receive messages. The agent reads from one or more Adapter applications that implement the S\+H\+DR Protocol. Data is then read from the Agent using the M\+Q\+TT protocol. The agent and adapter(s) are typically separate applications. The agent and adapter(s) can still be run on the same PC (or H\+MI) but there is still T\+CP communication between them.
+
+
+
+\subsubsection*{Embedded Implementation}
+
+An embedded implementation uses the M\+T\+Connect.\+N\+ET library to implement an M\+T\+Connect Agent in the same application that is reading from the machine P\+LC. This creates a simple and compact solution that can be deployed as a single application/product. When compared to a S\+H\+DR to H\+T\+TP implementation, this eliminates the need to use the S\+H\+DR protocol as well as eliminates the T\+CP communication between the Adapter and the Agent. Implementation is simplified using the \href{https://github.com/TrakHound/MTConnect.NET/tree/master/src/MTConnect.NET-Applications-Agents}{\tt M\+T\+Connect.\+N\+ET-\/\+Applications-\/\+Agents} Library that can be as simple as a few lines of code and can be kept up to date using Nuget.
+
+
+
+\subsection*{Adapters}
+
+\subsubsection*{S\+H\+DR Adapter}
+
+Adapters are used to convert data read from a machine or P\+LC to the S\+H\+DR Protocol that can then be sent over T\+CP to an M\+T\+Connect Agent. There are several adapter types available in the \href{https://github.com/TrakHound/MTConnect.NET/tree/master/src/MTConnect.NET-SHDR}{\tt M\+T\+Connect.\+N\+ET-\/\+S\+H\+DR} library that are listed below\+:
+\begin{DoxyItemize}
+\item \href{https://github.com/TrakHound/MTConnect.NET/blob/master/src/MTConnect.NET-SHDR/Adapters/Shdr/ShdrAdapter.cs}{\tt Shdr\+Adapter} \+: Sends the most recent values On-\/\+Demand using the Send\+Current() method. This is used when full control of the communication is needed.
+\item \href{https://github.com/TrakHound/MTConnect.NET/blob/master/src/MTConnect.NET-SHDR/Adapters/Shdr/ShdrIntervalAdapter.cs}{\tt Shdr\+Interval\+Adapter} \+: Sends the most recent values at the specified Interval. This is used when a set interval is adequate and the most recent value is all that is needed
+\item \href{https://github.com/TrakHound/MTConnect.NET/blob/master/src/MTConnect.NET-SHDR/Adapters/Shdr/ShdrQueueAdapter.cs}{\tt Shdr\+Queue\+Adapter} \+: Queues all values that are sent from the P\+LC and sends them all on demand using the Send\+Buffer() method. This is used when all values are needed and full control of the communication is needed.
+\item \href{https://github.com/TrakHound/MTConnect.NET/blob/master/src/MTConnect.NET-SHDR/Adapters/Shdr/ShdrIntervalQueueAdapter.cs}{\tt Shdr\+Interval\+Queue\+Adapter} \+: Queues all values that are sent from the P\+LC and sends any queued values at the specified Interval. This is used when all values are needed but an interval is adequate.
+\end{DoxyItemize}
+
+\subsection*{Developer Notes}
+
+This repo along with the libraries and applications are free to use and hopefully will help those that are looking at either getting started using M\+T\+Connect or those that are looking to use M\+T\+Connect for more advanced use cases.
+
+Feel free to comment, or create pull-\/requests for anything that could be coded, formatted, or worded better. Attention to detail and continuous improvement are important in manufacturing so they should be just as important for manufacturing software.
+
+One of this project\textquotesingle{}s goals is to expand the use cases for M\+T\+Connect and by breaking apart the functionalities of the agent, hopefully that will allow others to be creative in how to use the M\+T\+Connect standard.
+
+Hopefully this repo will serve as a \char`\"{}one stop shop\char`\"{} for .N\+ET developers looking to use M\+T\+Connect. If anyone is interested in developing a similar repo for another framework or language, feel free to use this as a guide as I imagine some of the classes (which is the most tedious part of the code) could be converted to other languages fairly easily.
+
+This M\+T\+Connect.\+N\+ET update is Part 1 of {\bfseries The Trak\+Hound Project} which is a project to provide open source code as well as products for each part of a full I\+I\+OT implementation. Please show support for our project at \href{http://www.trakhound.com}{\tt www.\+Trak\+Hound.\+com}.
+
+Thanks for your interest in using these libraries and applications and feel free to contribute or give feedback.
+
+-\/ Patrick 
