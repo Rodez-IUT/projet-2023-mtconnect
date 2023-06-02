@@ -52,7 +52,7 @@
             this.treeAffichage.Margin = new System.Windows.Forms.Padding(0);
             this.treeAffichage.Name = "treeAffichage";
             this.treeAffichage.ShowNodeToolTips = true;
-            this.treeAffichage.Size = new System.Drawing.Size(777, 392);
+            this.treeAffichage.Size = new System.Drawing.Size(777, 357);
             this.treeAffichage.TabIndex = 0;
             this.treeAffichage.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeAffichage_AfterCheck);
             // 
@@ -110,7 +110,7 @@
             this.rechercheBox.Size = new System.Drawing.Size(159, 20);
             this.rechercheBox.TabIndex = 3;
             // 
-            // imageList1
+            // imageListIcons
             // 
             this.imageListIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageListIcons.ImageSize = new System.Drawing.Size(20, 20);
